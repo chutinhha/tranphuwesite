@@ -48,7 +48,7 @@ namespace Libs
         /// <returns>password encoded</returns>
         public static string EncodePassword(string strPassword)
         {
-            return FormsAuthentication.HashPasswordForStoringInConfigFile(strPassword + "LibSecurity", "MD5");
+            return FormsAuthentication.HashPasswordForStoringInConfigFile(strPassword + "nhat.it", "MD5");
         }
 
         /*--------------Password Generator---------*/
