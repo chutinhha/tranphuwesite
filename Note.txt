@@ -1,3 +1,5 @@
 ﻿﻿Nhật: thư viện sử dụng nằm trong thư mục Libs
+thư mục Database chứa file backup, nếu không backup được theo cách thông thường thì copy file Script.sql vào SQL server run như query bình thường.
+Mọi thắc mắc pm về nick yahoo: lt_12705, ko thấy trả  lời thì máy tính đang đã ở ngoài vùng internet.
 ////////////////////////////////////////////////////
 Nguyên:
