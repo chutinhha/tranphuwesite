@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TranPhuPORTAL", "TranPhuPORTAL\", "{B55D9547-0016-406C-897E-EE2FADA569F1}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/TranPhuPORTAL"
+		Debug.AspNetCompiler.PhysicalPath = "TranPhuPORTAL\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\TranPhuPORTAL\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/TranPhuPORTAL"
+		Release.AspNetCompiler.PhysicalPath = "TranPhuPORTAL\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\TranPhuPORTAL\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "11621"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{E183305B-8AEF-43ED-965F-E61AD0EEB04D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B55D9547-0016-406C-897E-EE2FADA569F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B55D9547-0016-406C-897E-EE2FADA569F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B55D9547-0016-406C-897E-EE2FADA569F1}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{B55D9547-0016-406C-897E-EE2FADA569F1}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{E183305B-8AEF-43ED-965F-E61AD0EEB04D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E183305B-8AEF-43ED-965F-E61AD0EEB04D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E183305B-8AEF-43ED-965F-E61AD0EEB04D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E183305B-8AEF-43ED-965F-E61AD0EEB04D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
