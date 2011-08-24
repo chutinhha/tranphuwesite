@@ -1,7 +1,0 @@
-﻿﻿Nhật: thư viện sử dụng nằm trong thư mục Libs
-thư mục Database chứa file backup, nếu không backup được theo cách thông thường thì copy file Script.sql vào SQL server run như query bình thường.
-Mọi thắc mắc pm về nick yahoo: lt_12705, ko thấy trả  lời thì máy tính đang đã ở ngoài vùng internet.
-////////////////////////////////////////////////////
-Nguyên:template trang chủ đã được commit mọi người update về xem thử, mọi ý kiến thắc mắc hoặc cần chỉnh sửa liên hệ với Nguyên,
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Thủy: Bài phân tích cơ sở dữ liệu đã được commit mọi người xem rồi cho ý kiến.
