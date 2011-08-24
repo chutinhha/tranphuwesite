@@ -1,0 +1,7 @@
+D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\DataAccess\obj\Debug\ResolveAssemblyReference.cache
+D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\DataAccess\bin\Debug\DataAccess.dll
+D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\DataAccess\bin\Debug\DataAccess.pdb
+D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\DataAccess\bin\Debug\Utilities.dll
+D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\DataAccess\bin\Debug\Utilities.pdb
+D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\DataAccess\obj\Debug\DataAccess.dll
+D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\DataAccess\obj\Debug\DataAccess.pdb
