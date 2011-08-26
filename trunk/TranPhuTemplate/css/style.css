@@ -233,3 +233,71 @@ img{ border:0; }
 	color:#ff8c26;
 	text-decoration:underline;
 }
+
+/*css cho thông tin của bảng giáo viên--------------------------------*/
+.avatar{
+	display:inline;
+	float:left;
+	width:180px;
+	margin-right:10px;
+}
+.hinhAvatar, .hinhAvatar img{
+	max-width:180px;
+	max-height:220px;
+}
+
+.tenGiaoVien{
+	margin:10px 0;
+	text-align:center;
+	font-weight:bold;
+	color:#ff8c26;
+}
+.chucVu{
+	font-weight:bold;
+	color:#666;
+	text-align:center;
+}
+.thongTinCaNhan{
+	display:inline; float:left;
+	line-height:20px;
+}
+.tieuDeTTCaNhan{
+	font-weight:bold;
+	width:120px;
+	color:#666;
+	margin-right:10px;
+	line-height:24px;
+}
+.table_title td{
+	font-weight:bold;
+	text-align:center;
+	background-color:#ddd;
+}
+.danhSachTin td{
+	padding:0 0 0 10px;
+	border: 1px #ccc solid;
+}
+.canhGiua{
+	text-align:center;
+}
+.DSTenGiaoVien{
+	font-weight:bold;	
+}
+.DSTenGiaoVien a{
+	color:#ff8c26;
+	text-decoration:none;
+}
+.DSTenGiaoVien a:hover{
+	color:#ff8c26;
+	text-decoration:underline;
+}
+.phanTrang{
+	margin:10px 0;
+	text-align:center;
+	font-weight:bold;
+}
+.phanTrang span{
+	margin:0 5px; 
+}.phanTrang .active{
+	color:#ff8c26;
+}
