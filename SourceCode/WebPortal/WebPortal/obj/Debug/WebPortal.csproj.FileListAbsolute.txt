@@ -1,0 +1,5 @@
+D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\WebPortal\WebPortal\bin\WebPortal.dll
+D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\WebPortal\WebPortal\bin\WebPortal.pdb
+D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\WebPortal\WebPortal\obj\Debug\ResolveAssemblyReference.cache
+D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\WebPortal\WebPortal\obj\Debug\WebPortal.dll
+D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\WebPortal\WebPortal\obj\Debug\WebPortal.pdb

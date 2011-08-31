@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WebPortalModelStoreContainer" CdmEntityContainer="WebPortalEntities">
+    <EntitySetMapping Name="Applications">
+      <EntityTypeMapping TypeName="WebPortalModel.Application">
+        <MappingFragment StoreEntitySet="Application">
+          <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+          <ScalarProperty Name="Application_Name" ColumnName="Application_Name" />
+          <ScalarProperty Name="Application_Description" ColumnName="Application_Description" />
+          <ScalarProperty Name="Application_FilePath" ColumnName="Application_FilePath" />
+          <ScalarProperty Name="Application_Image" ColumnName="Application_Image" />
+          <ScalarProperty Name="Application_DateCreate" ColumnName="Application_DateCreate" />
+          <ScalarProperty Name="Application_ToString" ColumnName="Application_ToString" />
+          <ScalarProperty Name="Parent_Id" ColumnName="Parent_Id" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChucVus">
+      <EntityTypeMapping TypeName="WebPortalModel.ChucVu">
+        <MappingFragment StoreEntitySet="ChucVu">
+          <ScalarProperty Name="IDCV" ColumnName="IDCV" />
+          <ScalarProperty Name="TenCV" ColumnName="TenCV" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChucVu_GiaoVien">
+      <EntityTypeMapping TypeName="WebPortalModel.ChucVu_GiaoVien">
+        <MappingFragment StoreEntitySet="ChucVu_GiaoVien">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDChucVu" ColumnName="IDChucVu" />
+          <ScalarProperty Name="IDGiaoVien" ColumnName="IDGiaoVien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FilePermissions">
+      <EntityTypeMapping TypeName="WebPortalModel.FilePermission">
+        <MappingFragment StoreEntitySet="FilePermission">
+          <ScalarProperty Name="FilePermissionID" ColumnName="FilePermissionID" />
+          <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="FolderPath" ColumnName="FolderPath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GiaoViens">
+      <EntityTypeMapping TypeName="WebPortalModel.GiaoVien">
+        <MappingFragment StoreEntitySet="GiaoVien">
+          <ScalarProperty Name="IDGiaoVien" ColumnName="IDGiaoVien" />
+          <ScalarProperty Name="HoGV" ColumnName="HoGV" />
+          <ScalarProperty Name="TenGV" ColumnName="TenGV" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+          <ScalarProperty Name="BoMon" ColumnName="BoMon" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="WebPortalModel.Group">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="Group_Name" ColumnName="Group_Name" />
+          <ScalarProperty Name="Group_Description" ColumnName="Group_Description" />
+          <ScalarProperty Name="Group_ToString" ColumnName="Group_ToString" />
+          <ScalarProperty Name="Group_DateCreate" ColumnName="Group_DateCreate" />
+          <ScalarProperty Name="User_Create" ColumnName="User_Create" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InGroups">
+      <EntityTypeMapping TypeName="WebPortalModel.InGroup">
+        <MappingFragment StoreEntitySet="InGroup">
+          <ScalarProperty Name="InGroupID" ColumnName="InGroupID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InRoles">
+      <EntityTypeMapping TypeName="WebPortalModel.InRole">
+        <MappingFragment StoreEntitySet="InRoles">
+          <ScalarProperty Name="InRolesID" ColumnName="InRolesID" />
+          <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoaiTins">
+      <EntityTypeMapping TypeName="WebPortalModel.LoaiTin">
+        <MappingFragment StoreEntitySet="LoaiTin">
+          <ScalarProperty Name="IDLoaiTin" ColumnName="IDLoaiTin" />
+          <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logs">
+      <EntityTypeMapping TypeName="WebPortalModel.Log">
+        <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="LogID" ColumnName="LogID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Trace" ColumnName="Trace" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Time_Login" ColumnName="Time_Login" />
+          <ScalarProperty Name="Time_Logout" ColumnName="Time_Logout" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Permissions">
+      <EntityTypeMapping TypeName="WebPortalModel.Permission">
+        <MappingFragment StoreEntitySet="Permission">
+          <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Descritption" ColumnName="Descritption" />
+          <ScalarProperty Name="Permission_ToString" ColumnName="Permission_ToString" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Profiles">
+      <EntityTypeMapping TypeName="WebPortalModel.Profile">
+        <MappingFragment StoreEntitySet="Profile">
+          <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Birdthday" ColumnName="Birdthday" />
+          <ScalarProperty Name="LastUpdateProfile" ColumnName="LastUpdateProfile" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+          <ScalarProperty Name="Ethnic" ColumnName="Ethnic" />
+          <ScalarProperty Name="Religion" ColumnName="Religion" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CodeStaff" ColumnName="CodeStaff" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="WebPortalModel.Setting">
+        <MappingFragment StoreEntitySet="Setting">
+          <ScalarProperty Name="SettingID" ColumnName="SettingID" />
+          <ScalarProperty Name="Setting_Name" ColumnName="Setting_Name" />
+          <ScalarProperty Name="Setting_Description" ColumnName="Setting_Description" />
+          <ScalarProperty Name="Setting_DateCreate" ColumnName="Setting_DateCreate" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TaiNguyens">
+      <EntityTypeMapping TypeName="WebPortalModel.TaiNguyen">
+        <MappingFragment StoreEntitySet="TaiNguyen">
+          <ScalarProperty Name="IDTaiNguyen" ColumnName="IDTaiNguyen" />
+          <ScalarProperty Name="TenTaiNguyen" ColumnName="TenTaiNguyen" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TaiNguyen_TinTuc">
+      <EntityTypeMapping TypeName="WebPortalModel.TaiNguyen_TinTuc">
+        <MappingFragment StoreEntitySet="TaiNguyen_TinTuc">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDTaiNguyen" ColumnName="IDTaiNguyen" />
+          <ScalarProperty Name="IDTinTuc" ColumnName="IDTinTuc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TinTucs">
+      <EntityTypeMapping TypeName="WebPortalModel.TinTuc">
+        <MappingFragment StoreEntitySet="TinTuc">
+          <ScalarProperty Name="IDTinTuc" ColumnName="IDTinTuc" />
+          <ScalarProperty Name="IDLoaiTin" ColumnName="IDLoaiTin" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+          <ScalarProperty Name="NguoiDang" ColumnName="NguoiDang" />
+          <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ToChucs">
+      <EntityTypeMapping TypeName="WebPortalModel.ToChuc">
+        <MappingFragment StoreEntitySet="ToChuc">
+          <ScalarProperty Name="IDToChuc" ColumnName="IDToChuc" />
+          <ScalarProperty Name="TenTC" ColumnName="TenTC" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ToChuc_GiaoVien">
+      <EntityTypeMapping TypeName="WebPortalModel.ToChuc_GiaoVien">
+        <MappingFragment StoreEntitySet="ToChuc_GiaoVien">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDGiaoVien" ColumnName="IDGiaoVien" />
+          <ScalarProperty Name="IDToChuc" ColumnName="IDToChuc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="WebPortalModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LastPasswordChange" ColumnName="LastPasswordChange" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+          <ScalarProperty Name="User_ToString" ColumnName="User_ToString" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
