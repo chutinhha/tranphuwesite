@@ -1,4 +1,4 @@
-﻿/****** Object:  Table [dbo].[ToChuc]    Script Date: 08/31/2011 15:02:21 ******/
+﻿/****** Object:  Table [dbo].[ToChuc]    Script Date: 08/31/2011 15:20:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13,7 +13,7 @@ CREATE TABLE [dbo].[ToChuc](
 ) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TaiNguyen]    Script Date: 08/31/2011 15:02:21 ******/
+/****** Object:  Table [dbo].[TaiNguyen]    Script Date: 08/31/2011 15:20:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -29,7 +29,25 @@ CREATE TABLE [dbo].[TaiNguyen](
 ) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 08/31/2011 15:02:21 ******/
+/****** Object:  Table [dbo].[Setting]    Script Date: 08/31/2011 15:20:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Setting](
+	[SettingID] [int] IDENTITY(1,1) NOT NULL,
+	[Setting_Name] [nvarchar](100) NULL,
+	[Setting_Description] [ntext] NULL,
+	[Setting_DateCreate] [datetime] NULL,
+	[Value] [nvarchar](50) NULL,
+	[Active] [bit] NULL,
+ CONSTRAINT [PK_Setting] PRIMARY KEY CLUSTERED 
+(
+	[SettingID] ASC
+) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 08/31/2011 15:20:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -82,7 +100,7 @@ INSERT [dbo].[Users] ([UserID], [UserName], [Password], [Email], [LastPasswordCh
 INSERT [dbo].[Users] ([UserID], [UserName], [Password], [Email], [LastPasswordChange], [LastLoginDate], [DateCreate], [User_ToString], [Type], [Active]) VALUES (22, N'binhvp', N'1fFyPLM7bia/bZMpnb2Tng==', N'binhvp@dlu.edu.vn', CAST(0x00009F1E0095D6FC AS DateTime), CAST(0x00009F1E0095D6FC AS DateTime), CAST(0x00009F1E0095D6FC AS DateTime), N'', N'', 1)
 INSERT [dbo].[Users] ([UserID], [UserName], [Password], [Email], [LastPasswordChange], [LastLoginDate], [DateCreate], [User_ToString], [Type], [Active]) VALUES (23, N'thangth', N'rB2NcdJj3h9BPBlCp547vw==', N'thangth@dlu.edu.vn', CAST(0x00009F1E00B15C4C AS DateTime), CAST(0x00009F1E00B15C4C AS DateTime), CAST(0x00009F1E00B15C4C AS DateTime), N'', N'', 1)
 SET IDENTITY_INSERT [dbo].[Users] OFF
-/****** Object:  Table [dbo].[Permission]    Script Date: 08/31/2011 15:02:21 ******/
+/****** Object:  Table [dbo].[Permission]    Script Date: 08/31/2011 15:20:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -99,343 +117,7 @@ CREATE TABLE [dbo].[Permission](
 ) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[NhapDiem_Update]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[NhapDiem_Update]	@IDNhapDiem           int,	@MonHoc               int,	@GiaoVien             int,	@NgayNhap             datetime,	@DotThi               int,	@NgayHetHanNhap       datetime,	@FileDPF              nvarchar(500),	@FileExcel            nvarchar(500),	@Hit int,	@Modify int,	@Download intASUPDATE NhapDiem SET 	MonHoc= @MonHoc,	GiaoVien= @GiaoVien,	NgayNhap= @NgayNhap,	DotThi= @DotThi,	NgayHetHanNhap= @NgayHetHanNhap,	FileDPF= @FileDPF,	FileExcel= @FileExcel,	Hit = @Hit,	Modify = @Modify,	Download = @DownloadWHERE IDNhapDiem = @IDNhapDiem
-GO
-/****** Object:  StoredProcedure [dbo].[NhapDiem_Single]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[NhapDiem_Single]	@IDNhapDiem  intAS	SET NOCOUNT ON	SELECT * FROM NhapDiem  WHERE IDNhapDiem = @IDNhapDiem
-GO
-/****** Object:  StoredProcedure [dbo].[NhapDiem_PagingIDDotThi]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create PROCEDURE [dbo].[NhapDiem_PagingIDDotThi]	@PageNumber  int,	@PageSize  int,	@IDDotthi intASDECLARE @_NhapDiem TABLE (	RowNumber INT IDENTITY (1,1), 	IDNhapDiem           int, 	MonHoc               int, 	GiaoVien             int, 	NgayNhap             datetime, 	DotThi               int, 	NgayHetHanNhap       datetime, 	FileDPF              nvarchar(500), 	FileExcel            nvarchar(500),	Hit	int,	Modify int,	Download int)INSERT INTO @_NhapDiemSELECT IDNhapDiem, MonHoc, GiaoVien, NgayNhap, DotThi, NgayHetHanNhap, FileDPF, FileExcel, Hit, Modify, DownloadFROM NhapDiem where @IDDotThi=DotThi order by IDNhapDiem descSELECT COUNT (IDNhapDiem) FROM @_NhapDiemSELECT * FROM @_NhapDiem WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[NhapDiem_Paging]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[NhapDiem_Paging]	@PageNumber  int,	@PageSize  intASDECLARE @_NhapDiem TABLE (	RowNumber INT IDENTITY (1,1), 	IDNhapDiem           int, 	MonHoc               int, 	GiaoVien             int, 	NgayNhap             datetime, 	DotThi               int, 	NgayHetHanNhap       datetime, 	FileDPF              nvarchar(500), 	FileExcel            nvarchar(500),	Hit	int,	Modify int,	Download int)INSERT INTO @_NhapDiemSELECT IDNhapDiem, MonHoc, GiaoVien, NgayNhap, DotThi, NgayHetHanNhap, FileDPF, FileExcel, Hit, Modify, DownloadFROM NhapDiemSELECT COUNT (IDNhapDiem) FROM @_NhapDiemSELECT * FROM @_NhapDiem WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[NhapDiem_GetMarkBySubject]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
--- =============================================
-CREATE PROCEDURE [dbo].[NhapDiem_GetMarkBySubject] 
-	-- Add the parameters for the stored procedure here
-	@MaMH nvarchar(100)
-AS
-BEGIN
-	Select * from NhapDiem Where MonHoc=@MaMH
-END
-GO
-/****** Object:  StoredProcedure [dbo].[NhapDiem_FindByMonHoc_GiaoVien_DotThi]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[NhapDiem_FindByMonHoc_GiaoVien_DotThi]@MonHoc int,@GiaoVien int,@DotThi intASSELECT * FROM [NhapDiem] where @MonHoc = MonHoc and @GiaoVien= GiaoVien and @DotThi = DotThi
-GO
-/****** Object:  StoredProcedure [dbo].[NhapDiem_FindbyMONHOC_DOTTHI]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create PROCEDURE [dbo].[NhapDiem_FindbyMONHOC_DOTTHI]@MonHoc int,@DotThi intASSELECT * FROM [NhapDiem] where @MonHoc =MonHoc and DotThi=@DotThi
-GO
-/****** Object:  StoredProcedure [dbo].[NhapDiem_Delete]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[NhapDiem_Delete]@IDNhapDiem  intASDELETE NhapDiemWHERE IDNhapDiem = @IDNhapDiem
-GO
-/****** Object:  StoredProcedure [dbo].[NhapDiem_CountIDDothi]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create PROCEDURE [dbo].[NhapDiem_CountIDDothi]@IDDotThi intASSELECT COUNT (IDNhapDiem) FROM NhapDiem where @IDDotThi = DotThi
-GO
-/****** Object:  StoredProcedure [dbo].[NhapDiem_Count]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[NhapDiem_Count]ASSELECT COUNT (IDNhapDiem) FROM NhapDiem
-GO
-/****** Object:  StoredProcedure [dbo].[NhapDiem_AllNhapDiemByIDDotThi_GiaoVien]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[NhapDiem_AllNhapDiemByIDDotThi_GiaoVien]
-(
-	@IDDotThi int,
-	@IDGiaoVien int
-)
-AS
-BEGIN
-
-select * from NhapDiem as nd where nd.DotThi = @IDDotThi and nd.GiaoVien = @IDGiaoVien
-
-END
-GO
-/****** Object:  StoredProcedure [dbo].[NhapDiem_AllByDothi]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create PROCEDURE [dbo].[NhapDiem_AllByDothi]@IDDotThi intASSELECT * FROM [NhapDiem] where @IDDotThi =Dotthi
-GO
-/****** Object:  StoredProcedure [dbo].[NhapDiem_All]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[NhapDiem_All]AS	SET NOCOUNT ON	SELECT * FROM NhapDiem  ORDER BY IDNhapDiem
-GO
-/****** Object:  StoredProcedure [dbo].[NhapDiem_AddMissGIAOVIEN]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[NhapDiem_AddMissGIAOVIEN]	@IDNhapDiem           int  output,	@MonHoc               int,	@NgayNhap             datetime,	@DotThi               int,	@NgayHetHanNhap       datetime,	@FileDPF              nvarchar(500),	@FileExcel            nvarchar(500),	@Hit					int,@Modify	int,@Download intASINSERT INTO NhapDiem(	MonHoc,	NgayNhap,	DotThi,	NgayHetHanNhap,	FileDPF,		FileExcel,Hit,Modify,Download)VALUES (	@MonHoc,	@NgayNhap,	@DotThi,	@NgayHetHanNhap,	@FileDPF,	@FileExcel,@Hit,@Modify,@Download)SET @IDNhapDiem = @@IDENTITY
-GO
-/****** Object:  StoredProcedure [dbo].[NhapDiem_Add]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[NhapDiem_Add]	@IDNhapDiem           int  output,	@MonHoc               int,	@GiaoVien             int,	@NgayNhap             datetime,	@DotThi               int,	@NgayHetHanNhap       datetime,	@FileDPF              nvarchar(500),	@FileExcel            nvarchar(500),	@Hit					int,@Modify	int,@Download intASINSERT INTO NhapDiem(	MonHoc,	GiaoVien,	NgayNhap,	DotThi,	NgayHetHanNhap,	FileDPF,	FileExcel,Hit,Modify,Download)VALUES (	@MonHoc,	@GiaoVien,	@NgayNhap,	@DotThi,	@NgayHetHanNhap,	@FileDPF,	@FileExcel,@Hit,@Modify,@Download)SET @IDNhapDiem = @@IDENTITY
-GO
-/****** Object:  StoredProcedure [dbo].[MonHoc_AllNhapDiemByIDDotThi_GiaoVien]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[MonHoc_AllNhapDiemByIDDotThi_GiaoVien]
-(
-	@IDDotThi int,
-	@IDGiaoVien int
-)
-AS
-BEGIN
-
-select * from NhapDiem as nd where nd.DotThi = @IDDotThi and nd.GiaoVien = @IDGiaoVien
-
-END
-GO
-/****** Object:  StoredProcedure [dbo].[MonHoc_Update]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure MonHoc_Update    Generate Code Date: 6/8/2011 2:42:37 PM ******/CREATE PROCEDURE [dbo].[MonHoc_Update]	@IDMonHoc             int,	@MaMH                 nvarchar(10),	@TenMH                nvarchar(500),	@SoTC                 int,	@Khoa                 int,	@Active               bitASUPDATE MonHoc SET 	MaMH= @MaMH,	TenMH= @TenMH,	SoTC= @SoTC,	Khoa= @Khoa,	Active= @ActiveWHERE IDMonHoc = @IDMonHoc
-GO
-/****** Object:  StoredProcedure [dbo].[MonHoc_Single]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[MonHoc_Single]	@IDMonHoc  intAS	SET NOCOUNT ON	SELECT * FROM MonHoc  WHERE IDMonHoc = @IDMonHoc
-GO
-/****** Object:  StoredProcedure [dbo].[MonHoc_Paging2]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create PROCEDURE [dbo].[MonHoc_Paging2]	@PageNumber  int,	@PageSize  intASDECLARE @_MonHoc TABLE (	RowNumber INT, 	IDMonHoc             int, 	MaMH                 nvarchar(10), 	TenMH                nvarchar(500), 	SoTC                 int, 	Khoa                 int, 	Active               bit)INSERT INTO @_MonHocSELECT ROW_NUMBER() over (ORDER BY IDMONHOC) as Row, IDMonHoc, MaMH, TenMH, SoTC, Khoa, ActiveFROM MonHocSELECT COUNT (IDMonHoc) FROM @_MonHocSELECT * FROM @_MonHoc WHERE RowNumber > (@PageNumber -1) * @PageSize						 AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[MonHoc_Paging]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[MonHoc_Paging]	@PageNumber  int,	@PageSize  intASDECLARE @_MonHoc TABLE (	RowNumber INT IDENTITY (1,1), 	IDMonHoc             int, 	MaMH                 nvarchar(10), 	TenMH                nvarchar(500), 	SoTC                 int, 	Khoa                 int, 	Active               bit)INSERT INTO @_MonHocSELECT IDMonHoc, MaMH, TenMH, SoTC, Khoa, ActiveFROM MonHocSELECT COUNT (IDMonHoc) FROM @_MonHocSELECT * FROM @_MonHoc WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[MonHoc_NhapDiem_AllByDate]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[MonHoc_NhapDiem_AllByDate] 
-@Date datetime,
-@idteacher int
-as
-BEGIN
-select * from MonHoc where IDMonHoc in (select MonHoc from NhapDiem where GiaoVien=@idteacher and NgayHetHanNhap >= @Date)
-END
-GO
-/****** Object:  StoredProcedure [dbo].[MonHoc_FindMaMH]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Application_Count    Generate Code Date: 6/17/2011 10:00:52 PM ******/Create PROCEDURE [dbo].[MonHoc_FindMaMH]@Name nvarchar(2000)ASSELECT * FROM [MONHOC] where @Name like MaMH
-GO
-/****** Object:  StoredProcedure [dbo].[MonHoc_Delete]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure MonHoc_Delete    Generate Code Date: 6/8/2011 2:10:02 PM ******/CREATE PROCEDURE [dbo].[MonHoc_Delete]@IDMonHoc  intASDELETE MonHocWHERE IDMonHoc = @IDMonHoc
-GO
-/****** Object:  StoredProcedure [dbo].[MonHoc_Count]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[MonHoc_Count]ASSELECT COUNT (IDMonHoc) FROM MonHoc
-GO
-/****** Object:  StoredProcedure [dbo].[MonHoc_AllMonHocByIDDotThi_GiaoVien]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[MonHoc_AllMonHocByIDDotThi_GiaoVien]
-(
-	@IDDotThi int,
-	@IDGiaoVien int
-)
-AS
-BEGIN
-
-Select * from MonHoc as mh where mh.IDMonHoc in 
-(select nd.MonHoc from NhapDiem as nd where nd.DotThi = @IDDotThi and nd.GiaoVien = @IDGiaoVien)
-
-END
-GO
-/****** Object:  StoredProcedure [dbo].[MonHoc_AllByKhoa]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[MonHoc_AllByKhoa]@IDKhoa intASSELECT * FROM [MonHoc] where @IDKhoa =Khoa
-GO
-/****** Object:  StoredProcedure [dbo].[MonHoc_All]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure MonHoc_All    Generate Code Date: 6/8/2011 2:10:02 PM ******/CREATE PROCEDURE [dbo].[MonHoc_All]AS	SET NOCOUNT ON	SELECT * FROM MonHoc  ORDER BY IDMonHoc
-GO
-/****** Object:  StoredProcedure [dbo].[MonHoc_AddMissSTC_KHOA]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create PROCEDURE [dbo].[MonHoc_AddMissSTC_KHOA]	@IDMonHoc             int  output,	@MaMH                 nvarchar(10),	@TenMH                nvarchar(500),	@Active               bitASINSERT INTO MonHoc(	MaMH,	TenMH,	Active)VALUES (	@MaMH,	@TenMH,	@Active)SET @IDMonHoc = @@IDENTITY
-GO
-/****** Object:  StoredProcedure [dbo].[MonHoc_Add]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[MonHoc_Add]	@IDMonHoc             int  output,	@MaMH                 nvarchar(10),	@TenMH                nvarchar(500),	@SoTC                 int,	@Khoa                 int,	@Active               bitASINSERT INTO MonHoc(	MaMH,	TenMH,	SoTC,	Khoa,	Active)VALUES (	@MaMH,	@TenMH,	@SoTC,	@Khoa,	@Active)SET @IDMonHoc = @@IDENTITY
-GO
-/****** Object:  Table [dbo].[Setting]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Setting](
-	[SettingID] [int] IDENTITY(1,1) NOT NULL,
-	[Setting_Name] [nvarchar](100) NULL,
-	[Setting_Description] [ntext] NULL,
-	[Setting_DateCreate] [datetime] NULL,
-	[Value] [nvarchar](50) NULL,
-	[Active] [bit] NULL,
- CONSTRAINT [PK_Setting] PRIMARY KEY CLUSTERED 
-(
-	[SettingID] ASC
-) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[LoaiTin]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[LoaiTin](
-	[IDLoaiTin] [int] IDENTITY(1,1) NOT NULL,
-	[TenLoai] [nvarchar](200) NULL,
-	[MoTa] [nvarchar](500) NULL,
- CONSTRAINT [PK_LoaiTin] PRIMARY KEY CLUSTERED 
-(
-	[IDLoaiTin] ASC
-) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  StoredProcedure [dbo].[Khoa_Update]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Khoa_Update    Generate Code Date: 6/8/2011 2:42:37 PM ******/CREATE PROCEDURE [dbo].[Khoa_Update]	@IDKhoa               int,	@TenKhoa              nvarchar(1000),	@Active               bitASUPDATE Khoa SET 	TenKhoa= @TenKhoa,	Active= @ActiveWHERE IDKhoa = @IDKhoa
-GO
-/****** Object:  StoredProcedure [dbo].[Khoa_Single]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Khoa_Single    Generate Code Date: 6/8/2011 2:10:02 PM ******/CREATE PROCEDURE [dbo].[Khoa_Single]	@IDKhoa  intAS	SET NOCOUNT ON	SELECT * FROM Khoa  WHERE IDKhoa = @IDKhoa
-GO
-/****** Object:  StoredProcedure [dbo].[Khoa_Paging]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Khoa_Paging]	@PageNumber  int,	@PageSize  intASDECLARE @_Khoa TABLE (	RowNumber INT IDENTITY (1,1), 	IDKhoa               int, 	TenKhoa              nvarchar(1000), 	Active               bit)INSERT INTO @_KhoaSELECT IDKhoa, TenKhoa, ActiveFROM KhoaSELECT COUNT (IDKhoa) FROM @_KhoaSELECT * FROM @_Khoa WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[Khoa_Find]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[Khoa_Find]@Name nvarchar(2000)ASSELECT * FROM [khoa] where @Name like TenKhoa
-GO
-/****** Object:  StoredProcedure [dbo].[Khoa_Delete]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Khoa_Delete]@IDKhoa  intASDELETE KhoaWHERE IDKhoa = @IDKhoa
-GO
-/****** Object:  StoredProcedure [dbo].[Khoa_Count]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Khoa_Count]ASSELECT COUNT (IDKhoa) FROM Khoa
-GO
-/****** Object:  StoredProcedure [dbo].[Khoa_All]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Khoa_All    Generate Code Date: 6/8/2011 2:10:02 PM ******/CREATE PROCEDURE [dbo].[Khoa_All]AS	SET NOCOUNT ON	SELECT * FROM Khoa  ORDER BY IDKhoa
-GO
-/****** Object:  StoredProcedure [dbo].[Khoa_Add]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Khoa_Add    Generate Code Date: 6/8/2011 2:42:37 PM ******/CREATE PROCEDURE [dbo].[Khoa_Add]	@IDKhoa               int  output,	@TenKhoa              nvarchar(1000),	@Active               bitASINSERT INTO Khoa(	TenKhoa,	Active)VALUES (	@TenKhoa,	@Active)SET @IDKhoa = @@IDENTITY
-GO
-/****** Object:  Table [dbo].[Groups]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  Table [dbo].[Groups]    Script Date: 08/31/2011 15:20:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -473,7 +155,7 @@ INSERT [dbo].[Groups] ([GroupID], [Group_Name], [Group_Description], [Group_ToSt
 INSERT [dbo].[Groups] ([GroupID], [Group_Name], [Group_Description], [Group_ToString], [Group_DateCreate], [User_Create], [Active]) VALUES (4, N'QuanLyDiem', N'Quản lý điểm các khoa', NULL, NULL, NULL, 1)
 INSERT [dbo].[Groups] ([GroupID], [Group_Name], [Group_Description], [Group_ToString], [Group_DateCreate], [User_Create], [Active]) VALUES (5, N'NhapDiem', N'Giao Vien Nhap Diem', NULL, NULL, NULL, 1)
 SET IDENTITY_INSERT [dbo].[Groups] OFF
-/****** Object:  Table [dbo].[GiaoVien]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  Table [dbo].[GiaoVien]    Script Date: 08/31/2011 15:20:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -516,89 +198,22 @@ INSERT [dbo].[GiaoVien] ([IDGiaoVien], [HoGV], [TenGV], [Email], [DienThoai], [B
 INSERT [dbo].[GiaoVien] ([IDGiaoVien], [HoGV], [TenGV], [Email], [DienThoai], [BoMon], [NgaySinh], [AnhDaiDien], [DiaChi], [Active]) VALUES (23, N'Lê Ngọc', N'Luyện', N'luyenln@dlu.edu.vn', N'01656215715', NULL, NULL, NULL, NULL, 1)
 INSERT [dbo].[GiaoVien] ([IDGiaoVien], [HoGV], [TenGV], [Email], [DienThoai], [BoMon], [NgaySinh], [AnhDaiDien], [DiaChi], [Active]) VALUES (24, N'Tạ Hoàng', N'Thắng', N'thangth@dlu.edu.vn', N'', NULL, NULL, NULL, NULL, 1)
 SET IDENTITY_INSERT [dbo].[GiaoVien] OFF
-/****** Object:  StoredProcedure [dbo].[DotThi_Update]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  Table [dbo].[ChucVu]    Script Date: 08/31/2011 15:20:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-/****** Object:  StoredProcedure DotThi_Update    Generate Code Date: 7/6/2011 2:53:16 PM ******/create PROCEDURE [dbo].[DotThi_Update]	@IDDotThi             int,	@TenDotThi            nvarchar(1000),	@HocKy                int,	@NamHoc               nvarchar(20),	@Khoa                 int,	@Active               bitASUPDATE DotThi SET 	TenDotThi= @TenDotThi,	HocKy= @HocKy,	NamHoc= @NamHoc,	Khoa= @Khoa,	Active= @ActiveWHERE IDDotThi = @IDDotThi
+CREATE TABLE [dbo].[ChucVu](
+	[IDCV] [int] IDENTITY(1,1) NOT NULL,
+	[TenCV] [nvarchar](200) NULL,
+	[MoTa] [nvarchar](500) NULL,
+ CONSTRAINT [PK_ChucVu] PRIMARY KEY CLUSTERED 
+(
+	[IDCV] ASC
+) ON [PRIMARY]
+) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[DotThi_Single]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[DotThi_Single]	@IDDotThi  intAS	SET NOCOUNT ON	SELECT * FROM DotThi  WHERE IDDotThi = @IDDotThi
-GO
-/****** Object:  StoredProcedure [dbo].[DotThi_Paging]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[DotThi_Paging]	@PageNumber  int,	@PageSize  intASDECLARE @_DotThi TABLE (	RowNumber INT IDENTITY (1,1), 	IDDotThi             int, 	TenDotThi            nvarchar(1000), 	HocKy                int, 	NamHoc               nvarchar(20), 	Khoa                 int, 	Active               bit)INSERT INTO @_DotThiSELECT IDDotThi, TenDotThi, HocKy, NamHoc, Khoa, ActiveFROM DotThiSELECT COUNT (IDDotThi) FROM @_DotThiSELECT * FROM @_DotThi WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[DotThi_FindByAll]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[DotThi_FindByAll]@TenDotThi nvarchar(1000),@HocKy int,@NamHoc nvarchar(30),@Khoa intASSELECT * FROM [DotThi] where @TenDotThi = TenDotThi and @HocKy= HocKy and @NamHoc = NamHoc and @Khoa=Khoa
-GO
-/****** Object:  StoredProcedure [dbo].[DotThi_Delete]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[DotThi_Delete]@IDDotThi  intASDELETE DotThiWHERE IDDotThi = @IDDotThi
-GO
-/****** Object:  StoredProcedure [dbo].[DotThi_Count]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[DotThi_Count]ASSELECT COUNT (IDDotThi) FROM DotThi
-GO
-/****** Object:  StoredProcedure [dbo].[DotThi_AllByKhoa]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create PROCEDURE [dbo].[DotThi_AllByKhoa]@IDKhoa int,@Active bitASSELECT * FROM [DotThi] where @IDKhoa =Khoa and Active=@Active
-GO
-/****** Object:  StoredProcedure [dbo].[DotThi_AllActive]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
--- =============================================
--- Author:		<Author,,Name>
--- Create date: <Create Date,,>
--- Description:	<Description,,>
--- =============================================
-CREATE PROCEDURE [dbo].[DotThi_AllActive] 
-	@Active int
-	-- Add the parameters for the stored procedure here
-AS
-BEGIN
-    -- Insert statements for procedure here
-	SELECT * from DotThi Where Active = @Active
-END
-GO
-/****** Object:  StoredProcedure [dbo].[DotThi_All]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[DotThi_All]AS	SET NOCOUNT ON	SELECT * FROM DotThi  ORDER BY IDDotThi
-GO
-/****** Object:  StoredProcedure [dbo].[DotThi_Add]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[DotThi_Add]	@IDDotThi             int  output,	@TenDotThi            nvarchar(1000),	@HocKy                int,	@NamHoc               nvarchar(20),	@Khoa                 int,	@Active               bitASINSERT INTO DotThi(	TenDotThi,	HocKy,	NamHoc,	Khoa,	Active)VALUES (	@TenDotThi,	@HocKy,	@NamHoc,	@Khoa,	@Active)SET @IDDotThi = @@IDENTITY
-GO
-/****** Object:  Table [dbo].[Application]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  Table [dbo].[Application]    Script Date: 08/31/2011 15:20:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -664,392 +279,54 @@ INSERT [dbo].[Application] ([ApplicationID], [Application_Name], [Application_De
 INSERT [dbo].[Application] ([ApplicationID], [Application_Name], [Application_Description], [Application_FilePath], [Application_Image], [Application_DateCreate], [Application_ToString], [Parent_Id], [Order], [Active]) VALUES (26, N'Vào Điểm', N'Vào Điểm Môn Học', N'MarkManagement/Subjects.aspx', N'images/icons/web-app/48/us.png', CAST(0x00009F1200CFBA54 AS DateTime), N'', 25, 1, 1)
 INSERT [dbo].[Application] ([ApplicationID], [Application_Name], [Application_Description], [Application_FilePath], [Application_Image], [Application_DateCreate], [Application_ToString], [Parent_Id], [Order], [Active]) VALUES (27, N'Ứng dụng', N'Danh sách ứng dụng, Thêm, Xóa, Sửa Ứng dụng', N'CMS/Applications.aspx', N'images/icons/web-app/48/48application.png', CAST(0x00009F1C015E8542 AS DateTime), NULL, 3, 1, 1)
 SET IDENTITY_INSERT [dbo].[Application] OFF
-/****** Object:  Table [dbo].[ChucVu]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  Table [dbo].[LoaiTin]    Script Date: 08/31/2011 15:20:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[ChucVu](
-	[IDCV] [int] IDENTITY(1,1) NOT NULL,
-	[TenCV] [nvarchar](200) NULL,
+CREATE TABLE [dbo].[LoaiTin](
+	[IDLoaiTin] [int] IDENTITY(1,1) NOT NULL,
+	[TenLoai] [nvarchar](200) NULL,
 	[MoTa] [nvarchar](500) NULL,
- CONSTRAINT [PK_ChucVu] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_LoaiTin] PRIMARY KEY CLUSTERED 
 (
-	[IDCV] ASC
+	[IDLoaiTin] ASC
 ) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[Application_GetAllParent]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  Table [dbo].[InRoles]    Script Date: 08/31/2011 15:20:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-------------------------------------------------------------------
-
-create PROCEDURE [dbo].[Application_GetAllParent]
-AS
-select * from Application where Parent_Id=0
-GO
-/****** Object:  StoredProcedure [dbo].[Application_GetAll]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
-
-CREATE PROCEDURE [dbo].[Application_GetAll]
-AS
-select * from Application
-GO
-/****** Object:  StoredProcedure [dbo].[Application_Find]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Application_Count    Generate Code Date: 6/17/2011 10:00:52 PM ******/CREATE PROCEDURE [dbo].[Application_Find]@Name nvarchar(2000)ASSELECT * FROM [Application] where @Name like Application_Name
-GO
-/****** Object:  StoredProcedure [dbo].[Application_Delete]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Application_Delete    Generate Code Date: 6/17/2011 10:00:52 PM ******/CREATE PROCEDURE [dbo].[Application_Delete]@ApplicationID  intASDELETE ApplicationWHERE ApplicationID = @ApplicationID
-GO
-/****** Object:  StoredProcedure [dbo].[Application_CreateDeleteUpdate]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
------------------- Procedure Table Application ---------------------------
-------------------------------------------------------------------
-
- CREATE Procedure [dbo].[Application_CreateDeleteUpdate]
-(
-	@ApplicationID int out, 
-	@Application_Name nvarchar(500),
-	@Application_Description ntext,
-	@Application_FilePath nvarchar(200),
-	@Application_Image nvarchar(200),
-	@Application_DateCreate datetime,
-	@Application_ToString nvarchar(500),
-	@Parent_Id int,
-	@Active bit,
-	@Action int)
-AS
---Create
-IF @Action = 0
- BEGIN
- INSERT INTO Application
-	( [Application_Name], [Application_Description], [Application_FilePath], [Application_Image], [Application_DateCreate], [Application_ToString], [Parent_Id], [Active] )
- VALUES 
-	( @Application_Name, @Application_Description, @Application_FilePath, @Application_Image, @Application_DateCreate, @Application_ToString, @Parent_Id, @Active)
- SET @ApplicationID = @@IDENTITY
-END
---Delete 
-ELSE IF @Action = 1
-BEGIN
-	IF EXISTS(SELECT [ApplicationID] FROM Application WHERE [ApplicationID] = @ApplicationID)
-		BEGIN
-		UPDATE Application SET [Active] = 0 WHERE [ApplicationID] = @ApplicationID
-		END	
-END
---Update 
-ELSE IF @Action = 2 
-BEGIN
-	IF EXISTS(SELECT [ApplicationID] FROM Application WHERE [ApplicationID] = @ApplicationID)
-		BEGIN
-		UPDATE Application
-		SET 
-		[Application_Name] = @Application_Name,
-		[Application_Description] = @Application_Description,
-		[Application_FilePath] = @Application_FilePath,
-		[Application_Image] = @Application_Image,
-		[Application_DateCreate] = @Application_DateCreate,
-		[Application_ToString] = @Application_ToString,
-		[Parent_Id] = @Parent_Id,
-		[Active] = @Active
- 		WHERE [ApplicationID] = @ApplicationID
-  		END
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Application_CountbyParent]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Application_Count    Generate Code Date: 6/17/2011 10:00:52 PM ******/create PROCEDURE [dbo].[Application_CountbyParent]@parent intASSELECT COUNT (ApplicationID) FROM Application where @parent=Parent_Id
-GO
-/****** Object:  StoredProcedure [dbo].[Application_Count]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Application_Count    Generate Code Date: 6/17/2011 10:00:52 PM ******/CREATE PROCEDURE [dbo].[Application_Count]ASSELECT COUNT (ApplicationID) FROM Application
-GO
-/****** Object:  StoredProcedure [dbo].[Application_Update]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Application_Update    Generate Code Date: 6/17/2011 10:00:52 PM ******/CREATE PROCEDURE [dbo].[Application_Update]	@ApplicationID        int,	@Application_Name     nvarchar(500),	@Application_Description ntext,	@Application_FilePath nvarchar(200),	@Application_Image    nvarchar(200),	@Application_DateCreate datetime,	@Application_ToString nvarchar(500),	@Parent_Id            int,	@Order                int,	@Active               bitASUPDATE Application SET 	Application_Name= @Application_Name,	Application_Description= @Application_Description,	Application_FilePath= @Application_FilePath,	Application_Image= @Application_Image,	Application_DateCreate= @Application_DateCreate,	Application_ToString= @Application_ToString,	Parent_Id= @Parent_Id,	[Order]= @Order,	Active= @ActiveWHERE ApplicationID = @ApplicationID
-GO
-/****** Object:  StoredProcedure [dbo].[Application_Single]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Application_Single    Generate Code Date: 6/17/2011 10:00:52 PM ******/CREATE PROCEDURE [dbo].[Application_Single]	@ApplicationID  intAS	SET NOCOUNT ON	SELECT * FROM Application  WHERE ApplicationID = @ApplicationID
-GO
-/****** Object:  StoredProcedure [dbo].[Application_Search]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create Procedure [dbo].[Application_Search]
-(
-	@ApplicationID int out, 
-	@Application_Name nvarchar(500),	
-	@Parent_Id int,	
-	@Action int)
-AS
---Search by Id
-IF @Action = 0
-	BEGIN
-		SELECT * FROM Application WHERE ApplicationID=@ApplicationID
-	END
---Search by Name 
-ELSE IF @Action = 1
-BEGIN
-	SELECT * FROM Application where Application_Name like '%'+@Application_Name+'%' 		  		
-END
---Search by Parent_Id 
-ELSE IF @Action = 2 
-BEGIN
-	SELECT * FROM Application where Parent_Id=@Parent_Id
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Application_PagingByParent]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Application_PagingByParent]	@PageNumber  int,	@PageSize  int,	@parentID intASDECLARE @_Application TABLE (	RowNumber INT IDENTITY (1,1), 	ApplicationID        int, 	Application_Name     nvarchar(500), 	Application_Description ntext, 	Application_FilePath nvarchar(200), 	Application_Image    nvarchar(200), 	Application_DateCreate datetime, 	Application_ToString nvarchar(500), 	Parent_Id            int, 	[Order]                int, 	Active               bit)INSERT INTO @_ApplicationSELECT ApplicationID, Application_Name, Application_Description, Application_FilePath, Application_Image, Application_DateCreate, Application_ToString, Parent_Id, [Order], ActiveFROM [Application] where @parentID=Parent_Id order by ApplicationID descSELECT COUNT (ApplicationID) FROM @_ApplicationSELECT * FROM @_Application WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[Application_Paging]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create PROCEDURE [dbo].[Application_Paging]	@PageNumber  int,	@PageSize  intASDECLARE @_Application TABLE (	RowNumber INT IDENTITY (1,1), 	ApplicationID        int, 	Application_Name     nvarchar(500), 	Application_Description ntext, 	Application_FilePath nvarchar(200), 	Application_Image    nvarchar(200), 	Application_DateCreate datetime, 	Application_ToString nvarchar(500), 	Parent_Id            int, 	[Order]                int, 	Active               bit)INSERT INTO @_ApplicationSELECT ApplicationID, Application_Name, Application_Description, Application_FilePath, Application_Image, Application_DateCreate, Application_ToString, Parent_Id, [Order], ActiveFROM ApplicationSELECT COUNT (ApplicationID) FROM @_ApplicationSELECT * FROM @_Application WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[Application_GetParent_ByIdGroup]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
-
-CREATE PROCEDURE [dbo].[Application_GetParent_ByIdGroup]
-(	
-	@GroupID int
-)
-AS
-select * from (select * from InRole where GroupID=@GroupID) g,Application ap where g.ApplicationID = ap.ApplicationID and Parent_Id=0
-GO
-/****** Object:  Table [dbo].[ChucVu_GiaoVien]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ChucVu_GiaoVien](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[IDChucVu] [int] NULL,
-	[IDGiaoVien] [int] NULL,
- CONSTRAINT [PK_ChucVu_GiaoVien] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  StoredProcedure [dbo].[Group_GetAll]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
-
-create PROCEDURE [dbo].[Group_GetAll]
-AS
-select * from Groups
-GO
-/****** Object:  StoredProcedure [dbo].[Group_CreateDeleteUpdate]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE Procedure [dbo].[Group_CreateDeleteUpdate]
-(
-	@GroupID int out, 
-	@Group_Name nvarchar(50),
-	@Group_Description ntext,
-	@Group_ToString nvarchar(50),
-	@Group_DateCreate datetime,
-	@User_Create int,
-	@Active bit,
-	@Action int)
-AS
---Create
-IF @Action = 0
- BEGIN
- INSERT INTO Groups
-	( [Group_Name], [Group_Description], [Group_ToString], [Group_DateCreate], [User_Create], [Active] )
- VALUES 
-	( @Group_Name, @Group_Description, @Group_ToString, @Group_DateCreate, @User_Create, @Active)
- SET @GroupID = @@IDENTITY
-END
---Delete 
-ELSE IF @Action = 1
-BEGIN
-	IF EXISTS(SELECT [GroupID] FROM Groups WHERE [GroupID] = @GroupID)
-		BEGIN
-		UPDATE Groups
-		SET 		
-		[Active] = 0
- 		WHERE [GroupID] = @GroupID
-  		END
-END
---Update 
-ELSE IF @Action = 2 
-BEGIN
-	IF EXISTS(SELECT [GroupID] FROM Groups WHERE [GroupID] = @GroupID)
-		BEGIN
-		UPDATE Groups
-		SET 
-		[Group_Name] = @Group_Name,
-		[Group_Description] = @Group_Description,
-		[Group_ToString] = @Group_ToString,
-		[Group_DateCreate] = @Group_DateCreate,
-		[User_Create] = @User_Create,
-		[Active] = @Active
- 		WHERE [GroupID] = @GroupID
-  		END
-END
-GO
-/****** Object:  StoredProcedure [dbo].[GiaoVien_Update]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[GiaoVien_Update]	@IDGiaoVien           int,	@HoGV                 nvarchar(500),	@TenGV                nvarchar(200),	@Email                nvarchar(200),	@DienThoai            nvarchar(15),	@Khoa                 int,	@Active               bitASUPDATE GiaoVien SET 	HoGV= @HoGV,	TenGV= @TenGV,	Email= @Email,	DienThoai= @DienThoai,	Khoa= @Khoa,	Active= @ActiveWHERE IDGiaoVien = @IDGiaoVien
-GO
-/****** Object:  StoredProcedure [dbo].[GiaoVien_Single]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[GiaoVien_Single]	@IDGiaoVien  intAS	SET NOCOUNT ON	SELECT * FROM GiaoVien  WHERE IDGiaoVien = @IDGiaoVien
-GO
-/****** Object:  StoredProcedure [dbo].[GiaoVien_Paging]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[GiaoVien_Paging]	@PageNumber  int,	@PageSize  intASDECLARE @_GiaoVien TABLE (	RowNumber INT IDENTITY (1,1), 	IDGiaoVien           int, 	HoGV                 nvarchar(500), 	TenGV                nvarchar(200), 	Email                nvarchar(200), 	DienThoai            nvarchar(15), 	Khoa                 int, 	Active               bit)INSERT INTO @_GiaoVienSELECT IDGiaoVien, HoGV, TenGV, Email, DienThoai, Khoa, ActiveFROM GiaoVienSELECT COUNT (IDGiaoVien) FROM @_GiaoVienSELECT * FROM @_GiaoVien WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[GiaoVien_FindEmail]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[GiaoVien_FindEmail]@Name nvarchar(2000)ASSELECT * FROM [GiaoVien] where @Name like Email
-GO
-/****** Object:  StoredProcedure [dbo].[GiaoVien_Delete]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[GiaoVien_Delete]@IDGiaoVien  intASDELETE GiaoVienWHERE IDGiaoVien = @IDGiaoVien
-GO
-/****** Object:  StoredProcedure [dbo].[GiaoVien_Count]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[GiaoVien_Count]ASSELECT COUNT (IDGiaoVien) FROM GiaoVien
-GO
-/****** Object:  StoredProcedure [dbo].[GiaoVien_AllByKhoa]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create PROCEDURE [dbo].[GiaoVien_AllByKhoa]@IDKhoa intASSELECT * FROM [GiaoVien] where @IDKhoa =Khoa
-GO
-/****** Object:  StoredProcedure [dbo].[GiaoVien_All]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[GiaoVien_All]AS	SET NOCOUNT ON	SELECT * FROM GiaoVien  ORDER BY IDGiaoVien
-GO
-/****** Object:  StoredProcedure [dbo].[GiaoVien_Add]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[GiaoVien_Add]	@IDGiaoVien           int  output,	@HoGV                 nvarchar(500),	@TenGV                nvarchar(200),	@Email                nvarchar(200),	@DienThoai            nvarchar(15),	@Khoa                 int,	@Active               bitASINSERT INTO GiaoVien(	HoGV,	TenGV,	Email,	DienThoai,	Khoa,	Active)VALUES (	@HoGV,	@TenGV,	@Email,	@DienThoai,	@Khoa,	@Active)SET @IDGiaoVien = @@IDENTITY
-GO
-/****** Object:  Table [dbo].[FilePermission]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[FilePermission](
-	[FilePermissionID] [int] IDENTITY(1,1) NOT NULL,
-	[PermissionID] [int] NOT NULL,
+CREATE TABLE [dbo].[InRoles](
+	[InRolesID] [int] IDENTITY(1,1) NOT NULL,
+	[ApplicationID] [int] NOT NULL,
 	[GroupID] [int] NOT NULL,
-	[FolderPath] [nvarchar](200) NULL,
- CONSTRAINT [PK_FilePermission] PRIMARY KEY CLUSTERED 
+	[DateCreate] [datetime] NULL,
+	[Active] [bit] NULL,
+ CONSTRAINT [PK_InRoles_1] PRIMARY KEY CLUSTERED 
 (
-	[FilePermissionID] ASC
+	[InRolesID] ASC
 ) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[Group_Search]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
+EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Mã phân quyền' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'InRoles', @level2type=N'COLUMN',@level2name=N'InRolesID'
 GO
-SET QUOTED_IDENTIFIER ON
+EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Ứng dụng được cấp quyền cho nhóm User' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'InRoles', @level2type=N'COLUMN',@level2name=N'ApplicationID'
 GO
-create Procedure [dbo].[Group_Search]
-(
-	@GroupID int out, 
-	@Group_Name nvarchar(50),
-	@Group_DateCreate datetime,	
-	@User_Create int,	
-	@Action int)
-AS
---Search by GroupId
-IF @Action = 0
- BEGIN
-	 SELECT * FROM Groups WHERE GroupID=@GroupID
-END
---Search by Group_Name
-ELSE IF @Action = 1
-BEGIN
-	SELECT * FROM Groups WHERE Group_Name like '%'+@Group_Name+'%'
-END
---Search by Datetime create 
-ELSE IF @Action = 2 
-BEGIN
-	SELECT * FROM Groups WHERE Group_DateCreate=@Group_DateCreate
-END
--- searhc by User_Create
-ELSE IF @Action = 3 
-BEGIN
-	SELECT * FROM Groups WHERE User_Create=@User_Create
-END
+EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Nhóm User được cấp quyền' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'InRoles', @level2type=N'COLUMN',@level2name=N'GroupID'
 GO
-/****** Object:  Table [dbo].[InGroup]    Script Date: 08/31/2011 15:02:24 ******/
+EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Ngày tạo phân quyền' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'InRoles', @level2type=N'COLUMN',@level2name=N'DateCreate'
+GO
+SET IDENTITY_INSERT [dbo].[InRoles] ON
+INSERT [dbo].[InRoles] ([InRolesID], [ApplicationID], [GroupID], [DateCreate], [Active]) VALUES (1, 19, 4, CAST(0x00009F170143217C AS DateTime), 1)
+INSERT [dbo].[InRoles] ([InRolesID], [ApplicationID], [GroupID], [DateCreate], [Active]) VALUES (38, 3, 1, CAST(0x00009F17014321A7 AS DateTime), 1)
+INSERT [dbo].[InRoles] ([InRolesID], [ApplicationID], [GroupID], [DateCreate], [Active]) VALUES (40, 25, 5, CAST(0x00009F17014F8437 AS DateTime), 1)
+INSERT [dbo].[InRoles] ([InRolesID], [ApplicationID], [GroupID], [DateCreate], [Active]) VALUES (50, 19, 1, CAST(0x00009F1C0160A610 AS DateTime), 1)
+INSERT [dbo].[InRoles] ([InRolesID], [ApplicationID], [GroupID], [DateCreate], [Active]) VALUES (51, 25, 1, CAST(0x00009F1C0160A639 AS DateTime), 1)
+SET IDENTITY_INSERT [dbo].[InRoles] OFF
+/****** Object:  Table [dbo].[InGroup]    Script Date: 08/31/2011 15:20:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1091,457 +368,38 @@ INSERT [dbo].[InGroup] ([InGroupID], [UserID], [GroupID], [DateCreate], [Active]
 INSERT [dbo].[InGroup] ([InGroupID], [UserID], [GroupID], [DateCreate], [Active]) VALUES (24, 22, 5, CAST(0x00009F1E00AD7BB8 AS DateTime), 1)
 INSERT [dbo].[InGroup] ([InGroupID], [UserID], [GroupID], [DateCreate], [Active]) VALUES (25, 23, 5, CAST(0x00009F1E00B2005C AS DateTime), 1)
 SET IDENTITY_INSERT [dbo].[InGroup] OFF
-/****** Object:  StoredProcedure [dbo].[Groups_Update]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  Table [dbo].[FilePermission]    Script Date: 08/31/2011 15:20:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-/****** Object:  StoredProcedure Groups_Update    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Groups_Update]	@GroupID              int,	@Group_Name           nvarchar(50),	@Group_Description    ntext,	@Group_ToString       nvarchar(50),	@Group_DateCreate     datetime,	@User_Create          int,	@Active               bitASUPDATE Groups SET 	Group_Name= @Group_Name,	Group_Description= @Group_Description,	Group_ToString= @Group_ToString,	Group_DateCreate= @Group_DateCreate,	User_Create= @User_Create,	Active= @ActiveWHERE GroupID = @GroupID
-GO
-/****** Object:  StoredProcedure [dbo].[Groups_Single]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Groups_Single    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Groups_Single]	@GroupID  intAS	SET NOCOUNT ON	SELECT * FROM Groups  WHERE GroupID = @GroupID
-GO
-/****** Object:  StoredProcedure [dbo].[Groups_Paging]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Groups_Paging]	@PageNumber  int,	@PageSize  intASDECLARE @_Groups TABLE (	RowNumber INT IDENTITY (1,1), 	GroupID              int, 	Group_Name           nvarchar(50), 	Group_Description    ntext, 	Group_ToString       nvarchar(50), 	Group_DateCreate     datetime, 	User_Create          int, 	Active               bit)INSERT INTO @_GroupsSELECT GroupID, Group_Name, Group_Description, Group_ToString, Group_DateCreate, User_Create, ActiveFROM GroupsSELECT COUNT (GroupID) FROM @_GroupsSELECT * FROM @_Groups WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[Groups_Delete]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Groups_Delete    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Groups_Delete]@GroupID  intASDELETE GroupsWHERE GroupID = @GroupID
-GO
-/****** Object:  StoredProcedure [dbo].[Groups_Count]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Groups_Count    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Groups_Count]ASSELECT COUNT (GroupID) FROM Groups
-GO
-/****** Object:  StoredProcedure [dbo].[Application_All]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Application_All    Generate Code Date: 6/17/2011 10:00:52 PM ******/CREATE PROCEDURE [dbo].[Application_All]AS	SET NOCOUNT ON	SELECT * FROM Application  ORDER BY ApplicationID
-GO
-/****** Object:  StoredProcedure [dbo].[Application_Add]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Application_Add    Generate Code Date: 6/17/2011 10:00:52 PM ******/CREATE PROCEDURE [dbo].[Application_Add]	@ApplicationID        int  output,	@Application_Name     nvarchar(500),	@Application_Description ntext,	@Application_FilePath nvarchar(200),	@Application_Image    nvarchar(200),	@Application_DateCreate datetime,	@Application_ToString nvarchar(500),	@Parent_Id            int,	@Order                int,	@Active               bitASINSERT INTO Application(	Application_Name,	Application_Description,	Application_FilePath,	Application_Image,	Application_DateCreate,	Application_ToString,	Parent_Id,	[Order],	Active)VALUES (	@Application_Name,	@Application_Description,	@Application_FilePath,	@Application_Image,	@Application_DateCreate,	@Application_ToString,	@Parent_Id,	@Order,	@Active)SET @ApplicationID = @@IDENTITY
-GO
-/****** Object:  StoredProcedure [dbo].[Application_GetByParent]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
-
-create PROCEDURE [dbo].[Application_GetByParent]
-(
-	@Parent_Id int
-)
-AS
-select * from Application where Parent_Id=@Parent_Id
-GO
-/****** Object:  StoredProcedure [dbo].[Groups_All]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Groups_All    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Groups_All]AS	SET NOCOUNT ON	SELECT * FROM Groups  ORDER BY GroupID
-GO
-/****** Object:  StoredProcedure [dbo].[Groups_Add]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Groups_Add]	@GroupID              int  output,	@Group_Name           nvarchar(50),	@Group_Description    ntext,	@Group_ToString       nvarchar(50),	@Group_DateCreate     datetime,	@User_Create          int,	@Active               bitASINSERT INTO Groups(	Group_Name,	Group_Description,	Group_ToString,	Group_DateCreate,	User_Create,	Active)VALUES (	@Group_Name,	@Group_Description,	@Group_ToString,	@Group_DateCreate,	@User_Create,	@Active)SET @GroupID = @@IDENTITY
-GO
-/****** Object:  StoredProcedure [dbo].[Application_GetByParentID_IdGroup]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
-
-create PROCEDURE [dbo].[Application_GetByParentID_IdGroup]
-(	
-	@ParentID int,
-	@GroupID int
-)
-AS
-select * from (select * from InRole where GroupID=@GroupID) g,Application ap where g.ApplicationID = ap.ApplicationID and Parent_Id=@ParentID
-GO
-/****** Object:  Table [dbo].[InRoles]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[InRoles](
-	[InRolesID] [int] IDENTITY(1,1) NOT NULL,
-	[ApplicationID] [int] NOT NULL,
+CREATE TABLE [dbo].[FilePermission](
+	[FilePermissionID] [int] IDENTITY(1,1) NOT NULL,
+	[PermissionID] [int] NOT NULL,
 	[GroupID] [int] NOT NULL,
-	[DateCreate] [datetime] NULL,
-	[Active] [bit] NULL,
- CONSTRAINT [PK_InRoles_1] PRIMARY KEY CLUSTERED 
+	[FolderPath] [nvarchar](200) NULL,
+ CONSTRAINT [PK_FilePermission] PRIMARY KEY CLUSTERED 
 (
-	[InRolesID] ASC
+	[FilePermissionID] ASC
 ) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Mã phân quyền' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'InRoles', @level2type=N'COLUMN',@level2name=N'InRolesID'
-GO
-EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Ứng dụng được cấp quyền cho nhóm User' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'InRoles', @level2type=N'COLUMN',@level2name=N'ApplicationID'
-GO
-EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Nhóm User được cấp quyền' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'InRoles', @level2type=N'COLUMN',@level2name=N'GroupID'
-GO
-EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Ngày tạo phân quyền' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'InRoles', @level2type=N'COLUMN',@level2name=N'DateCreate'
-GO
-SET IDENTITY_INSERT [dbo].[InRoles] ON
-INSERT [dbo].[InRoles] ([InRolesID], [ApplicationID], [GroupID], [DateCreate], [Active]) VALUES (1, 19, 4, CAST(0x00009F170143217C AS DateTime), 1)
-INSERT [dbo].[InRoles] ([InRolesID], [ApplicationID], [GroupID], [DateCreate], [Active]) VALUES (38, 3, 1, CAST(0x00009F17014321A7 AS DateTime), 1)
-INSERT [dbo].[InRoles] ([InRolesID], [ApplicationID], [GroupID], [DateCreate], [Active]) VALUES (40, 25, 5, CAST(0x00009F17014F8437 AS DateTime), 1)
-INSERT [dbo].[InRoles] ([InRolesID], [ApplicationID], [GroupID], [DateCreate], [Active]) VALUES (50, 19, 1, CAST(0x00009F1C0160A610 AS DateTime), 1)
-INSERT [dbo].[InRoles] ([InRolesID], [ApplicationID], [GroupID], [DateCreate], [Active]) VALUES (51, 25, 1, CAST(0x00009F1C0160A639 AS DateTime), 1)
-SET IDENTITY_INSERT [dbo].[InRoles] OFF
-/****** Object:  Table [dbo].[Profile]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  Table [dbo].[ChucVu_GiaoVien]    Script Date: 08/31/2011 15:20:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[Profile](
-	[ProfileID] [int] IDENTITY(1,1) NOT NULL,
-	[UserID] [int] NOT NULL,
-	[FirstName] [nvarchar](100) NULL,
-	[LastName] [nvarchar](50) NULL,
-	[Department] [nvarchar](500) NULL,
-	[Position] [nvarchar](500) NULL,
-	[Image] [nvarchar](100) NULL,
-	[Address] [nvarchar](500) NULL,
-	[Phone] [nvarchar](15) NULL,
-	[Birdthday] [datetime] NULL,
-	[LastUpdateProfile] [datetime] NULL,
-	[Country] [nvarchar](50) NULL,
-	[Genre] [nvarchar](5) NULL,
-	[Ethnic] [nvarchar](50) NULL,
-	[Religion] [nvarchar](50) NULL,
-	[Active] [bit] NULL,
-	[CodeStaff] [int] NULL,
- CONSTRAINT [PK_Profile] PRIMARY KEY CLUSTERED 
-(
-	[ProfileID] ASC
-) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Phòng ban' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Profile', @level2type=N'COLUMN',@level2name=N'Department'
-GO
-EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Chức vụ' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Profile', @level2type=N'COLUMN',@level2name=N'Position'
-GO
-EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Giới tính' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Profile', @level2type=N'COLUMN',@level2name=N'Genre'
-GO
-EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Dân tộc' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Profile', @level2type=N'COLUMN',@level2name=N'Ethnic'
-GO
-EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Tôn giáo' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Profile', @level2type=N'COLUMN',@level2name=N'Religion'
-GO
-SET IDENTITY_INSERT [dbo].[Profile] ON
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (1, 2, N'It', N'DLU', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 6)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (2, 4, N'Cường', N'Đỗ Ngọc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (3, 5, N'Binh', N'Nguyen Thi Thanh', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 6)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (4, 1, N'Lê Ngọc Luyện', N'', N'Công Nghệ Thông Tin', N'Trợ Giảng', N'/images/bg-mobile.png', N'Đà Lạt', N'01656215715', CAST(0x00007DF100000000 AS DateTime), CAST(0x00009F1F0131718F AS DateTime), N'Vietnam', N'Nam', N'Kinh', N'Không', 0, 3)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (5, 8, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1C0173A054 AS DateTime), N'', N'Nữ', N'', N'', 0, 14)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (6, 9, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E0093B994 AS DateTime), N'', N'Nữ', N'', N'', 0, 8)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (7, 10, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E0093E298 AS DateTime), N'', N'Nữ', N'', N'', 0, 11)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (8, 11, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E00940818 AS DateTime), N'', N'Nữ', N'', N'', 0, 10)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (9, 12, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E00942B40 AS DateTime), N'', N'Nữ', N'', N'', 0, 13)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (10, 13, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E00945DA4 AS DateTime), N'', N'Nữ', N'', N'', 0, 22)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (11, 14, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E00947D48 AS DateTime), N'', N'Nữ', N'', N'', 0, 23)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (12, 15, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E0094AAFC AS DateTime), N'', N'Nữ', N'', N'', 0, 21)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (13, 16, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E0094CBCC AS DateTime), N'', N'Nữ', N'', N'', 0, 20)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (14, 17, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E0094EEF4 AS DateTime), N'', N'Nữ', N'', N'', 0, 19)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (15, 18, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E00950FC4 AS DateTime), N'', N'Nữ', N'', N'', 0, 18)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (16, 19, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E009545AC AS DateTime), N'', N'Nữ', N'', N'', 0, 17)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (17, 20, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E0095829C AS DateTime), N'', N'Nữ', N'', N'', 0, 15)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (18, 21, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E0095B758 AS DateTime), N'', N'Nữ', N'', N'', 0, 7)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (19, 22, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E0095E05C AS DateTime), N'', N'Nữ', N'', N'', 0, 5)
-INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (20, 23, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E00B166D8 AS DateTime), N'', N'Nữ', N'', N'', 0, 24)
-SET IDENTITY_INSERT [dbo].[Profile] OFF
-/****** Object:  StoredProcedure [dbo].[Permission_Update]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Permission_Update    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Permission_Update]	@PermissionID         int,	@Name                 nvarchar(100),	@Descritption         nvarchar(100),	@Permission_ToString  nvarchar(100),	@Active               bitASUPDATE Permission SET 	Name= @Name,	Descritption= @Descritption,	Permission_ToString= @Permission_ToString,	Active= @ActiveWHERE PermissionID = @PermissionID
-GO
-/****** Object:  StoredProcedure [dbo].[Permission_Single]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Permission_Single    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Permission_Single]	@PermissionID  intAS	SET NOCOUNT ON	SELECT * FROM Permission  WHERE PermissionID = @PermissionID
-GO
-/****** Object:  StoredProcedure [dbo].[Permission_Search]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create Procedure [dbo].[Permission_Search]
-(
-	@PermissionID int out,
-	@Name nvarchar(100), 		
-	@Action int)
-AS
---Search by PermissionID
-IF @Action = 0
- BEGIN
-	 SELECT * FROM Permission WHERE PermissionID=@PermissionID
-END
---Search by Name
-ELSE IF @Action = 1
-BEGIN
-	SELECT * FROM Permission WHERE Name like '%'+@Name+'%'
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Permission_Paging]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Permission_Paging    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Permission_Paging]	@PageNumber  int,	@PageSize  intASDECLARE @_Permission TABLE (	RowNumber INT IDENTITY (1,1), 	PermissionID         int, 	Name                 nvarchar(100), 	Descritption         nvarchar(100), 	Permission_ToString  nvarchar(100), 	Active               bit)INSERT INTO @_PermissionSELECT PermissionID, Name, Descritption, Permission_ToString, ActiveFROM PermissionSELECT COUNT (PermissionID) FROM @_PermissionSELECT * FROM @_Permission WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[Permission_GetAll]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
-
-CREATE PROCEDURE [dbo].[Permission_GetAll]
-AS
-select * from Permission
-GO
-/****** Object:  StoredProcedure [dbo].[Permission_Delete]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Permission_Delete    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Permission_Delete]@PermissionID  intASDELETE PermissionWHERE PermissionID = @PermissionID
-GO
-/****** Object:  StoredProcedure [dbo].[Permission_CreateDeleteUpdate]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
------------------- Procedure Table Permission ---------------------------
-------------------------------------------------------------------
-
- CREATE Procedure [dbo].[Permission_CreateDeleteUpdate]
-(
-	@PermissionID int out, 
-	@Name nvarchar(100),
-	@Descritption nvarchar(100),
-	@Permission_ToString nvarchar(100),
-	@Active bit,
-	@Action int)
-AS
---Create
-IF @Action = 0
- BEGIN
- INSERT INTO Permission
-	( [Name], [Descritption], [Permission_ToString], [Active] )
- VALUES 
-	( @Name, @Descritption, @Permission_ToString, @Active)
- SET @PermissionID = @@IDENTITY
-END
---Delete 
-ELSE IF @Action = 1
-BEGIN
-	IF EXISTS(SELECT [PermissionID] FROM Permission WHERE [PermissionID] = @PermissionID)
-		BEGIN
-		UPDATE Permission
-		SET 		
-		[Active] = 0
- 		WHERE [PermissionID] = @PermissionID
-  		END
-END
---Update 
-ELSE IF @Action = 2 
-BEGIN
-	IF EXISTS(SELECT [PermissionID] FROM Permission WHERE [PermissionID] = @PermissionID)
-		BEGIN
-		UPDATE Permission
-		SET 
-		[Name] = @Name,
-		[Descritption] = @Descritption,
-		[Permission_ToString] = @Permission_ToString,
-		[Active] = @Active
- 		WHERE [PermissionID] = @PermissionID
-  		END
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Permission_Count]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Permission_Count    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Permission_Count]ASSELECT COUNT (PermissionID) FROM Permission
-GO
-/****** Object:  StoredProcedure [dbo].[Permission_All]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Permission_All    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Permission_All]AS	SET NOCOUNT ON	SELECT * FROM Permission  ORDER BY PermissionID
-GO
-/****** Object:  StoredProcedure [dbo].[Permission_Add]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Permission_Add    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Permission_Add]	@PermissionID         int  output,	@Name                 nvarchar(100),	@Descritption         nvarchar(100),	@Permission_ToString  nvarchar(100),	@Active               bitASINSERT INTO Permission(	Name,	Descritption,	Permission_ToString,	Active)VALUES (	@Name,	@Descritption,	@Permission_ToString,	@Active)SET @PermissionID = @@IDENTITY
-GO
-/****** Object:  Table [dbo].[ToChuc_GiaoVien]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ToChuc_GiaoVien](
+CREATE TABLE [dbo].[ChucVu_GiaoVien](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[IDChucVu] [int] NULL,
 	[IDGiaoVien] [int] NULL,
-	[IDToChuc] [int] NULL,
- CONSTRAINT [PK_ToChuc_GiaoVien] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_ChucVu_GiaoVien] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
 ) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[Setting_Update]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Setting_Update    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Setting_Update]	@SettingID            int,	@Setting_Name         nvarchar(100),	@Setting_Description  ntext,	@Setting_DateCreate   datetime,	@Value                nvarchar(50),	@Active               bitASUPDATE Setting SET 	Setting_Name= @Setting_Name,	Setting_Description= @Setting_Description,	Setting_DateCreate= @Setting_DateCreate,	Value= @Value,	Active= @ActiveWHERE SettingID = @SettingID
-GO
-/****** Object:  StoredProcedure [dbo].[Setting_Single]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Setting_Single    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Setting_Single]	@SettingID  intAS	SET NOCOUNT ON	SELECT * FROM Setting  WHERE SettingID = @SettingID
-GO
-/****** Object:  StoredProcedure [dbo].[Setting_Paging]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Setting_Paging    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Setting_Paging]	@PageNumber  int,	@PageSize  intASDECLARE @_Setting TABLE (	RowNumber INT IDENTITY (1,1), 	SettingID            int, 	Setting_Name         nvarchar(100), 	Setting_Description  ntext, 	Setting_DateCreate   datetime, 	Value                nvarchar(50), 	Active               bit)INSERT INTO @_SettingSELECT SettingID, Setting_Name, Setting_Description, Setting_DateCreate, Value, ActiveFROM SettingSELECT COUNT (SettingID) FROM @_SettingSELECT * FROM @_Setting WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[Setting_GetAll]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
-
-CREATE PROCEDURE [dbo].[Setting_GetAll]
-AS
-select * from Setting
-GO
-/****** Object:  StoredProcedure [dbo].[Setting_Delete]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Setting_Delete    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Setting_Delete]@SettingID  intASDELETE SettingWHERE SettingID = @SettingID
-GO
-/****** Object:  StoredProcedure [dbo].[Setting_CreateDeleteUpdate]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
------------------- Procedure Table Setting ---------------------------
-------------------------------------------------------------------
-
- CREATE Procedure [dbo].[Setting_CreateDeleteUpdate]
-(
-	@SettingID int out, 
-	@Setting_Name nvarchar(100),
-	@Setting_Description ntext,
-	@Setting_DateCreate datetime,
-	@Value nvarchar(50),
-	@Active bit,
-	@Action int)
-AS
---Create
-IF @Action = 0
- BEGIN
- INSERT INTO Setting
-	( [Setting_Name], [Setting_Description], [Setting_DateCreate], [Value], [Active] )
- VALUES 
-	( @Setting_Name, @Setting_Description, @Setting_DateCreate, @Value, @Active)
- SET @SettingID = @@IDENTITY
-END
---Delete 
-ELSE IF @Action = 1
-BEGIN
-	IF EXISTS(SELECT [SettingID] FROM Setting WHERE [SettingID] = @SettingID)
-		BEGIN
-		UPDATE Setting
-		SET 		
-		[Active] = 0
- 		WHERE [SettingID] = @SettingID
-  		END
-END
---Update 
-ELSE IF @Action = 2 
-BEGIN
-	IF EXISTS(SELECT [SettingID] FROM Setting WHERE [SettingID] = @SettingID)
-		BEGIN
-		UPDATE Setting
-		SET 
-		[Setting_Name] = @Setting_Name,
-		[Setting_Description] = @Setting_Description,
-		[Setting_DateCreate] = @Setting_DateCreate,
-		[Value] = @Value,
-		[Active] = @Active
- 		WHERE [SettingID] = @SettingID
-  		END
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Setting_Count]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Setting_Count    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Setting_Count]ASSELECT COUNT (SettingID) FROM Setting
-GO
-/****** Object:  StoredProcedure [dbo].[Setting_All]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Setting_All    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Setting_All]AS	SET NOCOUNT ON	SELECT * FROM Setting  ORDER BY SettingID
-GO
-/****** Object:  StoredProcedure [dbo].[Setting_Add]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Setting_Add    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Setting_Add]	@SettingID            int  output,	@Setting_Name         nvarchar(100),	@Setting_Description  ntext,	@Setting_DateCreate   datetime,	@Value                nvarchar(50),	@Active               bitASINSERT INTO Setting(	Setting_Name,	Setting_Description,	Setting_DateCreate,	Value,	Active)VALUES (	@Setting_Name,	@Setting_Description,	@Setting_DateCreate,	@Value,	@Active)SET @SettingID = @@IDENTITY
-GO
-/****** Object:  Table [dbo].[Log]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  Table [dbo].[Log]    Script Date: 08/31/2011 15:20:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2114,7 +972,83 @@ INSERT [dbo].[Log] ([LogID], [UserID], [Date], [Trace], [IP], [Action], [Time_Lo
 INSERT [dbo].[Log] ([LogID], [UserID], [Date], [Trace], [IP], [Action], [Time_Login], [Time_Logout]) VALUES (49665, 1, CAST(0x00009F360133AF5C AS DateTime), N'/Mark/MarkManagement/Subjects.aspx', N'::1', N'Xem danh sách các đợt thi', CAST(0x00009F360133AF5C AS DateTime), CAST(0x00009F360133AF5C AS DateTime))
 INSERT [dbo].[Log] ([LogID], [UserID], [Date], [Trace], [IP], [Action], [Time_Login], [Time_Logout]) VALUES (49666, 1, CAST(0x00009F360133B08A AS DateTime), N'/Mark/MarkManagement/Subjects.aspx', N'::1', N'Xem danh sách các đợt thi', CAST(0x00009F360133B08A AS DateTime), CAST(0x00009F360133B08A AS DateTime))
 SET IDENTITY_INSERT [dbo].[Log] OFF
-/****** Object:  Table [dbo].[TinTuc]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  Table [dbo].[ToChuc_GiaoVien]    Script Date: 08/31/2011 15:20:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ToChuc_GiaoVien](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[IDGiaoVien] [int] NULL,
+	[IDToChuc] [int] NULL,
+ CONSTRAINT [PK_ToChuc_GiaoVien] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Profile]    Script Date: 08/31/2011 15:20:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Profile](
+	[ProfileID] [int] IDENTITY(1,1) NOT NULL,
+	[UserID] [int] NOT NULL,
+	[FirstName] [nvarchar](100) NULL,
+	[LastName] [nvarchar](50) NULL,
+	[Department] [nvarchar](500) NULL,
+	[Position] [nvarchar](500) NULL,
+	[Image] [nvarchar](100) NULL,
+	[Address] [nvarchar](500) NULL,
+	[Phone] [nvarchar](15) NULL,
+	[Birdthday] [datetime] NULL,
+	[LastUpdateProfile] [datetime] NULL,
+	[Country] [nvarchar](50) NULL,
+	[Genre] [nvarchar](5) NULL,
+	[Ethnic] [nvarchar](50) NULL,
+	[Religion] [nvarchar](50) NULL,
+	[Active] [bit] NULL,
+	[CodeStaff] [int] NULL,
+ CONSTRAINT [PK_Profile] PRIMARY KEY CLUSTERED 
+(
+	[ProfileID] ASC
+) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Phòng ban' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Profile', @level2type=N'COLUMN',@level2name=N'Department'
+GO
+EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Chức vụ' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Profile', @level2type=N'COLUMN',@level2name=N'Position'
+GO
+EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Giới tính' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Profile', @level2type=N'COLUMN',@level2name=N'Genre'
+GO
+EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Dân tộc' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Profile', @level2type=N'COLUMN',@level2name=N'Ethnic'
+GO
+EXEC dbo.sp_addextendedproperty @name=N'MS_Description', @value=N'Tôn giáo' , @level0type=N'USER',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Profile', @level2type=N'COLUMN',@level2name=N'Religion'
+GO
+SET IDENTITY_INSERT [dbo].[Profile] ON
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (1, 2, N'It', N'DLU', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 6)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (2, 4, N'Cường', N'Đỗ Ngọc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (3, 5, N'Binh', N'Nguyen Thi Thanh', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 6)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (4, 1, N'Lê Ngọc Luyện', N'', N'Công Nghệ Thông Tin', N'Trợ Giảng', N'/images/bg-mobile.png', N'Đà Lạt', N'01656215715', CAST(0x00007DF100000000 AS DateTime), CAST(0x00009F1F0131718F AS DateTime), N'Vietnam', N'Nam', N'Kinh', N'Không', 0, 3)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (5, 8, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1C0173A054 AS DateTime), N'', N'Nữ', N'', N'', 0, 14)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (6, 9, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E0093B994 AS DateTime), N'', N'Nữ', N'', N'', 0, 8)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (7, 10, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E0093E298 AS DateTime), N'', N'Nữ', N'', N'', 0, 11)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (8, 11, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E00940818 AS DateTime), N'', N'Nữ', N'', N'', 0, 10)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (9, 12, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E00942B40 AS DateTime), N'', N'Nữ', N'', N'', 0, 13)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (10, 13, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E00945DA4 AS DateTime), N'', N'Nữ', N'', N'', 0, 22)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (11, 14, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E00947D48 AS DateTime), N'', N'Nữ', N'', N'', 0, 23)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (12, 15, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E0094AAFC AS DateTime), N'', N'Nữ', N'', N'', 0, 21)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (13, 16, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E0094CBCC AS DateTime), N'', N'Nữ', N'', N'', 0, 20)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (14, 17, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E0094EEF4 AS DateTime), N'', N'Nữ', N'', N'', 0, 19)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (15, 18, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E00950FC4 AS DateTime), N'', N'Nữ', N'', N'', 0, 18)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (16, 19, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E009545AC AS DateTime), N'', N'Nữ', N'', N'', 0, 17)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (17, 20, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E0095829C AS DateTime), N'', N'Nữ', N'', N'', 0, 15)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (18, 21, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E0095B758 AS DateTime), N'', N'Nữ', N'', N'', 0, 7)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (19, 22, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E0095E05C AS DateTime), N'', N'Nữ', N'', N'', 0, 5)
+INSERT [dbo].[Profile] ([ProfileID], [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active], [CodeStaff]) VALUES (20, 23, N'', N'', N'', N'', N'', N'', N'', CAST(0xFFFF2E4600000000 AS DateTime), CAST(0x00009F1E00B166D8 AS DateTime), N'', N'Nữ', N'', N'', 0, 24)
+SET IDENTITY_INSERT [dbo].[Profile] OFF
+/****** Object:  Table [dbo].[TinTuc]    Script Date: 08/31/2011 15:20:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2132,294 +1066,7 @@ CREATE TABLE [dbo].[TinTuc](
 ) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[Users_GetAll]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
-
-CREATE PROCEDURE [dbo].[Users_GetAll]
-AS
-select * from Users
-GO
-/****** Object:  StoredProcedure [dbo].[Users_FindUserName]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[Users_FindUserName]@UserName nvarchar(2000)ASSELECT * FROM [Users] where @UserName like UserName
-GO
-/****** Object:  StoredProcedure [dbo].[Users_FindEmail]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[Users_FindEmail]@Email nvarchar(2000)ASSELECT * FROM [Users] where @Email like Email
-GO
-/****** Object:  StoredProcedure [dbo].[Users_Delete]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Users_Delete]@UserID  intASDELETE UsersWHERE UserID = @UserID
-GO
-/****** Object:  StoredProcedure [dbo].[Users_CreateDeleteUpdate]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
------------------- Procedure Table Users ---------------------------
-------------------------------------------------------------------
-
- CREATE Procedure [dbo].[Users_CreateDeleteUpdate]
-(
-	@UserID int out, 
-	@UserName nvarchar(50),
-	@Password nvarchar(50),
-	@Email nvarchar(100),
-	@LastPasswordChange datetime,
-	@LastLoginDate datetime,
-	@DateCreate datetime,
-	@User_ToString nvarchar(100),
-	@Type nvarchar(50),
-	@Active bit,
-	@Action int)
-AS
---Create
-IF @Action = 0
- BEGIN
- INSERT INTO Users
-	( [UserName], [Password], [Email], [LastPasswordChange], [LastLoginDate], [DateCreate], [User_ToString], [Type], [Active] )
- VALUES 
-	( @UserName, @Password, @Email, @LastPasswordChange, @LastLoginDate, @DateCreate, @User_ToString, @Type, @Active)
- SET @UserID = @@IDENTITY
-END
---Delete 
-ELSE IF @Action = 1
-BEGIN
-	IF EXISTS(SELECT [UserID] FROM Users WHERE [UserID] = @UserID)
-		BEGIN
-		UPDATE Users
-		SET 		
-		[Active] = 0
- 		WHERE [UserID] = @UserID
-  		END
-END
---Update 
-ELSE IF @Action = 2 
-BEGIN
-	IF EXISTS(SELECT [UserID] FROM Users WHERE [UserID] = @UserID)
-		BEGIN
-		UPDATE Users
-		SET 
-		[UserName] = @UserName,
-		[Password] = @Password,
-		[Email] = @Email,
-		[LastPasswordChange] = @LastPasswordChange,
-		[LastLoginDate] = @LastLoginDate,
-		[DateCreate] = @DateCreate,
-		[User_ToString] = @User_ToString,
-		[Type] = @Type,
-		[Active] = @Active
- 		WHERE [UserID] = @UserID
-  		END
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Users_Count]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Users_Count    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Users_Count]ASSELECT COUNT (UserID) FROM Users
-GO
-/****** Object:  StoredProcedure [dbo].[Users_ChangePassword]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Users_ChangePassword] 
-	-- Add the parameters for the stored procedure here
-	@UserName nvarchar(50),
-	@PasswordOld nvarchar(50),
-	@PasswordNew nvarchar(50)
-AS
-BEGIN
-	Update Users set Password=@PasswordNew Where UserName = @UserName and Password = @PasswordOld
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Users_All]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Users_All    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Users_All]AS	SET NOCOUNT ON	SELECT * FROM Users  ORDER BY UserID
-GO
-/****** Object:  StoredProcedure [dbo].[Users_Add]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Users_Add    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Users_Add]	@UserID               int  output,	@UserName             nvarchar(50),	@Password             nvarchar(50),	@Email                nvarchar(100),	@LastPasswordChange   datetime,	@LastLoginDate        datetime,	@DateCreate           datetime,	@User_ToString        nvarchar(100),	@Type                 nvarchar(50),	@Active               bitASINSERT INTO Users(	UserName,	[Password],	Email,	LastPasswordChange,	LastLoginDate,	DateCreate,	User_ToString,	[Type],	Active)VALUES (	@UserName,	@Password,	@Email,	@LastPasswordChange,	@LastLoginDate,	@DateCreate,	@User_ToString,	@Type,	@Active)SET @UserID = @@IDENTITY
-GO
-/****** Object:  StoredProcedure [dbo].[Users_Update]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Users_Update    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Users_Update]	@UserID               int,	@UserName             nvarchar(50),	@Password             nvarchar(50),	@Email                nvarchar(100),	@LastPasswordChange   datetime,	@LastLoginDate        datetime,	@DateCreate           datetime,	@User_ToString        nvarchar(100),	@Type                 nvarchar(50),	@Active               bitASUPDATE Users SET 	UserName= @UserName,	[Password]= @Password,	Email= @Email,	LastPasswordChange= @LastPasswordChange,	LastLoginDate= @LastLoginDate,	DateCreate= @DateCreate,	User_ToString= @User_ToString,	[Type]= @Type,	Active= @ActiveWHERE UserID = @UserID
-GO
-/****** Object:  StoredProcedure [dbo].[Users_Single]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Users_Single    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Users_Single]	@UserID  intAS	SET NOCOUNT ON	SELECT * FROM Users  WHERE UserID = @UserID
-GO
-/****** Object:  StoredProcedure [dbo].[Users_Search]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE Procedure [dbo].[Users_Search]
-(
-	@UserID int out, 
-	@UserName nvarchar(50),	
-	@Email nvarchar(100),	
-	@Action int)
-AS
---Search by Id
-IF @Action = 0
-	BEGIN
-		SELECT * FROM Users WHERE UserID=@UserID
-	END
---Search by UserName 
-ELSE IF @Action = 1
-BEGIN
-	SELECT * FROM Users where UserName like '%'+@UserName+'%' 		  		
-END
---Search by Email 
-ELSE IF @Action = 2 
-BEGIN
-	SELECT * FROM Users where Email like '%'+@Email+'%'
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Users_Paging]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Users_Paging    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Users_Paging]	@PageNumber  int,	@PageSize  intASDECLARE @_Users TABLE (	RowNumber INT IDENTITY (1,1), 	UserID               int, 	UserName             nvarchar(50), 	Password             nvarchar(50), 	Email                nvarchar(100), 	LastPasswordChange   datetime, 	LastLoginDate        datetime, 	DateCreate           datetime, 	User_ToString        nvarchar(100), 	Type                 nvarchar(50), 	Active               bit)INSERT INTO @_UsersSELECT UserID, UserName, Password, Email, LastPasswordChange, LastLoginDate, DateCreate, User_ToString, Type, ActiveFROM UsersSELECT COUNT (UserID) FROM @_UsersSELECT * FROM @_Users WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[Users_Login]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Users_Login] 
-@UserName nvarchar(1000),
-@Password nvarchar(1000),
-@Active bit
-AS
-BEGIN
-Select * from [Users] where @UserName = UserName and @Password = Password and @Active=Active;
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Users_GetUserByGroupID]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[Users_GetUserByGroupID] 
-@GroupID int
-AS
-BEGIN
-	select * from [Users] where UserID in (select UserID from InGroup where GroupID=@GroupID)
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Users_GetNotUserByGroupID]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create PROCEDURE [dbo].[Users_GetNotUserByGroupID] 
-@GroupID int
-AS
-BEGIN
-	select * from [Users] where UserID not in (select UserID from InGroup where GroupID=@GroupID)
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Users_CopyUser]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE Procedure [dbo].[Users_CopyUser]
-(
-	@UserID int out, 
-	@UserName nvarchar(50),	
-	@Email nvarchar(100),
-	@Total int,	
-	@Action int)
-AS
-declare @count int
-set @count=0
---Search by Id
-IF @Action = 0
-	BEGIN
-		 
-		IF EXISTS(SELECT UserID FROM Users WHERE UserID=@UserID)
-		BEGIN			
-			WHILE(@count < @Total)
-			begin
-				-- copy thong tin user				
-				INSERT INTO Users(UserName,Password,Email,LastPasswordChange,LastLoginDate,DateCreate,User_ToString,Type,Active) 
-				SELECT UserName,Password,Email,LastPasswordChange,LastLoginDate,DateCreate,User_ToString,Type,Active FROM Users WHERE UserID=@UserID
-				Set @UserID = @@IDENTITY
-				-- copy profile
-				Insert INTO Profile(UserID) values(@UserID)				
-				--set @ProfileID=@@IDENTITY
-				set @count=@@IDENTITY
-				print cast(@UserID as nvarchar(3))
-			end
-  		END
-	END
---Search by UserName 
-ELSE IF @Action = 1
-BEGIN
-	IF EXISTS(SELECT * FROM Users WHERE UserName like '%'+@UserName+'%')
-	BEGIN
-		WHILE(@count < @Total)
-			begin
-				INSERT INTO Users(UserName,Password,Email,LastPasswordChange,LastLoginDate,DateCreate,User_ToString,Type,Active) 
-				SELECT UserName,Password,Email,LastPasswordChange,LastLoginDate,DateCreate,User_ToString,Type,Active FROM Users WHERE UserName like '%'+@UserName+'%'
-				Set @UserID = @@IDENTITY
-				Insert INTO Profile(UserID) values(@UserID)				
-				--set @ProfileID=@@IDENTITY
-				set @count=@count+1
-			end		
-  	END
-	--SELECT * FROM Users where UserName like '%'+@UserName+'%' 		  		
-END
---Search by Email 
-ELSE IF @Action = 2 
-BEGIN
-	IF EXISTS(SELECT * FROM Users WHERE Email like '%'+@Email+'%')
-	BEGIN
-		WHILE(@count < @Total)
-			begin
-				INSERT INTO Users(UserName,Password,Email,LastPasswordChange,LastLoginDate,DateCreate,User_ToString,Type,Active) 
-				SELECT UserName,Password,Email,LastPasswordChange,LastLoginDate,DateCreate,User_ToString,Type,Active FROM Users WHERE Email like '%'+@Email+'%'
-				Set @UserID = @@IDENTITY
-				Insert INTO Profile(UserID) values(@UserID)				
-				--set @ProfileID=@@IDENTITY
-				set @count=@count+1
-			end
-  	END
-END
-GO
-/****** Object:  Table [dbo].[TaiNguyen_TinTuc]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  Table [dbo].[TaiNguyen_TinTuc]    Script Date: 08/31/2011 15:20:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2434,1023 +1081,91 @@ CREATE TABLE [dbo].[TaiNguyen_TinTuc](
 ) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[Profile_Update]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Profile_Update    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Profile_Update]	@ProfileID            int,	@UserID               int,	@FirstName            nvarchar(100),	@LastName             nvarchar(50),	@Department           nvarchar(500),	@Position             nvarchar(500),	@Image                nvarchar(100),	@Address              nvarchar(500),	@Phone                nvarchar(15),	@Birdthday            datetime,	@LastUpdateProfile    datetime,	@Country              nvarchar(50),	@Genre                nvarchar(5),	@Ethnic               nvarchar(50),	@Religion             nvarchar(50),	@Active               bit,	@CodeStaff            intASUPDATE Profile SET 	UserID= @UserID,	FirstName= @FirstName,	LastName= @LastName,	Department= @Department,	Position= @Position,	[Image]= @Image,	[Address]= @Address,	Phone= @Phone,	Birdthday= @Birdthday,	LastUpdateProfile= @LastUpdateProfile,	Country= @Country,	Genre= @Genre,	Ethnic= @Ethnic,	Religion= @Religion,	Active= @Active,	CodeStaff= @CodeStaffWHERE ProfileID = @ProfileID
-GO
-/****** Object:  StoredProcedure [dbo].[Profile_SingleByUserID]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Profile_SingleByUserID]
-@UserID int
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-	SELECT * from [Profile] where UserID=@UserID
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Profile_Single]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Profile_Single    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Profile_Single]	@ProfileID  intAS	SET NOCOUNT ON	SELECT * FROM Profile  WHERE ProfileID = @ProfileID
-GO
-/****** Object:  StoredProcedure [dbo].[Profile_Search]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
------------------- Procedure Table Profile ---------------------------
-------------------------------------------------------------------
-
- create Procedure [dbo].[Profile_Search]
-(
-	@ProfileID int out, 
-	@UserID int,
-	@FirstName nvarchar(100),
-	@LastName nvarchar(50),	
-	@Action int)
-AS
---Search by ProfileID
-IF @Action = 0
- BEGIN
-	SELECT * FROM Profile where ProfileID=@ProfileID
-END
---Search by UserID 
-ELSE IF @Action = 1
-BEGIN
-	SELECT * FROM Profile WHERE UserID = @UserID
-END
---Search by FirstName and LastName 
-ELSE IF @Action = 2 
-BEGIN
-	SELECT * FROM Profile WHERE FirstName LIKE '%'+@FirstName+'%' and LastName LIKE '%'+@LastName+'%'
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Profile_Paging]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Profile_Paging    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Profile_Paging]	@PageNumber  int,	@PageSize  intASDECLARE @_Profile TABLE (	RowNumber INT IDENTITY (1,1), 	ProfileID            int, 	UserID               int, 	FirstName            nvarchar(100), 	LastName             nvarchar(50), 	Department           nvarchar(500), 	Position             nvarchar(500), 	Image                nvarchar(100), 	Address              nvarchar(500), 	Phone                nvarchar(15), 	Birdthday            datetime, 	LastUpdateProfile    datetime, 	Country              nvarchar(50), 	Genre                nvarchar(5), 	Ethnic               nvarchar(50), 	Religion             nvarchar(50), 	Active               bit, 	CodeStaff            int)INSERT INTO @_ProfileSELECT ProfileID, UserID, FirstName, LastName, Department, Position, Image, Address, Phone, Birdthday, LastUpdateProfile, Country, Genre, Ethnic, Religion, Active, CodeStaffFROM ProfileSELECT COUNT (ProfileID) FROM @_ProfileSELECT * FROM @_Profile WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[Profile_GetAll]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
-
-CREATE PROCEDURE [dbo].[Profile_GetAll]
-AS
-select * from Profile
-GO
-/****** Object:  StoredProcedure [dbo].[Profile_Delete]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Profile_Delete    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Profile_Delete]@ProfileID  intASDELETE ProfileWHERE ProfileID = @ProfileID
-GO
-/****** Object:  StoredProcedure [dbo].[Profile_CreateDeleteUpdate]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
------------------- Procedure Table Profile ---------------------------
-------------------------------------------------------------------
-
- CREATE Procedure [dbo].[Profile_CreateDeleteUpdate]
-(
-	@ProfileID int out, 
-	@UserID int,
-	@FirstName nvarchar(100),
-	@LastName nvarchar(50),
-	@Department nvarchar(500),
-	@Position nvarchar(500),
-	@Image nvarchar(100),
-	@Address nvarchar(500),
-	@Phone nvarchar(15),
-	@Birdthday datetime,
-	@LastUpdateProfile datetime,
-	@Country nvarchar(50),
-	@Genre nvarchar(5),
-	@Ethnic nvarchar(50),
-	@Religion nvarchar(50),
-	@Active bit,
-	@Action int)
-AS
---Create
-IF @Action = 0
- BEGIN
- INSERT INTO Profile
-	( [UserID], [FirstName], [LastName], [Department], [Position], [Image], [Address], [Phone], [Birdthday], [LastUpdateProfile], [Country], [Genre], [Ethnic], [Religion], [Active] )
- VALUES 
-	( @UserID, @FirstName, @LastName, @Department, @Position, @Image, @Address, @Phone, @Birdthday, @LastUpdateProfile, @Country, @Genre, @Ethnic, @Religion, @Active)
- SET @ProfileID = @@IDENTITY
-END
---Delete 
-ELSE IF @Action = 1
-BEGIN
-	IF EXISTS(SELECT [ProfileID] FROM Profile WHERE [ProfileID] = @ProfileID)
-		BEGIN
-		UPDATE Profile
-		SET 		
-		[Active] = 0
- 		WHERE [ProfileID] = @ProfileID
-  		END
-END
---Update 
-ELSE IF @Action = 2 
-BEGIN
-	IF EXISTS(SELECT [ProfileID] FROM Profile WHERE [ProfileID] = @ProfileID)
-		BEGIN
-		UPDATE Profile
-		SET 
-		[UserID] = @UserID,
-		[FirstName] = @FirstName,
-		[LastName] = @LastName,
-		[Department] = @Department,
-		[Position] = @Position,
-		[Image] = @Image,
-		[Address] = @Address,
-		[Phone] = @Phone,
-		[Birdthday] = @Birdthday,
-		[LastUpdateProfile] = @LastUpdateProfile,
-		[Country] = @Country,
-		[Genre] = @Genre,
-		[Ethnic] = @Ethnic,
-		[Religion] = @Religion,
-		[Active] = @Active
- 		WHERE [ProfileID] = @ProfileID
-  		END
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Profile_Count]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Profile_Count    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Profile_Count]ASSELECT COUNT (ProfileID) FROM Profile
-GO
-/****** Object:  StoredProcedure [dbo].[Profile_All]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Profile_All    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Profile_All]AS	SET NOCOUNT ON	SELECT * FROM Profile  ORDER BY ProfileID
-GO
-/****** Object:  StoredProcedure [dbo].[Profile_Add]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Profile_Add    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Profile_Add]	@ProfileID            int  output,	@UserID               int,	@FirstName            nvarchar(100),	@LastName             nvarchar(50),	@Department           nvarchar(500),	@Position             nvarchar(500),	@Image                nvarchar(100),	@Address              nvarchar(500),	@Phone                nvarchar(15),	@Birdthday            datetime,	@LastUpdateProfile    datetime,	@Country              nvarchar(50),	@Genre                nvarchar(5),	@Ethnic               nvarchar(50),	@Religion             nvarchar(50),	@Active               bit,	@CodeStaff            intASINSERT INTO Profile(	UserID,	FirstName,	LastName,	Department,	Position,	[Image],	[Address],	Phone,	Birdthday,	LastUpdateProfile,	Country,	Genre,	Ethnic,	Religion,	Active,	CodeStaff)VALUES (	@UserID,	@FirstName,	@LastName,	@Department,	@Position,	@Image,	@Address,	@Phone,	@Birdthday,	@LastUpdateProfile,	@Country,	@Genre,	@Ethnic,	@Religion,	@Active,	@CodeStaff)SET @ProfileID = @@IDENTITY
-GO
-/****** Object:  StoredProcedure [dbo].[InRoles_Update]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure InRoles_Update    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[InRoles_Update]	@InRolesID            int,	@ApplicationID        int,	@GroupID              int,	@DateCreate           datetime,	@Active               bitASUPDATE InRoles SET 	ApplicationID= @ApplicationID,	GroupID= @GroupID,	DateCreate= @DateCreate,	Active= @ActiveWHERE InRolesID = @InRolesID
-GO
-/****** Object:  StoredProcedure [dbo].[InRoles_Single]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure InRoles_Single    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[InRoles_Single]	@InRolesID  intAS	SET NOCOUNT ON	SELECT * FROM InRoles  WHERE InRolesID = @InRolesID
-GO
-/****** Object:  StoredProcedure [dbo].[InRoles_Search]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create Procedure [dbo].[InRoles_Search]
-(
-	@InRolesID int out,
-	@ApplicationID int, 
-	@GroupID int,	
-	@Action int)
-AS
---Search by InRolesID
-IF @Action = 0
- BEGIN
-	 SELECT * FROM InRoles WHERE InRolesID=@InRolesID
-END
---Search by ApplicationID
-ELSE IF @Action = 1
-BEGIN
-	SELECT * FROM InRoles WHERE ApplicationID=@ApplicationID
-END
---Search by GroupID 
-ELSE IF @Action = 2 
-BEGIN
-	SELECT * FROM InRoles WHERE GroupID=@GroupID
-END
-GO
-/****** Object:  StoredProcedure [dbo].[InRoles_Paging]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure InRoles_Paging    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[InRoles_Paging]	@PageNumber  int,	@PageSize  intASDECLARE @_InRoles TABLE (	RowNumber INT IDENTITY (1,1), 	InRolesID            int, 	ApplicationID        int, 	GroupID              int, 	DateCreate           datetime, 	Active               bit)INSERT INTO @_InRolesSELECT InRolesID, ApplicationID, GroupID, DateCreate, ActiveFROM InRolesSELECT COUNT (InRolesID) FROM @_InRolesSELECT * FROM @_InRoles WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[InRoles_GetByGroupID]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
------------------- Procedure Table InRoles ---------------------------
-------------------------------------------------------------------
-
- create Procedure [dbo].[InRoles_GetByGroupID]
-(	
-	@GroupID int
-)
-AS
-	SELECT * FROM InRoles WHERE GroupID = @GroupID
-GO
-/****** Object:  StoredProcedure [dbo].[InRoles_GetByApplicationID]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
------------------- Procedure Table InRoles ---------------------------
-------------------------------------------------------------------
-
- create Procedure [dbo].[InRoles_GetByApplicationID]
-(	
-	@ApplicationID int
-)
-AS
-	SELECT * FROM InRoles WHERE ApplicationID = @ApplicationID
-GO
-/****** Object:  StoredProcedure [dbo].[InRoles_GetAll]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
-
-CREATE PROCEDURE [dbo].[InRoles_GetAll]
-AS
-select * from InRoles
-GO
-/****** Object:  StoredProcedure [dbo].[InRoles_DeleteByAppAndGroup]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[InRoles_DeleteByAppAndGroup]
-@GroupID int,
-@ApplicationID int
-AS
-BEGIN
-	delete InRoles where ApplicationID = @ApplicationID and @GroupID=GroupID
-END
-GO
-/****** Object:  StoredProcedure [dbo].[InRoles_Delete]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure InRoles_Delete    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[InRoles_Delete]@InRolesID  intASDELETE InRolesWHERE InRolesID = @InRolesID
-GO
-/****** Object:  StoredProcedure [dbo].[InRoles_CreateDeleteUpdate]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
------------------- Procedure Table InRoles ---------------------------
-------------------------------------------------------------------
-
- CREATE Procedure [dbo].[InRoles_CreateDeleteUpdate]
-(
-	@InRolesID int out, 
-	@ApplicationID int,
-	@GroupID int,
-	@DateCreate datetime,
-	@Active bit,
-	@Action int)
-AS
---Create
-IF @Action = 0
- BEGIN
- INSERT INTO InRoles
-	( [ApplicationID], [GroupID], [DateCreate], [Active] )
- VALUES 
-	( @ApplicationID, @GroupID, @DateCreate, @Active)
- SET @InRolesID = @@IDENTITY
-END
---Delete 
-ELSE IF @Action = 1
-BEGIN
-	IF EXISTS(SELECT [InRolesID] FROM InRoles WHERE [InRolesID] = @InRolesID)
-		BEGIN
-		UPDATE InRoles
-		SET 		
-		[Active] = 0
- 		WHERE [InRolesID] = @InRolesID
-  		END
-END
---Update 
-ELSE IF @Action = 2 
-BEGIN
-	IF EXISTS(SELECT [InRolesID] FROM InRoles WHERE [InRolesID] = @InRolesID)
-		BEGIN
-		UPDATE InRoles
-		SET 
-		[ApplicationID] = @ApplicationID,
-		[GroupID] = @GroupID,
-		[DateCreate] = @DateCreate,
-		[Active] = @Active
- 		WHERE [InRolesID] = @InRolesID
-  		END
-END
-GO
-/****** Object:  StoredProcedure [dbo].[InRoles_Count]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure InRoles_Count    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[InRoles_Count]ASSELECT COUNT (InRolesID) FROM InRoles
-GO
-/****** Object:  StoredProcedure [dbo].[InRoles_All]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure InRoles_All    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[InRoles_All]AS	SET NOCOUNT ON	SELECT * FROM InRoles  ORDER BY InRolesID
-GO
-/****** Object:  StoredProcedure [dbo].[InRoles_Add]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure InRoles_Add    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[InRoles_Add]	@InRolesID            int  output,	@ApplicationID        int,	@GroupID              int,	@DateCreate           datetime,	@Active               bitASINSERT INTO InRoles(	ApplicationID,	GroupID,	DateCreate,	Active)VALUES (	@ApplicationID,	@GroupID,	@DateCreate,	@Active)SET @InRolesID = @@IDENTITY
-GO
-/****** Object:  StoredProcedure [dbo].[Log_Update]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Log_Update    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Log_Update]	@LogID                int,	@UserID               int,	@Date                 datetime,	@Trace                nvarchar(200),	@IP                   nvarchar(50),	@Action               nvarchar(200),	@Time_Login           datetime,	@Time_Logout          datetimeASUPDATE Log SET 	UserID= @UserID,	Date= @Date,	Trace= @Trace,	IP= @IP,	Action= @Action,	Time_Login= @Time_Login,	Time_Logout= @Time_LogoutWHERE LogID = @LogID
-GO
-/****** Object:  StoredProcedure [dbo].[Log_Single]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Log_Single    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Log_Single]	@LogID  intAS	SET NOCOUNT ON	SELECT * FROM Log  WHERE LogID = @LogID
-GO
-/****** Object:  StoredProcedure [dbo].[Log_SearchByDate]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create Procedure [dbo].[Log_SearchByDate]
-(
-	@Date datetime
-)
-AS
-select * from Log where Date = @Date
-GO
-/****** Object:  StoredProcedure [dbo].[Log_Paging]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Log_Paging    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Log_Paging]	@PageNumber  int,	@PageSize  intASDECLARE @_Log TABLE (	RowNumber INT IDENTITY (1,1), 	LogID                int, 	UserID               int, 	Date                 datetime, 	Trace                nvarchar(200), 	IP                   nvarchar(50), 	Action               nvarchar(200), 	Time_Login           datetime, 	Time_Logout          datetime)INSERT INTO @_LogSELECT LogID, UserID, Date, Trace, IP, [Action], Time_Login, Time_Logout FROM Log order by LogID descSELECT COUNT (LogID) FROM @_LogSELECT * FROM @_Log WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[Log_GetAll]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
-
-CREATE PROCEDURE [dbo].[Log_GetAll]
-AS
-select * from Log
-GO
-/****** Object:  StoredProcedure [dbo].[Log_Delete]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Log_Delete    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Log_Delete]@LogID  intASDELETE LogWHERE LogID = @LogID
-GO
-/****** Object:  StoredProcedure [dbo].[Log_CreateDeleteUpdate]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE Procedure [dbo].[Log_CreateDeleteUpdate]
-(
-	@LogID int out, 
-	@UserID int,
-	@Date datetime,
-	@Trace nvarchar(200),
-	@IP nvarchar(50),
-	@Action nvarchar(200),
-	@Time_Login datetime,
-	@Time_Logout datetime,
-	@ActionQ int)
-AS
---Create
-IF @ActionQ = 0
- BEGIN
- INSERT INTO Log
-	( [UserID], [Date], [Trace], [IP], [Action], [Time_Login], [Time_Logout] )
- VALUES 
-	( @UserID, @Date, @Trace, @IP, @Action, @Time_Login, @Time_Logout)
- SET @LogID = @@IDENTITY
-END
---Delete 
-ELSE IF @ActionQ = 1
-BEGIN
-	DELETE Log WHERE [LogID] = @LogID
-END
---Update 
-ELSE IF @ActionQ = 2 
-BEGIN
-	IF EXISTS(SELECT [LogID] FROM Log WHERE [LogID] = @LogID)
-		BEGIN
-		UPDATE Log
-		SET 
-		[UserID] = @UserID,
-		[Date] = @Date,
-		[Trace] = @Trace,
-		[IP] = @IP,
-		[Action] = @Action,
-		[Time_Login] = @Time_Login,
-		[Time_Logout] = @Time_Logout
- 		WHERE [LogID] = @LogID
-  		END
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Log_Count]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Log_Count    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Log_Count]ASSELECT COUNT (LogID) FROM Log
-GO
-/****** Object:  StoredProcedure [dbo].[Log_All]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Log_All    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Log_All]AS	SET NOCOUNT ON	SELECT * FROM Log  ORDER BY LogID
-GO
-/****** Object:  StoredProcedure [dbo].[Log_Add]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure Log_Add    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[Log_Add]	@LogID                int  output,	@UserID               int,	@Date                 datetime,	@Trace                nvarchar(200),	@IP                   nvarchar(50),	@Action               nvarchar(200),	@Time_Login           datetime,	@Time_Logout          datetimeASINSERT INTO Log(	UserID,	[Date],	Trace,	IP,	[Action],	Time_Login,	Time_Logout)VALUES (	@UserID,	@Date,	@Trace,	@IP,	@Action,	@Time_Login,	@Time_Logout)SET @LogID = @@IDENTITY
-GO
-/****** Object:  StoredProcedure [dbo].[InGroup_Update]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure InGroup_Update    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[InGroup_Update]	@InGroupID            int,	@UserID               int,	@GroupID              int,	@DateCreate           datetime,	@Active               bitASUPDATE InGroup SET 	UserID= @UserID,	GroupID= @GroupID,	DateCreate= @DateCreate,	Active= @ActiveWHERE InGroupID = @InGroupID
-GO
-/****** Object:  StoredProcedure [dbo].[InGroup_Single]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure InGroup_Single    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[InGroup_Single]	@InGroupID  intAS	SET NOCOUNT ON	SELECT * FROM InGroup  WHERE InGroupID = @InGroupID
-GO
-/****** Object:  StoredProcedure [dbo].[InGroup_Search]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create Procedure [dbo].[InGroup_Search]
-(
-	@InGroupID int out,
-	@GroupID int, 
-	@UserID int,	
-	@Action int)
-AS
---Search by InGroupID
-IF @Action = 0
- BEGIN
-	 SELECT * FROM InGroup WHERE InGroupID=@InGroupID
-END
---Search by GroupID
-ELSE IF @Action = 1
-BEGIN
-	SELECT * FROM InGroup WHERE @GroupID=@GroupID
-END
---Search by UserID 
-ELSE IF @Action = 2 
-BEGIN
-	SELECT * FROM InGroup WHERE UserID=@UserID
-END
-GO
-/****** Object:  StoredProcedure [dbo].[InGroup_Paging]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure InGroup_Paging    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[InGroup_Paging]	@PageNumber  int,	@PageSize  intASDECLARE @_InGroup TABLE (	RowNumber INT IDENTITY (1,1), 	InGroupID            int, 	UserID               int, 	GroupID              int, 	DateCreate           datetime, 	Active               bit)INSERT INTO @_InGroupSELECT InGroupID, UserID, GroupID, DateCreate, ActiveFROM InGroupSELECT COUNT (InGroupID) FROM @_InGroupSELECT * FROM @_InGroup WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[InGroup_GetByGroupID]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
------------------- Procedure Table InRoles ---------------------------
-------------------------------------------------------------------
-
- create Procedure [dbo].[InGroup_GetByGroupID]
-(	
-	@GroupID int
-)
-AS
-	SELECT * FROM InGroup WHERE GroupID = @GroupID
-GO
-/****** Object:  StoredProcedure [dbo].[InGroup_GetAll]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
-
-CREATE PROCEDURE [dbo].[InGroup_GetAll]
-AS
-select * from InGroup
-GO
-/****** Object:  StoredProcedure [dbo].[InGroup_DeleteByUserAndGroup]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create PROCEDURE [dbo].[InGroup_DeleteByUserAndGroup]
-@GroupID int,
-@UserID int
-AS
-BEGIN
-	delete InGroup where UserID = @UserID  and @GroupID=GroupID
-END
-GO
-/****** Object:  StoredProcedure [dbo].[InGroup_Delete]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure InGroup_Delete    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[InGroup_Delete]@InGroupID  intASDELETE InGroupWHERE InGroupID = @InGroupID
-GO
-/****** Object:  StoredProcedure [dbo].[InGroup_CreateDeleteUpdate]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
------------------- Procedure Table InGroup ---------------------------
-------------------------------------------------------------------
-
- CREATE Procedure [dbo].[InGroup_CreateDeleteUpdate]
-(
-	@InGroupID int out, 
-	@UserID int,
-	@GroupID int,
-	@DateCreate datetime,
-	@Active bit,
-	@Action int)
-AS
---Create
-IF @Action = 0
- BEGIN
- INSERT INTO InGroup
-	( [UserID], [GroupID], [DateCreate], [Active] )
- VALUES 
-	( @UserID, @GroupID, @DateCreate, @Active)
- SET @InGroupID = @@IDENTITY
-END
---Delete 
-ELSE IF @Action = 1
-BEGIN
-	IF EXISTS(SELECT [InGroupID] FROM InGroup WHERE [InGroupID] = @InGroupID)
-		BEGIN
-		UPDATE InGroup
-		SET 		
-		[Active] = 0
- 		WHERE [InGroupID] = @InGroupID
-  		END
-END
---Update 
-ELSE IF @Action = 2 
-BEGIN
-	IF EXISTS(SELECT [InGroupID] FROM InGroup WHERE [InGroupID] = @InGroupID)
-		BEGIN
-		UPDATE InGroup
-		SET 
-		[UserID] = @UserID,
-		[GroupID] = @GroupID,
-		[DateCreate] = @DateCreate,
-		[Active] = @Active
- 		WHERE [InGroupID] = @InGroupID
-  		END
-END
-GO
-/****** Object:  StoredProcedure [dbo].[InGroup_Count]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure InGroup_Count    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[InGroup_Count]ASSELECT COUNT (InGroupID) FROM InGroup
-GO
-/****** Object:  StoredProcedure [dbo].[InGroup_All]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure InGroup_All    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[InGroup_All]AS	SET NOCOUNT ON	SELECT * FROM InGroup  ORDER BY InGroupID
-GO
-/****** Object:  StoredProcedure [dbo].[InGroup_Add]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure InGroup_Add    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[InGroup_Add]	@InGroupID            int  output,	@UserID               int,	@GroupID              int,	@DateCreate           datetime,	@Active               bitASINSERT INTO InGroup(	UserID,	GroupID,	DateCreate,	Active)VALUES (	@UserID,	@GroupID,	@DateCreate,	@Active)SET @InGroupID = @@IDENTITY
-GO
-/****** Object:  StoredProcedure [dbo].[Application_GetByParentID]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE Procedure [dbo].[Application_GetByParentID]
-(	
-	@ParentID int
-)
-AS
-	select * from InRoles inrol,(select * from Application Where @ParentID = Parent_Id and Active =1) p where inrol.ApplicationID = p.ApplicationID
-GO
-/****** Object:  StoredProcedure [dbo].[Application_GetAppByGroupID]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Application_GetAppByGroupID] 
-@GroupID int
-AS
-BEGIN
-	select * from [Application] where ApplicationID in (select ApplicationID from InRoles where GroupID=@GroupID)
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Groups_AllByUser]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Groups_AllByUser]
-	@IDUser int
-AS
-BEGIN
-	SELECT * from Groups where GroupID in (select GroupID from InGroup where @IDUser = UserID)
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Group_GetByUserID]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
------------------- Procedure Table InRoles ---------------------------
-------------------------------------------------------------------
-
- CREATE Procedure [dbo].[Group_GetByUserID]
-(	
-	@UserID int
-)
-AS
-	select g.* from Groups g,(SELECT GroupID FROM InGroup WHERE UserID = @UserID) inGroup where g.GroupID=inGroup.GroupID and g.Active=1
-GO
-/****** Object:  StoredProcedure [dbo].[FilePermission_Update]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure FilePermission_Update    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[FilePermission_Update]	@FilePermissionID     int,	@PermissionID         int,	@GroupID              int,	@FolderPath           nvarchar(200)ASUPDATE FilePermission SET 	PermissionID= @PermissionID,	GroupID= @GroupID,	FolderPath= @FolderPathWHERE FilePermissionID = @FilePermissionID
-GO
-/****** Object:  StoredProcedure [dbo].[FilePermission_Single]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure FilePermission_Single    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[FilePermission_Single]	@FilePermissionID  intAS	SET NOCOUNT ON	SELECT * FROM FilePermission  WHERE FilePermissionID = @FilePermissionID
-GO
-/****** Object:  StoredProcedure [dbo].[FilePermission_Search]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create Procedure [dbo].[FilePermission_Search]
-(
-	@FilePermissionID int out,
-	@PermissionID int, 
-	@GroupID int,	
-	@Action int)
-AS
---Search by FilePermissionID
-IF @Action = 0
- BEGIN
-	 SELECT * FROM FilePermission WHERE FilePermissionID=@FilePermissionID
-END
---Search by PermissionID
-ELSE IF @Action = 1
-BEGIN
-	SELECT * FROM FilePermission WHERE PermissionID=@PermissionID
-END
---Search by GroupID 
-ELSE IF @Action = 2 
-BEGIN
-	SELECT * FROM FilePermission WHERE GroupID=@GroupID
-END
-GO
-/****** Object:  StoredProcedure [dbo].[FilePermission_Paging]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure FilePermission_Paging    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[FilePermission_Paging]	@PageNumber  int,	@PageSize  intASDECLARE @_FilePermission TABLE (	RowNumber INT IDENTITY (1,1), 	FilePermissionID     int, 	PermissionID         int, 	GroupID              int, 	FolderPath           nvarchar(200))INSERT INTO @_FilePermissionSELECT FilePermissionID, PermissionID, GroupID, FolderPathFROM FilePermissionSELECT COUNT (FilePermissionID) FROM @_FilePermissionSELECT * FROM @_FilePermission WHERE RowNumber > (@PageNumber -1) * @PageSize AND RowNumber <=@PageNumber * @PageSize
-GO
-/****** Object:  StoredProcedure [dbo].[FilePermission_GetByPermissionID]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
------------------- Procedure Table InRoles ---------------------------
-------------------------------------------------------------------
-
- create Procedure [dbo].[FilePermission_GetByPermissionID]
-(	
-	@PermissionID int
-)
-AS
-	SELECT * FROM FilePermission WHERE PermissionID = @PermissionID
-GO
-/****** Object:  StoredProcedure [dbo].[FilePermission_GetByGroupID]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
------------------- Procedure Table InRoles ---------------------------
-------------------------------------------------------------------
-
- create Procedure [dbo].[FilePermission_GetByGroupID]
-(	
-	@GroupID int
-)
-AS
-	SELECT * FROM FilePermission WHERE GroupID = @GroupID
-GO
-/****** Object:  StoredProcedure [dbo].[FilePermission_GetAll]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
-
-CREATE PROCEDURE [dbo].[FilePermission_GetAll]
-AS
-select * from FilePermission
-GO
-/****** Object:  StoredProcedure [dbo].[FilePermission_Delete]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure FilePermission_Delete    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[FilePermission_Delete]@FilePermissionID  intASDELETE FilePermissionWHERE FilePermissionID = @FilePermissionID
-GO
-/****** Object:  StoredProcedure [dbo].[FilePermission_CreateDeleteUpdate]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-------------------------------------------------------------------
------------------- Procedure Table FilePermission ---------------------------
-------------------------------------------------------------------
-
- CREATE Procedure [dbo].[FilePermission_CreateDeleteUpdate]
-(
-	@FilePermissionID int out, 
-	@PermissionID int,
-	@GroupID int,
-	@FolderPath nvarchar(200),
-	@Action int)
-AS
---Create
-IF @Action = 0
- BEGIN
- INSERT INTO FilePermission
-	( [PermissionID], [GroupID], [FolderPath] )
- VALUES 
-	( @PermissionID, @GroupID, @FolderPath)
- SET @FilePermissionID = @@IDENTITY
-END
---Delete 
-ELSE IF @Action = 1
-BEGIN
-	DELETE FilePermission WHERE [FilePermissionID] = @FilePermissionID
-END
---Update 
-ELSE IF @Action = 2 
-BEGIN
-	IF EXISTS(SELECT [FilePermissionID] FROM FilePermission WHERE [FilePermissionID] = @FilePermissionID)
-		BEGIN
-		UPDATE FilePermission
-		SET 
-		[PermissionID] = @PermissionID,
-		[GroupID] = @GroupID,
-		[FolderPath] = @FolderPath
- 		WHERE [FilePermissionID] = @FilePermissionID
-  		END
-END
-GO
-/****** Object:  StoredProcedure [dbo].[FilePermission_Count]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure FilePermission_Count    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[FilePermission_Count]ASSELECT COUNT (FilePermissionID) FROM FilePermission
-GO
-/****** Object:  StoredProcedure [dbo].[FilePermission_All]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure FilePermission_All    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[FilePermission_All]AS	SET NOCOUNT ON	SELECT * FROM FilePermission  ORDER BY FilePermissionID
-GO
-/****** Object:  StoredProcedure [dbo].[FilePermission_Add]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-/****** Object:  StoredProcedure FilePermission_Add    Generate Code Date: 6/17/2011 10:04:10 PM ******/CREATE PROCEDURE [dbo].[FilePermission_Add]	@FilePermissionID     int  output,	@PermissionID         int,	@GroupID              int,	@FolderPath           nvarchar(200)ASINSERT INTO FilePermission(	PermissionID,	GroupID,	FolderPath)VALUES (	@PermissionID,	@GroupID,	@FolderPath)SET @FilePermissionID = @@IDENTITY
-GO
-/****** Object:  StoredProcedure [dbo].[Application_GetNotAppByGroupID]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Application_GetNotAppByGroupID] 
-@GroupID int
-AS
-BEGIN
-	select * from [Application] where ApplicationID not in (select ApplicationID from InRoles where GroupID=@GroupID)
-	and Parent_Id=0
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Application_GetByUserID]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE Procedure [dbo].[Application_GetByUserID]
-(	
-	@UserID int
-)
-AS
-	select ap.* from Application ap,(select inR.ApplicationID from InRoles inR,(SELECT GroupID FROM InGroup WHERE UserID = @UserID) inGroup where inGroup.GroupID = inR.GroupID and inR.Active=1) inrol where inrol.ApplicationID = ap.ApplicationID and ap.Active=1 Order by Parent_Id
-GO
-/****** Object:  StoredProcedure [dbo].[Application_GetByUser]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Application_GetByUser]
-@UserID int
-AS
-BEGIN
-
-Select * from [Application] where ApplicationID in(
-select ApplicationID from InRoles where GroupID in (Select GroupID from InGroup where @UserID = UserID))
-
-END
-GO
-/****** Object:  StoredProcedure [dbo].[Application_AllAppByGroups]    Script Date: 08/31/2011 15:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[Application_AllAppByGroups]
-	@GroupID int,
-	@active bit
-AS
-BEGIN
-	SELECT * from [Application] where ApplicationID in (select ApplicationID from InRoles where @GroupID = GroupID) and Active = @active
-END
-GO
-/****** Object:  ForeignKey [FK_ChucVu_GiaoVien_ChucVu]    Script Date: 08/31/2011 15:02:24 ******/
-ALTER TABLE [dbo].[ChucVu_GiaoVien]  WITH CHECK ADD  CONSTRAINT [FK_ChucVu_GiaoVien_ChucVu] FOREIGN KEY([IDChucVu])
-REFERENCES [dbo].[ChucVu] ([IDCV])
-GO
-ALTER TABLE [dbo].[ChucVu_GiaoVien] CHECK CONSTRAINT [FK_ChucVu_GiaoVien_ChucVu]
-GO
-/****** Object:  ForeignKey [FK_ChucVu_GiaoVien_GiaoVien]    Script Date: 08/31/2011 15:02:24 ******/
-ALTER TABLE [dbo].[ChucVu_GiaoVien]  WITH CHECK ADD  CONSTRAINT [FK_ChucVu_GiaoVien_GiaoVien] FOREIGN KEY([IDGiaoVien])
-REFERENCES [dbo].[GiaoVien] ([IDGiaoVien])
-GO
-ALTER TABLE [dbo].[ChucVu_GiaoVien] CHECK CONSTRAINT [FK_ChucVu_GiaoVien_GiaoVien]
-GO
-/****** Object:  ForeignKey [FK_FilePermission_Group]    Script Date: 08/31/2011 15:02:24 ******/
-ALTER TABLE [dbo].[FilePermission]  WITH CHECK ADD  CONSTRAINT [FK_FilePermission_Group] FOREIGN KEY([GroupID])
-REFERENCES [dbo].[Groups] ([GroupID])
-GO
-ALTER TABLE [dbo].[FilePermission] CHECK CONSTRAINT [FK_FilePermission_Group]
-GO
-/****** Object:  ForeignKey [FK_FilePermission_Permission]    Script Date: 08/31/2011 15:02:24 ******/
-ALTER TABLE [dbo].[FilePermission]  WITH CHECK ADD  CONSTRAINT [FK_FilePermission_Permission] FOREIGN KEY([PermissionID])
-REFERENCES [dbo].[Permission] ([PermissionID])
-GO
-ALTER TABLE [dbo].[FilePermission] CHECK CONSTRAINT [FK_FilePermission_Permission]
-GO
-/****** Object:  ForeignKey [FK_UserInGroup_Group]    Script Date: 08/31/2011 15:02:24 ******/
-ALTER TABLE [dbo].[InGroup]  WITH CHECK ADD  CONSTRAINT [FK_UserInGroup_Group] FOREIGN KEY([GroupID])
-REFERENCES [dbo].[Groups] ([GroupID])
-GO
-ALTER TABLE [dbo].[InGroup] CHECK CONSTRAINT [FK_UserInGroup_Group]
-GO
-/****** Object:  ForeignKey [FK_UserInGroup_Users]    Script Date: 08/31/2011 15:02:24 ******/
-ALTER TABLE [dbo].[InGroup]  WITH CHECK ADD  CONSTRAINT [FK_UserInGroup_Users] FOREIGN KEY([UserID])
-REFERENCES [dbo].[Users] ([UserID])
-GO
-ALTER TABLE [dbo].[InGroup] CHECK CONSTRAINT [FK_UserInGroup_Users]
-GO
-/****** Object:  ForeignKey [FK_InRoles_Application]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  ForeignKey [FK_InRoles_Application]    Script Date: 08/31/2011 15:20:16 ******/
 ALTER TABLE [dbo].[InRoles]  WITH CHECK ADD  CONSTRAINT [FK_InRoles_Application] FOREIGN KEY([ApplicationID])
 REFERENCES [dbo].[Application] ([ApplicationID])
 GO
 ALTER TABLE [dbo].[InRoles] CHECK CONSTRAINT [FK_InRoles_Application]
 GO
-/****** Object:  ForeignKey [FK_InRoles_Group]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  ForeignKey [FK_InRoles_Group]    Script Date: 08/31/2011 15:20:16 ******/
 ALTER TABLE [dbo].[InRoles]  WITH CHECK ADD  CONSTRAINT [FK_InRoles_Group] FOREIGN KEY([GroupID])
 REFERENCES [dbo].[Groups] ([GroupID])
 GO
 ALTER TABLE [dbo].[InRoles] CHECK CONSTRAINT [FK_InRoles_Group]
 GO
-/****** Object:  ForeignKey [FK_Profile_Users]    Script Date: 08/31/2011 15:02:24 ******/
-ALTER TABLE [dbo].[Profile]  WITH CHECK ADD  CONSTRAINT [FK_Profile_Users] FOREIGN KEY([UserID])
+/****** Object:  ForeignKey [FK_UserInGroup_Group]    Script Date: 08/31/2011 15:20:16 ******/
+ALTER TABLE [dbo].[InGroup]  WITH CHECK ADD  CONSTRAINT [FK_UserInGroup_Group] FOREIGN KEY([GroupID])
+REFERENCES [dbo].[Groups] ([GroupID])
+GO
+ALTER TABLE [dbo].[InGroup] CHECK CONSTRAINT [FK_UserInGroup_Group]
+GO
+/****** Object:  ForeignKey [FK_UserInGroup_Users]    Script Date: 08/31/2011 15:20:16 ******/
+ALTER TABLE [dbo].[InGroup]  WITH CHECK ADD  CONSTRAINT [FK_UserInGroup_Users] FOREIGN KEY([UserID])
 REFERENCES [dbo].[Users] ([UserID])
 GO
-ALTER TABLE [dbo].[Profile] CHECK CONSTRAINT [FK_Profile_Users]
+ALTER TABLE [dbo].[InGroup] CHECK CONSTRAINT [FK_UserInGroup_Users]
 GO
-/****** Object:  ForeignKey [FK_ToChuc_GiaoVien_GiaoVien]    Script Date: 08/31/2011 15:02:24 ******/
-ALTER TABLE [dbo].[ToChuc_GiaoVien]  WITH CHECK ADD  CONSTRAINT [FK_ToChuc_GiaoVien_GiaoVien] FOREIGN KEY([IDGiaoVien])
+/****** Object:  ForeignKey [FK_FilePermission_Group]    Script Date: 08/31/2011 15:20:16 ******/
+ALTER TABLE [dbo].[FilePermission]  WITH CHECK ADD  CONSTRAINT [FK_FilePermission_Group] FOREIGN KEY([GroupID])
+REFERENCES [dbo].[Groups] ([GroupID])
+GO
+ALTER TABLE [dbo].[FilePermission] CHECK CONSTRAINT [FK_FilePermission_Group]
+GO
+/****** Object:  ForeignKey [FK_FilePermission_Permission]    Script Date: 08/31/2011 15:20:16 ******/
+ALTER TABLE [dbo].[FilePermission]  WITH CHECK ADD  CONSTRAINT [FK_FilePermission_Permission] FOREIGN KEY([PermissionID])
+REFERENCES [dbo].[Permission] ([PermissionID])
+GO
+ALTER TABLE [dbo].[FilePermission] CHECK CONSTRAINT [FK_FilePermission_Permission]
+GO
+/****** Object:  ForeignKey [FK_ChucVu_GiaoVien_ChucVu]    Script Date: 08/31/2011 15:20:16 ******/
+ALTER TABLE [dbo].[ChucVu_GiaoVien]  WITH CHECK ADD  CONSTRAINT [FK_ChucVu_GiaoVien_ChucVu] FOREIGN KEY([IDChucVu])
+REFERENCES [dbo].[ChucVu] ([IDCV])
+GO
+ALTER TABLE [dbo].[ChucVu_GiaoVien] CHECK CONSTRAINT [FK_ChucVu_GiaoVien_ChucVu]
+GO
+/****** Object:  ForeignKey [FK_ChucVu_GiaoVien_GiaoVien]    Script Date: 08/31/2011 15:20:16 ******/
+ALTER TABLE [dbo].[ChucVu_GiaoVien]  WITH CHECK ADD  CONSTRAINT [FK_ChucVu_GiaoVien_GiaoVien] FOREIGN KEY([IDGiaoVien])
 REFERENCES [dbo].[GiaoVien] ([IDGiaoVien])
 GO
-ALTER TABLE [dbo].[ToChuc_GiaoVien] CHECK CONSTRAINT [FK_ToChuc_GiaoVien_GiaoVien]
+ALTER TABLE [dbo].[ChucVu_GiaoVien] CHECK CONSTRAINT [FK_ChucVu_GiaoVien_GiaoVien]
 GO
-/****** Object:  ForeignKey [FK_ToChuc_GiaoVien_ToChuc]    Script Date: 08/31/2011 15:02:24 ******/
-ALTER TABLE [dbo].[ToChuc_GiaoVien]  WITH CHECK ADD  CONSTRAINT [FK_ToChuc_GiaoVien_ToChuc] FOREIGN KEY([IDToChuc])
-REFERENCES [dbo].[ToChuc] ([IDToChuc])
-GO
-ALTER TABLE [dbo].[ToChuc_GiaoVien] CHECK CONSTRAINT [FK_ToChuc_GiaoVien_ToChuc]
-GO
-/****** Object:  ForeignKey [FK_Log_Users]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  ForeignKey [FK_Log_Users]    Script Date: 08/31/2011 15:20:16 ******/
 ALTER TABLE [dbo].[Log]  WITH CHECK ADD  CONSTRAINT [FK_Log_Users] FOREIGN KEY([UserID])
 REFERENCES [dbo].[Users] ([UserID])
 GO
 ALTER TABLE [dbo].[Log] CHECK CONSTRAINT [FK_Log_Users]
 GO
-/****** Object:  ForeignKey [FK_TinTuc_LoaiTin]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  ForeignKey [FK_ToChuc_GiaoVien_GiaoVien]    Script Date: 08/31/2011 15:20:16 ******/
+ALTER TABLE [dbo].[ToChuc_GiaoVien]  WITH CHECK ADD  CONSTRAINT [FK_ToChuc_GiaoVien_GiaoVien] FOREIGN KEY([IDGiaoVien])
+REFERENCES [dbo].[GiaoVien] ([IDGiaoVien])
+GO
+ALTER TABLE [dbo].[ToChuc_GiaoVien] CHECK CONSTRAINT [FK_ToChuc_GiaoVien_GiaoVien]
+GO
+/****** Object:  ForeignKey [FK_ToChuc_GiaoVien_ToChuc]    Script Date: 08/31/2011 15:20:16 ******/
+ALTER TABLE [dbo].[ToChuc_GiaoVien]  WITH CHECK ADD  CONSTRAINT [FK_ToChuc_GiaoVien_ToChuc] FOREIGN KEY([IDToChuc])
+REFERENCES [dbo].[ToChuc] ([IDToChuc])
+GO
+ALTER TABLE [dbo].[ToChuc_GiaoVien] CHECK CONSTRAINT [FK_ToChuc_GiaoVien_ToChuc]
+GO
+/****** Object:  ForeignKey [FK_Profile_Users]    Script Date: 08/31/2011 15:20:16 ******/
+ALTER TABLE [dbo].[Profile]  WITH CHECK ADD  CONSTRAINT [FK_Profile_Users] FOREIGN KEY([UserID])
+REFERENCES [dbo].[Users] ([UserID])
+GO
+ALTER TABLE [dbo].[Profile] CHECK CONSTRAINT [FK_Profile_Users]
+GO
+/****** Object:  ForeignKey [FK_TinTuc_LoaiTin]    Script Date: 08/31/2011 15:20:16 ******/
 ALTER TABLE [dbo].[TinTuc]  WITH CHECK ADD  CONSTRAINT [FK_TinTuc_LoaiTin] FOREIGN KEY([IDLoaiTin])
 REFERENCES [dbo].[LoaiTin] ([IDLoaiTin])
 GO
 ALTER TABLE [dbo].[TinTuc] CHECK CONSTRAINT [FK_TinTuc_LoaiTin]
 GO
-/****** Object:  ForeignKey [FK_TaiNguyen_TinTuc_TaiNguyen]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  ForeignKey [FK_TaiNguyen_TinTuc_TaiNguyen]    Script Date: 08/31/2011 15:20:16 ******/
 ALTER TABLE [dbo].[TaiNguyen_TinTuc]  WITH CHECK ADD  CONSTRAINT [FK_TaiNguyen_TinTuc_TaiNguyen] FOREIGN KEY([IDTaiNguyen])
 REFERENCES [dbo].[TaiNguyen] ([IDTaiNguyen])
 GO
 ALTER TABLE [dbo].[TaiNguyen_TinTuc] CHECK CONSTRAINT [FK_TaiNguyen_TinTuc_TaiNguyen]
 GO
-/****** Object:  ForeignKey [FK_TaiNguyen_TinTuc_TinTuc]    Script Date: 08/31/2011 15:02:24 ******/
+/****** Object:  ForeignKey [FK_TaiNguyen_TinTuc_TinTuc]    Script Date: 08/31/2011 15:20:16 ******/
 ALTER TABLE [dbo].[TaiNguyen_TinTuc]  WITH CHECK ADD  CONSTRAINT [FK_TaiNguyen_TinTuc_TinTuc] FOREIGN KEY([IDTinTuc])
 REFERENCES [dbo].[TinTuc] ([IDTinTuc])
 GO
