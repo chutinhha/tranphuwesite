@@ -38,10 +38,10 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                var app = dataEntities.TaiNguyens.Single(a => a.IDTaiNguyen == taiNguyen.IDTaiNguyen);
-                app.TenTaiNguyen = taiNguyen.TenTaiNguyen;
-                app.MoTa = taiNguyen.MoTa;
-                app.Path = taiNguyen.Path;
+                var newTN = dataEntities.TaiNguyens.Single(a => a.IDTaiNguyen == taiNguyen.IDTaiNguyen);
+                newTN.TenTaiNguyen = taiNguyen.TenTaiNguyen;
+                newTN.MoTa = taiNguyen.MoTa;
+                newTN.Path = taiNguyen.Path;
                 return dataEntities.SaveChanges();
             }
         }

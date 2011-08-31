@@ -38,16 +38,16 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                var app = dataEntities.GiaoViens.Single(a => a.IDGiaoVien == giaoVien.IDGiaoVien);
-                app.HoGV = giaoVien.HoGV;
-                app.TenGV = giaoVien.TenGV;
-                app.Email = giaoVien.Email;
-                app.DienThoai = giaoVien.DienThoai;
-                app.BoMon = giaoVien.BoMon;
-                app.NgaySinh = giaoVien.NgaySinh;
-                app.AnhDaiDien = giaoVien.AnhDaiDien;
-                app.DiaChi = giaoVien.DiaChi;
-                app.Active = giaoVien.Active;
+                var newGV = dataEntities.GiaoViens.Single(a => a.IDGiaoVien == giaoVien.IDGiaoVien);
+                newGV.HoGV = giaoVien.HoGV;
+                newGV.TenGV = giaoVien.TenGV;
+                newGV.Email = giaoVien.Email;
+                newGV.DienThoai = giaoVien.DienThoai;
+                newGV.BoMon = giaoVien.BoMon;
+                newGV.NgaySinh = giaoVien.NgaySinh;
+                newGV.AnhDaiDien = giaoVien.AnhDaiDien;
+                newGV.DiaChi = giaoVien.DiaChi;
+                newGV.Active = giaoVien.Active;
                 return dataEntities.SaveChanges();
             }
         }

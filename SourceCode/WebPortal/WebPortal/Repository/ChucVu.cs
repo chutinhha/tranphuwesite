@@ -54,9 +54,9 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                var app = dataEntities.ChucVus.Single(a => a.IDCV == chucVu.IDCV);
-                app.TenCV = chucVu.TenCV;
-                app.MoTa = chucVu.MoTa;
+                var newCV = dataEntities.ChucVus.Single(a => a.IDCV == chucVu.IDCV);
+                newCV.TenCV = chucVu.TenCV;
+                newCV.MoTa = chucVu.MoTa;
                 return dataEntities.SaveChanges();
             }
         }

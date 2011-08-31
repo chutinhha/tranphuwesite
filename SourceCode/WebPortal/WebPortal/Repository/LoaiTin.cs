@@ -38,9 +38,9 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                var app = dataEntities.LoaiTins.Single(a => a.IDLoaiTin == loaiTin.IDLoaiTin);
-                app.TenLoai = loaiTin.TenLoai;
-                app.MoTa = loaiTin.MoTa;
+                var newLT = dataEntities.LoaiTins.Single(a => a.IDLoaiTin == loaiTin.IDLoaiTin);
+                newLT.TenLoai = loaiTin.TenLoai;
+                newLT.MoTa = loaiTin.MoTa;
                 return dataEntities.SaveChanges();
             }
         }
