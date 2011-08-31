@@ -11,11 +11,13 @@ namespace WebPortal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            WebPortal.Application app = new Application();
-            foreach (var item in app.All())
-            {
-                Response.Write(item.Application_Name);
-            }
+            WebPortal.ChucVu app = new ChucVu();
+            WebPortal.Model.ChucVu cv = new Model.ChucVu();
+            cv.TenCV = "HieuTruong";
+            cv.MoTa = "Sap nghi huu";
+           
+                Response.Write(app.Add(cv));
+           
         }
     }
 }
