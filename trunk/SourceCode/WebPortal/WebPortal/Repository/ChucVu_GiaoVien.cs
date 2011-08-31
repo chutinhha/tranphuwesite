@@ -38,9 +38,9 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                var app = dataEntities.ChucVu_GiaoVien.Single(a => a.ID == chucVu_GiaoVien.ID);
-                app.IDChucVu = chucVu_GiaoVien.IDChucVu;
-                app.IDGiaoVien = chucVu_GiaoVien.IDGiaoVien;
+                var newCV_GV = dataEntities.ChucVu_GiaoVien.Single(a => a.ID == chucVu_GiaoVien.ID);
+                newCV_GV.IDChucVu = chucVu_GiaoVien.IDChucVu;
+                newCV_GV.IDGiaoVien = chucVu_GiaoVien.IDGiaoVien;
                 return dataEntities.SaveChanges();
             }
         }
