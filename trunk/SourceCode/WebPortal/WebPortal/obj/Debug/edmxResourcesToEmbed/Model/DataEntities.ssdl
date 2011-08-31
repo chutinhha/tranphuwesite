@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebPortalModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="WebPortalModelStoreContainer">
+    <EntitySet Name="Application" EntityType="WebPortalModel.Store.Application" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ChucVu" EntityType="WebPortalModel.Store.ChucVu" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ChucVu_GiaoVien" EntityType="WebPortalModel.Store.ChucVu_GiaoVien" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FilePermission" EntityType="WebPortalModel.Store.FilePermission" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GiaoVien" EntityType="WebPortalModel.Store.GiaoVien" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Groups" EntityType="WebPortalModel.Store.Groups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InGroup" EntityType="WebPortalModel.Store.InGroup" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InRoles" EntityType="WebPortalModel.Store.InRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LoaiTin" EntityType="WebPortalModel.Store.LoaiTin" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Log" EntityType="WebPortalModel.Store.Log" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Permission" EntityType="WebPortalModel.Store.Permission" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Profile" EntityType="WebPortalModel.Store.Profile" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Setting" EntityType="WebPortalModel.Store.Setting" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TaiNguyen" EntityType="WebPortalModel.Store.TaiNguyen" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TaiNguyen_TinTuc" EntityType="WebPortalModel.Store.TaiNguyen_TinTuc" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TinTuc" EntityType="WebPortalModel.Store.TinTuc" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ToChuc" EntityType="WebPortalModel.Store.ToChuc" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ToChuc_GiaoVien" EntityType="WebPortalModel.Store.ToChuc_GiaoVien" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="WebPortalModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ChucVu_GiaoVien_ChucVu" Association="WebPortalModel.Store.FK_ChucVu_GiaoVien_ChucVu">
+      <End Role="ChucVu" EntitySet="ChucVu" />
+      <End Role="ChucVu_GiaoVien" EntitySet="ChucVu_GiaoVien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChucVu_GiaoVien_GiaoVien" Association="WebPortalModel.Store.FK_ChucVu_GiaoVien_GiaoVien">
+      <End Role="GiaoVien" EntitySet="GiaoVien" />
+      <End Role="ChucVu_GiaoVien" EntitySet="ChucVu_GiaoVien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FilePermission_Group" Association="WebPortalModel.Store.FK_FilePermission_Group">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="FilePermission" EntitySet="FilePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FilePermission_Permission" Association="WebPortalModel.Store.FK_FilePermission_Permission">
+      <End Role="Permission" EntitySet="Permission" />
+      <End Role="FilePermission" EntitySet="FilePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InRoles_Application" Association="WebPortalModel.Store.FK_InRoles_Application">
+      <End Role="Application" EntitySet="Application" />
+      <End Role="InRoles" EntitySet="InRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InRoles_Group" Association="WebPortalModel.Store.FK_InRoles_Group">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="InRoles" EntitySet="InRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Log_Users" Association="WebPortalModel.Store.FK_Log_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Log" EntitySet="Log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Profile_Users" Association="WebPortalModel.Store.FK_Profile_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Profile" EntitySet="Profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaiNguyen_TinTuc_TaiNguyen" Association="WebPortalModel.Store.FK_TaiNguyen_TinTuc_TaiNguyen">
+      <End Role="TaiNguyen" EntitySet="TaiNguyen" />
+      <End Role="TaiNguyen_TinTuc" EntitySet="TaiNguyen_TinTuc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaiNguyen_TinTuc_TinTuc" Association="WebPortalModel.Store.FK_TaiNguyen_TinTuc_TinTuc">
+      <End Role="TinTuc" EntitySet="TinTuc" />
+      <End Role="TaiNguyen_TinTuc" EntitySet="TaiNguyen_TinTuc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TinTuc_LoaiTin" Association="WebPortalModel.Store.FK_TinTuc_LoaiTin">
+      <End Role="LoaiTin" EntitySet="LoaiTin" />
+      <End Role="TinTuc" EntitySet="TinTuc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ToChuc_GiaoVien_GiaoVien" Association="WebPortalModel.Store.FK_ToChuc_GiaoVien_GiaoVien">
+      <End Role="GiaoVien" EntitySet="GiaoVien" />
+      <End Role="ToChuc_GiaoVien" EntitySet="ToChuc_GiaoVien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ToChuc_GiaoVien_ToChuc" Association="WebPortalModel.Store.FK_ToChuc_GiaoVien_ToChuc">
+      <End Role="ToChuc" EntitySet="ToChuc" />
+      <End Role="ToChuc_GiaoVien" EntitySet="ToChuc_GiaoVien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserInGroup_Group" Association="WebPortalModel.Store.FK_UserInGroup_Group">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="InGroup" EntitySet="InGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserInGroup_Users" Association="WebPortalModel.Store.FK_UserInGroup_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="InGroup" EntitySet="InGroup" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Application">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+    </Key>
+    <Property Name="ApplicationID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Application_Name" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="Application_Description" Type="ntext" />
+    <Property Name="Application_FilePath" Type="nvarchar" MaxLength="200" />
+    <Property Name="Application_Image" Type="nvarchar" MaxLength="200" />
+    <Property Name="Application_DateCreate" Type="datetime" />
+    <Property Name="Application_ToString" Type="nvarchar" MaxLength="500" />
+    <Property Name="Parent_Id" Type="int" />
+    <Property Name="Order" Type="int" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="ChucVu">
+    <Key>
+      <PropertyRef Name="IDCV" />
+    </Key>
+    <Property Name="IDCV" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenCV" Type="nvarchar" MaxLength="200" />
+    <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="ChucVu_GiaoVien">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IDChucVu" Type="int" />
+    <Property Name="IDGiaoVien" Type="int" />
+  </EntityType>
+  <EntityType Name="FilePermission">
+    <Key>
+      <PropertyRef Name="FilePermissionID" />
+    </Key>
+    <Property Name="FilePermissionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PermissionID" Type="int" Nullable="false" />
+    <Property Name="GroupID" Type="int" Nullable="false" />
+    <Property Name="FolderPath" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="GiaoVien">
+    <Key>
+      <PropertyRef Name="IDGiaoVien" />
+    </Key>
+    <Property Name="IDGiaoVien" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="HoGV" Type="nvarchar" MaxLength="500" />
+    <Property Name="TenGV" Type="nvarchar" MaxLength="200" />
+    <Property Name="Email" Type="nvarchar" MaxLength="200" />
+    <Property Name="DienThoai" Type="nvarchar" MaxLength="15" />
+    <Property Name="BoMon" Type="nvarchar" MaxLength="200" />
+    <Property Name="NgaySinh" Type="datetime" />
+    <Property Name="AnhDaiDien" Type="nvarchar" MaxLength="500" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="500" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="Groups">
+    <Key>
+      <PropertyRef Name="GroupID" />
+    </Key>
+    <Property Name="GroupID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Group_Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Group_Description" Type="ntext" />
+    <Property Name="Group_ToString" Type="nvarchar" MaxLength="50" />
+    <Property Name="Group_DateCreate" Type="datetime" />
+    <Property Name="User_Create" Type="int" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="InGroup">
+    <Key>
+      <PropertyRef Name="InGroupID" />
+    </Key>
+    <Property Name="InGroupID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="GroupID" Type="int" Nullable="false" />
+    <Property Name="DateCreate" Type="datetime" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="InRoles">
+    <Key>
+      <PropertyRef Name="InRolesID" />
+    </Key>
+    <Property Name="InRolesID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="GroupID" Type="int" Nullable="false" />
+    <Property Name="DateCreate" Type="datetime" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="LoaiTin">
+    <Key>
+      <PropertyRef Name="IDLoaiTin" />
+    </Key>
+    <Property Name="IDLoaiTin" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoai" Type="nvarchar" MaxLength="200" />
+    <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="LogID" />
+    </Key>
+    <Property Name="LogID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Trace" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Action" Type="nvarchar" MaxLength="200" />
+    <Property Name="Time_Login" Type="datetime" />
+    <Property Name="Time_Logout" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Permission">
+    <Key>
+      <PropertyRef Name="PermissionID" />
+    </Key>
+    <Property Name="PermissionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Descritption" Type="nvarchar" MaxLength="100" />
+    <Property Name="Permission_ToString" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="Profile">
+    <Key>
+      <PropertyRef Name="ProfileID" />
+    </Key>
+    <Property Name="ProfileID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Department" Type="nvarchar" MaxLength="500" />
+    <Property Name="Position" Type="nvarchar" MaxLength="500" />
+    <Property Name="Image" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="Birdthday" Type="datetime" />
+    <Property Name="LastUpdateProfile" Type="datetime" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" />
+    <Property Name="Genre" Type="nvarchar" MaxLength="5" />
+    <Property Name="Ethnic" Type="nvarchar" MaxLength="50" />
+    <Property Name="Religion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="CodeStaff" Type="int" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="SettingID" />
+    </Key>
+    <Property Name="SettingID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Setting_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Setting_Description" Type="ntext" />
+    <Property Name="Setting_DateCreate" Type="datetime" />
+    <Property Name="Value" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="TaiNguyen">
+    <Key>
+      <PropertyRef Name="IDTaiNguyen" />
+    </Key>
+    <Property Name="IDTaiNguyen" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenTaiNguyen" Type="nvarchar" MaxLength="200" />
+    <Property Name="Path" Type="nvarchar" MaxLength="200" />
+    <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="TaiNguyen_TinTuc">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IDTaiNguyen" Type="int" />
+    <Property Name="IDTinTuc" Type="int" />
+  </EntityType>
+  <EntityType Name="TinTuc">
+    <Key>
+      <PropertyRef Name="IDTinTuc" />
+    </Key>
+    <Property Name="IDTinTuc" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IDLoaiTin" Type="int" Nullable="false" />
+    <Property Name="NoiDung" Type="ntext" />
+    <Property Name="NgayDang" Type="datetime" />
+    <Property Name="NguoiDang" Type="nvarchar" MaxLength="50" />
+    <Property Name="HinhAnh" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="ToChuc">
+    <Key>
+      <PropertyRef Name="IDToChuc" />
+    </Key>
+    <Property Name="IDToChuc" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TenTC" Type="nvarchar" MaxLength="200" />
+    <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="ToChuc_GiaoVien">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IDGiaoVien" Type="int" />
+    <Property Name="IDToChuc" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="LastPasswordChange" Type="datetime" />
+    <Property Name="LastLoginDate" Type="datetime" />
+    <Property Name="DateCreate" Type="datetime" />
+    <Property Name="User_ToString" Type="nvarchar" MaxLength="100" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <Association Name="FK_ChucVu_GiaoVien_ChucVu">
+    <End Role="ChucVu" Type="WebPortalModel.Store.ChucVu" Multiplicity="0..1" />
+    <End Role="ChucVu_GiaoVien" Type="WebPortalModel.Store.ChucVu_GiaoVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChucVu">
+        <PropertyRef Name="IDCV" />
+      </Principal>
+      <Dependent Role="ChucVu_GiaoVien">
+        <PropertyRef Name="IDChucVu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChucVu_GiaoVien_GiaoVien">
+    <End Role="GiaoVien" Type="WebPortalModel.Store.GiaoVien" Multiplicity="0..1" />
+    <End Role="ChucVu_GiaoVien" Type="WebPortalModel.Store.ChucVu_GiaoVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GiaoVien">
+        <PropertyRef Name="IDGiaoVien" />
+      </Principal>
+      <Dependent Role="ChucVu_GiaoVien">
+        <PropertyRef Name="IDGiaoVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FilePermission_Group">
+    <End Role="Groups" Type="WebPortalModel.Store.Groups" Multiplicity="1" />
+    <End Role="FilePermission" Type="WebPortalModel.Store.FilePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="GroupID" />
+      </Principal>
+      <Dependent Role="FilePermission">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FilePermission_Permission">
+    <End Role="Permission" Type="WebPortalModel.Store.Permission" Multiplicity="1" />
+    <End Role="FilePermission" Type="WebPortalModel.Store.FilePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permission">
+        <PropertyRef Name="PermissionID" />
+      </Principal>
+      <Dependent Role="FilePermission">
+        <PropertyRef Name="PermissionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InRoles_Application">
+    <End Role="Application" Type="WebPortalModel.Store.Application" Multiplicity="1" />
+    <End Role="InRoles" Type="WebPortalModel.Store.InRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Application">
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="InRoles">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InRoles_Group">
+    <End Role="Groups" Type="WebPortalModel.Store.Groups" Multiplicity="1" />
+    <End Role="InRoles" Type="WebPortalModel.Store.InRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="GroupID" />
+      </Principal>
+      <Dependent Role="InRoles">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Log_Users">
+    <End Role="Users" Type="WebPortalModel.Store.Users" Multiplicity="1" />
+    <End Role="Log" Type="WebPortalModel.Store.Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Log">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Profile_Users">
+    <End Role="Users" Type="WebPortalModel.Store.Users" Multiplicity="1" />
+    <End Role="Profile" Type="WebPortalModel.Store.Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Profile">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaiNguyen_TinTuc_TaiNguyen">
+    <End Role="TaiNguyen" Type="WebPortalModel.Store.TaiNguyen" Multiplicity="0..1" />
+    <End Role="TaiNguyen_TinTuc" Type="WebPortalModel.Store.TaiNguyen_TinTuc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiNguyen">
+        <PropertyRef Name="IDTaiNguyen" />
+      </Principal>
+      <Dependent Role="TaiNguyen_TinTuc">
+        <PropertyRef Name="IDTaiNguyen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaiNguyen_TinTuc_TinTuc">
+    <End Role="TinTuc" Type="WebPortalModel.Store.TinTuc" Multiplicity="0..1" />
+    <End Role="TaiNguyen_TinTuc" Type="WebPortalModel.Store.TaiNguyen_TinTuc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TinTuc">
+        <PropertyRef Name="IDTinTuc" />
+      </Principal>
+      <Dependent Role="TaiNguyen_TinTuc">
+        <PropertyRef Name="IDTinTuc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TinTuc_LoaiTin">
+    <End Role="LoaiTin" Type="WebPortalModel.Store.LoaiTin" Multiplicity="1" />
+    <End Role="TinTuc" Type="WebPortalModel.Store.TinTuc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiTin">
+        <PropertyRef Name="IDLoaiTin" />
+      </Principal>
+      <Dependent Role="TinTuc">
+        <PropertyRef Name="IDLoaiTin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ToChuc_GiaoVien_GiaoVien">
+    <End Role="GiaoVien" Type="WebPortalModel.Store.GiaoVien" Multiplicity="0..1" />
+    <End Role="ToChuc_GiaoVien" Type="WebPortalModel.Store.ToChuc_GiaoVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GiaoVien">
+        <PropertyRef Name="IDGiaoVien" />
+      </Principal>
+      <Dependent Role="ToChuc_GiaoVien">
+        <PropertyRef Name="IDGiaoVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ToChuc_GiaoVien_ToChuc">
+    <End Role="ToChuc" Type="WebPortalModel.Store.ToChuc" Multiplicity="0..1" />
+    <End Role="ToChuc_GiaoVien" Type="WebPortalModel.Store.ToChuc_GiaoVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ToChuc">
+        <PropertyRef Name="IDToChuc" />
+      </Principal>
+      <Dependent Role="ToChuc_GiaoVien">
+        <PropertyRef Name="IDToChuc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserInGroup_Group">
+    <End Role="Groups" Type="WebPortalModel.Store.Groups" Multiplicity="1" />
+    <End Role="InGroup" Type="WebPortalModel.Store.InGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="GroupID" />
+      </Principal>
+      <Dependent Role="InGroup">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserInGroup_Users">
+    <End Role="Users" Type="WebPortalModel.Store.Users" Multiplicity="1" />
+    <End Role="InGroup" Type="WebPortalModel.Store.InGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="InGroup">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
