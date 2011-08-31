@@ -1,0 +1,349 @@
+﻿* {
+	margin: 0;
+	padding: 0;
+}
+img{ border:0; }
+
+#wrapper {	
+	margin: 0px auto;
+	width: 960px;
+	font-family:Verdana, Geneva, Tahoma, sans-serif;
+	font-size:13px;
+	color:#333;
+}
+.bannerImage{
+	z-index:10;
+	position:absolute;
+	top:0px;
+}
+
+.menuBar {
+
+}
+.menuBar ul{
+	margin:18px 0;
+	list-style:none;
+}
+.menuBar ul li{
+	float:left;
+	margin-right:15px;
+	font-weight:bold;	
+	padding:5px;
+}
+.menuBar ul li a{
+	color:#555;
+	font-size:15px;
+	text-decoration:none;
+} 
+.menuBar ul li a:hover{
+	color:#ff6633;
+	text-decoration:none;
+} 
+
+/*------------------------------------------------------------------------------*/
+.leftColumn{
+	background-color:#ffe7b6;
+	border:3px #ffc28f solid;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	margin:10px 0;
+}
+.gradient{
+	background:url('../images/gradient.png') no-repeat top left;
+	padding-top:13px;	
+}
+
+.menuColumn{
+	margin:0 10px 10px 10px;
+	line-height:22px;
+}
+.menuColumn .trangChu{
+	font-size:22px;
+	color:#ff8c26;
+	background:url('../images/trangChu-icon1.gif') no-repeat center left;
+	padding:25px 0 20px 60px;
+}
+.menuColumn .trangChu a{
+	color:#ff8c26; text-decoration:none;
+	cursor:pointer;
+}
+.menuColumn .trangChu a:hover{
+	color:#ffae66; text-decoration:none;
+}
+
+.menu ul{
+	list-style-type:none;
+}
+.menu li{
+	font-size:13px;
+	font-weight:bold;
+}
+.menu li a{
+	color:#555; text-decoration:none;
+}
+.menu li a:hover{
+	color:#ff8c26; text-decoration:none;
+}
+
+.menu .subMenuItem{
+	margin-bottom:8px;
+	line-height:22px;
+	list-style-image:url('../images/bullet.png');
+	
+}
+.menu .subMenuItem li{
+	margin-left:20px;
+	font-size:12px;
+	color:#666;
+	font-weight:normal;
+}
+.menu .subMenuItem li a{
+	color:#666; text-decoration:none;
+}
+.menu .subMenuItem li a:hover{
+	color:#ff8c26; text-decoration:none;
+}
+
+.subitem_GioiThieu{
+	display:none;
+}
+.subitem_display{
+	display:block;
+}
+.subitem_ToChuc{
+	display:none;
+}
+.subitem_HoSo{
+	display:none;
+}
+.subitem_TaiNguyen{
+	display:none;
+}
+.subitem_KeHoach{
+	display:none;
+}
+
+
+.login{
+	padding:30px 0px 10px 10px; line-height:22px;
+	margin-right:10px;
+	padding-top:10px;
+	border-top:1px #ff8c26 dashed;
+	margin-top:25px;
+}
+.login input{
+	width:150px;
+	height:23px;
+	margin-right:10px;
+	margin-top:4px;
+}
+.dangNhapTitle{
+	font-size:22px;
+	color:#ff8c26;
+	background:url('../images/login-icon1.gif') no-repeat center left;
+	padding:25px 0 20px 60px;	
+}
+.login .dangNhapTitle a{
+	color:#ff8c26; text-decoration:none;
+	cursor:pointer;
+}
+.login .dangNhapTitle a:hover{
+	color:#ffae66; text-decoration:none;
+}
+.nhoMatKhau{
+	margin:6px 0 5px 68px;
+}
+.buttonLogin{
+	width:111px; height:30px;
+	margin-left:55px;
+	cursor:pointer;
+}
+.buttonLoginbg{
+	width:111px; height:30px; border:0;	
+	background:url('../images/btnDangNhap.gif') no-repeat;
+}
+.loginHover{
+	width:111px; height:30px; border:0;	
+	background:url('../images/btnDangNhap-hover.gif') no-repeat;
+	cursor:pointer;
+}
+
+.quenMatKhau-DangKi{
+	margin:10px 0 10px 35px;
+}
+.quenMatKhau-DangKi a{
+	color:#333; text-decoration:none;
+}
+.quenMatKhau-DangKi a:hover{
+	color:#ff8c26; text-decoration:none;
+}
+
+
+
+.thongKe{
+	padding:30px 0px 10px 10px; line-height:22px;
+	margin-right:10px;
+	padding-top:10px;
+	border-top:1px #ff8c26 dashed;
+	margin:20px 10px 20px 0;
+}
+.thongKeTitle{
+	font-size:22px;
+	color:#ff8c26;
+	background:url('../images/thongKe1.gif') no-repeat center left;
+	padding:18px 0 20px 60px;
+}
+
+.soLieuThongKe{
+	margin-left:20px;
+}
+.soLieuThongKe span{
+	font-weight:bold; color:#666;
+}
+/*------------------------------------------------------------------------------*/
+.rightColumn{
+	padding-left:10px;
+}
+.TinTucTitle{
+	font-size:22px;
+	color:#ff8c26;
+	background:url('../images/tinTuc-icon.png') no-repeat center left;
+	padding:20px 0 10px 60px;
+	border-bottom:1px #ff8c26 dashed;
+}
+
+.danhSachTin{
+	margin:10px 0 30px 0;
+}
+.danhSachTin .tin{
+	margin:10px 0 20px 0;
+	padding-bottom:8px;
+	display:block;
+	border-bottom:1px #ccc dashed;
+	text-align:justify;
+}
+.tin .tieuDe{
+	font-weight:bold; color:#666;
+	margin-bottom:5px;
+}
+.tin .tieuDe a{
+	color:#666; text-decoration:none;
+}
+.tin .tieuDe a:hover{
+	color:#ff8c26; text-decoration:none;
+}
+
+.danhSachTin .tin img{
+	margin:5px;
+	max-width:100%;
+}
+
+.tin .chiTietTin{
+	color:#666; font-size:10px;
+	margin-bottom:5px;
+}
+.tin .hinhDaiDien{
+	float:left;
+	margin:10px;
+	display:block;
+}
+.hinhDaiDien_none{
+	float:left;
+	display:none;
+}
+.tin .readmore{
+	color:#ff8c26; 
+	float:right;
+	margin:10px;
+}
+.tin .readmore a{
+	color:#ff8c26;
+	text-decoration:none;
+}
+.tin .readmore a:hover{
+	color:#ff8c26;
+	text-decoration:underline;
+}
+
+.tin .printer{
+	float:right;
+	background:url('../images/printer.jpeg') no-repeat center left;
+	padding-left:20px;
+	height:18px;
+}
+.tin .printer a{
+	color:#ff8c26;
+	text-decoration:none;
+}
+.tin .printer a:hover{
+	color:#ff6633; text-decoration:underline;
+}
+
+/*css cho thông tin của bảng giáo viên--------------------------------*/
+.avatar{
+	display:inline;
+	float:left;
+	width:180px;
+	margin-right:10px;
+}
+.hinhAvatar, .hinhAvatar img{
+	max-width:180px;
+	max-height:220px;
+}
+
+.tenGiaoVien{
+	margin:10px 0;
+	text-align:center;
+	font-weight:bold;
+	color:#ff8c26;
+}
+.chucVu{
+	font-weight:bold;
+	color:#666;
+	text-align:center;
+}
+.thongTinCaNhan{
+	display:inline; float:left;
+	line-height:20px;
+}
+
+.tieuDeTTCaNhan{
+	font-weight:bold;
+	width:120px;
+	color:#666;
+	margin-right:10px;
+	line-height:24px;
+}
+.table_title td{
+	font-weight:bold;
+	text-align:center;
+	background-color:#ddd;
+}
+.bangDanhSachGiaoVien td{
+	padding:0 0 0 10px;
+	border:1px #ccc solid;
+}
+.canhGiua{
+	text-align:center;
+}
+.DSTenGiaoVien{
+	font-weight:bold;	
+}
+.DSTenGiaoVien a{
+	color:#ff8c26;
+	text-decoration:none;
+}
+.DSTenGiaoVien a:hover{
+	color:#ff8c26;
+	text-decoration:underline;
+}
+.phanTrang{
+	margin:10px 0;
+	text-align:center;
+	font-weight:bold;
+}
+.phanTrang span{
+	margin:0 5px; 
+}.phanTrang .active{
+	color:#ff8c26;
+}
