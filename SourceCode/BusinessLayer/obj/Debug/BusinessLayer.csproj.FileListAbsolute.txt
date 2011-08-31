@@ -1,7 +1,0 @@
-D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\BusinessLayer\bin\Debug\BusinessLayer.dll
-D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\BusinessLayer\bin\Debug\BusinessLayer.pdb
-D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\BusinessLayer\obj\Debug\ResolveAssemblyReference.cache
-D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\BusinessLayer\obj\Debug\BusinessLayer.dll
-D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\BusinessLayer\obj\Debug\BusinessLayer.pdb
-D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\BusinessLayer\bin\Debug\DataAccess.dll
-D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\BusinessLayer\bin\Debug\DataAccess.pdb

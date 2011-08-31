@@ -1,5 +1,0 @@
-D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\Utilities\bin\Debug\Utilities.dll
-D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\Utilities\bin\Debug\Utilities.pdb
-D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\Utilities\obj\Debug\ResolveAssemblyReference.cache
-D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\Utilities\obj\Debug\Utilities.dll
-D:\Learning\My working\Project Website THPT Tran Phu\SourceCode\Utilities\obj\Debug\Utilities.pdb
