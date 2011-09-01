@@ -8,6 +8,7 @@ namespace WebPortal.Repository
 {
     public class InGroup
     {
+        #region Duong
         public Model.InGroup Single(int inGroupID)
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
@@ -62,6 +63,7 @@ namespace WebPortal.Repository
                 return dataEntities.InGroups.Skip(start).Take(numberRecords).ToList();
             }
         }
+        #endregion
 
         //Ham viet them tai day
     }

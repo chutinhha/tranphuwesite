@@ -8,6 +8,7 @@ namespace WebPortal.Repository
 {
     public partial class FilePermission
     {
+        #region Duong
         public Model.FilePermission Single(int filePermissionID)
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
@@ -61,6 +62,7 @@ namespace WebPortal.Repository
                 return dataEntities.FilePermissions.Skip(start).Take(numberRecords).ToList();
             }
         }
+        #endregion
 
         //Ham viet them tai day
     }

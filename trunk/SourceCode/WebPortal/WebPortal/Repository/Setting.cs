@@ -8,6 +8,7 @@ namespace WebPortal.Repository
 {
     public partial class Setting
     {
+        #region Duong
         public Model.Setting Single(int settingID)
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
@@ -63,6 +64,7 @@ namespace WebPortal.Repository
                 return dataEntities.Settings.Skip(start).Take(numberRecords).ToList();
             }
         }
+        #endregion
 
         //Ham viet them tai day
     }

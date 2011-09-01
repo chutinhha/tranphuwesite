@@ -8,6 +8,7 @@ namespace WebPortal.Repository
 {
     public partial class Permission
     {
+        #region Duong
         public Model.Permission Single(int permissionID)
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
@@ -62,6 +63,7 @@ namespace WebPortal.Repository
                 return dataEntities.Permissions.Skip(start).Take(numberRecords).ToList();
             }
         }
+        #endregion
 
         //Ham viet them tai day
     }

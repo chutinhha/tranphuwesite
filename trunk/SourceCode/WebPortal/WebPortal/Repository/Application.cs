@@ -8,6 +8,7 @@ namespace WebPortal
 {
     public partial class Application
     {
+        #region Duong
         public WebPortal.Model.Application Single(int applicationID)
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
@@ -67,6 +68,7 @@ namespace WebPortal
                 return dataEntities.Applications.Skip(start).Take(numberRecords).ToList();
             }
         }
+        #endregion
 
         //Ai can ham gi thi viet them
     }

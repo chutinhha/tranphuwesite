@@ -8,6 +8,7 @@ namespace WebPortal.Repository
 {
     public partial class Profile
     {
+        #region Duong
         public Model.Profile Single(int profileID)
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
@@ -74,7 +75,8 @@ namespace WebPortal.Repository
                 return dataEntities.Profiles.Skip(start).Take(numberRecords).ToList();
             }
         }
-        
+        #endregion
+
         //Ham viet them tai day
     }
 }

@@ -8,6 +8,7 @@ namespace WebPortal.Repository
 {
     public partial class Log
     {
+        #region Duong
         public Model.Log Single(int logID)
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
@@ -65,7 +66,7 @@ namespace WebPortal.Repository
                 return dataEntities.Logs.Skip(start).Take(numberRecords).ToList();
             }
         }
-
+        #endregion
         //Ham viet them tai day
     }
 }
