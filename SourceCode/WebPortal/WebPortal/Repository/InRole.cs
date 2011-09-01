@@ -8,6 +8,7 @@ namespace WebPortal.Repository
 {
     public partial class InRole
     {
+        #region Duong
         public Model.InRole Single(int inRoleID)
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
@@ -62,6 +63,7 @@ namespace WebPortal.Repository
                 return dataEntities.InRoles.Skip(start).Take(numberRecords).ToList();
             }
         }
+        #endregion
 
         //Ham viet them tai day
     }
