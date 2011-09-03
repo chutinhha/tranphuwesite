@@ -1,0 +1,139 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="FontendSite.master.cs" Inherits="WebPortal.FontendSite" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+   
+<title>Trường THPT Trần Phú</title>
+<link href="css/960_24_col.css" rel="stylesheet" type="text/css"/>
+<link href="css/reset.css" rel="stylesheet" type="text/css"/>
+<link href="css/style.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="js/js.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="wrapper" class="container_24">
+	<div class="banner">
+		<div class="grid_24">			
+			<img alt="" height="114" src="images/banner.gif" width="960" />
+		</div>
+	</div>
+	<!--end banner-->
+	
+	<div class="menuBar grid_24">
+		<ul id="nav">
+           <li class="active"><a href="#">Trang chủ</a></li>
+           <li><a href="#">Forum</a></li>
+           <li><a href="#">Tin tức</a></li>
+        </ul>
+	</div>
+	<!--end menubar-->
+	
+	<div class="clear"></div>
+	<div class="content grid_24">
+		<div class="leftColumn grid_5 alpha">
+			<div class="menu">
+				<div class="menuTitle">					
+					<div class="menuTitleGrad">Menu</div>					
+				</div>
+				
+				<div class="menuItem">
+					<ul>
+						<li><a href="#">Trang chủ</a></li>							
+						<li class="menuItem_GioiThieu">Giới thiệu</li>
+						<li>	
+							<ul class="subMenuitem gioiThieu-subitem">
+								<li><a href="#">Tiểu sử Trần Phú</a></li>
+								<li><a href="#">Lịch sử trường THPT Trần Phú</a></li>
+								<li><a href="#">Phần thưởng và danh hiệu</a></li>
+							</ul>
+						</li>
+						<li class="menuItem_ToChuc">Tổ chức</li>
+						<li>	
+							<ul class="subMenuitem toChuc-subitem">
+								<li><a href="#">Ban giám hiệu</a></li>
+								<li><a href="#">Chi bộ</a></li>
+								<li><a href="#">Công đoàn</a></li>
+								<li><a href="#">Đoàn trường</a></li>
+								<li><a href="#">Chi đoàn giáo viên</a></li>
+								<li><a href="#">Tổ chuyên môn</a></li>
+								<li><a href="#">Giáo viên</a></li>
+								
+							</ul>
+						</li>
+						
+					
+						<li class="menuItem_TaiNguyen">Tài nguyên</li>
+						<li>
+							<ul class="subMenuitem taiNguyen-subitem">
+								<li><a href="#">Đề thi TN THPT</a></li>
+								<li><a href="#">Phần mềm hỗ trợ giáo viên</a></li>
+								<li><a href="#">Phần mềm hỗ trợ học sinh</a></li>
+								<li><a href="#">Văn bản</a></li>
+							</ul>
+						</li>
+						<li class="menuItem_KeHoach">Kế hoạch</li>
+						<li>
+							<ul class="subMenuitem keHoach-subitem">
+								<li><a href="#">Kế hoạch</a></li>
+								<li><a href="#">Phân công chuyên môn</a></li>
+								<li><a href="#">Công tác tuần</a></li>
+								<li><a href="#">Lịch thi</a></li>
+								<li><a href="#">Thông báo</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Liên hệ - Góp ý</a></li>
+					</ul>
+				</div>
+			</div>
+			<!--end menu-->
+			
+			<div class="menu">
+				<div class="menuTitle">					
+					<div class="menuTitleGrad">Thống kê</div>					
+				</div>
+				
+				<div class="thongKeInfo">
+					Số lượt truy cập: <span>3204</span> <br/>
+					Số người online: <span>320</span>
+				</div>
+			</div>
+			<!--end thống kê-->
+			
+		</div>
+		<!--end left column-->
+		
+		<div class="rightColumn grid_19 omega">
+        <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+			
+			<!--end tin tức sự kiện-->
+			
+			
+			
+			<!--end thông báo-->
+			
+		</div>
+		<!--end right column-->
+		
+		<div class="clear"></div>
+		<div class="footer grid_24"></div>
+	</div>
+	<!--end content-->
+</div>
+    <%--<div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>--%>
+    </form>
+</body>
+</html>
