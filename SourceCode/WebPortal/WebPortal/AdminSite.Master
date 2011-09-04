@@ -57,8 +57,8 @@
                             <li><a href="">Quản lý nhóm</a> </li>
                             <li><a href="">Quản lý quyền</a> </li>
                             <li><a href="">Quản lý truy cập file</a></li>
-                            <li><a href="">Phân quyền người dùng</a> 
-                                 <ul>
+                            <li><a href="">Phân quyền người dùng</a>
+                                <ul>
                                     <li><a href="">Phân quyền nhóm</a></li>
                                     <li><a href="">Phân quyền truy cập trang</a></li>
                                     <li><a href="">Phân quyền truy cập file</a></li>
@@ -94,27 +94,8 @@
         <!-- *** mainpage layout *** -->
         <div class="main-wrap">
             <div class="page clear">
-                <!-- CONTENT BOXES -->
-                <!-- CONTENT BOX - DATATABLE -->
-                <div class="content-box">
-                    <div class="box-body">
-                        <div class="box-header clear">
-                            <h2>
-                                Admin Site</h2>
-                        </div>
-                        <div class="box-wrap clear">
-                            <!-- TABLE -->
-                            <div id="data-table">
-                                <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
-                                </asp:ContentPlaceHolder>
-                            </div>
-                            <!-- /#table -->
-                        </div>
-                        <!-- end of box-wrap -->
-                    </div>
-                    <!-- end of box-body -->
-                </div>
-                <!-- end of content-box -->
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+                </asp:ContentPlaceHolder>
             </div>
             <!-- end of page -->
         </div>
