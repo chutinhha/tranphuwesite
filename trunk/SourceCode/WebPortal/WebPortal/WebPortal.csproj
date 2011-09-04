@@ -54,10 +54,332 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="Account\ChangePassword.aspx" />
-    <Content Include="Account\ChangePasswordSuccess.aspx" />
-    <Content Include="Account\Login.aspx" />
-    <Content Include="Account\Register.aspx" />
+    <Content Include="AdminUserManager.aspx" />
+    <Content Include="css\admin-usermanager.css" />
+    <Content Include="zAdminTemplate Html\css\fancybox.css" />
+    <Content Include="zAdminTemplate Html\css\jquery.ui.css" />
+    <Content Include="zAdminTemplate Html\css\jquery.wysiwyg.css" />
+    <Content Include="zAdminTemplate Html\css\reset.css" />
+    <Content Include="zAdminTemplate Html\css\screen.css" />
+    <Content Include="zAdminTemplate Html\css\visualize-light.css" />
+    <Content Include="zAdminTemplate Html\css\visualize.css" />
+    <Content Include="zAdminTemplate Html\home.html" />
+    <Content Include="zAdminTemplate Html\images\arrowleft_iconbar_act.png" />
+    <Content Include="zAdminTemplate Html\images\arrowleft_iconbar_off.png" />
+    <Content Include="zAdminTemplate Html\images\arrowleft_iconbar_ovr.png" />
+    <Content Include="zAdminTemplate Html\images\arrowright_iconbar_act.png" />
+    <Content Include="zAdminTemplate Html\images\arrowright_iconbar_off.png" />
+    <Content Include="zAdminTemplate Html\images\arrowright_iconbar_ovr.png" />
+    <Content Include="zAdminTemplate Html\images\arrow_leftend_off.png" />
+    <Content Include="zAdminTemplate Html\images\arrow_leftend_ovr.png" />
+    <Content Include="zAdminTemplate Html\images\arrow_left_off.png" />
+    <Content Include="zAdminTemplate Html\images\arrow_left_ovr.png" />
+    <Content Include="zAdminTemplate Html\images\arrow_rightend_off.png" />
+    <Content Include="zAdminTemplate Html\images\arrow_rightend_ovr.png" />
+    <Content Include="zAdminTemplate Html\images\arrow_right_off.png" />
+    <Content Include="zAdminTemplate Html\images\arrow_right_ovr.png" />
+    <Content Include="zAdminTemplate Html\images\arrow_sm_black.gif" />
+    <Content Include="zAdminTemplate Html\images\arrow_sm_black_down.gif" />
+    <Content Include="zAdminTemplate Html\images\arrow_sm_black_top.gif" />
+    <Content Include="zAdminTemplate Html\images\arrow_sm_blue.gif" />
+    <Content Include="zAdminTemplate Html\images\arrow_sm_grey.gif" />
+    <Content Include="zAdminTemplate Html\images\avatar.jpg" />
+    <Content Include="zAdminTemplate Html\images\ball_black_13.png" />
+    <Content Include="zAdminTemplate Html\images\ball_black_16.png" />
+    <Content Include="zAdminTemplate Html\images\ball_blue_16.png" />
+    <Content Include="zAdminTemplate Html\images\ball_green_13.png" />
+    <Content Include="zAdminTemplate Html\images\ball_green_16.png" />
+    <Content Include="zAdminTemplate Html\images\ball_grey_13.png" />
+    <Content Include="zAdminTemplate Html\images\ball_grey_16.png" />
+    <Content Include="zAdminTemplate Html\images\ball_purple_13.png" />
+    <Content Include="zAdminTemplate Html\images\ball_purple_16.png" />
+    <Content Include="zAdminTemplate Html\images\ball_red_13.png" />
+    <Content Include="zAdminTemplate Html\images\ball_red_16.png" />
+    <Content Include="zAdminTemplate Html\images\ball_yellow_13.png" />
+    <Content Include="zAdminTemplate Html\images\ball_yellow_16.png" />
+    <Content Include="zAdminTemplate Html\images\bck_black_10.png" />
+    <Content Include="zAdminTemplate Html\images\bck_black_5.png" />
+    <Content Include="zAdminTemplate Html\images\bck_black_70.png" />
+    <Content Include="zAdminTemplate Html\images\bck_header.png" />
+    <Content Include="zAdminTemplate Html\images\bck_icon48_dark.png" />
+    <Content Include="zAdminTemplate Html\images\bck_iconbar.png" />
+    <Content Include="zAdminTemplate Html\images\bck_iconbar_bottom.png" />
+    <Content Include="zAdminTemplate Html\images\bck_iconbar_ovr.png" />
+    <Content Include="zAdminTemplate Html\images\bck_main.png" />
+    <Content Include="zAdminTemplate Html\images\bck_sidebar.png" />
+    <Content Include="zAdminTemplate Html\images\bck_white_10.png" />
+    <Content Include="zAdminTemplate Html\images\bck_white_50.png" />
+    <Content Include="zAdminTemplate Html\images\bck_white_75.png" />
+    <Content Include="zAdminTemplate Html\images\bck_white_90.png" />
+    <Content Include="zAdminTemplate Html\images\bck_white_95.png" />
+    <Content Include="zAdminTemplate Html\images\breadcrumb.png" />
+    <Content Include="zAdminTemplate Html\images\button_glas1.png" />
+    <Content Include="zAdminTemplate Html\images\button_glas1_ovr.png" />
+    <Content Include="zAdminTemplate Html\images\button_glas2.png" />
+    <Content Include="zAdminTemplate Html\images\but_slide.png" />
+    <Content Include="zAdminTemplate Html\images\chart-x.gif" />
+    <Content Include="zAdminTemplate Html\images\envelope_off.png" />
+    <Content Include="zAdminTemplate Html\images\envelope_ovr.png" />
+    <Content Include="zAdminTemplate Html\images\fancybox\blank.gif" />
+    <Content Include="zAdminTemplate Html\images\fancybox\fancybox-x.png" />
+    <Content Include="zAdminTemplate Html\images\fancybox\fancybox-y.png" />
+    <Content Include="zAdminTemplate Html\images\fancybox\fancybox.png" />
+    <Content Include="zAdminTemplate Html\images\fancybox\fancy_title_over.png" />
+    <Content Include="zAdminTemplate Html\images\gear.png" />
+    <Content Include="zAdminTemplate Html\images\header.png" />
+    <Content Include="zAdminTemplate Html\images\ico_active_16.png" />
+    <Content Include="zAdminTemplate Html\images\ico_administration_48.png" />
+    <Content Include="zAdminTemplate Html\images\ico_attention.png" />
+    <Content Include="zAdminTemplate Html\images\ico_book_48.png" />
+    <Content Include="zAdminTemplate Html\images\ico_chat_64.png" />
+    <Content Include="zAdminTemplate Html\images\ico_clock_64.png" />
+    <Content Include="zAdminTemplate Html\images\ico_close_off.png" />
+    <Content Include="zAdminTemplate Html\images\ico_close_ovr.png" />
+    <Content Include="zAdminTemplate Html\images\ico_delete_12.png" />
+    <Content Include="zAdminTemplate Html\images\ico_delete_16.png" />
+    <Content Include="zAdminTemplate Html\images\ico_edit_12.png" />
+    <Content Include="zAdminTemplate Html\images\ico_edit_16.png" />
+    <Content Include="zAdminTemplate Html\images\ico_error.png" />
+    <Content Include="zAdminTemplate Html\images\ico_folder_64.png" />
+    <Content Include="zAdminTemplate Html\images\ico_graph_16_off.png" />
+    <Content Include="zAdminTemplate Html\images\ico_graph_16_ovr.png" />
+    <Content Include="zAdminTemplate Html\images\ico_history_16_off.png" />
+    <Content Include="zAdminTemplate Html\images\ico_history_16_ovr.png" />
+    <Content Include="zAdminTemplate Html\images\ico_inactive_16.png" />
+    <Content Include="zAdminTemplate Html\images\ico_info.png" />
+    <Content Include="zAdminTemplate Html\images\ico_manage-users_48.png" />
+    <Content Include="zAdminTemplate Html\images\ico_page_64.png" />
+    <Content Include="zAdminTemplate Html\images\ico_picture_64.png" />
+    <Content Include="zAdminTemplate Html\images\ico_settings_16.png" />
+    <Content Include="zAdminTemplate Html\images\ico_settings_64.png" />
+    <Content Include="zAdminTemplate Html\images\ico_shopping_16_off.png" />
+    <Content Include="zAdminTemplate Html\images\ico_shopping_16_ovr.png" />
+    <Content Include="zAdminTemplate Html\images\ico_success.png" />
+    <Content Include="zAdminTemplate Html\images\ico_users_64.png" />
+    <Content Include="zAdminTemplate Html\images\jquery-ui\bck_transparent.png" />
+    <Content Include="zAdminTemplate Html\images\jquery-ui\bck_white_20.png" />
+    <Content Include="zAdminTemplate Html\images\jquery-ui\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="zAdminTemplate Html\images\jquery-ui\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="zAdminTemplate Html\images\jquery-ui\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="zAdminTemplate Html\images\jquery-ui\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="zAdminTemplate Html\images\jquery-ui\ui-bg_glass_100_red_50x400.png" />
+    <Content Include="zAdminTemplate Html\images\jquery-ui\ui-bg_gloss-wave_35_333333_500x100.png" />
+    <Content Include="zAdminTemplate Html\images\jquery-ui\ui-icons_222222_256x240.png" />
+    <Content Include="zAdminTemplate Html\images\jquery-ui\ui-icons_228ef1_256x240.png" />
+    <Content Include="zAdminTemplate Html\images\jquery-ui\ui-icons_ffd27a_256x240.png" />
+    <Content Include="zAdminTemplate Html\images\jquery-ui\ui-icons_ffffff_256x240.png" />
+    <Content Include="zAdminTemplate Html\images\jquery.wysiwyg.gif" />
+    <Content Include="zAdminTemplate Html\images\line.gif" />
+    <Content Include="zAdminTemplate Html\images\login.jpg" />
+    <Content Include="zAdminTemplate Html\images\login_header.png" />
+    <Content Include="zAdminTemplate Html\images\logo_earth.png" />
+    <Content Include="zAdminTemplate Html\images\logo_earth_bw.png" />
+    <Content Include="zAdminTemplate Html\images\logo_earth_bw50.png" />
+    <Content Include="zAdminTemplate Html\images\page_active.gif" />
+    <Content Include="zAdminTemplate Html\images\quote.png" />
+    <Content Include="zAdminTemplate Html\images\rule.gif" />
+    <Content Include="zAdminTemplate Html\images\rule2.gif" />
+    <Content Include="zAdminTemplate Html\images\tmp\picture1.jpg" />
+    <Content Include="zAdminTemplate Html\images\tmp\picture2.jpg" />
+    <Content Include="zAdminTemplate Html\images\tmp\picture3.jpg" />
+    <Content Include="zAdminTemplate Html\images\tmp\picture4.jpg" />
+    <Content Include="zAdminTemplate Html\images\tmp\picture5.jpg" />
+    <Content Include="zAdminTemplate Html\images\tmp\picture6.jpg" />
+    <Content Include="zAdminTemplate Html\images\tmp\picture7.jpg" />
+    <Content Include="zAdminTemplate Html\images\tmp\picture8.jpg" />
+    <Content Include="zAdminTemplate Html\images\tmp\thumbnail1.jpg" />
+    <Content Include="zAdminTemplate Html\images\tmp\thumbnail2.jpg" />
+    <Content Include="zAdminTemplate Html\images\tmp\thumbnail3.jpg" />
+    <Content Include="zAdminTemplate Html\images\tmp\thumbnail4.jpg" />
+    <Content Include="zAdminTemplate Html\images\tmp\thumbnail5.jpg" />
+    <Content Include="zAdminTemplate Html\images\tmp\thumbnail6.jpg" />
+    <Content Include="zAdminTemplate Html\images\tmp\thumbnail7.jpg" />
+    <Content Include="zAdminTemplate Html\images\tmp\thumbnail8.jpg" />
+    <Content Include="zAdminTemplate Html\images\tree_line.gif" />
+    <Content Include="zAdminTemplate Html\images\tree_point.png" />
+    <Content Include="zAdminTemplate Html\images\tree_point_last.png" />
+    <Content Include="zAdminTemplate Html\images\tree_simple.png" />
+    <Content Include="zAdminTemplate Html\images\tree_simple_last.png" />
+    <Content Include="zAdminTemplate Html\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="zAdminTemplate Html\images\user_female.png" />
+    <Content Include="zAdminTemplate Html\images\user_male.png" />
+    <Content Include="zAdminTemplate Html\js\cufon.js" />
+    <Content Include="zAdminTemplate Html\js\excanvas.js" />
+    <Content Include="zAdminTemplate Html\js\jquery.datatables.js" />
+    <Content Include="zAdminTemplate Html\js\jquery.fancybox.js" />
+    <Content Include="zAdminTemplate Html\js\jquery.idtabs.js" />
+    <Content Include="zAdminTemplate Html\js\jquery.jcarousel.js" />
+    <Content Include="zAdminTemplate Html\js\jquery.jeditable.js" />
+    <Content Include="zAdminTemplate Html\js\jquery.js" />
+    <Content Include="zAdminTemplate Html\js\jquery.ui.js" />
+    <Content Include="zAdminTemplate Html\js\jquery.validate.js" />
+    <Content Include="zAdminTemplate Html\js\jquery.visualize.js" />
+    <Content Include="zAdminTemplate Html\js\jquery.wysiwyg.js" />
+    <Content Include="zAdminTemplate Html\js\script.js" />
+    <Content Include="zAdminTemplate Html\js\tiny_mce\jquery.tinymce.js" />
+    <Content Include="zAdminTemplate Html\js\Zurich_Condensed_Lt_Bd.js" />
+    <Content Include="zAdminTemplate Html\login.html" />
+    <Content Include="css\fancybox.css" />
+    <Content Include="css\jquery.ui.css" />
+    <Content Include="css\jquery.wysiwyg.css" />
+    <Content Include="css\reset.css" />
+    <Content Include="css\screen.css" />
+    <Content Include="css\visualize-light.css" />
+    <Content Include="css\visualize.css" />
+    <Content Include="images\arrowleft_iconbar_act.png" />
+    <Content Include="images\arrowleft_iconbar_off.png" />
+    <Content Include="images\arrowleft_iconbar_ovr.png" />
+    <Content Include="images\arrowright_iconbar_act.png" />
+    <Content Include="images\arrowright_iconbar_off.png" />
+    <Content Include="images\arrowright_iconbar_ovr.png" />
+    <Content Include="images\arrow_leftend_off.png" />
+    <Content Include="images\arrow_leftend_ovr.png" />
+    <Content Include="images\arrow_left_off.png" />
+    <Content Include="images\arrow_left_ovr.png" />
+    <Content Include="images\arrow_rightend_off.png" />
+    <Content Include="images\arrow_rightend_ovr.png" />
+    <Content Include="images\arrow_right_off.png" />
+    <Content Include="images\arrow_right_ovr.png" />
+    <Content Include="images\arrow_sm_black.gif" />
+    <Content Include="images\arrow_sm_black_down.gif" />
+    <Content Include="images\arrow_sm_black_top.gif" />
+    <Content Include="images\arrow_sm_blue.gif" />
+    <Content Include="images\arrow_sm_grey.gif" />
+    <Content Include="images\avatar.jpg" />
+    <Content Include="images\ball_black_13.png" />
+    <Content Include="images\ball_black_16.png" />
+    <Content Include="images\ball_blue_16.png" />
+    <Content Include="images\ball_green_13.png" />
+    <Content Include="images\ball_green_16.png" />
+    <Content Include="images\ball_grey_13.png" />
+    <Content Include="images\ball_grey_16.png" />
+    <Content Include="images\ball_purple_13.png" />
+    <Content Include="images\ball_purple_16.png" />
+    <Content Include="images\ball_red_13.png" />
+    <Content Include="images\ball_red_16.png" />
+    <Content Include="images\ball_yellow_13.png" />
+    <Content Include="images\ball_yellow_16.png" />
+    <Content Include="images\bck_black_10.png" />
+    <Content Include="images\bck_black_5.png" />
+    <Content Include="images\bck_black_70.png" />
+    <Content Include="images\bck_header.png" />
+    <Content Include="images\bck_icon48_dark.png" />
+    <Content Include="images\bck_iconbar.png" />
+    <Content Include="images\bck_iconbar_bottom.png" />
+    <Content Include="images\bck_iconbar_ovr.png" />
+    <Content Include="images\bck_main.png" />
+    <Content Include="images\bck_sidebar.png" />
+    <Content Include="images\bck_white_10.png" />
+    <Content Include="images\bck_white_50.png" />
+    <Content Include="images\bck_white_75.png" />
+    <Content Include="images\bck_white_90.png" />
+    <Content Include="images\bck_white_95.png" />
+    <Content Include="images\breadcrumb.png" />
+    <Content Include="images\button_glas1.png" />
+    <Content Include="images\button_glas1_ovr.png" />
+    <Content Include="images\button_glas2.png" />
+    <Content Include="images\but_slide.png" />
+    <Content Include="images\chart-x.gif" />
+    <Content Include="images\envelope_off.png" />
+    <Content Include="images\envelope_ovr.png" />
+    <Content Include="images\fancybox\blank.gif" />
+    <Content Include="images\fancybox\fancybox-x.png" />
+    <Content Include="images\fancybox\fancybox-y.png" />
+    <Content Include="images\fancybox\fancybox.png" />
+    <Content Include="images\fancybox\fancy_title_over.png" />
+    <Content Include="images\gear.png" />
+    <Content Include="images\header.png" />
+    <Content Include="images\ico_active_16.png" />
+    <Content Include="images\ico_administration_48.png" />
+    <Content Include="images\ico_attention.png" />
+    <Content Include="images\ico_book_48.png" />
+    <Content Include="images\ico_chat_64.png" />
+    <Content Include="images\ico_clock_64.png" />
+    <Content Include="images\ico_close_off.png" />
+    <Content Include="images\ico_close_ovr.png" />
+    <Content Include="images\ico_delete_12.png" />
+    <Content Include="images\ico_delete_16.png" />
+    <Content Include="images\ico_edit_12.png" />
+    <Content Include="images\ico_edit_16.png" />
+    <Content Include="images\ico_error.png" />
+    <Content Include="images\ico_folder_64.png" />
+    <Content Include="images\ico_graph_16_off.png" />
+    <Content Include="images\ico_graph_16_ovr.png" />
+    <Content Include="images\ico_history_16_off.png" />
+    <Content Include="images\ico_history_16_ovr.png" />
+    <Content Include="images\ico_inactive_16.png" />
+    <Content Include="images\ico_info.png" />
+    <Content Include="images\ico_manage-users_48.png" />
+    <Content Include="images\ico_page_64.png" />
+    <Content Include="images\ico_picture_64.png" />
+    <Content Include="images\ico_settings_16.png" />
+    <Content Include="images\ico_settings_64.png" />
+    <Content Include="images\ico_shopping_16_off.png" />
+    <Content Include="images\ico_shopping_16_ovr.png" />
+    <Content Include="images\ico_success.png" />
+    <Content Include="images\ico_users_64.png" />
+    <Content Include="images\jquery-ui\bck_transparent.png" />
+    <Content Include="images\jquery-ui\bck_white_20.png" />
+    <Content Include="images\jquery-ui\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="images\jquery-ui\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="images\jquery-ui\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="images\jquery-ui\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="images\jquery-ui\ui-bg_glass_100_red_50x400.png" />
+    <Content Include="images\jquery-ui\ui-bg_gloss-wave_35_333333_500x100.png" />
+    <Content Include="images\jquery-ui\ui-icons_222222_256x240.png" />
+    <Content Include="images\jquery-ui\ui-icons_228ef1_256x240.png" />
+    <Content Include="images\jquery-ui\ui-icons_ffd27a_256x240.png" />
+    <Content Include="images\jquery-ui\ui-icons_ffffff_256x240.png" />
+    <Content Include="images\jquery.wysiwyg.gif" />
+    <Content Include="images\line.gif" />
+    <Content Include="images\login.jpg" />
+    <Content Include="images\login_header.png" />
+    <Content Include="images\logo_earth.png" />
+    <Content Include="images\logo_earth_bw.png" />
+    <Content Include="images\logo_earth_bw50.png" />
+    <Content Include="images\page_active.gif" />
+    <Content Include="images\quote.png" />
+    <Content Include="images\rule.gif" />
+    <Content Include="images\rule2.gif" />
+    <Content Include="images\tmp\picture1.jpg" />
+    <Content Include="images\tmp\picture2.jpg" />
+    <Content Include="images\tmp\picture3.jpg" />
+    <Content Include="images\tmp\picture4.jpg" />
+    <Content Include="images\tmp\picture5.jpg" />
+    <Content Include="images\tmp\picture6.jpg" />
+    <Content Include="images\tmp\picture7.jpg" />
+    <Content Include="images\tmp\picture8.jpg" />
+    <Content Include="images\tmp\thumbnail1.jpg" />
+    <Content Include="images\tmp\thumbnail2.jpg" />
+    <Content Include="images\tmp\thumbnail3.jpg" />
+    <Content Include="images\tmp\thumbnail4.jpg" />
+    <Content Include="images\tmp\thumbnail5.jpg" />
+    <Content Include="images\tmp\thumbnail6.jpg" />
+    <Content Include="images\tmp\thumbnail7.jpg" />
+    <Content Include="images\tmp\thumbnail8.jpg" />
+    <Content Include="images\tree_line.gif" />
+    <Content Include="images\tree_point.png" />
+    <Content Include="images\tree_point_last.png" />
+    <Content Include="images\tree_simple.png" />
+    <Content Include="images\tree_simple_last.png" />
+    <Content Include="images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="images\user_female.png" />
+    <Content Include="images\user_male.png" />
+    <Content Include="js\cufon.js" />
+    <Content Include="js\excanvas.js" />
+    <Content Include="js\jquery.datatables.js" />
+    <Content Include="js\jquery.fancybox.js" />
+    <Content Include="js\jquery.idtabs.js" />
+    <Content Include="js\jquery.jcarousel.js" />
+    <Content Include="js\jquery.jeditable.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\jquery.ui.js" />
+    <Content Include="js\jquery.validate.js" />
+    <Content Include="js\jquery.visualize.js" />
+    <Content Include="js\jquery.wysiwyg.js" />
+    <Content Include="js\script.js" />
+    <Content Include="js\tiny_mce\jquery.tinymce.js" />
+    <Content Include="js\Zurich_Condensed_Lt_Bd.js" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -80,33 +402,19 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\ChangePassword.aspx.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    <Compile Include="AdminUserManager.aspx.cs">
+      <DependentUpon>AdminUserManager.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\ChangePassword.aspx.designer.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    <Compile Include="AdminUserManager.aspx.designer.cs">
+      <DependentUpon>AdminUserManager.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\ChangePasswordSuccess.aspx.cs">
-      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+    <Compile Include="AdminSite.Master.cs">
+      <DependentUpon>AdminSite.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\ChangePasswordSuccess.aspx.designer.cs">
-      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\Register.aspx.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Register.aspx.designer.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
+    <Compile Include="AdminSite.Master.designer.cs">
+      <DependentUpon>AdminSite.Master</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -118,6 +426,23 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Libs\AppEnums.cs" />
+    <Compile Include="Libs\Constants.cs" />
+    <Compile Include="Libs\HtmlHeplers.cs" />
+    <Compile Include="Libs\LibCache.cs" />
+    <Compile Include="Libs\LibConfig.cs" />
+    <Compile Include="Libs\LibConvert.cs" />
+    <Compile Include="Libs\LibCookie.cs" />
+    <Compile Include="Libs\LibExcel.cs" />
+    <Compile Include="Libs\LibFile.cs" />
+    <Compile Include="Libs\LibLinQExtension.cs" />
+    <Compile Include="Libs\LibMail.cs" />
+    <Compile Include="Libs\LibPager.cs" />
+    <Compile Include="Libs\LibSecurity.cs" />
+    <Compile Include="Libs\LibSession.cs" />
+    <Compile Include="Libs\LibUlti.cs" />
+    <Compile Include="Libs\LibUpload.cs" />
+    <Compile Include="Libs\MenuHelper.cs" />
     <Compile Include="Model\DataEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -125,6 +450,23 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Application.cs" />
+    <Compile Include="Repository\ChucVu.cs" />
+    <Compile Include="Repository\ChucVu_GiaoVien.cs" />
+    <Compile Include="Repository\FilePermission.cs" />
+    <Compile Include="Repository\GiaoVien.cs" />
+    <Compile Include="Repository\InGroup.cs" />
+    <Compile Include="Repository\InRole.cs" />
+    <Compile Include="Repository\LoaiTin.cs" />
+    <Compile Include="Repository\Log.cs" />
+    <Compile Include="Repository\Permission.cs" />
+    <Compile Include="Repository\Profile.cs" />
+    <Compile Include="Repository\Setting.cs" />
+    <Compile Include="Repository\TaiNguyen.cs" />
+    <Compile Include="Repository\TaiNguyen_TinTuc.cs" />
+    <Compile Include="Repository\TinTuc.cs" />
+    <Compile Include="Repository\ToChuc.cs" />
+    <Compile Include="Repository\ToChuc_GiaoVien.cs" />
+    <Compile Include="Repository\Users.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -135,9 +477,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Resources\Files\" />
+    <Folder Include="Resources\Images\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +488,19 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DataEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AdminSite.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="zAdminTemplate Html\images\fancybox\Thumbs.db" />
+    <None Include="zAdminTemplate Html\images\jquery-ui\Thumbs.db" />
+    <None Include="zAdminTemplate Html\images\Thumbs.db" />
+    <None Include="zAdminTemplate Html\images\tmp\Thumbs.db" />
+    <None Include="images\fancybox\Thumbs.db" />
+    <None Include="images\jquery-ui\Thumbs.db" />
+    <None Include="images\Thumbs.db" />
+    <None Include="images\tmp\Thumbs.db" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
