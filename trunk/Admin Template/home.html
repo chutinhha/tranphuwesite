@@ -1,0 +1,391 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="description"  content=""/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="ALL,FOLLOW"/>
+<meta name="Author" content="AIT"/>
+<meta http-equiv="imagetoolbar" content="no"/>
+<title>TERMINATOR: Dashboard</title>
+
+<link rel="stylesheet" href="css/reset.css" type="text/css"/>
+<link rel="stylesheet" href="css/screen.css" type="text/css"/>
+<link rel="stylesheet" href="css/fancybox.css" type="text/css"/>
+<link rel="stylesheet" href="css/jquery.wysiwyg.css" type="text/css"/>
+<link rel="stylesheet" href="css/jquery.ui.css" type="text/css"/>
+<link rel="stylesheet" href="css/visualize.css" type="text/css"/>
+<link rel="stylesheet" href="css/visualize-light.css" type="text/css"/>
+<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="css/ie7.css" />
+<![endif]-->	
+</head>
+
+<body>
+
+<div class="pagetop">
+	<div class="head pagesize"> <!-- *** head layout *** -->
+		<div class="head_top">
+			<div class="topbuts">
+				<ul class="clear">
+				<li><a href="login.html" class="red">Logout</a></li>
+				</ul>
+				
+				<div class="user clear">
+					<img src="images/avatar.jpg" class="avatar" alt="" />
+					<span class="user-detail">
+						<span class="name">Xin chào Ruby</span>
+						<span class="text">Đăng nhập với tài khoản admin</span>
+					</span>
+				</div>
+			</div>
+			
+			<div class="logo clear">
+			<a href="index.html" title="View dashboard">
+				<img src="images/logo_earth.png" alt="" class="picture" />
+				<span class="textlogo">
+					<span class="title">TERMINATOR</span>
+					<span class="text">admin template</span>
+				</span>
+			</a>
+			</div>
+		</div>
+		
+		<div class="menu">
+			<ul class="clear">
+			<li class="active"><a href="index.html">Quản lý phân quyền</a>
+							<ul>
+					<li><a href="boxes.html">Quản lý tài khoản</a></li>
+					<li><a href="columns.html">Quản lý quyền truy cập</a>
+						<ul>
+							<li><a href="columns1.html">Lựa chọn 1</a></li>
+							<li><a href="columns2.html">Lựa chọn 2</a></li>
+						</ul>
+					</li>
+					<li><a href="forms.html">Forms</a></li>
+				</ul>
+
+			</li>
+			<li>
+			<a href="articles.html">Quản lý tin tức</a>
+			<ul>
+					<li><a href="boxes.html">Edit tin tức</a></li>
+					<li><a href="columns.html">Quản lý giáo viên</a>
+						<ul>
+							<li><a href="columns1.html">Lựa chọn 1</a></li>
+							<li><a href="columns2.html">Lựa chọn 2</a></li>
+						</ul>
+					</li>
+					<li><a href="forms.html">Forms</a></li>
+				</ul>
+			</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="breadcrumb">
+	<div class="bread-links pagesize">
+		<ul class="clear">
+		<li class="first">You are here:</li>
+		<li><a href="#">Quản lý phân quyền</a></li>
+		</ul>
+	</div>
+</div>
+	
+<div class="main pagesize"> <!-- *** mainpage layout *** -->
+	<div class="main-wrap">
+		<div class="page clear">
+						
+			<!-- MODAL WINDOW -->
+			<div id="modal" class="modal-window modal-600">
+				
+				<div class="notification note-info">
+					<a href="#" class="close" title="Close notification"><span>close</span></a>
+					<span class="icon"></span>
+					<p><strong>Information:</strong> The examples of modal windows are set on the LABELS in H1 tags.</p>
+				</div>
+				
+				<h2>Modal Window : size 600</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique, lorem id hendrerit sodales, nisl felis sollicitudin lacus, et facilisis felis quam at quam. Nullam vel nunc at sapien sagittis feugiat. Vestibulum est eros, condimentum ac sodales vel, iaculis vitae neque.</p>
+				<h4 class="bt-space10">You can set the 4 types of modal:</h4>
+				<div class="clear">
+					<div class="half fl">
+					<div class="mark bt-space5">
+						<ul class="standard clean-padding bt-space10">
+						<li><span class="fr">class "modal-400"</span> <span><strong>Size 400px</strong></span></li>
+						<li><span class="fr">class "modal-600"</span> <span><strong>Size 600px</strong></span></li>
+						<li><span class="fr">class "modal-800"</span> <span><strong>Size 800px</strong></span></li>
+						<li><span class="fr">no other class</span> <span><strong>Size undefined (auto)</strong></span></li>
+						</ul>
+					</div>
+					</div>
+					<p class="half fr"><small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique, lorem id hendrerit sodales, nisl felis sollicitudin lacus, et facilisis felis quam at quam.</small></p>
+				</div>
+			</div>
+			
+			<!-- CONTENT BOXES -->
+			
+			
+			<!-- CONTENT BOX - DATATABLE -->
+			<div class="content-box">
+			<div class="box-body">
+				<div class="box-header clear">
+					<ul class="tabs clear">
+						<li><a href="#data-table">JS plugin</a></li>
+						<li><a href="#table">Table only</a></li>
+					</ul>
+					
+					<h2>Nội dung</h2>
+				</div>
+				
+				<div class="box-wrap clear">
+					
+					<!-- TABLE -->
+					<div id="data-table">
+						<p>Nội dung: thao tác trên bảng</p> 
+					
+						<form method="post" action="#">
+						
+						<table class="style1 datatable">
+						<thead>
+							<tr>
+								<th class="bSortable"><input type="checkbox" class="checkbox select-all" /></th>
+								<th>Column 1</th>
+								<th>Column 2</th>
+								<th>Column 3</th>
+								<th>Column 4</th>
+								<th>Column 5</th>
+								<th>Column 6</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="checkbox" class="checkbox" /></td>
+								<td>Lorem ipsum dolor</td>
+								<td><a href="#">John</a></td>
+								<td>5/6/2010</td>
+								<td><input type="text" name="input1" id="input1" value="235" class="text" size="10" /></td>
+								<td>sed in porta lectus</td>
+								<td>
+									<a href="#"><img src="images/ico_edit_16.png" class="icon16 fl-space2" alt="" title="edit" /></a>
+									<a href="#"><img src="images/ico_delete_16.png" class="icon16 fl-space2" alt="" title="delete" /></a>
+									<a href="#"><img src="images/ico_settings_16.png" class="icon16 fl-space2" alt="" title="settings" /></a>
+								</td>
+							</tr>
+                                                        
+							<tr>
+								<td><input type="checkbox" class="checkbox" /></td>
+								<td>Dignissim enim</td>
+								<td><a href="#">Admin</a></td>
+								<td>5/6/2010</td>
+								<td><input type="text" name="input2" id="input2" value="124" class="text" size="10" /></td>
+								<td>duis nec rutrum</td>
+								<td>
+									<a href="#"><img src="images/ico_edit_16.png" class="icon16 fl-space2" alt="" title="edit" /></a>
+									<a href="#"><img src="images/ico_delete_16.png" class="icon16 fl-space2" alt="" title="delete" /></a>
+									<a href="#"><img src="images/ico_settings_16.png" class="icon16 fl-space2" alt="" title="settings" /></a>
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" class="checkbox" /></td>
+								<td>Maecenas velit</td>
+								<td><a href="#">Admin</a></td>
+								<td>5/6/2010</td>
+								<td><input type="text" name="input3" id="input3" value="58" class="text" size="10" /></td>
+								<td>porta lectus</td>
+								<td>
+									<a href="#"><img src="images/ico_edit_16.png" class="icon16 fl-space2" alt="" title="edit" /></a>
+									<a href="#"><img src="images/ico_delete_16.png" class="icon16 fl-space2" alt="" title="delete" /></a>
+									<a href="#"><img src="images/ico_settings_16.png" class="icon16 fl-space2" alt="" title="settings" /></a>
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" class="checkbox" /></td>
+								<td>Maecenas velit</td>
+								<td><a href="#">Admin</a></td>
+								<td>5/6/2010</td>
+								<td><input type="text" name="input4" id="input4" value="58" class="text" size="10" /></td>
+								<td>porta lectus</td>
+								<td>
+									<a href="#"><img src="images/ico_edit_16.png" class="icon16 fl-space2" alt="" title="edit" /></a>
+									<a href="#"><img src="images/ico_delete_16.png" class="icon16 fl-space2" alt="" title="delete" /></a>
+									<a href="#"><img src="images/ico_settings_16.png" class="icon16 fl-space2" alt="" title="settings" /></a>
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" class="checkbox" /></td>
+								<td>Maecenas velit</td>
+								<td><a href="#">Admin</a></td>
+								<td>5/6/2010</td>
+								<td><input type="text" name="input5" id="input5" value="58" class="text" size="10" /></td>
+								<td>porta lectus</td>
+								<td>
+									<a href="#"><img src="images/ico_edit_16.png" class="icon16 fl-space2" alt="" title="edit" /></a>
+									<a href="#"><img src="images/ico_delete_16.png" class="icon16 fl-space2" alt="" title="delete" /></a>
+									<a href="#"><img src="images/ico_settings_16.png" class="icon16 fl-space2" alt="" title="settings" /></a>
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" class="checkbox" /></td>
+								<td>Maecenas velit</td>
+								<td><a href="#">Admin</a></td>
+								<td>5/6/2010</td>
+								<td><input type="text" name="input6" id="input6" value="58" class="text" size="10" /></td>
+								<td>porta lectus</td>
+								<td>
+									<a href="#"><img src="images/ico_edit_16.png" class="icon16 fl-space2" alt="" title="edit" /></a>
+									<a href="#"><img src="images/ico_delete_16.png" class="icon16 fl-space2" alt="" title="delete" /></a>
+									<a href="#"><img src="images/ico_settings_16.png" class="icon16 fl-space2" alt="" title="settings" /></a>
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" class="checkbox" /></td>
+								<td>Maecenas velit</td>
+								<td><a href="#">Admin</a></td>
+								<td>5/6/2010</td>
+								<td><input type="text" name="input7" id="input7" value="58" class="text" size="10" /></td>
+								<td>porta lectus</td>
+								<td>
+									<a href="#"><img src="images/ico_edit_16.png" class="icon16 fl-space2" alt="" title="edit" /></a>
+									<a href="#"><img src="images/ico_delete_16.png" class="icon16 fl-space2" alt="" title="delete" /></a>
+									<a href="#"><img src="images/ico_settings_16.png" class="icon16 fl-space2" alt="" title="settings" /></a>
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" class="checkbox" /></td>
+								<td>Maecenas velit</td>
+								<td><a href="#">Admin</a></td>
+								<td>5/6/2010</td>
+								<td><input type="text" name="input8" id="input8" value="58" class="text" size="10" /></td>
+								<td>porta lectus</td>
+								<td>
+									<a href="#"><img src="images/ico_edit_16.png" class="icon16 fl-space2" alt="" title="edit" /></a>
+									<a href="#"><img src="images/ico_delete_16.png" class="icon16 fl-space2" alt="" title="delete" /></a>
+									<a href="#"><img src="images/ico_settings_16.png" class="icon16 fl-space2" alt="" title="settings" /></a>
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" class="checkbox" /></td>
+								<td>Maecenas velit</td>
+								<td><a href="#">Admin</a></td>
+								<td>5/6/2010</td>
+								<td><input type="text" name="input9" id="input9" value="58" class="text" size="10" /></td>
+								<td>porta lectus</td>
+								<td>
+									<a href="#"><img src="images/ico_edit_16.png" class="icon16 fl-space2" alt="" title="edit" /></a>
+									<a href="#"><img src="images/ico_delete_16.png" class="icon16 fl-space2" alt="" title="delete" /></a>
+									<a href="#"><img src="images/ico_settings_16.png" class="icon16 fl-space2" alt="" title="settings" /></a>
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" class="checkbox" /></td>
+								<td>Maecenas velit</td>
+								<td><a href="#">Admin</a></td>
+								<td>5/6/2010</td>
+								<td><input type="text" name="input10" id="input10" value="58" class="text" size="10" /></td>
+								<td>porta lectus</td>
+								<td>
+									<a href="#"><img src="images/ico_edit_16.png" class="icon16 fl-space2" alt="" title="edit" /></a>
+									<a href="#"><img src="images/ico_delete_16.png" class="icon16 fl-space2" alt="" title="delete" /></a>
+									<a href="#"><img src="images/ico_settings_16.png" class="icon16 fl-space2" alt="" title="settings" /></a>
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" class="checkbox" /></td>
+								<td>Duis nec rutrum</td>
+								<td><a href="#">John</a></td>
+								<td>5/6/2010</td>
+								<td><input type="text" name="input11" id="input11" value="10" class="text" size="10" /></td>
+								<td>enim quis ipsum</td>
+								<td>
+									<a href="#"><img src="images/ico_edit_16.png" class="icon16 fl-space2" alt="" title="edit" /></a>
+									<a href="#"><img src="images/ico_delete_16.png" class="icon16 fl-space2" alt="" title="delete" /></a>
+									<a href="#"><img src="images/ico_settings_16.png" class="icon16 fl-space2" alt="" title="settings" /></a>
+								</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" class="checkbox" /></td>
+								<td>Elit gravida</td>
+								<td><a href="#">Admin</a></td>
+								<td>5/6/2010</td>
+								<td><input type="text" name="input12" id="input12" value="356" class="text" size="10" /></td>
+								<td>dolor sit amet</td>
+								<td>
+									<a href="#"><img src="images/ico_edit_16.png" class="icon16 fl-space2" alt="" title="edit" /></a>
+									<a href="#"><img src="images/ico_delete_16.png" class="icon16 fl-space2" alt="" title="delete" /></a>
+									<a href="#"><img src="images/ico_settings_16.png" class="icon16 fl-space2" alt="" title="settings" /></a>
+								</td>
+							</tr>
+						</tbody>
+						</table>
+						
+						</form>
+					</div><!-- /#table -->
+					
+					
+				</div><!-- end of box-wrap -->
+			</div> <!-- end of box-body -->
+			</div> <!-- end of content-box -->
+			
+			<!-- NOTIFICATIONS (Thong bao)-->
+			<div class="notification note-error">
+				<a href="#" class="close" title="Close notification">close</a>
+				<p><strong>Error notification:</strong> Thông báo lỗi xuất hiện tại đây.</p>
+			</div>
+			<div class="notification note-success">
+				<a href="#" class="close" title="Close notification">close</a>
+				<p><strong>Success notification:</strong>  Thông báo lỗi xuất hiện tại đây.</p>
+			</div>
+			<div class="notification note-info">
+				<a href="#" class="close" title="Close notification">close</a>
+				<p><strong>Information notification:</strong> Thông báo lỗi xuất hiện tại đây.</p>
+			</div>
+			<div class="notification note-attention">
+				<a href="#" class="close" title="Close notification">close</a>
+				<p><strong>Attention notification:</strong>  Thông báo lỗi xuất hiện tại đây.</p>
+			</div>
+			
+		</div><!-- end of page -->
+	</div>
+</div>
+
+<div class="footer">
+	<div class="pagesize clear">
+		<p class="bt-space15"><span class="copy"><strong>© 2010 Copyright by <a href="http://www.ZONEMAFIA.INFO/">ZONEMAFIA.INFO.</a></strong></span> Powered by <a href="#">TERMINATOR ADMIN.</a></p>
+		<img src="images/logo_earth_bw50.png" alt="" class="block center" />
+	</div>
+</div>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.visualize.js"></script>
+<script type="text/javascript" src="js/jquery.wysiwyg.js"></script>
+<script type="text/javascript" src="js/tiny_mce/jquery.tinymce.js"></script>
+<script type="text/javascript" src="js/jquery.fancybox.js"></script>
+<script type="text/javascript" src="js/jquery.idtabs.js"></script>
+<script type="text/javascript" src="js/jquery.datatables.js"></script>
+<script type="text/javascript" src="js/jquery.jeditable.js"></script>
+<script type="text/javascript" src="js/jquery.ui.js"></script>
+<script type="text/javascript" src="js/jquery.jcarousel.js"></script>
+<script type="text/javascript" src="js/jquery.validate.js"></script>
+
+<script type="text/javascript" src="js/excanvas.js"></script>
+<script type="text/javascript" src="js/cufon.js"></script>
+<script type="text/javascript" src="js/Zurich_Condensed_Lt_Bd.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12958851-8']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
