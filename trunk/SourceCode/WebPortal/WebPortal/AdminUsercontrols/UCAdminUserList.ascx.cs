@@ -7,13 +7,19 @@ using System.Web.UI.WebControls;
 using WebPortal.Model;
 using WebPortal.Repository;
 
-namespace WebPortal
+namespace WebPortal.AdminUsercontrols
 {
-    public partial class AdminIndex : System.Web.UI.Page
+    public partial class UCAdminUserList : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public List<Model.User> GetAllUsers()
+        {
+            WebPortal.Repository.User userRepository = new Repository.User();
+            return userRepository.All();
         }
     }
 }
