@@ -38,12 +38,14 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                var newTN_TT = dataEntities.TinTucs.Single(a => a.IDTinTuc == tinTuc.IDTinTuc);
-                newTN_TT.IDLoaiTin = tinTuc.IDLoaiTin;
-                newTN_TT.NoiDung = tinTuc.NoiDung;
-                newTN_TT.NgayDang = tinTuc.NgayDang;
-                newTN_TT.NguoiDang = tinTuc.NguoiDang;
-                newTN_TT.HinhAnh = tinTuc.HinhAnh;
+                var newTT = dataEntities.TinTucs.Single(a => a.IDTinTuc == tinTuc.IDTinTuc);
+                newTT.IDLoaiTin = tinTuc.IDLoaiTin;
+                newTT.TenTinTuc = tinTuc.TenTinTuc;
+                newTT.MoTaTinTuc = tinTuc.MoTaTinTuc;
+                newTT.NoiDung = tinTuc.NoiDung;
+                newTT.NgayDang = tinTuc.NgayDang;
+                newTT.NguoiDang = tinTuc.NguoiDang;
+                newTT.HinhAnh = tinTuc.HinhAnh;
                 return dataEntities.SaveChanges();
             }
         }
