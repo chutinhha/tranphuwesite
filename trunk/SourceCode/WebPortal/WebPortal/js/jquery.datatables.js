@@ -2260,13 +2260,13 @@
 			}
 			
 			/* Sanity check */
-			if ( nTds.length != nTrs.length * oSettings.aoColumns.length )
-			{
-				alert( "DataTables warning: Unexpected number of TD elements. Expected "+
-					(nTrs.length * oSettings.aoColumns.length)+" and got "+nTds.length+". DataTables does "+
-					"not support rowspan / colspan in the table body, and there must be one cell for each "+
-					"row/column combination." );
-			}
+//			if ( nTds.length != nTrs.length * oSettings.aoColumns.length )
+//			{
+//				alert( "DataTables warning: Unexpected number of TD elements. Expected "+
+//					(nTrs.length * oSettings.aoColumns.length)+" and got "+nTds.length+". DataTables does "+
+//					"not support rowspan / colspan in the table body, and there must be one cell for each "+
+//					"row/column combination." );
+//			}
 			
 			/* Now process by column */
 			for ( iColumn=0, iColumns=oSettings.aoColumns.length ; iColumn<iColumns ; iColumn++ )
