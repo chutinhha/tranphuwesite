@@ -13,7 +13,12 @@ namespace WebPortal.Repository
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.Groups.Single(g => g.GroupID == groupID);
+                try
+                {
+                    return dataEntities.Groups.Single(g => g.GroupID == groupID);
+                }
+                catch
+                { return null; }
             }
         }
 
