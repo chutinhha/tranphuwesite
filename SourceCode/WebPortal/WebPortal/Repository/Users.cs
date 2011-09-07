@@ -71,5 +71,22 @@ namespace WebPortal.Repository
         #endregion
 
         //Ham viet them tai day
+
+        #region Nhat
+        public int GetUserIDByUsername(string userName)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                try
+                {
+                    return dataEntities.Users.Single(user => user.UserName == userName).UserID;
+                }
+                catch
+                {
+                    return -1;
+                }
+            }
+        } 
+        #endregion
     }
 }
