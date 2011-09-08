@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using WebPortal.Model;
 
-namespace WebPortal
+namespace WebPortal.Repository
 {
     public partial class Application
     {

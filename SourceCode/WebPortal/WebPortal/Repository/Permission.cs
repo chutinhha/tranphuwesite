@@ -13,7 +13,15 @@ namespace WebPortal.Repository
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.Permissions.Single(log => log.PermissionID == permissionID);
+                try
+                {
+                    return dataEntities.Permissions.Single(log => log.PermissionID == permissionID);
+                }
+                catch 
+                {
+
+                    return null;
+                }
             }
         }
 
@@ -66,5 +74,24 @@ namespace WebPortal.Repository
         #endregion
 
         //Ham viet them tai day
+
+        #region Nhat
+        public int Delete(int permissionID)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                try
+                {
+                    var newPermission = dataEntities.Permissions.Single(log => log.PermissionID == permissionID);
+                    newPermission.Active = false;
+                    return dataEntities.SaveChanges();
+                }
+                catch
+                {
+                    return -1;
+                }
+            }
+        } 
+        #endregion
     }
 }
