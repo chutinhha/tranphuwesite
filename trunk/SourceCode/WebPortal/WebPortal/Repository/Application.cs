@@ -71,5 +71,10 @@ namespace WebPortal.Repository
         #endregion
 
         //Ai can ham gi thi viet them
+
+        public void Delete(int applicationID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
