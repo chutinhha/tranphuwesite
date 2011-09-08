@@ -4,12 +4,12 @@
     <p>
         <span style="font-family: Arial; font-weight: bold; font-size: 18px;">Quản lý Nhóm</span>
     </p>
+    <a href="../AdminGroupsManager.aspx?id=0&type=new">Thêm Nhóm</a>
     <form method="post" action="#">
     <% 
         WebPortal.Repository.Group groupDA = new WebPortal.Repository.Group();
         List<WebPortal.Model.Group> list = groupDA.All();
     %>
-    
     <table class="datatable style1">
         <thead>
             <tr>
@@ -37,7 +37,7 @@
                 <th>
                     Active
                 </th>
-                <th style="width:150px">
+                <th style="width: 150px">
                     Tool&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </th>
             </tr>
@@ -74,15 +74,11 @@
                     <%=group.Active.ToString() %>
                 </td>
                 <td>
-                    <a href="AdminGroupsManager.aspx?id=<%=group.GroupID %>&type=new">
-                        <img  src="images/ico_edit_16.png" class="icon16 fl-space2 usermanager-command"
-                            alt="" title="Tạo mới" /></a> 
                     <a href="AdminGroupsManager.aspx?id=<%=group.GroupID %>&type=delete">
                         <img src="images/ico_delete_16.png" class="icon16 fl-space2 usermanager-command"
-                            alt="" title="Xóa" /></a>
-                    <a href="AdminGroupsManager.aspx?id=<%=group.GroupID%>&type=edit">
-                        <img  src="images/ico_settings_16.png" class="icon16 fl-space2 usermanager-command"
-                            alt="" title="Chỉnh sửa" /></a>
+                            alt="" title="Xóa" /></a> <a href="AdminGroupsManager.aspx?id=<%=group.GroupID%>&type=edit">
+                                <img src="images/ico_settings_16.png" class="icon16 fl-space2 usermanager-command"
+                                    alt="" title="Chỉnh sửa" /></a>
                 </td>
             </tr>
             <%} %>
@@ -91,4 +87,3 @@
     </table>
     </form>
 </div>
-

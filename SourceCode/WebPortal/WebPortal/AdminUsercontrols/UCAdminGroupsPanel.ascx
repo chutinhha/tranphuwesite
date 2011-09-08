@@ -12,7 +12,8 @@
                    </td>
         </tr>
          <tr>
-           <td> <asp:ImageButton ImageUrl="../images/ico_folder_64.png" ID="ImageButton1" runat="server" AlternateText="Thêm Nhóm" />
+           <td> <asp:ImageButton ImageUrl="../images/ico_folder_64.png" ID="ImageButton1" 
+                   runat="server" AlternateText="Thêm Nhóm" onclick="ImageButton1_Click" />
            <a href="../AdminGroupsManager.aspx" runat="server">Quản Lý Thông Tin Nhóm</a>
            </td>
         </tr>

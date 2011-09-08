@@ -239,6 +239,7 @@
            g.Group_Description = Request.Form["groupDescription"];
            g.Group_ToString = Request.Form["groupToString"];
            g.Group_DateCreate = DateTime.Parse(Request.Form["groupDateCreate"]);
+           g.User_Create = int.Parse(Request.Form["userCreate"]);
            if (Request.Form["active"] != null)
            {
                g.Active = true;
