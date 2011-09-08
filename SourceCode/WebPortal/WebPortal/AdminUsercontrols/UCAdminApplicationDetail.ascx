@@ -57,7 +57,7 @@
                 Description
             </th>
             <td>
-                <input name="description" type="text" value="<%=application.Application_Descritption%>" />
+                <input name="description" type="text" value="<%=application.Application_Description%>" />
             </td>
         </tr>
         <tr>
@@ -120,13 +120,13 @@
             else if (Request.QueryString["type"].ToString() == "delete")
             {
     %>
-    <tbody>
+     <tbody>
         <tr>
             <th>
-                application ID
+              ID
             </th>
             <td>
-                <input readonly="readonly" name="applicationID" type="text" value="<%=application.applicationID%>" />
+                <input readonly="readonly" name="applicationID" type="text" value="<%=application.ApplicationID%>" />
             </td>
         </tr>
         <tr>
@@ -134,7 +134,7 @@
                 Name
             </th>
             <td>
-                <input disabled="disabled" name="name" type="text" value="<%=application.Name%>" />
+                <input name="name" type="text" value="<%=application.Application_Name%>" />
             </td>
         </tr>
         <tr>
@@ -142,15 +142,47 @@
                 Description
             </th>
             <td>
-                <input disabled="disabled" name="description" type="text" value="<%=application.Descritption%>" />
+                <input name="description" type="text" value="<%=application.Application_Description%>" />
             </td>
         </tr>
         <tr>
             <th>
-                application ToString
+               FilePath
             </th>
             <td>
-                <input disabled="disabled" name="applicationToString" type="text" value="<%=application.application_ToString%>" />
+                <input name="applicationToString" type="text" value="<%=application.Application_FilePath%>" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+               Image
+            </th>
+            <td>
+                <input name="image" type="text" value="<%=application.Application_Image%>" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+               DataCreate
+            </th>
+            <td>
+                <input name="dateCreate" type="text" value="<%=application.Application_DateCreate%>" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+               ToString
+            </th>
+            <td>
+                <input name="applicationToString" type="text" value="<%=application.Application_ToString%>" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+               Order
+            </th>
+            <td>
+                <input name="order" type="text" value="<%=application.Order%>" />
             </td>
         </tr>
         <tr>
@@ -160,11 +192,11 @@
             <td>
                 <%if (application.Active == true)
                   { %>
-                <input disabled="disabled" name="active" type="checkbox" checked="checked" />
+                <input name="active" type="checkbox" checked="checked" value="True" />
                 <%}
                   else
                   {%>
-                <input disabled="disabled" name="active" type="checkbox" />
+                <input name="active" type="checkbox" value="False" />
                 <%} %>
             </td>
         </tr>
@@ -177,10 +209,18 @@
     <tbody>
         <tr>
             <th>
+              ID
+            </th>
+            <td>
+                <input readonly="readonly" name="applicationID" type="text" value="<%=application.ApplicationID%>" />
+            </td>
+        </tr>
+        <tr>
+            <th>
                 Name
             </th>
             <td>
-                <input name="name" type="text" />
+                <input name="name" type="text" value="<%=application.Application_Name%>" />
             </td>
         </tr>
         <tr>
@@ -188,15 +228,47 @@
                 Description
             </th>
             <td>
-                <input name="description" type="text" style="width: 50%" />
+                <input name="description" type="text" value="<%=application.Application_Description%>" />
             </td>
         </tr>
         <tr>
             <th>
-                application ToString
+               FilePath
             </th>
             <td>
-                <input name="applicationToString" type="text" style="width: 50%" />
+                <input name="applicationToString" type="text" value="<%=application.Application_FilePath%>" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+               Image
+            </th>
+            <td>
+                <input name="image" type="text" value="<%=application.Application_Image%>" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+               DataCreate
+            </th>
+            <td>
+                <input name="dateCreate" type="text" value="<%=application.Application_DateCreate%>" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+               ToString
+            </th>
+            <td>
+                <input name="applicationToString" type="text" value="<%=application.Application_ToString%>" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+               Order
+            </th>
+            <td>
+                <input name="order" type="text" value="<%=application.Order%>" />
             </td>
         </tr>
         <tr>
@@ -204,7 +276,14 @@
                 Active
             </th>
             <td>
+                <%if (application.Active == true)
+                  { %>
                 <input name="active" type="checkbox" checked="checked" value="True" />
+                <%}
+                  else
+                  {%>
+                <input name="active" type="checkbox" value="False" />
+                <%} %>
             </td>
         </tr>
     </tbody>
@@ -233,10 +312,10 @@
        int isSuccess = 1;
        try
        {
-           p.applicationID = int.Parse(Request.Form["applicationID"]);
-           p.Name = Request.Form["name"];
-           p.Descritption = Request.Form["description"];
-           p.application_ToString = Request.Form["applicationToString"];
+           p.ApplicationID = int.Parse(Request.Form["applicationID"]);
+           p.Application_Name = Request.Form["name"];
+           p.Application_Description = Request.Form["description"];
+           p.Application_ToString = Request.Form["applicationToString"];
            if (Request.Form["active"] != null)
            {
                p.Active = true;
@@ -264,13 +343,13 @@
        Response.Redirect("AdminapplicationManager.aspx");
    } if (Request.Form["new"] != null)
    {
-       WebPortal.Model.application newP = new WebPortal.Model.application();
+       WebPortal.Model.Application newP = new WebPortal.Model.Application();
 
        try
        {
-           newP.Name = Request.Form["name"];
-           newP.Descritption = Request.Form["description"];
-           newP.application_ToString = Request.Form["applicationToString"];
+           newP.Application_Name = Request.Form["name"];
+           newP.Application_Name = Request.Form["description"];
+           newP.Application_ToString = Request.Form["applicationToString"];
            if (Request.Form["active"] != null)
            {
                newP.Active = true;
