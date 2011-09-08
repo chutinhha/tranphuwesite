@@ -78,5 +78,12 @@ namespace WebPortal.Repository
         #endregion
 
         //Ham viet them tai day
+        public List<Model.Profile> AllByUserID(int userID)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                return dataEntities.Profiles.Where(pro => pro.UserID == userID).ToList();
+            }
+        }
     }
 }

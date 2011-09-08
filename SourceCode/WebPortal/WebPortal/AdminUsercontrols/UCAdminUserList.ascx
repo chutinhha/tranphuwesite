@@ -60,21 +60,19 @@
                     <%=user.Type %>
                 </td>
                 <td>
-                    <a href="AdminUserManager.aspx?id=<%=user.UserID %>&type=new">
-                        <img src="images/ico_edit_16.png" class="icon16 fl-space2 usermanager-command"
-                            alt="" title="Tạo mới" /></a> 
-                    <a href="AdminUserManager.aspx?id=<%=user.UserID %>&type=delete">
+                    <a href="AdminUserManager.aspx?id=<%=user.UserID %>&type=delete" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?')">
                         <img src="images/ico_delete_16.png" class="icon16 fl-space2 usermanager-command"
                             alt="" title="Xóa" /></a>
                     <a href="AdminUserManager.aspx?id=<%=user.UserID %>&type=edit">
                         <img src="images/ico_settings_16.png" class="icon16 fl-space2 usermanager-command"
-                            alt="" title="Chỉnh sửa" /></a>
+                            alt="" title="Chỉnh sửa profile" /></a>
                 </td>
             </tr>
             <%} %>
             <%} %>
         </tbody>
     </table>
+    <a href="AdminUserManager.aspx?type=new" class="button green fl-space">Tạo mới</a>
     </form>
 </div>
 <!-- /#table -->

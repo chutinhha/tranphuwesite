@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using WebPortal.Model;
+using System.Data.Common;
 
 namespace WebPortal.Repository
 {
@@ -38,26 +39,101 @@ namespace WebPortal.Repository
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                var newUser = dataEntities.Users.Single(u => u.UserID == user.UserID);
-                newUser.UserName = user.UserName;
-                newUser.User_ToString = user.User_ToString;
-                newUser.Type = user.Type;
-                newUser.Password = user.Password;
-                newUser.LastPasswordChange = user.LastPasswordChange;
-                newUser.LastLoginDate = user.LastLoginDate;
-                newUser.Email = user.Email;
-                newUser.Active = user.Active;
-                newUser.DateCreate = user.DateCreate;
-                return dataEntities.SaveChanges();
+                try
+                {
+                    //Update user info
+                    var newUser = dataEntities.Users.Single(u => u.UserID == user.UserID);
+                    newUser.UserName = user.UserName;
+                    newUser.Password = user.Password;
+                    newUser.Email = user.Email;
+                    newUser.LastPasswordChange = user.LastPasswordChange;
+                    newUser.LastLoginDate = user.LastLoginDate;
+                    newUser.DateCreate = user.DateCreate;
+                    newUser.User_ToString = user.User_ToString;
+                    newUser.Type = user.Type;
+                    newUser.LastPasswordChange = user.LastPasswordChange;
+                    newUser.Active = user.Active;
+
+                    //Save change
+                    return dataEntities.SaveChanges();
+                }
+                catch
+                {
+                    return 0;
+                }
             }
         }
 
-        public int Delete(Model.User user)
+        public int Delete(int userID)
         {
+            DbTransaction dbTransaction = null;
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                dataEntities.DeleteObject(user);
-                return dataEntities.SaveChanges();
+                try
+                {
+                    if (dataEntities.Connection.State == System.Data.ConnectionState.Closed)
+                    {
+                        dataEntities.Connection.Open();
+                    }
+                    dbTransaction = dataEntities.Connection.BeginTransaction();
+
+                    //Set active false for user
+                    var user = dataEntities.Users.Single(u => u.UserID == userID);
+                    user.Active = false;
+
+                    //Set active false for profile table
+                    var profileList = dataEntities.Profiles.Where(p => p.UserID == user.UserID);
+                    if (profileList.Count() > 0)
+                    {
+                        foreach (var profile in profileList)
+                        {
+                            profile.Active = false;
+                        }
+                    }
+
+                    //Delete log
+                    var logList = dataEntities.Logs.Where(log => log.UserID == userID);
+                    if (logList.Count() > 0)
+                    {
+                        foreach (var l in logList)
+                        {
+                            dataEntities.Logs.DeleteObject(l);
+                        }
+                    }
+
+                    //Set active false for ingroup table
+                    var ingroupList = dataEntities.InGroups.Where(g => g.UserID == userID);
+                    if (ingroupList.Count() > 0)
+                    {
+                        foreach (var ingroup in ingroupList)
+                        {
+                            ingroup.Active = false;
+                        }
+                    }
+
+                    if (dataEntities.SaveChanges() != 0)
+                    {
+                        dbTransaction.Commit();
+                        return 1;
+                    }
+                    else
+                    {
+                        dbTransaction.Rollback();
+                        return 0;
+                    }
+                }
+                catch
+                {
+                    dbTransaction.Rollback();
+                    return 0;
+                }
+                finally
+                {
+                    if (dataEntities.Connection.State == System.Data.ConnectionState.Open)
+                    {
+                        dataEntities.Connection.Close();
+                    }
+                }
             }
         }
 
@@ -71,6 +147,30 @@ namespace WebPortal.Repository
         #endregion
 
         //Ham viet them tai day
+        #region duong
+        public bool CheckUsernameExist(string username)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                try
+                {
+                    var users = dataEntities.Users.Where(user => user.UserName.ToLower() == username.ToLower());
+                    if (users.Count() > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+        #endregion
 
         #region Nhat
         public int GetUserIDByUsername(string userName)

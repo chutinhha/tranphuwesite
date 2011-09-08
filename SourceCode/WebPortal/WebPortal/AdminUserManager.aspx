@@ -3,15 +3,37 @@
 
 <%@ Register TagPrefix="UC" TagName="UserList" Src="~/AdminUsercontrols/UCAdminUserList.ascx" %>
 <%@ Register TagPrefix="UC" TagName="UserDetail" Src="~/AdminUsercontrols/UCAdminUserDetail.ascx" %>
+<%@ Register TagPrefix="UC" TagName="ProfileDetail" Src="~/AdminUsercontrols/UCAdminProfileDetail.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/admin-usermanager.css" rel="Stylesheet" />
     <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('input[name="dateLogin"]').datepicker({
-                dateFormat: 'dd/mm/yy'
+            $("#form1").validate({
+                rules: {
+                    username: {
+                        required: true,
+                        rangelength: [6, 10]
+                    },
+                    password: {
+                        required: true,
+                        rangelength: [6, 10]
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    firstname: {
+                        required: true
+                    },
+                    lastname: {
+                        required: true
+                    }
+                }
             });
-            $('input[name="dateCreate"]').datepicker({
+
+            $('input[name="birthday"]').datepicker({
                 dateFormat: 'dd/mm/yy'
             });
         });
@@ -25,15 +47,22 @@
                     Admin Site</h2>
             </div>
             <div class="box-wrap clear">
-                <% if (Request.QueryString["id"] == null)
+                <% if (Request.QueryString.Count == 0)
                    {%>
-                <!-- TABLE -->
                 <UC:UserList runat="server" ID="UCUserList" />
-                <!-- /#table -->
                 <%}
                    else if (Request.QueryString["type"] != null)
-                   { %>
+                   {
+                       if ((Request.QueryString["id"] != null && Request.QueryString["type"].ToString() == "edit") || Request.QueryString["type"].ToString() == "new" ||
+                           (Request.QueryString["id"] != null && Request.QueryString["type"].ToString() == "delete"))
+                       { %>
                 <UC:UserDetail runat="server" ID="UserDetail" />
+                <%}
+                       else if (Request.QueryString["id"] != null && (Request.QueryString["type"].ToString() == "editprofile" || Request.QueryString["type"].ToString() == "newprofile"
+                           || Request.QueryString["type"].ToString() == "deleteprofile"))
+                       {%>
+                <UC:ProfileDetail runat="server" ID="UCProfileDetail" />
+                <%} %>
                 <%} %>
                 <!-- end of box-wrap -->
             </div>

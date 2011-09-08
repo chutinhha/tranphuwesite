@@ -83,6 +83,71 @@ namespace Libs
             }
         }
 
+        public static bool UploadFile(HttpPostedFile objectFile, string pathDirectory, ref string errorMess, ref string fileName, string formatFileName, int maxSize)
+        {
+            if (objectFile.FileName != "")
+            {
+                HttpPostedFile postfile = objectFile;
+                //Lấy tên phần mở rộng của File được Upload
+                string fileExtension = Path.GetExtension(postfile.FileName).ToLower();
+                fileExtension = fileExtension.Substring(1, fileExtension.Length - 1);//.jpg->jpg
+                /*----------Kiem tra pham mo rong file-----*/
+                if (formatFileName != "")
+                {
+                    if (CheckExtention(formatFileName, fileExtension) == false)//Not exits
+                    {
+                        errorMess = "Chỉ được chọn file  theo yêu cầu : " + formatFileName;
+                        return false;
+                    }
+                }
+                int fileSize = postfile.ContentLength;
+                if (fileSize == 0)
+                {
+                    errorMess = "File không có dung lượng !";
+                    return false;
+                }
+
+                if (fileSize > maxSize)
+                {
+                    errorMess = "Chỉ upload những file có dung lượng <= " + (maxSize / 1000).ToString() + "KB";
+                    return false;
+                }
+
+                fileName = (fileName == string.Empty) ? LibSecurity.RandomFileName() + "." + fileExtension : fileName + LibSecurity.RandomFileName() + "." + fileExtension;
+                //Ghi file mới
+                try
+                {
+                    byte[] dataFile = new byte[fileSize];
+                    postfile.InputStream.Read(dataFile, 0, fileSize);
+
+                    FileStream newFile = new FileStream(HttpContext.Current.Server.MapPath(pathDirectory + fileName), FileMode.Create);
+                    newFile.Write(dataFile, 0, fileSize);
+                    newFile.Close();
+                    errorMess = "Upload thành công!";
+                    return true;
+                }
+                catch //(Exception e)
+                {
+                    try
+                    {
+                        LibUlti.DeleteFile(pathDirectory + fileName);
+                        errorMess = "Lỗi trong khi Upload!";// +e.Message;
+                        return false;
+                    }
+                    catch //(Exception ex)
+                    {
+                        errorMess = "Đường dẫn không đúng ! ";// +ex.Message;
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                errorMess = "Hãy chọn file để upload!";
+                return false;
+            }
+        }
+
         /// <summary>
         /// Check file extention 
         /// </summary>
@@ -96,6 +161,12 @@ namespace Libs
                 if (e.ToLower() == ext.ToLower())
                     return true;
             return false;
+        }
+
+        public static string GetExtention(string filename)
+        {
+            List<string> listFormat = ListSpilit(filename, '.');
+            return listFormat[listFormat.Count() - 1];
         }
 
         public static List<string> ListSpilit(string listFormat, char sperator)
