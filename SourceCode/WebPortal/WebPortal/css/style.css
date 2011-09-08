@@ -1,50 +1,62 @@
-﻿* {
+﻿*
+{
 	margin: 0;
 	padding: 0;
 }
-img {
+img
+{
 	border: 0;
 }
-body {
+body
+{
 	margin: 0 auto;
 	width: 1000px;
 	background: #fff url('../images/bigBg.jpg') repeat-y center center;
 }
-#wrapper {
+#wrapper
+{
 	margin: 0 auto;
 	width: 960px;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	font-size: 13px;
 	color: #434343;
 }
-.banner {
+.banner
+{
 }
-.banner img {
+
+.banner img
+{
 	border: 0;
 	margin: 10px 0;
 }
 
-.menuBar{
-	margin-bottom:8px;
+.menuBar
+{
+	margin-bottom: 8px;
 }
-ul#nav {
+ul#nav
+{
 	list-style: none;
 	float: left;
-	font-weight:normal;
+	font-weight: normal;
 }
-ul#nav li {
+ul#nav li
+{
 	overflow: hidden;
 	float: left;
 	height: 29px;
-	font-size:15px;
-	-webkit-border-radius:3px;
-	-moz-border-radius:3px;
+	font-size: 15px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
 }
-ul#nav .active{
+ul#nav .active
+{
 	background-position: left -40px;
-	color:blue;
+	color: blue;
 }
-ul#nav a, ul#nav span {
+ul#nav a, ul#nav span
+{
 	padding: 5px 15px;
 	float: left;
 	clear: both;
@@ -55,195 +67,325 @@ ul#nav a, ul#nav span {
 	height: 20px;
 	background: url('../images/menubar-bg.gif') repeat-x top center;
 }
-ul#nav a {
+ul#nav a
+{
 	color: white;
-	background-position: left bottom;	
+	background-position: left bottom;
 }
-ul#nav span {
+ul#nav span
+{
 	background-position: left top;
 }
 /*------------------------------------------------------------------------------*/
-.leftColumn { }
-.leftColumn .menu{
-	border:2px #127fc3 solid;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	margin-bottom:20px;
+.leftColumn
+{
 }
-.leftColumn .menu .menuTitle{
-	color:white;
-	font-size:16px;
-	background:url('../images/leftMenutitle-bg.gif') center left;
-	margin:2px;
-	-webkit-border-radius:3px;
-	-moz-border-radius:3px;
-	line-height:28px;
+.leftColumn .menu
+{
+	border: 2px #127fc3 solid;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	margin-bottom: 20px;
 }
-
-.leftColumn .menu .menuTitle .menuTitleGrad{
-	background:url('../images/leftmenu-grad.png') no-repeat bottom right;
-	padding-left:6px;
-}
-.leftColumn .menu .menuItem{
-	margin:6px;
-}
-.leftColumn .menu .menuItem ul{
-	list-style:none;
-}
-.leftColumn .menu .menuItem ul li{	
-	padding-left:6px;
-	font-size:13px;
-	line-height:20px;
-	color:#434343;
-	cursor:pointer;
-}
-.leftColumn .menu .menuItem ul li a{
-	color:#434343;
-	text-decoration:none;
-}
-.leftColumn .menu .menuItem ul li a:hover{
-	color:#1c82c1;
-	text-decoration:none;
+.leftColumn .menu .menuTitle
+{
+	color: white;
+	font-size: 16px;
+	background: url('../images/leftMenutitle-bg.gif') center left;
+	margin: 2px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	line-height: 28px;
 }
 
-.leftColumn .menu .menuItem ul.subMenuitem li{
-	list-style-type:disc;
-	padding-left:0px;
-	margin-left:18px;	
+
+.leftColumn .menu .menuTitle .menuTitleGrad
+{
+	background: url('../images/leftmenu-grad.png') no-repeat bottom right;
+	padding-left: 6px;
 }
-.leftColumn .menu .menuItem ul.subMenuitem li a{
-	color:#666;
-	font-size:12px;
+.leftColumn .menu .menuItem
+{
+	margin: 6px;
 }
-.leftColumn .menu .menuItem ul.subMenuitem li a:hover{
-	color:#1c82c1;
+.leftColumn .menu .menuItem ul
+{
+	list-style: none;
 }
-.subMenuitem{
-	display:none;
+.leftColumn .menu .menuItem ul li
+{
+	padding-left: 6px;
+	font-size: 13px;
+	line-height: 20px;
+	color: #434343;
+	cursor: pointer;
+}
+.leftColumn .menu .menuItem ul li a
+{
+	color: #434343;
+	text-decoration: none;
+}
+.leftColumn .menu .menuItem ul li a:hover
+{
+	color: #1c82c1;
+	text-decoration: none;
 }
 
-.thongKeInfo{
-	line-height:20px;
-	margin:6px 10px;
-	font-size:12px;
+.leftColumn .menu .menuItem ul.subMenuitem li
+{
+	list-style-type: disc;
+	padding-left: 0px;
+	margin-left: 18px;
 }
-.thongKeInfo span{
-	font-weight:bold;
+.leftColumn .menu .menuItem ul.subMenuitem li a
+{
+	color: #666;
+	font-size: 12px;
+}
+.leftColumn .menu .menuItem ul.subMenuitem li a:hover
+{
+	color: #1c82c1;
+}
+.subMenuitem
+{
+	display: none;
+}
+
+.thongKeInfo
+{
+	line-height: 20px;
+	margin: 6px 10px;
+	font-size: 12px;
+}
+.thongKeInfo span
+{
+	font-weight: bold;
 }
 /*------------------------------------------------------------------------------*/
 
-.rightColumn{ }
-.rightColumn .titleBox{
-	border:2px #127fc3 solid;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	margin-bottom:20px;
+.rightColumn
+{
 }
-.rightColumn .titleBox .title{
-	color:white;
-	font-size:16px;
-	background:url('../images/rightTitle-bg.gif') center left;
-	margin:2px;
-	-webkit-border-radius:3px;
-	-moz-border-radius:3px;
-	line-height:28px;
+.rightColumn .titleBox
+{
+	border: 2px #127fc3 solid;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	margin-bottom: 20px;
 }
+.rightColumn .titleBox .title
+{
+	color: white;
+	font-size: 16px;
+	background: url('../images/rightTitle-bg.gif') center left;
+	margin: 2px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	line-height: 28px;
+}
+/*hue------------*/
 .rightColumn .titleBox .title .titleGrad{
 	background:url('../images/rightmenu-grad.png') no-repeat bottom right;
 	padding-left:6px;
+	color:white;
 }
-.rightColumn .titleBox .noiDung{
-	margin:8px;
-	text-align:justify;
+.rightColumn .titleBox .title .titleGrad a{
+	
+	padding-left:6px;
+	text-decoration:none;
+	color:white;
 }
-.rightColumn .titleBox .noiDung .tinTuc{
-	border-bottom:1px #999 dashed;
-	padding-bottom:5px;
-	margin-bottom:10px;
+.rightColumn .titleBox .title .titleGrad a:hover{
+	
+	padding-left:6px;
+	text-decoration:underline;
+	color:white;
+}
+/*----------------*/
+.rightColumn .titleBox .noiDung
+{
+	margin: 8px;
+	text-align: justify;
+}
+.rightColumn .titleBox .noiDung .tinTuc
+{
+	border-bottom: 1px #999 dashed;
+	padding-bottom: 5px;
+	margin-bottom: 10px;
 }
 .rightColumn .titleBox .noiDung .tinTuc .tieuDe{
 	font-size:14px;
 	font-weight:bold;
 	display:block;
 	margin-bottom:5px;
+	color:#434343;
 }
-.rightColumn .titleBox .noiDung .tinTuc .timePost{
-	color:#666; font-size:11px;
-	margin-bottom:8px;
-}
-.rightColumn .titleBox .noiDung .tinTuc .hinhAnh{
-	float:left;
-	margin:0 8px 8px 0;
-}
-.rightColumn .titleBox .noiDung .tinTuc .noiDungTin{
-	margin-bottom:3px;
-}
-.rightColumn .titleBox .noiDung .tinTuc .readmore{
-	text-align:right;
-	line-height:20px;
-	margin-right:5px;
-}
-.rightColumn .titleBox .noiDung .tinTuc .readmore a{
-	color:#127fc3; text-decoration:none;
-	font-size:11px;
-}
-.rightColumn .titleBox .noiDung .tinTuc .readmore a:hover{
-	color:#127fc3; text-decoration:underline;
-}
-.rightColumn .titleBox .noiDung .noneBorder{
-	border:0;
-}
-/*---------------------------------------------------------------*/
-.rightColumn .titleBox .trangTin{
-	margin:8px;
-	text-align:justify;
-}
-.rightColumn .titleBox .trangTin .tinTuc{	
-	padding-bottom:5px;
-	margin-bottom:10px;
-}
-.rightColumn .titleBox .trangTin .tinTuc .tieuDe{
-	font-size:14px;
+.rightColumn .titleBox .noiDung .tinTuc .tieuDe a
+{
+font-size:14px;
 	font-weight:bold;
 	display:block;
 	margin-bottom:5px;
+color:#434343;
+	text-decoration: none;
 }
-.rightColumn .titleBox .trangTin .tinTuc .timePost{
-	color:#666; font-size:11px;
-	margin-bottom:8px;
-	float:left;
-	display:inline;
-	width:70%;
-}
-.rightColumn .titleBox .trangTin .tinTuc .hinhAnh{
-	float:left;
-	margin:0 8px 8px 0;
-}
-.rightColumn .titleBox .trangTin .tinTuc .noiDungTin{
-	margin-bottom:3px;
-}
-.rightColumn .titleBox .trangTin .tinTuc .noiDungTin img{
-	margin:10px 0;
-}
-.rightColumn .titleBox .trangTin .printer{
-	float:right;
-	display:inline;	
-	width:50px;
-	background:url('../images/printer.jpeg') no-repeat center left;
-	padding-left:25px;
-}
-.rightColumn .titleBox .trangTin .printer a{
+.rightColumn .titleBox .noiDung .tinTuc .tieuDe a:hover
+{
+	
 	color:#434343;
-	text-decoration:none;
+	text-decoration: underline
+	}
+
+.rightColumn .titleBox .noiDung .tinTuc .timePost
+{
+	color: #666;
+	font-size: 11px;
+	margin-bottom: 8px;
 }
-.rightColumn .titleBox .trangTin .printer a:hover{
-	color:#127fc3;
-	text-decoration:none;
+.rightColumn .titleBox .noiDung .tinTuc .hinhAnh
+{
+	float: left;
+	margin: 0 8px 8px 0;
+}
+.rightColumn .titleBox .noiDung .tinTuc .noiDungTin
+{
+	margin-bottom: 3px;
+}
+.rightColumn .titleBox .noiDung .tinTuc .readmore
+{
+	text-align: right;
+	line-height: 20px;
+	margin-right: 5px;
+}
+.rightColumn .titleBox .noiDung .tinTuc .readmore a
+{
+	
+}
+.rightColumn .titleBox .noiDung .tinTuc .readmore a:hover
+{
+	color: #127fc3;
+	text-decoration: underline;
+}
+.rightColumn .titleBox .noiDung .noneBorder
+{
+	border: 0;
+}
+/*---------------------------------------------------------------*/
+.rightColumn .titleBox .trangTin
+{
+	margin: 8px;
+	text-align: justify;
+}
+.rightColumn .titleBox .trangTin .tinTuc
+{
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+}
+.rightColumn .titleBox .trangTin .tinTuc .tieuDe
+{
+	font-size: 14px;
+	font-weight: bold;
+	display: block;
+	margin-bottom: 5px;
+}
+.rightColumn .titleBox .trangTin .tinTuc .timePost
+{
+	color: #666;
+	font-size: 11px;
+	margin-bottom: 8px;
+	float: left;
+	display: inline;
+	width: 70%;
+}
+.rightColumn .titleBox .trangTin .tinTuc .hinhAnh
+{
+	float: left;
+	margin: 0 8px 8px 0;
+}
+.rightColumn .titleBox .trangTin .tinTuc .noiDungTin
+{
+	margin-bottom: 3px;
+}
+.rightColumn .titleBox .trangTin .tinTuc .noiDungTin img
+{
+	margin: 10px 0;
+}
+.rightColumn .titleBox .trangTin .printer
+{
+	float: right;
+	display: inline;
+	width: 50px;
+	background: url('../images/printer.jpeg') no-repeat center left;
+	padding-left: 25px;
+}
+.rightColumn .titleBox .trangTin .printer a
+{
+	color: #434343;
+	text-decoration: none;
+}
+.rightColumn .titleBox .trangTin .printer a:hover
+{
+	color: #127fc3;
+	text-decoration: none;
 }
 
 
 
 
-.footer{
-	bottom:0px;
+.footer
+{
+	bottom: 0px;
 }
+/*hue----------------------------*/
+.danhSachTin
+{
+	margin: 10px 0 30px 0;
+}
+.avatar
+{
+	display: inline;
+	float: left;
+	width: 180px;
+	margin-right: 10px;
+}
+
+.hinhAvatar, .hinhAvatar img
+{
+	max-width: 130px;
+	max-height: 170px;
+	margin-left: 10px;
+}
+.tenGiaoVien
+{
+	margin: 10px 0;
+	text-align: center;
+	font-weight: bold;
+	color: #ff8c26;
+}
+.chucVu
+{
+	font-weight: bold;
+	color: #666;
+	text-align: center;
+}
+.thongTinCaNhan
+{
+	display: inline;
+	line-height: 20px;
+}
+
+.tieuDeTTCaNhan
+{
+	font-weight: bold;
+	width: 120px;
+	color: #666;
+	margin-right: 10px;
+	line-height: 24px;
+}
+hr
+{
+	width: auto;
+	color: inherit;
+	margin: 10px;
+}
+
