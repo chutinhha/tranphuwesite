@@ -16,7 +16,12 @@ namespace WebPortal.AdminUsercontrols
 
         protected void ThemNhom_Click(object sender, ImageClickEventArgs e)
         {
+            Response.Redirect(@"AdminGroupsManager.aspx?id=0&type=new");
+        }
 
+        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("AdminGroupsManager.aspx");
         }
     }
 }
