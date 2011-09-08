@@ -8,7 +8,7 @@ img {
 body {
 	margin: 0 auto;
 	width: 1000px;
-	background: #fff url('../images/bigBg.jpg') repeat-y center center;
+	background:#fff url('../images/bigBg.jpg') repeat-y center center;
 }
 #wrapper {
 	margin: 0 auto;
@@ -37,6 +37,7 @@ ul#nav li {
 	float: left;
 	height: 29px;
 	font-size:15px;
+	font-weight:bold;
 	-webkit-border-radius:3px;
 	-moz-border-radius:3px;
 }
@@ -83,20 +84,25 @@ ul#nav span {
 .leftColumn .menu .menuTitle .menuTitleGrad{
 	background:url('../images/leftmenu-grad.png') no-repeat bottom right;
 	padding-left:6px;
+	font-weight:bold;
 }
 .leftColumn .menu .menuItem{
 	margin:6px;
+	color:black;
 }
 .leftColumn .menu .menuItem ul{
 	list-style:none;
 }
 .leftColumn .menu .menuItem ul li{	
-	padding-left:6px;
+	padding-left:0px;
 	font-size:13px;
+	margin-left:16px;
 	line-height:20px;
 	color:#434343;
 	cursor:pointer;
+	list-style-image:url('../images/bullet.gif');
 }
+
 .leftColumn .menu .menuItem ul li a{
 	color:#434343;
 	text-decoration:none;
@@ -151,6 +157,7 @@ ul#nav span {
 .rightColumn .titleBox .title .titleGrad{
 	background:url('../images/rightmenu-grad.png') no-repeat bottom right;
 	padding-left:6px;
+	font-weight:bold;
 }
 .rightColumn .titleBox .noiDung{
 	margin:8px;
@@ -167,8 +174,15 @@ ul#nav span {
 	display:block;
 	margin-bottom:5px;
 }
+.rightColumn .titleBox .noiDung .tinTuc .tieuDe a{
+	color:#434343;
+	text-decoration:none;
+}
+.rightColumn .titleBox .noiDung .tinTuc .tieuDe a:hover{
+	color:#2197E0;
+}
 .rightColumn .titleBox .noiDung .tinTuc .timePost{
-	color:#666; font-size:11px;
+	color:#888; font-size:11px;
 	margin-bottom:8px;
 }
 .rightColumn .titleBox .noiDung .tinTuc .hinhAnh{
@@ -239,6 +253,28 @@ ul#nav span {
 .rightColumn .titleBox .trangTin .printer a:hover{
 	color:#127fc3;
 	text-decoration:none;
+}
+
+.rightColumn .titleBox .trangTin  .cacTinKhac{
+	margin:50px 0;
+}
+.rightColumn .titleBox .trangTin  .cacTinKhac div{
+	font-weight:bold;
+	padding:3px;
+	font-size:14px;
+	color:#0066CC;
+}
+.rightColumn .titleBox .trangTin  .cacTinKhac ul{
+	list-style-image:url('../images/bullet.gif');
+	margin:10px 0 10px 30px;
+	line-height:20px;
+}
+.rightColumn .titleBox .trangTin  .cacTinKhac ul li{ }
+.rightColumn .titleBox .trangTin  .cacTinKhac ul li a{
+	color:#434343; text-decoration:none;
+}
+.rightColumn .titleBox .trangTin  .cacTinKhac ul li a:hover{
+	color:#127fc3; text-decoration:underline;
 }
 
 
