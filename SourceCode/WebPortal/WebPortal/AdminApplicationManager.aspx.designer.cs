@@ -19,7 +19,7 @@ namespace WebPortal {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebPortal.AdminUsercontrols.AdminApplicationList UCAppList;
+        protected global::WebPortal.AdminUsercontrols.UCAdminApplicationList UCAppList;
         
         /// <summary>
         /// UCAppDetail control.
@@ -28,6 +28,6 @@ namespace WebPortal {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebPortal.AdminUsercontrols.AdminApplicationDetail UCAppDetail;
+        protected global::WebPortal.AdminUsercontrols.UCAdminApplicationDetail UCAppDetail;
     }
 }
