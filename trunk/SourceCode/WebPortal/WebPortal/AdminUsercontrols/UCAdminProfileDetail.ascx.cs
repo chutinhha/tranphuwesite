@@ -35,10 +35,7 @@ namespace WebPortal.AdminUsercontrols
                 profile.LastName = Request.Form["lastname"].ToString();
             }
 
-            if (!string.IsNullOrWhiteSpace(Request.Form["position"].ToString()))
-            {
-                profile.Position = Request.Form["position"].ToString();
-            }
+            profile.Position = Request.Form["position"].ToString();
 
             if (Request.Files[0] != null)
             {
@@ -63,51 +60,21 @@ namespace WebPortal.AdminUsercontrols
                 profile.Image = "/Resources/Images/" + fileName;
             }
 
-            if (!string.IsNullOrWhiteSpace(Request.Form["address"].ToString()))
-            {
-                profile.Address = Request.Form["address"].ToString();
-            }
-            if (!string.IsNullOrWhiteSpace(Request.Form["phone"].ToString()))
-            {
-                profile.Phone = Request.Form["phone"].ToString();
-            }
+            profile.Address = Request.Form["address"].ToString();
+            profile.Phone = Request.Form["phone"].ToString();
 
-            if (!string.IsNullOrWhiteSpace(Request.Form["genre"]))
-            {
-                if (Request.Form["genre"].ToString() == "male")
-                {
-                    profile.Genre = "Nam";
-                }
-                else
-                {
-                    profile.Genre = "Nữ";
-                }
-            }
-            else
+            if (Request.Form["genre"].ToString() == "male")
             {
                 profile.Genre = "Nam";
             }
-
-            if (!string.IsNullOrWhiteSpace(Request.Form["ethnic"].ToString()))
+            else
             {
-                profile.Ethnic = Request.Form["ethnic"].ToString();
+                profile.Genre = "Nữ";
             }
 
-
-            if (!string.IsNullOrWhiteSpace(Request.Form["religion"].ToString()))
-            {
-                profile.Religion = Request.Form["religion"].ToString();
-            }
-
-            if (!string.IsNullOrWhiteSpace(Request.Form["phone"].ToString()))
-            {
-                profile.Phone = Request.Form["phone"].ToString();
-            }
-
-            if (!string.IsNullOrWhiteSpace(Request.Form["birthday"].ToString()))
-            {
-                profile.Birdthday = Libs.LibConvert.ConvertToDateTime(Request.Form["birthday"].ToString(), DateTime.Now);
-            }
+            profile.Ethnic = Request.Form["ethnic"].ToString();
+            profile.Religion = Request.Form["religion"].ToString();
+            profile.Birdthday = Libs.LibConvert.ConvertToDateTime(Request.Form["birthday"].ToString(), DateTime.Now);
 
             if (Request.Form["active"].ToString() == "on")
             {
@@ -146,11 +113,7 @@ namespace WebPortal.AdminUsercontrols
             {
                 profile.LastName = Request.Form["lastname"].ToString();
             }
-
-            if (!string.IsNullOrWhiteSpace(Request.Form["position"].ToString()))
-            {
-                profile.Position = Request.Form["position"].ToString();
-            }
+            profile.Position = Request.Form["position"].ToString();
 
             if (Request.Files[0] != null)
             {
@@ -164,20 +127,9 @@ namespace WebPortal.AdminUsercontrols
                 profile.Image = "/Resources/Images/" + fileName;
             }
 
-            if (!string.IsNullOrWhiteSpace(Request.Form["address"].ToString()))
-            {
-                profile.Address = Request.Form["address"].ToString();
-            }
-            if (!string.IsNullOrWhiteSpace(Request.Form["phone"].ToString()))
-            {
-                profile.Phone = Request.Form["phone"].ToString();
-            }
-
-            if (!string.IsNullOrWhiteSpace(Request.Form["birthday"].ToString()))
-            {
-                profile.Birdthday = Libs.LibConvert.ConvertToDateTime(Request.Form["birthday"].ToString(), DateTime.Now);
-            }
-
+            profile.Address = Request.Form["address"].ToString();
+            profile.Phone = Request.Form["phone"].ToString();
+            profile.Birdthday = Libs.LibConvert.ConvertToDateTime(Request.Form["birthday"].ToString(), DateTime.Now);
             if (!string.IsNullOrWhiteSpace(Request.Form["genre"]))
             {
                 if (Request.Form["genre"].ToString() == "male")
@@ -194,21 +146,8 @@ namespace WebPortal.AdminUsercontrols
                 profile.Genre = "Nam";
             }
 
-            if (!string.IsNullOrWhiteSpace(Request.Form["ethnic"].ToString()))
-            {
-                profile.Ethnic = Request.Form["ethnic"].ToString();
-            }
-
-
-            if (!string.IsNullOrWhiteSpace(Request.Form["religion"].ToString()))
-            {
-                profile.Religion = Request.Form["religion"].ToString();
-            }
-
-            if (!string.IsNullOrWhiteSpace(Request.Form["phone"].ToString()))
-            {
-                profile.Phone = Request.Form["phone"].ToString();
-            }
+            profile.Ethnic = Request.Form["ethnic"].ToString();
+            profile.Religion = Request.Form["religion"].ToString();
 
             if (Request.Form["active"].ToString() == "on")
             {
