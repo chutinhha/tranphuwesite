@@ -40,7 +40,8 @@
                 Hình ảnh
             </th>
             <td>
-                <image src="<%=profile.Image %>" alt="" title="Hình ảnh" style="max-height:100px; max-width:100px; border:1px solid #ccc"/>
+                <image src="<%=profile.Image %>" alt="" title="Hình ảnh" style="max-height: 100px;
+                    max-width: 100px; border: 1px solid #ccc" />
                 <p>
                     Chọn ảnh
                     <input type="file" id="inputFile" runat="server" />
@@ -217,7 +218,7 @@
             <td>
                 <p>
                     Chọn ảnh
-                    <input type="file" name="inputFile1"/>
+                    <input type="file" name="inputFile1" />
                 </p>
             </td>
             <td>
@@ -327,7 +328,8 @@
             {%>
         <input type="submit" value="Tạo mới" id="new" class="button" name="new" />
         <%} %>
-        <input value="Quay về" onclick="window.location.href='AdminUserManager.aspx?id=<%=Request.QueryString["id"]%>&type=edit'" class="button" />
+        <input value="Quay về" onclick="window.location.href='AdminUserManager.aspx?id=<%=Request.QueryString["id"]%>&type=edit'"
+            class="button" />
     </div>
 </div>
 <% string notificatedMessage = string.Empty; %>

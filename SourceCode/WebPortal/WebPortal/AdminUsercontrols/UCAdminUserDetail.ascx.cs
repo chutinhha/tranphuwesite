@@ -38,15 +38,8 @@ namespace WebPortal.AdminUsercontrols
                 user.LastPasswordChange = DateTime.Now;
             }
 
-            if (!string.IsNullOrWhiteSpace(Request.Form["user-string"].ToString()))
-            {
-                user.User_ToString = Request.Form["user-string"].ToString();
-            }
-
-            if (!string.IsNullOrWhiteSpace(Request.Form["description"].ToString()))
-            {
-                user.Type = Request.Form["description"].ToString();
-            }
+            user.User_ToString = Request.Form["user-string"].ToString();
+            user.Type = Request.Form["description"].ToString();
 
             if (Request.Form["active"].ToString() == "on")
             {
@@ -95,15 +88,8 @@ namespace WebPortal.AdminUsercontrols
                 user.LastPasswordChange = DateTime.Now;
             }
 
-            if (!string.IsNullOrWhiteSpace(Request.Form["user-string"].ToString()))
-            {
-                user.User_ToString = Request.Form["user-string"].ToString();
-            }
-
-            if (!string.IsNullOrWhiteSpace(Request.Form["description"].ToString()))
-            {
-                user.Type = Request.Form["description"].ToString();
-            }
+            user.User_ToString = Request.Form["user-string"].ToString();
+            user.Type = Request.Form["description"].ToString();
 
             if (Request.Form["active"].ToString() == "on")
             {
