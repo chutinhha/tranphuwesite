@@ -30,7 +30,8 @@ namespace WebPortal
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
                 dataEntities.AddToTaiNguyens(taiNguyen);
-                return dataEntities.SaveChanges();
+                dataEntities.SaveChanges();
+                return taiNguyen.IDTaiNguyen;
             }
         }
 
