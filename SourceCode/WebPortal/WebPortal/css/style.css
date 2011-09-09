@@ -70,15 +70,23 @@ ul#nav span {
 	-webkit-border-radius:5px;
 	-moz-border-radius:5px;
 	margin-bottom:20px;
+	float:left;
+	width:100%;
 }
 .leftColumn .menu .menuTitle{
 	color:white;
 	font-size:16px;
-	background:url('../images/leftMenutitle-bg.gif') center left;
+	background:url('../images/leftMenutitle-bg.jpg') center left;
 	margin:2px;
 	-webkit-border-radius:3px;
 	-moz-border-radius:3px;
 	line-height:28px;
+}
+.titleBox .title .titleGrad a{
+	color:white; text-decoration:none;
+}
+.titleBox .title .titleGrad a:hover{
+	color:white; text-decoration:none;
 }
 
 .leftColumn .menu .menuTitle .menuTitleGrad{
@@ -148,7 +156,7 @@ ul#nav span {
 .rightColumn .titleBox .title{
 	color:white;
 	font-size:16px;
-	background:url('../images/rightTitle-bg.gif') center left;
+	background:url('../images/rightTitle-bg.jpg') center left;
 	margin:2px;
 	-webkit-border-radius:3px;
 	-moz-border-radius:3px;
@@ -334,5 +342,9 @@ hr
 
 
 .footer{
-	bottom:0px;
+	width:1000px; margin:0 auto; margin-top:30px;
+	height:50px; background:url('../images/footer.jpg') repeat-x top center;
+	text-align:center;
+	padding-top:25px; color:#888; font-family:Verdana, Geneva, Tahoma, sans-serif;
+	font-size:11px;
 }
