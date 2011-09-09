@@ -63,8 +63,8 @@ namespace WebPortal.Repository
                 return dataEntities.SaveChanges();
             }
         }
-        
-      
+
+
 
         public List<Model.Group> Paging(int start, int numberRecords)
         {
@@ -76,6 +76,7 @@ namespace WebPortal.Repository
         #endregion
 
         //Ham viet them tai day
+
         #region Nhat
         public int Delete(int groupID)
         {
@@ -85,8 +86,8 @@ namespace WebPortal.Repository
                 currentG.Active = false;
                 return dataEntities.SaveChanges();
             }
-        }  
+        }
         #endregion
-      
+
     }
 }

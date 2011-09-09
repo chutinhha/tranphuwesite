@@ -327,7 +327,7 @@
             {%>
         <input type="submit" value="Tạo mới" id="new" class="button" name="new" />
         <%} %>
-        <input value="Quay về" id="back" class="button" />
+        <input value="Quay về" onclick="window.location.href='AdminUserManager.aspx?id=<%=Request.QueryString["id"]%>&type=edit'" class="button" />
     </div>
 </div>
 <% string notificatedMessage = string.Empty; %>

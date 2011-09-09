@@ -22,13 +22,13 @@ namespace WebPortal {
         protected global::WebPortal.AdminUsercontrols.UCAdminUserList UCUserList;
         
         /// <summary>
-        /// UserDetail control.
+        /// UserList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebPortal.AdminUsercontrols.UCAdminUserEdit UserDetail;
+        protected global::WebPortal.AdminUsercontrols.UCAdminUserList UserList;
         
         /// <summary>
         /// UCProfileDetail control.

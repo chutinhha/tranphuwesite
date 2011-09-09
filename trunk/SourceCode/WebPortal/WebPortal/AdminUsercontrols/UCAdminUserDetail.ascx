@@ -4,7 +4,7 @@
 <table class="style1">
     <!-- Edit User -->
     <% WebPortal.Model.User user = null; %>
-    <% if (Request.QueryString["type"].ToString() == "edit")
+    <% if (Request.QueryString["type"].ToString() == "edit" || Request.QueryString["type"].ToString() == "deleteprofile")
        { %>
     <% user = GetUserByID(Libs.LibConvert.ConvertToInt(Request.QueryString["id"], 0)); %>
     <% if (user != null)
@@ -173,7 +173,7 @@
     <!-- // New User -->
     <%} %>
 </table>
-<% if (Request.QueryString["type"].ToString() == "edit")
+<% if (Request.QueryString["type"] == "edit" || Request.QueryString["type"] == "deleteprofile")
    {
        if (user != null)
        {
@@ -244,9 +244,10 @@
                 <%} %>
             </td>
             <td>
-                <a href="AdminUserManager.aspx?id=<%=user.UserID %>&type=deleteprofile">
+                <a href="AdminUserManager.aspx?id=<% = user.UserID%>&type=deleteprofile&profileID=<%=profile.ProfileID %>" onclick="return confirm('Bạn có chắc chắn muốn xóa profile của  <%=profile.LastName+" "+profile.FirstName %>')">
                     <img src="images/ico_delete_16.png" class="icon16 fl-space2 usermanager-command"
-                        alt="" title="Xóa profile" /></a> <a href="AdminUserManager.aspx?id=<%=profile.ProfileID %>&type=editprofile">
+                        alt="" title="Xóa profile" /></a> 
+                <a href="AdminUserManager.aspx?id=<%=profile.ProfileID %>&type=editprofile">
                             <img src="images/ico_settings_16.png" class="icon16 fl-space2 usermanager-command"
                                 alt="" title="Chỉnh sửa profile" /></a>
             </td>
@@ -259,17 +260,18 @@
     Thêm profile</a><br />
 <%} %>
 <%} %>
+<br /><br />
 <div class="tab-footer clear">
     <div class="fr">
-        <% if (Request.QueryString["type"].ToString() == "edit")
+        <% if (Request.QueryString["type"] == "edit" || Request.QueryString["type"] == "deleteprofile")
            {%>
         <input type="submit" value="Lưu thay đổi" id="save" name="save" class="button" />
         <%} %>
-        <% else if (Request.QueryString["type"].ToString() == "new")
+        <% else if (Request.QueryString["type"] == "new")
             {%>
         <input type="submit" value="Tạo mới" id="new" name="new" class="button" />
         <%} %>
-        <input value="Quay về trang chính" id="back" class="button" />
+        <input value="Quay về trang chính" id="back" class="button"/>
     </div>
 </div>
 <% string notificatedMessage = string.Empty; %>
@@ -327,34 +329,5 @@
             <%=notificatedMessage %></strong>.</p>
 </div>
 <%} %>
-<%}
-
-    else if (Request.QueryString["type"].ToString() == "delete")
-    {
-        if (Request.QueryString["id"] != null)
-        {
-            int id = Libs.LibConvert.ConvertToInt(Request.QueryString["id"], 0);
-            if (DeleteUser(id, ref notificatedMessage))
-            { %>
-<!-- NOTIFICATIONS (Thong bao)-->
-<div class="notification note-success">
-    <a href="#" class="close" title="Close notification">close</a>
-    <p>
-        <strong>
-            <%=notificatedMessage%></strong></p>
-</div>
-<%
-}
-        }
-        else
-        {
-%>
-<div class="notification note-error">
-    <a href="#" class="close" title="Close notification">close</a>
-    <p>
-        <strong>
-            <%=notificatedMessage%></strong>.</p>
-</div>
-<%} %>
-<%} %>
+<%}%>
 </form>

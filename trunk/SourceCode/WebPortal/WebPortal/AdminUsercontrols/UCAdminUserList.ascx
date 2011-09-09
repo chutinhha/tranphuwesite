@@ -7,12 +7,12 @@
     </p>
     <form method="post" action="#">
     <% List<WebPortal.Model.User> list = GetAllUsers();
-    %>
+        %>
     <table class="style1 datatable">
         <thead>
             <tr>
                 <th class="bSortable">
-                    <input type="checkbox" class="checkbox select-all" />
+                   <%-- <input type="checkbox" class="checkbox select-all" />--%> ID
                 </th>
                 <th>
                     Username
@@ -39,10 +39,10 @@
                 if (list != null)
                 {
                     foreach (var user in list)
-                    { %>
+                    {%>
             <tr>
                 <td>
-                    <input type="checkbox" class="checkbox" />
+                    <%=user.UserID %>
                 </td>
                 <td>
                     <%=user.UserName %>
@@ -60,12 +60,11 @@
                     <%=user.Type %>
                 </td>
                 <td>
-                    <a href="AdminUserManager.aspx?id=<%=user.UserID %>&type=delete" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?')">
+                    <a href="AdminUserManager.aspx?id=<%=user.UserID %>&type=delete" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng có mã <%=user.UserID %>?')">
                         <img src="images/ico_delete_16.png" class="icon16 fl-space2 usermanager-command"
-                            alt="" title="Xóa" /></a>
-                    <a href="AdminUserManager.aspx?id=<%=user.UserID %>&type=edit">
-                        <img src="images/ico_settings_16.png" class="icon16 fl-space2 usermanager-command"
-                            alt="" title="Chỉnh sửa profile" /></a>
+                            alt="" title="Xóa" /></a> <a href="AdminUserManager.aspx?id=<%=user.UserID %>&type=edit">
+                                <img src="images/ico_settings_16.png" class="icon16 fl-space2 usermanager-command"
+                                    alt="" title="Chỉnh sửa profile" /></a>
                 </td>
             </tr>
             <%} %>

@@ -128,21 +128,6 @@ namespace WebPortal.AdminUsercontrols
             }
         }
 
-        public bool DeleteUser(int id, ref string notificatedMessage)
-        {
-            return false;
-            //if (userRepository.Delete(id) != 0)
-            //{
-            //    notificatedMessage = "Đã xóa người dùng có mã" + id;
-            //    return true;
-            //}
-            //else
-            //{
-            //    notificatedMessage = "Xóa không thành công, vui lòng thử lại";
-            //    return false;
-            //}
-        }
-
         public WebPortal.Model.User GetUserByID(int id)
         {
             return userRepository.Single(id);
