@@ -26,35 +26,32 @@
     <div class="pagetop">
         <div class="head pagesize">
             <!-- *** head layout *** -->
+            <% if (Libs.LibSession.Get(Libs.Constants.ACCOUNT_LOGIN) != null)
+               { %>
             <div class="head_top">
                 <div class="topbuts">
                     <ul class="clear">
-                        <li><a href="" class="red">Đăng xuất</a></li>
+                        <li><a href="AdminLogin.aspx?logout=1" class="red">Đăng xuất</a></li>
                     </ul>
                     <div class="user clear">
                         <img src="images/avatar.jpg" class="avatar" alt="" />
-                        <span class="user-detail"><span class="name">Xin chào Ruby</span> <span class="text">
-                            Đăng nhập với tài khoản admin</span> </span>
+                        <span class="user-detail"><span class="name">Xin chào
+                            <%=Libs.LibSession.Get(Libs.Constants.ACCOUNT_LOGIN)%></span> </span>
                     </div>
                 </div>
                 <div class="logo clear">
                     <a href="#" title="">
                         <img src="images/logo_earth.png" alt="" class="picture" />
-                        <span class="textlogo"><span class="title">Web Portal</span> <span class="text">admin
-                            page</span> </span></a>
+                        <span class="textlogo"><span class="title">Web Portal</span> <span class="text">Trang admin trường THPT Trần Phú</span> </span></a>
                 </div>
             </div>
+            <%} %>
             <div class="menu">
                 <ul class="clear">
                     <li class="active"><a href="">Quản lý phân quyền</a>
                         <ul>
-                            <li><a href="">Quản lý thông tin người dùng</a>
-                                <ul>
-                                    <li><a href="">Profiles</a></li>
-                                    <li><a href="">Xem log</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="">Quản lý nhóm</a> </li>
+                            <li><a href="AdminUserManager.aspx">Quản lý người dùng</a> </li>
+                            <li><a href="AdminGroupsManager.aspx">Quản lý nhóm</a> </li>
                             <li><a href="">Quản lý quyền</a> </li>
                             <li><a href="">Quản lý truy cập file</a></li>
                             <li><a href="">Phân quyền người dùng</a>

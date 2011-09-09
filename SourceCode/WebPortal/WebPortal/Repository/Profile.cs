@@ -21,7 +21,7 @@ namespace WebPortal.Repository
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.Profiles.ToList();
+                return dataEntities.Profiles.Where(p => p.Active == true).ToList();
             }
         }
 
@@ -59,12 +59,20 @@ namespace WebPortal.Repository
             }
         }
 
-        public int Delete(Model.Profile profile)
+        public int Delete(int id)
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                dataEntities.DeleteObject(profile);
-                return dataEntities.SaveChanges();
+                try
+                {
+                    var profile = dataEntities.Profiles.Single(p => p.ProfileID == id);
+                    profile.Active = false;
+                    return dataEntities.SaveChanges();
+                }
+                catch
+                {
+                    return 0;
+                }
             }
         }
 
@@ -78,12 +86,14 @@ namespace WebPortal.Repository
         #endregion
 
         //Ham viet them tai day
+        #region Duong
         public List<Model.Profile> AllByUserID(int userID)
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.Profiles.Where(pro => pro.UserID == userID).ToList();
+                return dataEntities.Profiles.Where(pro => pro.UserID == userID && pro.Active == true).ToList();
             }
         }
+        #endregion
     }
 }

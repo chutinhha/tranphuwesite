@@ -14,7 +14,14 @@ namespace WebPortal.Repository
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.Users.Single(user => user.UserID == userID);
+                try
+                {
+                    return dataEntities.Users.Single(user => user.UserID == userID);
+                }
+                catch
+                {
+                    return null;
+                }
             }
         }
 
@@ -22,7 +29,7 @@ namespace WebPortal.Repository
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.Users.ToList();
+                return dataEntities.Users.Where(user => user.Active == true).ToList();
             }
         }
 
@@ -60,6 +67,40 @@ namespace WebPortal.Repository
                 catch
                 {
                     return 0;
+                }
+            }
+        }
+
+        public List<Model.User> Paging(int start, int numberRecords)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                return dataEntities.Users.Skip(start).Take(numberRecords).ToList();
+            }
+        }
+        #endregion
+
+        //Ham viet them tai day
+        #region duong
+        public bool CheckUsernameExist(string username)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                try
+                {
+                    var users = dataEntities.Users.Where(user => user.UserName.ToLower() == username.ToLower());
+                    if (users.Count() > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch
+                {
+                    return false;
                 }
             }
         }
@@ -137,25 +178,14 @@ namespace WebPortal.Repository
             }
         }
 
-        public List<Model.User> Paging(int start, int numberRecords)
-        {
-            using (WebPortalEntities dataEntities = new WebPortalEntities())
-            {
-                return dataEntities.Users.Skip(start).Take(numberRecords).ToList();
-            }
-        }
-        #endregion
-
-        //Ham viet them tai day
-        #region duong
-        public bool CheckUsernameExist(string username)
+        public bool CheckLogin(string username, string password)
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
                 try
                 {
-                    var users = dataEntities.Users.Where(user => user.UserName.ToLower() == username.ToLower());
-                    if (users.Count() > 0)
+                    var user = dataEntities.Users.Single(u => u.UserName.ToLower() == username.ToLower() && u.Password == password && u.Active == true);
+                    if (user != null)
                     {
                         return true;
                     }
@@ -170,6 +200,7 @@ namespace WebPortal.Repository
                 }
             }
         }
+
         #endregion
 
         #region Nhat
@@ -186,7 +217,7 @@ namespace WebPortal.Repository
                     return -1;
                 }
             }
-        } 
+        }
         #endregion
     }
 }
