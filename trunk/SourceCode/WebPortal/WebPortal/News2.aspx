@@ -42,7 +42,7 @@
           for (int i = 1; i <= numOfPage; i++)
           {
 
-              sb.AppendFormat("<a href='News.aspx?idLoaiTin="+idlt+"page={0}>{1}---</a>", i, i);
+              sb.AppendFormat("<a href='News2.aspx?idLoaiTin="+idlt+"&&page={0}'>{1}---</a>", i, i);
               //
           }
           foreach (WebPortal.Model.TinTuc tt in listtintuc)
