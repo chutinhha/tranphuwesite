@@ -65,15 +65,24 @@
                FilePath
             </th>
             <td>
-                <input name="applicationToString" type="text" value="<%=application.Application_FilePath%>" />
+                <input name="filePath" type="text" value="<%=application.Application_FilePath%>" />
             </td>
         </tr>
         <tr>
             <th>
-               Image
+                Image
             </th>
             <td>
-                <input name="image" type="text" value="<%=application.Application_Image%>" />
+           <img src="<%=application.Application_Image%>" alt="" class="thumb size64 fl-space" />
+            <input type="file" name="inputFile" runat="server"/>
+            </td>
+        </tr>
+        <tr>
+            <th>
+               ToString
+            </th>
+            <td>
+                <input name="applicationToString" type="text" value="<%=application.Application_ToString%>" />
             </td>
         </tr>
         <tr>
@@ -86,10 +95,10 @@
         </tr>
         <tr>
             <th>
-               ToString
+               Parent ID
             </th>
             <td>
-                <input name="applicationToString" type="text" value="<%=application.Application_ToString%>" />
+                <input name="parentID" type="text" value="<%=application.Parent_Id%>" />
             </td>
         </tr>
         <tr>
@@ -134,7 +143,7 @@
                 Name
             </th>
             <td>
-                <input name="name" type="text" value="<%=application.Application_Name%>" />
+                <input disabled="disabled" name="name" type="text" value="<%=application.Application_Name%>" />
             </td>
         </tr>
         <tr>
@@ -142,7 +151,7 @@
                 Description
             </th>
             <td>
-                <input name="description" type="text" value="<%=application.Application_Description%>" />
+                <input disabled="disabled" name="description" type="text" value="<%=application.Application_Description%>" />
             </td>
         </tr>
         <tr>
@@ -150,7 +159,7 @@
                FilePath
             </th>
             <td>
-                <input name="applicationToString" type="text" value="<%=application.Application_FilePath%>" />
+                <input disabled="disabled" name="filePath" type="text" value="<%=application.Application_FilePath%>" />
             </td>
         </tr>
         <tr>
@@ -158,7 +167,7 @@
                Image
             </th>
             <td>
-                <input name="image" type="text" value="<%=application.Application_Image%>" />
+                <img src="<%=application.Application_Image%>" alt="" class="thumb size64 fl-space""/>
             </td>
         </tr>
         <tr>
@@ -166,7 +175,7 @@
                DataCreate
             </th>
             <td>
-                <input name="dateCreate" type="text" value="<%=application.Application_DateCreate%>" />
+                <input disabled="disabled" name="dateCreate" type="text" value="<%=application.Application_DateCreate%>" />
             </td>
         </tr>
         <tr>
@@ -174,7 +183,7 @@
                ToString
             </th>
             <td>
-                <input name="applicationToString" type="text" value="<%=application.Application_ToString%>" />
+                <input disabled="disabled" name="applicationToString" type="text" value="<%=application.Application_ToString%>" />
             </td>
         </tr>
         <tr>
@@ -182,7 +191,7 @@
                Order
             </th>
             <td>
-                <input name="order" type="text" value="<%=application.Order%>" />
+                <input disabled="disabled" name="order" type="text" value="<%=application.Order%>" />
             </td>
         </tr>
         <tr>
@@ -192,11 +201,11 @@
             <td>
                 <%if (application.Active == true)
                   { %>
-                <input name="active" type="checkbox" checked="checked" value="True" />
+                <input disabled="disabled" name="active" type="checkbox" checked="checked" value="True" />
                 <%}
                   else
                   {%>
-                <input name="active" type="checkbox" value="False" />
+                <input disabled="disabled" name="active" type="checkbox" value="False" />
                 <%} %>
             </td>
         </tr>
@@ -209,18 +218,10 @@
     <tbody>
         <tr>
             <th>
-              ID
-            </th>
-            <td>
-                <input readonly="readonly" name="applicationID" type="text" value="<%=application.ApplicationID%>" />
-            </td>
-        </tr>
-        <tr>
-            <th>
                 Name
             </th>
             <td>
-                <input name="name" type="text" value="<%=application.Application_Name%>" />
+                <input name="name" type="text" value=""/>
             </td>
         </tr>
         <tr>
@@ -228,7 +229,7 @@
                 Description
             </th>
             <td>
-                <input name="description" type="text" value="<%=application.Application_Description%>" />
+                <input name="description" type="text" value="" />
             </td>
         </tr>
         <tr>
@@ -236,23 +237,15 @@
                FilePath
             </th>
             <td>
-                <input name="applicationToString" type="text" value="<%=application.Application_FilePath%>" />
+                <input name="filePath" type="text" value="" />
             </td>
         </tr>
         <tr>
             <th>
-               Image
+                Image
             </th>
             <td>
-                <input name="image" type="text" value="<%=application.Application_Image%>" />
-            </td>
-        </tr>
-        <tr>
-            <th>
-               DataCreate
-            </th>
-            <td>
-                <input name="dateCreate" type="text" value="<%=application.Application_DateCreate%>" />
+            <input type="file" name="inputFile" value="<%=application.Application_Image%>"/>
             </td>
         </tr>
         <tr>
@@ -260,7 +253,7 @@
                ToString
             </th>
             <td>
-                <input name="applicationToString" type="text" value="<%=application.Application_ToString%>" />
+                <input name="applicationToString" type="text" value="" />
             </td>
         </tr>
         <tr>
@@ -268,7 +261,7 @@
                Order
             </th>
             <td>
-                <input name="order" type="text" value="<%=application.Order%>" />
+                <input name="order" type="text" value="" />
             </td>
         </tr>
         <tr>
@@ -276,14 +269,7 @@
                 Active
             </th>
             <td>
-                <%if (application.Active == true)
-                  { %>
                 <input name="active" type="checkbox" checked="checked" value="True" />
-                <%}
-                  else
-                  {%>
-                <input name="active" type="checkbox" value="False" />
-                <%} %>
             </td>
         </tr>
     </tbody>
@@ -308,27 +294,8 @@
 </div>
 <% if (Request.Form["save"] != null)
    {
-       WebPortal.Model.Application p = new WebPortal.Model.Application();
-       int isSuccess = 1;
-       try
-       {
-           p.ApplicationID = int.Parse(Request.Form["applicationID"]);
-           p.Application_Name = Request.Form["name"];
-           p.Application_Description = Request.Form["description"];
-           p.Application_ToString = Request.Form["applicationToString"];
-           if (Request.Form["active"] != null)
-           {
-               p.Active = true;
-           }
-           else
-               p.Active = false;
-       }
-       catch
-       {
-           isSuccess = 0;
-       }
-       if (isSuccess > 0)
-           applicationDA.Update(p);
+       string mess = "";
+        UpdateApplication(ref mess); 
        Response.Redirect("AdminapplicationManager.aspx");
 %>
 <%}
