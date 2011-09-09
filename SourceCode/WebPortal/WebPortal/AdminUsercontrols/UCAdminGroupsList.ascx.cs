@@ -11,6 +11,10 @@ namespace WebPortal.AdminUsercontrols
 {
     public partial class UCAdminGroupsList : System.Web.UI.UserControl
     {
-              
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminGroupsManager.aspx?id=0&type=new");
+        }
     }
 }

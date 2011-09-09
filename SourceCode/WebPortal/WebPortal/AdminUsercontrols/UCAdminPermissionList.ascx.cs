@@ -13,5 +13,10 @@ namespace WebPortal.AdminUsercontrols
         {
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminPermissionList.aspx?id=0&type=new");
+        }
     }
 }

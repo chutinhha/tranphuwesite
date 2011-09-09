@@ -289,7 +289,7 @@
                 Image
             </th>
             <td>
-            <input type="file" name="inputFile" value="<%=application.Application_Image%>"/>
+            <input type="file" name="inputFile" value=""/>
             </td>
         </tr>
         <tr>

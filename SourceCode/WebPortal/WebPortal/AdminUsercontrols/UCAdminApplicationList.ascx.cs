@@ -13,5 +13,10 @@ namespace WebPortal.AdminUsercontrols
         {
 
         }
+
+        protected void Unnamed1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminApplicationManager.aspx?id=0&type=new");
+        }
     }
 }
