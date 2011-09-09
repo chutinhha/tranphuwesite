@@ -27,7 +27,16 @@
         <div class="head pagesize">
             <!-- *** head layout *** -->
             <% if (Libs.LibSession.Get(Libs.Constants.ACCOUNT_LOGIN) != null)
-               { %>
+               {
+                   string filepath = Request.Path.Substring(1, Request.Path.Length - 1);
+                   if (filepath != "NoAccess.aspx" && filepath != "AdminHomepage.aspx")
+                   {
+                       if (!CheckDecentralization(filepath))
+                       {
+                           Response.Redirect("NoAccess.aspx");
+                       }
+                   }
+            %>
             <div class="head_top">
                 <div class="topbuts">
                     <ul class="clear">
@@ -42,10 +51,16 @@
                 <div class="logo clear">
                     <a href="#" title="">
                         <img src="images/logo_earth.png" alt="" class="picture" />
-                        <span class="textlogo"><span class="title">Web Portal</span> <span class="text">Trang admin trường THPT Trần Phú</span> </span></a>
+                        <span class="textlogo"><span class="title">Web Portal</span> <span class="text">Trang
+                            admin trường THPT Trần Phú</span> </span></a>
                 </div>
             </div>
-            <%} %>
+            <% %>
+            <%}
+               else
+               {
+                   Response.Redirect("AdminLogin.aspx");
+               } %>
             <div class="menu">
                 <ul class="clear">
                     <li class="active"><a href="">Quản lý phân quyền</a>
@@ -77,18 +92,16 @@
                     </li>
                 </ul>
             </div>
-
-                      
         </div>
     </div>
-    <div class="breadcrumb">
+    <%--    <div class="breadcrumb">
         <div class="bread-links pagesize">
             <ul class="clear">
                 <li class="first">You are here:</li>
                 <li><a href="#">Trang quản lý phân quyền</a></li>
             </ul>
         </div>
-    </div>
+    </div>--%>
     <div class="main pagesize">
         <!-- *** mainpage layout *** -->
         <div class="main-wrap">

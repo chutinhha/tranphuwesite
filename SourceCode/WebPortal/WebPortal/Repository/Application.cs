@@ -97,9 +97,10 @@ namespace WebPortal.Repository
                              where ingroups.UserID == userID
                              select groups)
                         on inroles.GroupID equals groups.GroupID
-                        select apps).Distinct().ToList();
+                        select apps).ToList();
             }
         }
+
         public List<Model.Application> GetAllApplicationByGroupID(int groupID)
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
@@ -184,6 +185,21 @@ namespace WebPortal.Repository
                 else
                 {
                     return false;
+                }
+            }
+        }
+
+        public Model.Application GetApplicationByFilePath(string filePath)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                try
+                {
+                    return dataEntities.Applications.Where(app => app.Application_FilePath == filePath).First();
+                }
+                catch (Exception)
+                {
+                    return null;
                 }
             }
         }
