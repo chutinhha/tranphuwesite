@@ -19,11 +19,11 @@
     <div id="wrapper" class="container_24">
         <div class="banner">
             <div class="grid_24">
-                <img alt="" height="114" src="images/banner.gif" width="960" />
+                <img alt="" height="114" src="images/banner.gif" width="950" />
             </div>
         </div>
         <!--end banner-->
-        <div class="menuBar grid_24">
+        <div class="menuBar grid_24" style="display:none;">
             <ul id="nav">
                 <li class="active"><a href="#">Trang chủ</a></li>
                 <li><a href="#">Forum</a></li>
@@ -43,7 +43,7 @@
                     <%WebPortal.Repository.LoaiTinLV1 appltLV1 = new WebPortal.Repository.LoaiTinLV1();
                       List<WebPortal.Model.LoaiTin_Lv1> listLTLV1 = new List<WebPortal.Model.LoaiTin_Lv1>();
                       listLTLV1 = appltLV1.All();
-                      if (listLTLV1.Count() != 0)
+                      //if (listLTLV1.Count() != 0)
                      
                       {
                           int idlt;
@@ -120,13 +120,15 @@
                 <!--end thông báo-->
             </div>
             <!--end right column-->
-            <div class="clear">
-            </div>
-            <div class="footer grid_24">
-            </div>
+           
         </div>
         <!--end content-->
     </div>
+
+<div class="footer">
+	Copyright 2011
+</div>
+
     <%--<div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         

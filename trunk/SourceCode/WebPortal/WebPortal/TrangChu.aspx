@@ -50,7 +50,7 @@
                   if (count == listLoaiTin.Count())
                   {
             %>
-            <div class="tinTuc noneBorder">
+            <div class="tinTuc">
                 <div class="tieuDe">
                     <a href="News.aspx?idTinTuc=<%=tt.IDTinTuc.ToString()%>">
                         <% Response.Write(tt.TenTinTuc); %></a>
