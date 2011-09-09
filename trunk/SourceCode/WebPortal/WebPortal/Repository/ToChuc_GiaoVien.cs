@@ -62,5 +62,15 @@ namespace WebPortal
             }
         } 
         #endregion
+        #region hue
+        public List<WebPortal.Model.ToChuc_GiaoVien> ListTCGV(int idToChuc)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+
+                return dataEntities.ToChuc_GiaoVien.Where(app => app.IDToChuc == idToChuc).ToList();
+            }
+        }
+        #endregion
     }
 }

@@ -63,11 +63,23 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.TinTucs.Skip(start).Take(numberRecords).ToList();
+                return dataEntities.TinTucs.OrderBy(tt=>tt.IDTinTuc).Skip(start).Take(numberRecords).ToList();
             }
         } 
         #endregion
 
         //Ai can ham gi thi viet them, 
+        #region hue
+
+        public List<WebPortal.Model.TinTuc> ListNews(int idLoaiTin)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                
+                return dataEntities.TinTucs.Where(app => app.IDLoaiTin == idLoaiTin).ToList();
+            }
+        }
+        #endregion
+       
     }
 }
