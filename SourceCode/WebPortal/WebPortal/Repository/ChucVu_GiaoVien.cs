@@ -62,5 +62,15 @@ namespace WebPortal
             }
         } 
         #endregion
+        #region hue
+        public List<WebPortal.Model.ChucVu_GiaoVien> chucvu(int idGiaoVien)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                return dataEntities.ChucVu_GiaoVien.Where(app => app.IDGiaoVien == idGiaoVien).ToList();
+            }
+        }
+
+        #endregion
     }
 }

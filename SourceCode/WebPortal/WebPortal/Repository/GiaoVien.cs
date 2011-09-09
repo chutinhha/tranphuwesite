@@ -65,7 +65,7 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.GiaoViens.Skip(start).Take(numberRecords).ToList();
+                return dataEntities.GiaoViens.OrderBy(gv=>gv.IDGiaoVien).Skip(start).Take(numberRecords).ToList();
             }
         } 
         #endregion

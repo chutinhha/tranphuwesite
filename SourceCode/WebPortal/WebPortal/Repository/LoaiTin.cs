@@ -58,11 +58,21 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.LoaiTins.Skip(start).Take(numberRecords).ToList();
+                return dataEntities.LoaiTins.OrderBy(lt => lt.IDLoaiTin).Skip(start).Take(numberRecords).ToList();
             }
         } 
         #endregion
 
         //Ai can ham gi thi viet them
+        #region hue
+        public List<WebPortal.Model.LoaiTin> ListNews(int idLoaiTinLV1)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+
+                return dataEntities.LoaiTins.Where(app => app.LoaiTin_Lv1ID == idLoaiTinLV1).ToList();
+            }
+        }
+        #endregion
     }
 }
