@@ -64,8 +64,6 @@ namespace WebPortal.Repository
             }
         }
 
-
-
         public List<Model.Group> Paging(int start, int numberRecords)
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
@@ -76,6 +74,19 @@ namespace WebPortal.Repository
         #endregion
 
         //Ham viet them tai day
+        #region Duong
+        public List<Model.Group> GetAllGroupByUserID(int userID)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                return (from groups in dataEntities.Groups
+                        join ingroups in dataEntities.InGroups
+                        on groups.GroupID equals ingroups.GroupID
+                        where ingroups.UserID == userID
+                        select groups).ToList();
+            }
+        }
+        #endregion
 
         #region Nhat
         public int Delete(int groupID)

@@ -51,22 +51,22 @@
                     <li class="active"><a href="">Quản lý phân quyền</a>
                         <ul>
                             <li><a href="AdminUserManager.aspx">Quản lý người dùng</a> </li>
-                            <li><a href="AdminGroupsManager.aspx">Quản lý nhóm</a> </li>
-                            <li><a href="">Quản lý quyền</a> </li>
-                            <li><a href="">Quản lý truy cập file</a></li>
-                            <li><a href="">Phân quyền người dùng</a>
+                            <li><a href="AdminGroupsPanel.aspx">Quản lý nhóm</a> </li>
+                            <li><a href="AdminApplicationPanel.aspx">Quản lý quyền truy cập trang</a> </li>
+                            <li><a href="AdminPermissionPanel.aspx">Quản lý quyền truy cập file</a> </li>
+                            <li><a href="#">Phân quyền</a>
                                 <ul>
-                                    <li><a href="">Phân quyền nhóm</a></li>
-                                    <li><a href="">Phân quyền truy cập trang</a></li>
-                                    <li><a href="">Phân quyền truy cập file</a></li>
+                                    <li><a href="AdminInGroupManager.aspx">Phân quyền nhóm</a></li>
+                                    <li><a href="AdminInRoleManager.aspx">Phân quyền truy cập trang</a></li>
+                                    <li><a href="AdminFilePermissionManager.aspx">Phân quyền truy cập file</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
                     <li><a href="">Quản lý tin tức</a>
                         <ul>
-                            <li><a href="">Edit tin tức</a></li>
-                            <li><a href="#">Quản lý giáo viên</a>
+                            <li><a href="AdminNewsManager.aspx">Quản lý tin tức</a></li>
+                            <li><a href="#">ABC</a>
                                 <ul>
                                     <li><a href="#">Lựa chọn 1</a></li>
                                     <li><a href="#">Lựa chọn 2</a></li>
@@ -77,6 +77,8 @@
                     </li>
                 </ul>
             </div>
+
+                      
         </div>
     </div>
     <div class="breadcrumb">

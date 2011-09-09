@@ -100,6 +100,17 @@ namespace WebPortal.Repository
                         select apps).Distinct().ToList();
             }
         }
+        public List<Model.Application> GetAllApplicationByGroupID(int groupID)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                return (from apps in dataEntities.Applications
+                        join inroles in dataEntities.InRoles
+                        on apps.ApplicationID equals inroles.ApplicationID
+                        where inroles.GroupID == groupID
+                        select apps).ToList();
+            }
+        }
 
         public List<Model.Application> GetAllAppByParentID(int parentID)
         {
@@ -109,7 +120,7 @@ namespace WebPortal.Repository
             }
         }
 
-        public StringBuilder DoSearchingRecursion(List<Model.Application> appList, ref StringBuilder stringBuilder)
+        public StringBuilder DoSearchingRecursion(List<Model.Application> appList, ref StringBuilder stringBuilder, ref bool first, ref bool active)
         {
             if (appList.Count == 0)
             {
@@ -117,16 +128,64 @@ namespace WebPortal.Repository
             }
             else
             {
-                stringBuilder.Append("<ul>");
+                if (first)
+                {
+                    stringBuilder.Append("<ul class='clear'>");
+                    first = false;
+                }
+                else
+                {
+                    stringBuilder.Append("<ul>");
+                }
+
                 foreach (var app in appList)
                 {
-                    List<Model.Application> list = GetAllAppByParentID(app.Parent_Id.Value);
-                    stringBuilder.Append("<li><a href='" + app.Application_FilePath + "'/>" + app.Application_Name + "</a></li>");
-                    DoSearchingRecursion(list, ref stringBuilder);
+                    List<Model.Application> list = GetAllAppByParentID(app.ApplicationID);
+                    if (!this.HasChildren(app))
+                    {
+                        if (active)
+                        {
+                            stringBuilder.Append("<li class='active'><a href='" + app.Application_FilePath + "'/>" + app.Application_Name + "</a></li>");
+                            active = false;
+                        }
+                        else
+                        {
+                            stringBuilder.Append("<li><a href='" + app.Application_FilePath + "'/>" + app.Application_Name + "</a></li>");
+                        }
+                        DoSearchingRecursion(list, ref stringBuilder, ref first, ref active);
+                    }
+                    else
+                    {
+                        if (active)
+                        {
+                            stringBuilder.Append("<li class='active'>");
+                        }
+                        else
+                        {
+                            stringBuilder.Append("<li>");
+                        }
+                        DoSearchingRecursion(list, ref stringBuilder, ref first, ref active);
+                        stringBuilder.Append("</li>");
+                    }
                 }
                 stringBuilder.Append("</ul>");
             }
             return stringBuilder;
+        }
+
+        private bool HasChildren(Model.Application app)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                if (dataEntities.Applications.Where(a => a.Parent_Id.Value == app.ApplicationID).Count() > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
         #endregion
 

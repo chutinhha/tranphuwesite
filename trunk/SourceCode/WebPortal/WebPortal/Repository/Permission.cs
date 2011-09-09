@@ -17,7 +17,7 @@ namespace WebPortal.Repository
                 {
                     return dataEntities.Permissions.Single(log => log.PermissionID == permissionID);
                 }
-                catch 
+                catch
                 {
 
                     return null;
@@ -91,7 +91,21 @@ namespace WebPortal.Repository
                     return -1;
                 }
             }
-        } 
+        }
+        #endregion
+
+        #region Duong
+        public List<Model.Permission> GetAllPermissionByGroupID(int groupID)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                return (from permissions in dataEntities.Permissions
+                        join filePermissions in dataEntities.FilePermissions
+                        on permissions.PermissionID equals filePermissions.PermissionID
+                        where filePermissions.GroupID == groupID
+                        select permissions).ToList();
+            }
+        }
         #endregion
     }
 }
