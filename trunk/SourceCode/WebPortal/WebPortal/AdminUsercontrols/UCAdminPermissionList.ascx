@@ -1,9 +1,13 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCAdminPermissionList.ascx.cs" Inherits="WebPortal.AdminUsercontrols.AdminPermissionList" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCAdminPermissionList.ascx.cs"
+    Inherits="WebPortal.AdminUsercontrols.AdminPermissionList" %>
 <div id="data-table">
     <p>
         <span style="font-family: Arial; font-weight: bold; font-size: 18px;">Quản lý Permission</span>
     </p>
-    <a href="../AdminPermissionManager.aspx?id=0&type=new">Thêm Permission</a>
+    <p>
+        <asp:Button ID="Button1" runat="server" Text="Thêm Permission" 
+            CssClass="button" onclick="Button1_Click" />
+    </p>
     <form method="post" action="#">
     <% 
         WebPortal.Repository.Permission permissionDA = new WebPortal.Repository.Permission();
@@ -16,7 +20,7 @@
                     <input type="checkbox" class="checkbox select-all" />
                 </th>
                 <th>
-                   ID
+                    ID
                 </th>
                 <th>
                     Name

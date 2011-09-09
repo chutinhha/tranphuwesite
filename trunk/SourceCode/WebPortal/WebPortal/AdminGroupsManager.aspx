@@ -1,10 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminSite.Master" AutoEventWireup="true" CodeBehind="AdminGroupsManager.aspx.cs" Inherits="WebPortal.AdminGroupsManager" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminSite.Master" AutoEventWireup="true"
+    CodeBehind="AdminGroupsManager.aspx.cs" Inherits="WebPortal.AdminGroupsManager" %>
+
 <%@ Register TagPrefix="UC" TagName="GroupList" Src="~/AdminUsercontrols/UCAdminGroupsList.ascx" %>
 <%@ Register TagPrefix="UC" TagName="GroupDetail" Src="~/AdminUsercontrols/UCAdminGroupsDetail.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-     <div class="content-box">
+    <div class="content-box">
         <div class="box-body">
             <div class="box-header clear">
                 <h2>
@@ -19,11 +21,11 @@
                 <%}
                    else if (Request.QueryString["type"] != null)
                    { %>
-                </div>
-                <UC:GroupDetail runat="server" ID="UCGroupDetail"/>
+                <UC:GroupDetail runat="server" ID="UCGroupDetail" />
                 <%} %>
-                <!-- end of box-wrap -->
             </div>
-</div>
-        <!-- end of box-wrap -->
+            <!-- end of box-wrap -->
+        </div>
+    </div>
+    <!-- end of box-wrap -->
 </asp:Content>

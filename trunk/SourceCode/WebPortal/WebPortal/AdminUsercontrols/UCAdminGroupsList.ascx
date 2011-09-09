@@ -3,8 +3,11 @@
 <div id="data-table">
     <p>
         <span style="font-family: Arial; font-weight: bold; font-size: 18px;">Quản lý Nhóm</span>
+        <br />
+        <br />
+        <asp:Button ID="Button1" runat="server" Text="Thêm Nhóm" CssClass="button" 
+            onclick="Button1_Click"/>
     </p>
-    <a href="../AdminGroupsManager.aspx?id=0&type=new">Thêm Nhóm</a>
     <form method="post" action="#">
     <% 
         WebPortal.Repository.Group groupDA = new WebPortal.Repository.Group();

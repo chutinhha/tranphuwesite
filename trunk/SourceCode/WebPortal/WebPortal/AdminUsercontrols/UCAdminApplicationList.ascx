@@ -3,15 +3,16 @@
     <p>
         <span style="font-family: Arial; font-weight: bold; font-size: 18px;">Quản lý quyền truy cập trang</span>
     </p>
-    <a href="../AdminApplicationManager.aspx?id=0&type=new">Thêm Application</a>
+    <p><asp:Button runat="server" Text="Tạo mới" CssClass="button" 
+            onclick="Unnamed1_Click" /> </p>
     <form method="post" action="#">
     <% 
         WebPortal.Repository.Application appDA = new WebPortal.Repository.Application();
         List<WebPortal.Model.Application> list = appDA.All();
     %>
-    <table class="datatable style1">
+    <table class="style1 datatable">
         <thead>
-            <tr>
+            <tr class="bSortable">
                <th></th>
                 <th>
                     ID

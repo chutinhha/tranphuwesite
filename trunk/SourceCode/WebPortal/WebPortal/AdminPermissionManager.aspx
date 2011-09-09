@@ -19,9 +19,10 @@
                 <%}
                    else if (Request.QueryString["type"] != null)
                    { %>
-                </div>
+               
                 <UC:PerDetail runat="server" ID="UCPerDetail"/>
                 <%} %>
+                 </div>
                 <!-- end of box-wrap -->
             </div>
 </div>

@@ -15,7 +15,14 @@ namespace WebPortal.Repository
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.Applications.Single(app => app.ApplicationID == applicationID);
+                try
+                {
+                    return dataEntities.Applications.Single(app => app.ApplicationID == applicationID);
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
             }
         }
 
