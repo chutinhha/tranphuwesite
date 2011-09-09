@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCAdminApplicationDetail.ascx.cs" Inherits="WebPortal.AdminUsercontrols.AdminApplicationDetail" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCAdminApplicationDetail.ascx.cs" Inherits="WebPortal.AdminUsercontrols.UCAdminApplicationDetail" %>
 <form method="post" action="../AdminApplicationManager.aspx">
 <p>
     <%if (Request.QueryString["type"].ToString() == "edit")
@@ -98,7 +98,25 @@
                Parent ID
             </th>
             <td>
-                <input name="parentID" type="text" value="<%=application.Parent_Id%>" />
+               <select name="slParentID">
+                <%
+                    List<string> lstName = new List<string>();
+                    List<int> lstID = new List<int>();
+                    applicationDA.GetAll_ApplicationID_Name(ref lstName,ref lstID);
+                    for (int i = 0; i < lstName.Count; i++)
+                    {
+                        if (application.Parent_Id == lstID[i])
+                        {
+                      %>
+                       <option selected="selected" id="<%= lstID[i]%>" value="<%= lstID[i]%>"><%= lstName[i]%></option>
+                    <%}
+                        else
+                        { %>
+                            <option id="<%= lstID[i]%>" value="<%= lstID[i]%>"><%= lstName[i]%></option>
+                      <%  }
+                    }
+                     %>
+                </select>
             </td>
         </tr>
         <tr>

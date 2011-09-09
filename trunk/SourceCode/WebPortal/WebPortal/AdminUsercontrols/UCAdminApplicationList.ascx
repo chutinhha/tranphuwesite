@@ -1,7 +1,7 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AdminApplicationList.ascx.cs" Inherits="WebPortal.AdminUsercontrols.AdminApplicationList" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCAdminApplicationList.ascx.cs" Inherits="WebPortal.AdminUsercontrols.UCAdminApplicationList" %>
 <div id="data-table">
     <p>
-        <span style="font-family: Arial; font-weight: bold; font-size: 18px;">Quản lý Permission</span>
+        <span style="font-family: Arial; font-weight: bold; font-size: 18px;">Quản lý quyền truy cập trang</span>
     </p>
     <a href="../AdminApplicationManager.aspx?id=0&type=new">Thêm Application</a>
     <form method="post" action="#">
@@ -12,9 +12,7 @@
     <table class="datatable style1">
         <thead>
             <tr>
-                <th class="bSortable">
-                    <input type="checkbox" class="checkbox select-all" />
-                </th>
+               <th></th>
                 <th>
                     ID
                 </th>
@@ -48,9 +46,7 @@
                     foreach (var app in list)
                     { %>
             <tr>
-                <td>
-                    <input type="checkbox" class="checkbox" />
-                </td>
+            <td></td>
                 <td>
                     <%=app.ApplicationID%>
                 </td>
@@ -65,7 +61,7 @@
                 </td>
                 <td>
                 <a href="<%=app.Application_Image%>" title="preview" rel="group1"><img src="<%=app.Application_Image%>" alt="" class="thumb size64 fl-space" />
-                    
+                    </a>
                 </td>
                    <td>
                     <%=app.Parent_Id.ToString()%>
