@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WebPortal.AdminUsercontrols
 {
-    public partial class AdminApplicationList : System.Web.UI.UserControl
+    public partial class UCAdminApplicationList : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
