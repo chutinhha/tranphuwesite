@@ -43,21 +43,23 @@
                     <%WebPortal.Repository.LoaiTinLV1 appltLV1 = new WebPortal.Repository.LoaiTinLV1();
                       List<WebPortal.Model.LoaiTin_Lv1> listLTLV1 = new List<WebPortal.Model.LoaiTin_Lv1>();
                       listLTLV1 = appltLV1.All();
-                      foreach (WebPortal.Model.LoaiTin_Lv1 lt in listLTLV1)
+                      if (listLTLV1.Count() != 0)
+                     
                       {
+                          int idlt;
+                          foreach (WebPortal.Model.LoaiTin_Lv1 lt in listLTLV1)
+                          {
+                              idlt = lt.IDLoaiTin_Lv1;
+                              if (idlt != null)
+                              {
                     %>
                     <div class="menuItem">
                         <ul>
-                            <li><a href="TrangChu.aspx?idLTLV1=<%=lt.IDLoaiTin_Lv1 %>"><%=lt.TenLoai %></a></li>
-                            <%} %>
-                            <li class="menuItem_GioiThieu">Giới thiệu
-                                <ul class="subMenuitem gioiThieu-subitem">
-                                    <li><a href="#">Tiểu sử Trần Phú</a></li>
-                                    <li><a href="#">Lịch sử trường THPT Trần Phú</a></li>
-                                    <li><a href="#">Phần thưởng và danh hiệu</a></li>
-                                </ul>
-                            </li>
-                            <li class="menuItem_TaiNguyen">Tài nguyên
+                            <li><a href="TrangChu.aspx?idLTLV1=<%=idlt %>"><%=lt.TenLoai%></a></li>
+                            <%}
+                          } %>
+                            
+                            <li class="menuItem_TaiNguyen">Tài Nguyên
                                 <ul class="subMenuitem taiNguyen-subitem">
                                     <li><a href="#">Đề thi TN THPT</a></li>
                                     <li><a href="#">Phần mềm hỗ trợ giáo viên</a></li>
@@ -82,7 +84,7 @@
                                       {
                                     %>
                                     <li><a href="ToChuc.aspx?idToChuc=<%=tc.IDToChuc %>">
-                                        <%=tc.TenTC %></a></li>
+                                        <%=tc.TenTC%></a></li>
                                     <%} %>
                                 </ul>
                             </li>
@@ -90,7 +92,9 @@
                         </ul>
                     </div>
                 </div>
+                <%} %>
                 <!--end menu-->
+                <div class="clear"></div>
                 <div class="menu">
                     <div class="menuTitle">
                         <div class="menuTitleGrad">
