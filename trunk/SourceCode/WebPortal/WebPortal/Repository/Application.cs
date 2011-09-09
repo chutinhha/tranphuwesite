@@ -123,9 +123,21 @@ namespace WebPortal.Repository
         }
         #endregion
 
-        public void Delete(int applicationID)
+        public int Delete(int applicationID)
         {
-            throw new NotImplementedException();
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                try
+                {
+                    var appC = dataEntities.Applications.Single(app => app.ApplicationID == applicationID);
+                    appC.Active = false;
+                    return dataEntities.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+            }
         }
         public void GetAll_ApplicationID_Name(ref List<string> lstName, ref List<int> lstID)
         {

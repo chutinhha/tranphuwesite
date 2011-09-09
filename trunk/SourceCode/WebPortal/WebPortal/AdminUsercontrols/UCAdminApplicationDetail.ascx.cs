@@ -66,5 +66,29 @@ namespace WebPortal.AdminUsercontrols
           
                
         }
+        public bool DeleteApplication(ref string notificatedMessage)
+        {
+            int applicationID = Libs.LibConvert.ConvertToInt(Request.Form["applicationID"],0);
+            if (applicationID != 0)
+            {
+                int rs = applicationDA.Delete(applicationID);
+                if (rs != -1)
+                {
+                    notificatedMessage = "Cập nhật thành công!";
+                    return true;
+                }
+                else
+                {
+                    notificatedMessage = "Không thể xóa thành công!";
+                    return false;
+                }
+            }
+            else
+            {
+                notificatedMessage = "Không thể xóa thành công!";
+                return false;
+            }
+
+        }
     }
 }

@@ -204,6 +204,32 @@
                 <input disabled="disabled" name="applicationToString" type="text" value="<%=application.Application_ToString%>" />
             </td>
         </tr>
+         <tr>
+            <th>
+               Parent ID
+            </th>
+            <td>
+               <select disabled="disabled" name="slParentID">
+                <%
+                    List<string> lstName = new List<string>();
+                    List<int> lstID = new List<int>();
+                    applicationDA.GetAll_ApplicationID_Name(ref lstName,ref lstID);
+                    for (int i = 0; i < lstName.Count; i++)
+                    {
+                        if (application.Parent_Id == lstID[i])
+                        {
+                      %>
+                       <option selected="selected" id="Option1" value="<%= lstID[i]%>"><%= lstName[i]%></option>
+                    <%}
+                        else
+                        { %>
+                            <option id="Option2" value="<%= lstID[i]%>"><%= lstName[i]%></option>
+                      <%  }
+                    }
+                     %>
+                </select>
+            </td>
+        </tr>
         <tr>
             <th>
                Order
@@ -274,6 +300,25 @@
                 <input name="applicationToString" type="text" value="" />
             </td>
         </tr>
+         <tr>
+            <th>
+               Parent ID
+            </th>
+            <td>
+               <select name="slParentID">
+                <%
+                    List<string> lstName = new List<string>();
+                    List<int> lstID = new List<int>();
+                    applicationDA.GetAll_ApplicationID_Name(ref lstName,ref lstID);
+                    for (int i = 0; i < lstName.Count; i++)
+                    {%>
+                       <option id="<%= lstID[i]%>" value="<%= lstID[i]%>"><%= lstName[i]%></option>
+                    <%
+                    }
+                     %>
+                </select>
+            </td>
+        </tr>
         <tr>
             <th>
                Order
@@ -323,8 +368,8 @@
    }
    else if (Request.Form["delete"] != null)
    {
-       int applicationID = int.Parse(Request.Form["applicationID"]);
-       applicationDA.Delete(applicationID);
+       string note = "";
+       DeleteApplication(ref note);
        Response.Redirect("AdminapplicationManager.aspx");
    } if (Request.Form["new"] != null)
    {
