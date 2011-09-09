@@ -40,7 +40,9 @@
                         <div class="menuTitleGrad">
                             Menu</div>
                     </div>
-                    <%WebPortal.Repository.LoaiTinLV1 appltLV1 = new WebPortal.Repository.LoaiTinLV1();
+                   
+                    <div class="menuItem">
+                        <ul> <%WebPortal.Repository.LoaiTinLV1 appltLV1 = new WebPortal.Repository.LoaiTinLV1();
                       List<WebPortal.Model.LoaiTin_Lv1> listLTLV1 = new List<WebPortal.Model.LoaiTin_Lv1>();
                       listLTLV1 = appltLV1.All();
                       //if (listLTLV1.Count() != 0)
@@ -53,8 +55,6 @@
                               if (idlt != null)
                               {
                     %>
-                    <div class="menuItem">
-                        <ul>
                             <li><a href="TrangChu.aspx?idLTLV1=<%=idlt %>"><%=lt.TenLoai%></a></li>
                             <%}
                           } %>
