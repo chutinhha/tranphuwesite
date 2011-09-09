@@ -60,7 +60,23 @@ namespace WebPortal
             {
                 return dataEntities.TaiNguyen_TinTuc.Skip(start).Take(numberRecords).ToList();
             }
-        } 
+        }
+        #endregion
+
+        #region Thuy
+
+        public List<WebPortal.Model.TaiNguyen_TinTuc> GetFollowIDTinTuc(int id)
+        {
+            List<WebPortal.Model.TaiNguyen_TinTuc> listTNTT = new List<Model.TaiNguyen_TinTuc>();
+            List<WebPortal.Model.TaiNguyen_TinTuc> list = All();
+            foreach (WebPortal.Model.TaiNguyen_TinTuc tnTinTuc in list)
+            {
+                if (tnTinTuc.IDTinTuc == id)
+                    listTNTT.Add(tnTinTuc);
+            }
+            return listTNTT;
+        }
+
         #endregion
 
         //Ai can ham gi thi viet them

@@ -29,8 +29,10 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                dataEntities.AddToTinTucs(tinTuc);
-                return dataEntities.SaveChanges();
+                dataEntities.AddToTinTucs(tinTuc);               
+                dataEntities.SaveChanges(); 
+                int idTinTuc= tinTuc.IDTinTuc;
+                return idTinTuc;
             }
         }
 
