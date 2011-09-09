@@ -127,5 +127,13 @@ namespace WebPortal.Repository
         {
             throw new NotImplementedException();
         }
+        public void GetAll_ApplicationID_Name(ref List<string> lstName, ref List<int> lstID)
+        {
+            foreach (WebPortal.Model.Application app in All())
+            {
+                lstName.Add(app.Application_Name);
+                lstID.Add(app.ApplicationID);
+            }
+        }
     }
 }
