@@ -202,7 +202,6 @@ namespace WebPortal.Repository
         }
 
         #endregion
-
         #region Nhat
         public int GetUserIDByUsername(string userName)
         {

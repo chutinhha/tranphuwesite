@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using WebPortal.Model;
+using System.Data.Common;
 
 namespace WebPortal.Repository
 {
@@ -64,6 +65,67 @@ namespace WebPortal.Repository
         }
         #endregion
 
+        #region Duong
+        public bool DecentralizeGroupWithPermission(int groupID, List<int> permissionIDList)
+        {
+            DbTransaction dbTransaction = null;
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                try
+                {
+                    if (dataEntities.Connection.State == System.Data.ConnectionState.Closed)
+                    {
+                        dataEntities.Connection.Open();
+                    }
+                    dbTransaction = dataEntities.Connection.BeginTransaction();
+
+                    //Delete old data for permission & groups
+                    var oldFilePermissionList = dataEntities.FilePermissions;
+                    foreach (var filePermission in oldFilePermissionList)
+                    {
+                        if (filePermission.GroupID == groupID && permissionIDList.Contains(filePermission.PermissionID))
+                        {
+                            dataEntities.FilePermissions.DeleteObject(filePermission);
+                        }
+                    }
+
+                    //Insert new data for permission & groups
+                    foreach (var id in permissionIDList)
+                    {
+                        var per = dataEntities.Permissions.Single(p => p.PermissionID == id);
+                        var newFilePermission = new Model.FilePermission();
+                        newFilePermission.PermissionID = id;
+                        newFilePermission.GroupID = groupID;
+                        newFilePermission.FolderPath = per.Name;
+                        dataEntities.FilePermissions.AddObject(newFilePermission);
+                    }
+
+                    if (dataEntities.SaveChanges() != 0)
+                    {
+                        dbTransaction.Commit();
+                        return true;
+                    }
+                    else
+                    {
+                        dbTransaction.Rollback();
+                        return false;
+                    }
+                }
+                catch
+                {
+                    dbTransaction.Rollback();
+                    return false;
+                }
+                finally
+                {
+                    if (dataEntities.Connection.State == System.Data.ConnectionState.Open)
+                    {
+                        dataEntities.Connection.Close();
+                    }
+                }
+            }
+        }
+        #endregion
         //Ham viet them tai day
     }
 }
