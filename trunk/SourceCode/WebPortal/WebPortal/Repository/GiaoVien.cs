@@ -56,8 +56,25 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
+                dataEntities.Attach(giaoVien);
                 dataEntities.DeleteObject(giaoVien);
                 return dataEntities.SaveChanges();
+            }
+        }
+        public int Delete(int id)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                try
+                {
+                    var appC = dataEntities.GiaoViens.Single(gv => gv.IDGiaoVien == id);
+                    dataEntities.DeleteObject(appC);
+                    return dataEntities.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
             }
         }
 

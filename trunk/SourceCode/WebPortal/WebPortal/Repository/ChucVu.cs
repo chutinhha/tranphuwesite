@@ -89,5 +89,24 @@ namespace WebPortal
         #endregion
 
         //Ai can ham gi thi viet them
+
+        #region hue
+        public int Delete(int id)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                try
+                {
+                    var appC = dataEntities.ChucVus.Single(cv => cv.IDCV == id);
+                    dataEntities.DeleteObject(appC);
+                    return dataEntities.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+            }
+        }
+        #endregion
     }
 }

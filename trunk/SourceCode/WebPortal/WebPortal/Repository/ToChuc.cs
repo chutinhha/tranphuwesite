@@ -49,11 +49,29 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
+                dataEntities.Attach(toChuc);//hue
                 dataEntities.DeleteObject(toChuc);
                 return dataEntities.SaveChanges();
             }
         }
-
+        #region hue
+        public int Delete(int id)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                try
+                {
+                    var appC = dataEntities.ToChucs.Single(tc => tc.IDToChuc == id);
+                    dataEntities.DeleteObject(appC);
+                    return dataEntities.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+            }
+        }
+        #endregion
         public List<WebPortal.Model.ToChuc> Paging(int start, int numberRecords)
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())

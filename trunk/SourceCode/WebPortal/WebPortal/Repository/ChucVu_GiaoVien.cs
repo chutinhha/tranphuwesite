@@ -58,7 +58,7 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.ChucVu_GiaoVien.Skip(start).Take(numberRecords).ToList();
+                return dataEntities.ChucVu_GiaoVien.OrderBy(cvgv=>cvgv.ID).Skip(start).Take(numberRecords).ToList();
             }
         } 
         #endregion
