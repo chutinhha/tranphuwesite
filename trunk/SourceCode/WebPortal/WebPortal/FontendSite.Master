@@ -23,7 +23,7 @@
             </div>
         </div>
         <!--end banner-->
-        <div class="menuBar grid_24" style="display:none;">
+        <div class="menuBar grid_24" style="display: none;">
             <ul id="nav">
                 <li class="active"><a href="#">Trang chủ</a></li>
                 <li><a href="#">Forum</a></li>
@@ -38,27 +38,42 @@
                 <div class="menu">
                     <div class="menuTitle">
                         <div class="menuTitleGrad">
+                            Giới thiệu trường</div>
+                    </div>
+                    <div class="noiDungGioiThieuTruong">
+                        <a href="#">
+                            <img alt="" height="102" src="images/images656900_6.jpg" width="167" style="margin-bottom: 6px;" /></a>
+                        Trường Trần Phú có lịch sử là một tu viện cổ, sau này được sửa sang và nâng cấp
+                        thành trường học. Bên hông trường hiện nay vẫn còn một nhà nguyện cổ, nếu tinh ý
+                        một chút bạn sẽ nhận ra...</div>
+                    <div class="readmore">
+                        <a href="#">Xem tiếp</a></div>
+                </div>
+                <!--end giới thiệu trường-->
+                <div class="menu">
+                    <div class="menuTitle">
+                        <div class="menuTitleGrad">
                             Menu</div>
                     </div>
-                   
                     <div class="menuItem">
-                        <ul> <%WebPortal.Repository.LoaiTinLV1 appltLV1 = new WebPortal.Repository.LoaiTinLV1();
-                      List<WebPortal.Model.LoaiTin_Lv1> listLTLV1 = new List<WebPortal.Model.LoaiTin_Lv1>();
-                      listLTLV1 = appltLV1.All();
-                      //if (listLTLV1.Count() != 0)
-                     
-                      {
-                          int idlt;
-                          foreach (WebPortal.Model.LoaiTin_Lv1 lt in listLTLV1)
-                          {
-                              idlt = lt.IDLoaiTin_Lv1;
-                              if (idlt != null)
+                        <ul>
+                            <%WebPortal.Repository.LoaiTinLV1 appltLV1 = new WebPortal.Repository.LoaiTinLV1();
+                              List<WebPortal.Model.LoaiTin_Lv1> listLTLV1 = new List<WebPortal.Model.LoaiTin_Lv1>();
+                              listLTLV1 = appltLV1.All();
+                              //if (listLTLV1.Count() != 0)
+
                               {
-                    %>
-                            <li><a href="TrangChu.aspx?idLTLV1=<%=idlt %>"><%=lt.TenLoai%></a></li>
+                                  int idlt;
+                                  foreach (WebPortal.Model.LoaiTin_Lv1 lt in listLTLV1)
+                                  {
+                                      idlt = lt.IDLoaiTin_Lv1;
+                                      if (idlt != null)
+                                      {
+                            %>
+                            <li><a href="TrangChu.aspx?idLTLV1=<%=idlt %>">
+                                <%=lt.TenLoai%></a></li>
                             <%}
-                          } %>
-                            
+                                  } %>
                             <li class="menuItem_TaiNguyen">Tài Nguyên
                                 <ul class="subMenuitem taiNguyen-subitem">
                                     <li><a href="#">Đề thi TN THPT</a></li>
@@ -94,7 +109,23 @@
                 </div>
                 <%} %>
                 <!--end menu-->
-                <div class="clear"></div>
+                <div class="clear">
+                </div>
+                <div class="menu">
+                    <div class="menuTitle">
+                        <div class="menuTitleGrad">
+                            Liên kết web</div>
+                    </div>
+                    <div class="webLinks">
+                        <div>
+                            <a href="">
+                                <img alt="" src="images/CLB_KhoaHocXaHoi.jpg" width="137" height="140" style="margin-bottom: 6px;" /></a>
+                            <a href="">
+                                <img alt="" src="images/CLB_KhoaHocTuNhien.jpg" width="137" height="140" style="margin-bottom: 6px;" /></a>
+                        </div>
+                    </div>
+                </div>
+                <!--end liên kết web-->
                 <div class="menu">
                     <div class="menuTitle">
                         <div class="menuTitleGrad">
@@ -109,6 +140,32 @@
                     </div>
                 </div>
                 <!--end thống kê-->
+                <div class="menu">
+                    <div class="menuTitle">
+                        <div class="menuTitleGrad">
+                            Hình ảnh</div>
+                    </div>
+                    <div class="thongKeInfo">
+                        <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="3"
+                            style="width: 165px;">
+			                <table bgcolor="white">
+				                <tr>
+					                <td><a href="#">
+					                <img style="margin:4px;" height="100" src="images/images656900_6.jpg" width="100" /><br />
+					                </a></td>
+                                   <td><a href="#">
+					                <img style="margin:4px;" height="100" src="images/images656900_6.jpg" width="100" /><br />
+					                </a></td>
+                                    <td><a href="#">
+					                <img style="margin:4px;" height="100" src="images/images656900_6.jpg" width="100" /><br />
+					                </a></td>
+					
+
+				                </tr>
+			                </table>
+                          </marquee>
+                    </div>
+                </div>
             </div>
             <!--end left column-->
             <div class="rightColumn grid_19 omega">
@@ -120,15 +177,12 @@
                 <!--end thông báo-->
             </div>
             <!--end right column-->
-           
         </div>
         <!--end content-->
     </div>
-
-<div class="footer">
-	Copyright 2011
-</div>
-
+    <div class="footer">
+        Copyright 2011
+    </div>
     <%--<div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
