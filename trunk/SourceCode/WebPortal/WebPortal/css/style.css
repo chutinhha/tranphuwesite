@@ -348,3 +348,17 @@ hr
 	padding-top:25px; color:#888; font-family:Verdana, Geneva, Tahoma, sans-serif;
 	font-size:11px;
 }
+
+.noiDungGioiThieuTruong{
+	margin:8px;
+	font-size:11px;
+	text-align:justify;
+	color:#434343;
+}
+
+.ads{ }
+.ads img{
+	max-width:190px;
+	margin:6px 0;
+	width: 193px;
+}
