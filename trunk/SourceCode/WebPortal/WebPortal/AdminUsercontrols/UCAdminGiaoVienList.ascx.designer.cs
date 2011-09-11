@@ -10,15 +10,15 @@
 namespace WebPortal.AdminUsercontrols {
     
     
-    public partial class UCAdminApplicationDetail {
+    public partial class UCAdminGiaoVienList {
         
         /// <summary>
-        /// File1 control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile File1;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

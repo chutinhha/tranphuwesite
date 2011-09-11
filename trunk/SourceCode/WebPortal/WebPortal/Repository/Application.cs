@@ -66,6 +66,7 @@ namespace WebPortal.Repository
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
+                dataEntities.Attach(application);
                 dataEntities.DeleteObject(application);
                 return dataEntities.SaveChanges();
             }

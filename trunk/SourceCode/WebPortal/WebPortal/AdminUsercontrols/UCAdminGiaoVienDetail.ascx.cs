@@ -7,25 +7,26 @@ using System.Web.UI.WebControls;
 
 namespace WebPortal.AdminUsercontrols
 {
-    public partial class UCAdminApplicationDetail : System.Web.UI.UserControl
+    public partial class UCAdminGiaoVienDetail : System.Web.UI.UserControl
     {
-        public WebPortal.Repository.Application applicationDA = new Repository.Application();
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-        public bool AddApplication(ref string notificatedMessage)
+        public WebPortal.GiaoVien giaovienDA = new GiaoVien();
+        public bool AddGiaoVien(ref string notificatedMessage)
         {
             try
             {
-                WebPortal.Model.Application p = new Model.Application();
-                if (!string.IsNullOrEmpty(Request.Form["name"].ToString()))
-                    p.Application_Name = Request.Form["name"];
+                WebPortal.Model.GiaoVien g = new Model.GiaoVien();
+                if (!string.IsNullOrEmpty(Request.Form["hoGV"].ToString()))
+                    g.HoGV = Request.Form["hoGV"];
                 else
                 { return false; }
-                p.Application_Description = Request.Form["description"];
-                p.Application_FilePath = Request.Form["filePath"];
-                p.Application_ToString = Request.Form["applicationToString"];
+                g.TenGV = Request.Form["tenGV"];
+                g.Email = Request.Form["email"];
+                g.DienThoai = Request.Form["dienThoai"];
+                g.BoMon = Request.Form["boMon"];
                 if (Request.Files[0] != null)
                 {
                     HttpPostedFile file = Request.Files[0];
@@ -37,25 +38,24 @@ namespace WebPortal.AdminUsercontrols
                         {
                             return false;
                         }
-                        p.Application_Image = "/Resources/Images/" + fileName;
+                        g.AnhDaiDien = "/Resources/Images/" + fileName;
                     }
                     else
-                        p.Application_Image = applicationDA.Single(p.ApplicationID).Application_Image;
+                        g.AnhDaiDien = giaovienDA.Single(g.IDGiaoVien).AnhDaiDien;
                 }
                 else
                 {
-                    p.Application_Image = null;
+                    g.AnhDaiDien = null;
                 }
-                p.Parent_Id = Libs.LibConvert.ConvertToInt(Request.Form["slParentID"].ToString(), 0);
-                p.Order = Libs.LibConvert.ConvertToInt(Request.Form["order"].ToString(), 0);
-                p.Application_DateCreate = Libs.LibConvert.ConvertToDateTime(DateTime.Now);
+                g.NgaySinh = Libs.LibConvert.ConvertToDateTime(DateTime.Now);
+                g.DiaChi = Request.Form["diaChi"];
                 if (Request.Form["active"] != null)
                 {
-                    p.Active = true;
+                    g.Active = true;
                 }
                 else
-                    p.Active = false;
-                applicationDA.Add(p);
+                    g.Active = false;
+                giaovienDA.Add(g);
                 return true;
             }
             catch
@@ -66,19 +66,20 @@ namespace WebPortal.AdminUsercontrols
 
 
         }
-        public bool UpdateApplication(ref string notificatedMessage)
+        public bool UpdateGiaoVien(ref string notificatedMessage)
         {
             try
             {
-                WebPortal.Model.Application p = new Model.Application();
-                p.ApplicationID = Libs.LibConvert.ConvertToInt(Request.Form["applicationID"], 0);
-                if (!string.IsNullOrEmpty(Request.Form["name"].ToString()))
-                    p.Application_Name = Request.Form["name"];
+                int id = Libs.LibConvert.ConvertToInt(Request.Form["giaoVienID"],0);
+                WebPortal.Model.GiaoVien g = giaovienDA.Single(id);
+                if (!string.IsNullOrEmpty(Request.Form["hoGV"].ToString()))
+                    g.HoGV = Request.Form["hoGV"];
                 else
                 { return false; }
-                p.Application_Description = Request.Form["description"];
-                p.Application_FilePath = Request.Form["filePath"];
-                p.Application_ToString = Request.Form["applicationToString"];
+                g.TenGV = Request.Form["tenGV"];
+                g.Email = Request.Form["email"];
+                g.DienThoai = Request.Form["dienThoai"];
+                g.BoMon = Request.Form["boMon"];
                 if (Request.Files[0] != null)
                 {
                     HttpPostedFile file = Request.Files[0];
@@ -90,40 +91,38 @@ namespace WebPortal.AdminUsercontrols
                         {
                             return false;
                         }
-                        p.Application_Image = "/Resources/Images/" + fileName;
+                        g.AnhDaiDien = "/Resources/Images/" + fileName;
                     }
-                   else
-                         p.Application_Image=applicationDA.Single(p.ApplicationID).Application_Image;
+                    else
+                        g.AnhDaiDien = giaovienDA.Single(g.IDGiaoVien).AnhDaiDien;
                 }
                 else
                 {
-                    p.Application_Image = null;
+                    g.AnhDaiDien = null;
                 }
-                p.Parent_Id = Libs.LibConvert.ConvertToInt(Request.Form["slParentID"].ToString(), 0);
-                p.Order = Libs.LibConvert.ConvertToInt(Request.Form["order"].ToString(), 0);
+                g.NgaySinh = Libs.LibConvert.ConvertToDateTime(DateTime.Now);
+                g.DiaChi = Request.Form["diaChi"];
                 if (Request.Form["active"] != null)
                 {
-                    p.Active = true;
+                    g.Active = true;
                 }
                 else
-                    p.Active = false;
-                applicationDA.Update(p);
+                    g.Active = false;
+                giaovienDA.Update(g);
                 return true;
             }
             catch
             {
-                notificatedMessage = "Có lỗi xảy ra trong quá trình cập nhập dữ liệu";
+                notificatedMessage = "Có lỗi xảy ra! Không thể thêm được Application";
                 return false;
             }
-          
-               
         }
-        public bool DeleteApplication(ref string notificatedMessage)
+        public bool DeleteGiaoVien(ref string notificatedMessage)
         {
-            int applicationID = Libs.LibConvert.ConvertToInt(Request.Form["applicationID"],0);
-            if (applicationID != 0)
+            int giaoVienID = Libs.LibConvert.ConvertToInt(Request.Form["giaoVienID"], 0);
+            if (giaoVienID != 0)
             {
-                int rs = applicationDA.Delete(applicationID);
+                int rs = giaovienDA.Delete(giaoVienID);
                 if (rs != -1)
                 {
                     notificatedMessage = "Cập nhật thành công!";

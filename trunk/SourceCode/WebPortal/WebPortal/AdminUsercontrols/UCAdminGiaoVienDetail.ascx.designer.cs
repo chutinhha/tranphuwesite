@@ -10,7 +10,7 @@
 namespace WebPortal.AdminUsercontrols {
     
     
-    public partial class UCAdminApplicationDetail {
+    public partial class UCAdminGiaoVienDetail {
         
         /// <summary>
         /// File1 control.
@@ -20,5 +20,14 @@ namespace WebPortal.AdminUsercontrols {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputFile File1;
+        
+        /// <summary>
+        /// File2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile File2;
     }
 }

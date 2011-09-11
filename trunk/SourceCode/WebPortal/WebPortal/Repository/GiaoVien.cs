@@ -13,7 +13,16 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.GiaoViens.Single(app => app.IDGiaoVien == idGiaoVien);
+
+                try
+                {
+                    return dataEntities.GiaoViens.Single(app => app.IDGiaoVien == idGiaoVien);
+                }
+                catch (Exception)
+                {
+
+                    return null;
+                }
             }
         }
 
@@ -68,7 +77,7 @@ namespace WebPortal
                 try
                 {
                     var appC = dataEntities.GiaoViens.Single(gv => gv.IDGiaoVien == id);
-                    dataEntities.DeleteObject(appC);
+                    appC.Active = false;
                     return dataEntities.SaveChanges();
                 }
                 catch (Exception)
@@ -88,5 +97,6 @@ namespace WebPortal
         #endregion
 
         //Ai can ham gi thi viet them
+      
     }
 }

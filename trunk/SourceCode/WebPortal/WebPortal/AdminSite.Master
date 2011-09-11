@@ -87,7 +87,7 @@
                                     <li><a href="#">Lựa chọn 2</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Forms</a></li>
+                            <li><a href="AdminGiaoVienManager.aspx">Quản lý giáo viên</a></li>
                         </ul>
                     </li>
                 </ul>
