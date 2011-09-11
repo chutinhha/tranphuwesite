@@ -100,21 +100,21 @@
             <td>
                <select name="slParentID">
                 <%
-                    List<string> lstName = new List<string>();
-                    List<int> lstID = new List<int>();
-                    applicationDA.GetAll_ApplicationID_Name(ref lstName,ref lstID);
-                    for (int i = 0; i < lstName.Count; i++)
-                    {
-                        if (application.Parent_Id == lstID[i])
-                        {
+List<string> lstName = new List<string>();
+List<int> lstID = new List<int>();
+applicationDA.GetAll_ApplicationID_Name(ref lstName, ref lstID);
+for (int i = 0; i < lstName.Count; i++)
+{
+    if (application.Parent_Id == lstID[i])
+    {
                       %>
                        <option selected="selected" id="<%= lstID[i]%>" value="<%= lstID[i]%>"><%= lstName[i]%></option>
                     <%}
-                        else
-                        { %>
+    else
+    { %>
                             <option id="<%= lstID[i]%>" value="<%= lstID[i]%>"><%= lstName[i]%></option>
                       <%  }
-                    }
+}
                      %>
                 </select>
             </td>
@@ -211,21 +211,21 @@
             <td>
                <select disabled="disabled" name="slParentID">
                 <%
-                    List<string> lstName = new List<string>();
-                    List<int> lstID = new List<int>();
-                    applicationDA.GetAll_ApplicationID_Name(ref lstName,ref lstID);
-                    for (int i = 0; i < lstName.Count; i++)
-                    {
-                        if (application.Parent_Id == lstID[i])
-                        {
+List<string> lstName = new List<string>();
+List<int> lstID = new List<int>();
+applicationDA.GetAll_ApplicationID_Name(ref lstName, ref lstID);
+for (int i = 0; i < lstName.Count; i++)
+{
+    if (application.Parent_Id == lstID[i])
+    {
                       %>
                        <option selected="selected" id="Option1" value="<%= lstID[i]%>"><%= lstName[i]%></option>
                     <%}
-                        else
-                        { %>
+    else
+    { %>
                             <option id="Option2" value="<%= lstID[i]%>"><%= lstName[i]%></option>
                       <%  }
-                    }
+}
                      %>
                 </select>
             </td>
@@ -265,7 +265,7 @@
                 Name
             </th>
             <td>
-                <input name="name" type="text" value=""/>
+                <input name="name" type="text" value="" />
             </td>
         </tr>
         <tr>
@@ -289,7 +289,7 @@
                 Image
             </th>
             <td>
-            <input type="file" name="inputFile" value=""/>
+            <input id="File1" type="file" name="inputFile" runat="server"/>
             </td>
         </tr>
         <tr>
@@ -300,21 +300,21 @@
                 <input name="applicationToString" type="text" value="" />
             </td>
         </tr>
-         <tr>
+        <tr>
             <th>
                Parent ID
             </th>
             <td>
                <select name="slParentID">
                 <%
-                    List<string> lstName = new List<string>();
-                    List<int> lstID = new List<int>();
-                    applicationDA.GetAll_ApplicationID_Name(ref lstName,ref lstID);
-                    for (int i = 0; i < lstName.Count; i++)
-                    {%>
-                       <option id="<%= lstID[i]%>" value="<%= lstID[i]%>"><%= lstName[i]%></option>
-                    <%
-                    }
+List<string> lstName = new List<string>();
+List<int> lstID = new List<int>();
+applicationDA.GetAll_ApplicationID_Name(ref lstName, ref lstID);
+for (int i = 0; i < lstName.Count; i++)
+{%>
+                            <option  value="<%= lstID[i]%>"><%= lstName[i]%></option>
+                      <% 
+}
                      %>
                 </select>
             </td>
@@ -373,26 +373,8 @@
        Response.Redirect("AdminapplicationManager.aspx");
    } if (Request.Form["new"] != null)
    {
-       WebPortal.Model.Application newP = new WebPortal.Model.Application();
-
-       try
-       {
-           newP.Application_Name = Request.Form["name"];
-           newP.Application_Name = Request.Form["description"];
-           newP.Application_ToString = Request.Form["applicationToString"];
-           if (Request.Form["active"] != null)
-           {
-               newP.Active = true;
-           }
-           else
-               newP.Active = false;
-           applicationDA.Add(newP);
-       }
-       catch
-       {
-
-           Response.Redirect("AdminapplicationManager.aspx");
-       }
+       string note = "";
+          AddApplication(ref note);
        Response.Redirect("AdminapplicationManager.aspx");
    }
 %>

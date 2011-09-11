@@ -7,18 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebPortal.AdminUsercontrols {
+namespace WebPortal {
     
     
-    public partial class UCAdminApplicationDetail {
+    public partial class AdminGiaoVienManager {
         
         /// <summary>
-        /// File1 control.
+        /// UCGiaoVienList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile File1;
+        protected global::WebPortal.AdminUsercontrols.UCAdminGiaoVienList UCGiaoVienList;
+        
+        /// <summary>
+        /// UCGiaoVienDetail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WebPortal.AdminUsercontrols.UCAdminGiaoVienDetail UCGiaoVienDetail;
     }
 }
