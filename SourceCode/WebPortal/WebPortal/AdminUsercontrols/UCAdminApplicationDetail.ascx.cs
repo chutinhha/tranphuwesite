@@ -108,6 +108,7 @@ namespace WebPortal.AdminUsercontrols
                 else
                     p.Active = false;
                 applicationDA.Update(p);
+                notificatedMessage = "Cập nhật thông tin thành công!";
                 return true;
             }
             catch

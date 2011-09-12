@@ -358,8 +358,20 @@ for (int i = 0; i < lstName.Count; i++)
 <% if (Request.Form["save"] != null)
    {
        string mess = "";
-        UpdateApplication(ref mess); 
-       Response.Redirect("AdminapplicationManager.aspx");
+       if (UpdateApplication(ref mess))
+       {
+            Response.Redirect("AdminapplicationManager.aspx");
+       }
+       else
+       { %>
+        <div class="notification note-error">
+         <a href="#" class="close" title="Close notification">close</a>
+         <p>
+        <strong>
+            <%=mess%></strong></p>
+        </div>
+       <%} 
+       
 %>
 <%}
    else if (Request.Form["back"] != null)
@@ -368,14 +380,36 @@ for (int i = 0; i < lstName.Count; i++)
    }
    else if (Request.Form["delete"] != null)
    {
-       string note = "";
-       DeleteApplication(ref note);
-       Response.Redirect("AdminapplicationManager.aspx");
+        string mess = "";
+       if (DeleteApplication(ref mess))
+       {
+            Response.Redirect("AdminapplicationManager.aspx");
+       }
+       else
+       { %>
+        <div class="notification note-error">
+         <a href="#" class="close" title="Close notification">close</a>
+         <p>
+        <strong>
+            <%=mess%></strong></p>
+        </div>
+       <%}
    } if (Request.Form["new"] != null)
    {
-       string note = "";
-          AddApplication(ref note);
-       Response.Redirect("AdminapplicationManager.aspx");
+         string mess = "";
+       if (AddApplication(ref mess))
+       {
+            Response.Redirect("AdminapplicationManager.aspx");
+       }
+       else
+       { %>
+        <div class="notification note-error">
+         <a href="#" class="close" title="Close notification">close</a>
+         <p>
+        <strong>
+            <%=mess%></strong></p>
+        </div>
+       <%}
    }
 %>
 </form>
