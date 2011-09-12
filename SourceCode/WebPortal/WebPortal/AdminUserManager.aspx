@@ -59,63 +59,78 @@
                    {
                        if (Request.QueryString["id"] != null && Request.QueryString["type"].ToString() == "delete")
                        { %>
-                        <UC:UserList runat="server" ID="UserList" /><br /><br />
-                        <%
-                            string mess = string.Empty;
-                            int id = Libs.LibConvert.ConvertToInt(Request.QueryString["id"], 0);
-                            if (DeleteUser(id, ref mess))
-                            {%>
-                                <!-- NOTIFICATIONS (Thong bao)-->
-                                <div class="notification note-success">
-                                    <a href="#" class="close" title="Close notification">close</a>
-                                    <p><strong><%=mess%></strong></p>
-                                </div>
-                            <%}
+                <UC:UserList runat="server" ID="UserList" />
+                <br />
+                <br />
+                <%
+string mess = string.Empty;
+int id = Libs.LibConvert.ConvertToInt(Request.QueryString["id"], 0);
+if (DeleteUser(id, ref mess))
+{%>
+                <!-- NOTIFICATIONS (Thong bao)-->
+                <div class="notification note-success">
+                    <a href="#" class="close" title="Close notification">close</a>
+                    <p>
+                        <strong>
+                            <%=mess%></strong></p>
+                </div>
+                <%}
                             else
                             {%>
-                                <!-- NOTIFICATIONS (Thong bao)-->
-                                <div class="notification note-error">
-                                    <a href="#" class="close" title="Close notification">close</a>
-                                    <p><strong><%=mess%></strong></p></div> 
-                            <%}
-                            %>
-                        <%}
+                <!-- NOTIFICATIONS (Thong bao)-->
+                <div class="notification note-error">
+                    <a href="#" class="close" title="Close notification">close</a>
+                    <p>
+                        <strong>
+                            <%=mess%></strong></p>
+                </div>
+                <%}
+                %>
+                <%}
                        else if (Request.QueryString["id"] != null && Request.QueryString["type"].ToString() == "edit" || Request.QueryString["type"].ToString() == "new")
                        {%>
-                        <UC:UserDetail runat="server" />
-                        <%}
+                <UC:UserDetail runat="server" />
+                <%}
                        else if (Request.QueryString["id"] != null && (Request.QueryString["type"].ToString() == "editprofile" || Request.QueryString["type"].ToString() == "newprofile"))
                        {%>
-                    <UC:ProfileDetail runat="server" ID="UCProfileDetail" />
-                        <%}
-                       else if (Request.QueryString["id"] != null && Request.QueryString["type"].ToString() == "deleteprofile" && Request.QueryString["profileID"]!=null)
+                <UC:ProfileDetail runat="server" ID="UCProfileDetail" />
+                <%}
+                       else if (Request.QueryString["id"] != null && Request.QueryString["type"].ToString() == "deleteprofile" && Request.QueryString["profileID"] != null)
                        { %>
-                        <UC:UserDetail runat="server" />
-                        <%
-                            string mess = string.Empty;
-                            int id = Libs.LibConvert.ConvertToInt(Request.QueryString["profileID"], 0);
-                            if (DeleteProfile(id, ref mess))
-                            {%>
-                                <!-- NOTIFICATIONS (Thong bao)-->
-                                <div class="notification note-success">
-                                    <a href="#" class="close" title="Close notification">close</a>
-                                    <p><strong><%=mess%></strong></p>
-                                </div>
-                            <%}
+                <UC:UserDetail runat="server" />
+                <%
+string mess = string.Empty;
+int id = Libs.LibConvert.ConvertToInt(Request.QueryString["profileID"], 0);
+if (DeleteProfile(id, ref mess))
+{%>
+                <!-- NOTIFICATIONS (Thong bao)-->
+                <div class="notification note-success">
+                    <a href="#" class="close" title="Close notification">close</a>
+                    <p>
+                        <strong>
+                            <%=mess%></strong></p>
+                </div>
+                <%}
                             else
                             {%>
-                                <!-- NOTIFICATIONS (Thong bao)-->
-                                <div class="notification note-error">
-                                    <a href="#" class="close" title="Close notification">close</a>
-                                    <p><strong><%=mess%></strong></p></div> 
-                            <%}
-                            %>
-                        <%} %>
+                <!-- NOTIFICATIONS (Thong bao)-->
+                <div class="notification note-error">
+                    <a href="#" class="close" title="Close notification">close</a>
+                    <p>
+                        <strong>
+                            <%=mess%></strong></p>
+                </div>
+                <%}
+                %>
+                <%} %>
                 <%} %>
                 <!-- end of box-wrap -->
             </div>
         </div>
         <!-- end of box-wrap -->
+        <% 
+            WebPortal.Repository.Log.WriteLog(Request);
+            %>
     </div>
     <!-- end of box-body -->
     <!-- NOTIFICATIONS (Thong bao)-->

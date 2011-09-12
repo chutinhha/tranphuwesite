@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using WebPortal.Model;
+using System.Data.Common;
 
 namespace WebPortal
 {
@@ -58,9 +59,9 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.ChucVu_GiaoVien.OrderBy(cvgv=>cvgv.ID).Skip(start).Take(numberRecords).ToList();
+                return dataEntities.ChucVu_GiaoVien.OrderBy(cvgv => cvgv.ID).Skip(start).Take(numberRecords).ToList();
             }
-        } 
+        }
         #endregion
         #region hue
         public List<WebPortal.Model.ChucVu_GiaoVien> chucvu(int idGiaoVien)
@@ -71,6 +72,66 @@ namespace WebPortal
             }
         }
 
+        #endregion
+
+        #region Duong
+        public bool DecentralizeChucVuWithGiaoVien(int cvID, List<int> gvIDList)
+        {
+            DbTransaction dbTransaction = null;
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                try
+                {
+                    if (dataEntities.Connection.State == System.Data.ConnectionState.Closed)
+                    {
+                        dataEntities.Connection.Open();
+                    }
+                    dbTransaction = dataEntities.Connection.BeginTransaction();
+
+                    //Delete old data for gv & tc
+                    var oldCV_GVList = dataEntities.ChucVu_GiaoVien;
+                    foreach (var cvgv in oldCV_GVList)
+                    {
+                        if (cvgv.IDChucVu == cvID && gvIDList.Contains(cvgv.IDGiaoVien.Value))
+                        {
+                            dataEntities.ChucVu_GiaoVien.DeleteObject(cvgv);
+                        }
+                    }
+
+                    //Insert new data for gv & tc
+                    foreach (var id in gvIDList)
+                    {
+                        var newGVCV = new Model.ChucVu_GiaoVien();
+                        newGVCV.IDGiaoVien = id;
+                        newGVCV.IDChucVu = cvID;
+                        dataEntities.ChucVu_GiaoVien.AddObject(newGVCV);
+                    }
+
+                    if (dataEntities.SaveChanges() != 0)
+                    {
+                        dbTransaction.Commit();
+                        return true;
+                    }
+                    else
+                    {
+                        dbTransaction.Rollback();
+                        return false;
+                    }
+                }
+                catch
+                {
+                    dbTransaction.Rollback();
+                    return false;
+                }
+                finally
+                {
+                    if (dataEntities.Connection.State == System.Data.ConnectionState.Open)
+                    {
+                        dataEntities.Connection.Close();
+                    }
+                }
+            }
+        }
         #endregion
     }
 }

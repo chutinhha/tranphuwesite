@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using WebPortal.Model;
+using System.Data.Common;
 
 namespace WebPortal.Repository
 {
@@ -67,6 +68,47 @@ namespace WebPortal.Repository
             }
         }
         #endregion
+
         //Ham viet them tai day
+        #region
+
+        public static void WriteLog(HttpRequest request)
+        {
+            if (Libs.LibSession.Get(Libs.Constants.ACCOUNT_LOGIN) != null)
+            {
+                Repository.Application applicationRepository = new Repository.Application();
+                Repository.User userRepository = new Repository.User();
+                string applicationPath = request.Path.Substring(1, request.Path.Length - 1);
+                var app = applicationRepository.GetApplicationByFilePath(applicationPath);
+                int userID = userRepository.GetUserIDByUsername(Libs.LibSession.Get(Libs.Constants.ACCOUNT_LOGIN).ToString());
+                Model.Log log = new Model.Log();
+                log.UserID = userID;
+                log.Trace = applicationPath;
+                log.Date = DateTime.Now;
+                if (app != null)
+                {
+                    log.Action = app.Application_Description;
+                }
+                if (request.ServerVariables["REMOTE_ADDR"] != null)
+                {
+                    log.IP = request.ServerVariables["REMOTE_ADDR"].ToString();
+                }
+                log.Time_Login = DateTime.Now;
+
+                if (Libs.LibSession.Get(Libs.Constants.LOG) != null)
+                {
+                    var list = (List<Model.Log>)Libs.LibSession.Get(Libs.Constants.LOG);
+                    list.Add(log);
+                    Libs.LibSession.Set(Libs.Constants.LOG, list);
+                }
+                else
+                {
+                    List<Model.Log> LogList = new List<Model.Log>();
+                    LogList.Add(log);
+                    Libs.LibSession.Set(Libs.Constants.LOG, LogList);
+                }
+            }
+        }
+        #endregion
     }
 }

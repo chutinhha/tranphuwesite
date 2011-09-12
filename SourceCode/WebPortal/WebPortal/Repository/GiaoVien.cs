@@ -91,12 +91,36 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.GiaoViens.OrderBy(gv=>gv.IDGiaoVien).Skip(start).Take(numberRecords).ToList();
+                return dataEntities.GiaoViens.OrderBy(gv => gv.IDGiaoVien).Skip(start).Take(numberRecords).ToList();
             }
-        } 
+        }
         #endregion
 
         //Ai can ham gi thi viet them
-      
+        #region Duong
+        public List<Model.GiaoVien> GetAllGiaoVienBytochucID(int tcID)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                return (from gvs in dataEntities.GiaoViens
+                        join tcgvs in dataEntities.ToChuc_GiaoVien
+                        on gvs.IDGiaoVien equals tcgvs.IDGiaoVien
+                        where tcgvs.IDToChuc == tcID
+                        select gvs).ToList();
+            }
+        }
+
+        public List<Model.GiaoVien> GetAllGiaoVienBychucvuID(int cvID)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                return (from gvs in dataEntities.GiaoViens
+                        join cvgvs in dataEntities.ChucVu_GiaoVien
+                        on gvs.IDGiaoVien equals cvgvs.IDGiaoVien
+                        where cvgvs.IDChucVu == cvID
+                        select gvs).ToList();
+            }
+        }
+        #endregion
     }
 }

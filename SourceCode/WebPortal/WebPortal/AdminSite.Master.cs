@@ -24,6 +24,8 @@ namespace WebPortal
                 int userID = userRepository.GetUserIDByUsername(Libs.LibSession.Get(Libs.Constants.ACCOUNT_LOGIN).ToString());
                 List<WebPortal.Model.Application> AppList = appRepository.GetAllAppByUser(userID);
                 var app = appRepository.GetApplicationByFilePath(filepath);
+                if (app == null)
+                    return false;
                 foreach (var ap in AppList)
                 {
                     if (ap.ApplicationID == app.ApplicationID)
