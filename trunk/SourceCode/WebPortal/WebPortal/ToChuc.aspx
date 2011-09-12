@@ -40,7 +40,7 @@
             %>
             <div class="avatar">
                 <div class="hinhAvatar">
-                    <img alt="" height="239" src="images/<%=gv.AnhDaiDien %>" width="165" />
+                    <img alt="" height="200" src="<%=gv.AnhDaiDien %>" width="165" />
                 </div>
             </div>
             <!--end avatar-->
