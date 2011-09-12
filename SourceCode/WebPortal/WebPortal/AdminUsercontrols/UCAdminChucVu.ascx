@@ -1,17 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCAdminChucVu.ascx.cs" Inherits="WebPortal.AdminUsercontrols.UCAdminChucVu" %>
-<style type="text/css">
-   
-    .style1
-    {
-        font-weight: bold;
-    }
-    .style2
-    {
-        font-weight: bold;
-        font-size: large;
-        text-align: center;
-    }
-</style>
+
 <body style="text-align: left">
 <div class="style2">
     Quản lý chức vụ</div>
@@ -114,5 +102,5 @@
         Visible="False"></asp:Label>
 
 <asp:HiddenField ID="idAn" runat="server" />
-
+</body>
    
