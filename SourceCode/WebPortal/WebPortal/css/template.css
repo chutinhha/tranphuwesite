@@ -1,0 +1,310 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*------------------------------------------------------------------------
+Author: Nguyen Manh Luan
+-------------------------------------------------------------------------*/
+
+
+/* COMMON STYLE
+
+--------------------------------------------------------- */
+
+html, body, form, fieldset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+fieldset.input {
+	border: 0px solid #000000;
+ 	padding-left: 28px;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+body#bd {
+	background: #FFFFFF url(../images/bgindex.jpg) repeat;
+}
+
+#wrapper {	
+	width: 960px;
+	text-align: left;
+	background: #FFFFFF;
+}
+
+#wrapper #headerwrap {
+	height: 131px;
+	/* width: 780px; */
+	background: url(../images/header.jpg) repeat-x;
+}
+
+#wrapper #headerwrap .logo {
+	width: 779px;
+	float: left;
+}
+
+#wrapper #headerwrap .support {
+	width: 181px;
+	float: left;
+}
+
+#wrapper #contentwrap {
+	background: #FFFFFF;
+	overflow: hidden;
+	
+}
+
+#wrapper #contentwrap .left {
+	margin:0;
+	padding:0;
+	width: 237px;
+	float: left;
+}
+
+.moduletable_left {
+	background: url(../images/mid_left.jpg) no-repeat bottom;
+	margin-bottom: 10px;
+	padding-bottom: 40px;
+}
+
+.moduletable_left div {
+	background: url(../images/center_left.jpg) repeat-y center;
+	padding-top: 10px;
+}
+
+.moduletable_left h3 {
+	background: url(../images/h3_left.jpg) no-repeat 6px 0px;
+	color: #035a50;
+	font-size: 14pt;
+	height: 73px;
+	line-height: 73px;
+	padding-left: 70px;
+	margin-top: 10px;
+}
+
+h1,h2,h3,h4,h5 {
+	margin: 0;
+	padding: 0;
+}
+
+h1.componentheading {
+	padding-bottom: 10px;
+}
+
+img {
+	border: 0;
+}
+
+a {
+	color: #003366;
+	text-decoration: none;
+}
+
+a:hover, a:focus, a:active {
+	color: #003366;
+	text-decoration: underline;
+}
+
+a.readon {
+	float: right;
+	padding-right: 20px;
+}
+
+#wrapper #contentwrap .content2 {
+	width: 723px;
+	float: left;
+	margin-top: 20px;
+	padding-bottom: 10px;
+}
+
+ .jazin-box, .contentpaneopen {
+	width: 723px;
+	float: left;
+	margin-top: 20px;
+	padding-bottom: 10px;
+	background: url(../images/bot_news.jpg) no-repeat left bottom;
+}
+
+#wrapper #contentwrap .content {
+	width: 723px;
+	float: left;
+	margin-top: 20px;
+	padding-bottom: 10px;
+}
+
+#wrapper #contentwrap .content .contentpaneopen {
+	margin-top: 0;
+}
+
+.jazin-box { 
+	margin-top: 0px;
+}
+
+h2.contentheading, .h3-jazin-section {
+	margin: 0;
+	padding: 0;
+	background: url(../images/h3_news.jpg) no-repeat;
+	height: 35px;
+	padding-left: 73px;
+	color: #0f3f6f;
+	font-size: 12px;
+	font-weight: bold;
+	padding-top: 5px;
+}
+
+.article-content, .jazin-content {
+	padding: 5px 20px 5px 10px;
+	background: url(../images/mid_news.jpg) repeat-y left top;
+}
+
+.jazin-content {
+	width: 690px;
+}
+
+span.article_separator {
+	
+}
+
+#wrapper #mainnav {
+	
+	background: #FFFFFF;
+	height:66px;
+}
+
+#wrapper #banner {
+	height: 333px;
+	background: #FFFFFF;
+}
+
+#wrapper #footer {
+	background: url(../images/footer.jpg) no-repeat;
+	height:140px;
+	line-height:1;
+	padding-left:36px;
+	padding-top:25px;
+	
+}
+#wrapper #footer div {
+	
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	margin-top:5px;
+	line-height:1.2;
+	text-align:left;
+}
+#wrapper #footer  .footer_menu {
+	height:30px;
+	text-align:left;
+}
+#wrapper #footer  .footer_menu ul {
+	
+	list-style:none;
+	margin:0;
+	padding:0;
+	
+}
+
+#wrapper #footer  .footer_menu ul li {
+	display:inline;
+}
+
+#wrapper #footer  .footer_menu ul li a {
+font-weight:bold;
+}
+#footer a {
+	color: #477b9b;
+	text-decoration: none;
+}
+
+.clr {
+	clear: both;
+	margin: 0;
+	padding: 0;
+}
+
+
+.inputbox {
+
+	padding: 2px;
+
+	border: 1px solid #CCCCCC;
+
+	background: #FFFFFF;
+
+	color: #000000;
+
+	font-size: 100%;
+
+}
+
+
+
+.button {
+
+	padding: 1px 8px;
+
+	border: 1px solid #333333;
+
+	background: #333333;
+
+	color: #FFFFFF;
+
+	text-transform: uppercase;
+
+	font-size: 92%;
+
+}
+
+
+
+* html .button { /*IE 6*/
+
+	padding: 0 5px !important;
+
+}
+
+
+
+*+html .button { /*IE 7*/
+
+	padding: 0 5px !important;
+
+}
+
+input, select, textarea, .inputbox, .button {
+
+	font-family: Arial, Helvetica, sans-serif;
+
+	font-size: 100%;
+
+}
+
+ul.latestnews_left {
+	margin: 0;
+	padding: 0;
+}
+
+ul.latestnews_left li {
+	background: url(../images/arrow.jpg) no-repeat 20px 5px;
+	padding-left: 30px;
+	padding-top: 5px;
+	/*padding-bottom: 5px;*/
+}
+
+ul.latestnews_left li a {
+	padding: 5px 10px;
+}
+ul.pagination {
+	list-style:none;
+}
+
+ul.pagination li {
+	display:inline;
+}
