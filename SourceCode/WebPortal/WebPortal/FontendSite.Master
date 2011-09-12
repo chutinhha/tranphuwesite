@@ -19,7 +19,10 @@
     <div id="wrapper" class="container_24">
         <div class="banner">
             <div class="grid_24">
-                <img alt="" height="114" src="images/banner.gif" width="950" />
+               <object id="flash1" data="images/banner.swf" height="138" type="application/x-shockwave-flash" width="950">
+				<param name="movie" value="images/banner.swf" />
+			</object>
+
             </div>
         </div>
         <!--end banner-->
@@ -36,19 +39,16 @@
         <div class="content grid_24">
             <div class="leftColumn grid_5 alpha">
                 <div class="menu">
-                    <div class="menuTitle">
-                        <div class="menuTitleGrad">
-                            Giới thiệu trường</div>
-                    </div>
-                    <div class="noiDungGioiThieuTruong">
-                        <a href="#">
-                            <img alt="" height="102" src="images/images656900_6.jpg" width="167" style="margin-bottom: 6px;" /></a>
-                        Trường Trần Phú có lịch sử là một tu viện cổ, sau này được sửa sang và nâng cấp
-                        thành trường học. Bên hông trường hiện nay vẫn còn một nhà nguyện cổ, nếu tinh ý
-                        một chút bạn sẽ nhận ra...</div>
-                    <div class="readmore">
-                        <a href="#">Xem tiếp</a></div>
-                </div>
+				<div class="menuTitle">					
+					<div class="menuTitleGrad">Giới thiệu trường</div>					
+				</div>
+				
+				<div class="noiDungGioiThieuTruong">	
+					<a href="#"><img alt="" height="105" src="images/images.gif" width="170" style="margin-bottom:6px;"/></a>
+					Trường Trần Phú có lịch sử là một tu viện cổ, sau này được sửa sang và nâng cấp thành trường học. Bên hông trường hiện nay vẫn còn một nhà nguyện cổ, nếu tinh ý một chút bạn sẽ nhận ra...</div>
+				<div class="readmore"><a href=GioiThieuTruong.aspx>Xem tiếp</a></div>
+			</div>
+
                 <!--end giới thiệu trường-->
                 <div class="menu">
                     <div class="menuTitle">
@@ -74,23 +74,8 @@
                                 <%=lt.TenLoai%></a></li>
                             <%}
                                   } %>
-                            <li class="menuItem_TaiNguyen">Tài Nguyên
-                                <ul class="subMenuitem taiNguyen-subitem">
-                                    <li><a href="#">Đề thi TN THPT</a></li>
-                                    <li><a href="#">Phần mềm hỗ trợ giáo viên</a></li>
-                                    <li><a href="#">Phần mềm hỗ trợ học sinh</a></li>
-                                    <li><a href="#">Văn bản</a></li>
-                                </ul>
-                            </li>
-                            <li class="menuItem_KeHoach">Kế hoạch
-                                <ul class="subMenuitem keHoach-subitem">
-                                    <li><a href="#">Kế hoạch</a></li>
-                                    <li><a href="#">Phân công chuyên môn</a></li>
-                                    <li><a href="#">Công tác tuần</a></li>
-                                    <li><a href="#">Lịch thi</a></li>
-                                    <li><a href="#">Thông báo</a></li>
-                                </ul>
-                            </li>
+                           
+                            
                             <li class="menuItem_ToChuc">Tổ chức
                                 <ul class="subMenuitem toChuc-subitem">
                                     <%WebPortal.ToChuc apptochu = new WebPortal.ToChuc();
@@ -150,14 +135,17 @@
                             style="width: 165px;">
 			                <table bgcolor="white">
 				                <tr>
-					                <td><a href="#">
-					                <img style="margin:4px;" height="100" src="images/images656900_6.jpg" width="100" /><br />
+					                <td><a href=HinhAnh.aspx>
+					                <img style="margin:4px;" height="100" src="images/images656900_6.jpg" width="120" /><br />
 					                </a></td>
-                                   <td><a href="#">
-					                <img style="margin:4px;" height="100" src="images/images656900_6.jpg" width="100" /><br />
+                                   <td><a href=HinhAnh.aspx>
+					                <img style="margin:4px;" height="100" src="images/images.jpg" width="120" /><br />
 					                </a></td>
-                                    <td><a href="#">
-					                <img style="margin:4px;" height="100" src="images/images656900_6.jpg" width="100" /><br />
+                                    <td><a href=HinhAnh.aspx>
+					                <img style="margin:4px;" height="100" src="images/images (1).jpg" width="120" /><br />
+					                </a></td>
+                                     <td><a href=HinhAnh.aspx>
+                                    <img style="margin:4px;" height="100" src="images/1.jpg" width="120" /><br />
 					                </a></td>
 					
 
