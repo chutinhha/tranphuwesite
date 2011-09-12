@@ -257,7 +257,10 @@
     </tbody>
 </table>
 <a href="AdminUserManager.aspx?id=<%=user.UserID %>&&type=newprofile" class="button green fl-space">
-    Thêm profile</a><br />
+    Thêm profile</a>
+
+<a href="AdminViewLogs.aspx?id=<%=user.UserID %>" class="button green fl-space">
+    Xem log</a><br /><br />
 <%} %>
 <%} %>
 <br /><br />
