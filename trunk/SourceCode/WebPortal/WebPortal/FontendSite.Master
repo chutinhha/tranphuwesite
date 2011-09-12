@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="FontendSite.master.cs"
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="FontendSite.Master.cs"
     Inherits="WebPortal.FontendSite" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -13,28 +13,47 @@
     <script type="text/javascript" src="js/js.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
- 
-  
+    <script type="text/javascript">
+        function time() {
+            days = new Array("Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy");
+            months = new Array("tháng 01 năm", "tháng 02 năm", "tháng 03 năm", "tháng 04 năm", "tháng 05 năm", "tháng 06 năm", "tháng 07 năm", "tháng 08 năm", "tháng 09 năm", "tháng 10 năm", "tháng 11 năm", "tháng 12 năm");
+            today = new Date();
+
+            thisDay = today.getDay();
+            thisDate = today.getDate();
+            thisMonth = today.getMonth();
+            thisYear = today.getFullYear();
+            todayDay = days[thisDay];
+            todayMonth = months[thisMonth];
+            document.getElementById('txt').innerHTML = '<b>' + todayDay + "," + " " + thisDate + " " + todayMonth + " " + thisYear + '</b>';
+        }
+	
+		
+    </script>
 </head>
-<body>
+<body onload="time()">
     <form id="form1" runat="server">
     <div id="wrapper" class="container_24">
-        <div class="banner" style="margin:10px 0; height:143px;">
+        <div class="banner" style="margin: 10px 0; height: 143px;">
             <div class="grid_24">
-                <a href="TrangChu.aspx"><object id="flash1" data="images/banner.swf" height="138" type="application/x-shockwave-flash"
-                    width="950">
-                    <param name="movie" value="images/banner.swf" />
-                </object>
+                <a href="TrangChu.aspx">
+                    <object id="flash1" data="images/banner.swf" height="138" type="application/x-shockwave-flash"
+                        width="950">
+                        <param name="movie" value="images/banner.swf" />
+                    </object>
                 </a>
             </div>
         </div>
         <!--end banner-->
-        <div class="menuBar grid_24" style="display: none;">
+        <div class="menuBar grid_24" style="">
             <ul id="nav">
-                <li class="active"><a href="#">Trang chủ</a></li>
-                <li><a href="#">Forum</a></li>
-                <li><a href="#">Tin tức</a></li>
+                <li class="active"><a href="TrangChu.aspx">Trang chủ</a></li>
+                <li><a href="#">Liên hệ</a></li>
+                <li><a href=GioiThieuTruong.aspx>Giới thiệu trường</a></li>
             </ul>
+            <div class="time">
+                <span id="txt" class="white" style="display: inline-block;"></span>
+            </div>
         </div>
         <!--end menubar-->
         <div class="clear">
@@ -46,57 +65,67 @@
                         <div class="menuTitleGrad">
                             Giới thiệu trường</div>
                     </div>
-                    <div class="noiDungGioiThieuTruong" style="font-size:13px;">
+                    <div class="noiDungGioiThieuTruong" style="font-size: 13px;">
                         <a href="#">
-                            <img alt="" height="105" src="images/images.gif" width="170" style="margin-bottom: 6px;" /></a> 
-                        Trường Trần Phú có lịch sử là một tu viện cổ, sau này được sửa sang và nâng cấp 
-                        thành trường học. Bên hông trường hiện nay vẫn còn một nhà nguyện cổ, nếu tinh ý 
+                            <img alt="" height="105" src="images/images.gif" width="170" style="margin-bottom: 6px;" /></a>
+                        Trường Trần Phú có lịch sử là một tu viện cổ, sau này được sửa sang và nâng cấp
+                        thành trường học. Bên hông trường hiện nay vẫn còn một nhà nguyện cổ, nếu tinh ý
                         một chút bạn sẽ nhận ra....</div>
-                    <div class="readmore" style="text-align:right;	margin:0 6px 6px 0;	font-size:11px;">
-                        <a href="GioiThieuTruong.aspx" style="text-decoration:none;">Xem tiếp</a></div>
+                    <div class="readmore" style="text-align: right; margin: 0 6px 6px 0; font-size: 11px;">
+                        <a href="GioiThieuTruong.aspx" style="text-decoration: none;">Xem tiếp</a></div>
                 </div>
                 <!--end giới thiệu trường-->
                 <div class="menu">
                     <div class="menuTitle">
                         <div class="menuTitleGrad">
-                            Menu</div>
+                            Tổ chức</div>
                     </div>
                     <div class="menuItem">
                         <ul>
-                            <%WebPortal.Repository.LoaiTinLV1 appltLV1 = new WebPortal.Repository.LoaiTinLV1();
-                              List<WebPortal.Model.LoaiTin_Lv1> listLTLV1 = new List<WebPortal.Model.LoaiTin_Lv1>();
-                              listLTLV1 = appltLV1.All();
-                              //if (listLTLV1.Count() != 0)
-
+                           
+                            <%WebPortal.ToChuc apptochu = new WebPortal.ToChuc();
+                              List<WebPortal.Model.ToChuc> listtochuc = apptochu.All();
+                              foreach (WebPortal.Model.ToChuc tc in listtochuc)
                               {
-                                  int idlt;
-                                  foreach (WebPortal.Model.LoaiTin_Lv1 lt in listLTLV1)
-                                  {
-                                      idlt = lt.IDLoaiTin_Lv1;
-                                      if (idlt != null)
-                                      {
                             %>
-                            <li><a href="TrangChu.aspx?idLTLV1=<%=idlt %>">
-                                <%=lt.TenLoai%></a></li>
-                            <%}
-                                  } %>
-                            <li class="menuItem_ToChuc">Tổ chức
-                                <ul class="subMenuitem toChuc-subitem">
-                                    <%WebPortal.ToChuc apptochu = new WebPortal.ToChuc();
-                                      List<WebPortal.Model.ToChuc> listtochuc = apptochu.All();
-                                      foreach (WebPortal.Model.ToChuc tc in listtochuc)
-                                      {
-                                    %>
-                                    <li><a href="ToChuc.aspx?idToChuc=<%=tc.IDToChuc %>">
-                                        <%=tc.TenTC%></a></li>
-                                    <%} %>
-                                </ul>
-                            </li>
-                            <li><a href="#">Liên hệ - Góp ý</a></li>
+                            <li><a href="ToChuc.aspx?idToChuc=<%=tc.IDToChuc %>">
+                                <%=tc.TenTC%></a></li>
+                            <%} %>
                         </ul>
                     </div>
                 </div>
-                <%} %>
+                <%-------------------%>
+                <%WebPortal.Repository.LoaiTinLV1 appltLV1 = new WebPortal.Repository.LoaiTinLV1();
+                  List<WebPortal.Model.LoaiTin_Lv1> listLTLV1 = new List<WebPortal.Model.LoaiTin_Lv1>();
+                  listLTLV1 = appltLV1.All();
+
+                  int idlt;
+                  foreach (WebPortal.Model.LoaiTin_Lv1 lt in listLTLV1)
+                  {
+                      idlt = lt.IDLoaiTin_Lv1;
+                      if (idlt != null)
+                      {
+                %>
+                <div class="menu">
+                    <div class="menuTitle">
+                        <div class="menuTitleGrad">
+                            <%=lt.TenLoai%></div>
+                    </div>
+                    <div class="menuItem">
+                        <ul>
+                            <%
+WebPortal.LoaiTin appLoaiTin = new WebPortal.LoaiTin();
+List<WebPortal.Model.LoaiTin> listLoaiTin = appLoaiTin.ListNews(idlt);
+foreach (WebPortal.Model.LoaiTin lt2 in listLoaiTin)
+{%>
+                            <li><a href="News2.aspx?idLoaiTin=<%=lt2.IDLoaiTin %>">
+                                <%=lt2.TenLoai %></a></li>
+                            <%} %>
+                        </ul>
+                    </div>
+                </div>
+                <%}
+                  } %>
                 <!--end menu-->
                 <div class="clear">
                 </div>
@@ -107,9 +136,9 @@
                     </div>
                     <div class="webLinks">
                         <div>
-                            <a href="">
+                            <a href="#">
                                 <img alt="" src="images/CLB_KhoaHocXaHoi.jpg" width="137" height="140" style="margin-bottom: 6px;" /></a>
-                            <a href="">
+                            <a href="#">
                                 <img alt="" src="images/CLB_KhoaHocTuNhien.jpg" width="137" height="140" style="margin-bottom: 6px;" /></a>
                         </div>
                     </div>
@@ -135,7 +164,6 @@
                             Hình ảnh</div>
                     </div>
                     <div class="thongKeInfo">
-                    
                         <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="3"
                             style="width: 165px;">
 			                <table bgcolor="white">
@@ -159,11 +187,11 @@
                 </div>
             </div>
             <!--end left column-->
-            <div class="rightColumn grid_19 omega">            
+            <div class="rightColumn grid_19 omega">
                 <div>
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
-                </div>                
+                </div>
                 <!--end tin tức sự kiện-->
                 <!--end thông báo-->
             </div>
@@ -172,9 +200,10 @@
         <!--end content-->
     </div>
     <div class="footer">
-        Copyright 2011
+        Copyright 2011<br />
+        Trường THPT Trần Phú<br />
+        Số 1 Hùng Vương ,Phường 10 -Đà Lạt ,Lâm Đồng.
     </div>
-
     </form>
 </body>
 </html>
