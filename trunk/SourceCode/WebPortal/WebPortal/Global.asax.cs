@@ -101,6 +101,9 @@ namespace WebPortal
                 writer2.WriteLine(count_visit);
                 writer2.Close();
                 Application["count_online"] = count_online;
+
+                //Lưu log của người dùng khi log out
+                Repository.Log.InsertLogs();
             }
             catch
             { }

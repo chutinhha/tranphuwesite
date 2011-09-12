@@ -52,4 +52,7 @@
         </div>
         <!-- end of box-wrap -->
     </div>
+            <% 
+            WebPortal.Repository.Log.WriteLog(Request);
+            %>
 </asp:Content>

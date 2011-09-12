@@ -26,4 +26,7 @@
             </thead>
         </table>
     </div>
+            <% 
+            WebPortal.Repository.Log.WriteLog(Request);
+            %>
 </asp:Content>

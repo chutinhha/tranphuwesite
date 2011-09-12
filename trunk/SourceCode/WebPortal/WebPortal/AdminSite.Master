@@ -40,7 +40,7 @@
             <div class="head_top">
                 <div class="topbuts">
                     <ul class="clear">
-                        <li><a href="AdminLogin.aspx?logout=1" class="red">Đăng xuất</a></li>
+                        <li><a href="AdminLogin.aspx?action=logout" class="red">Đăng xuất</a></li>
                     </ul>
                     <div class="user clear">
                         <img src="images/avatar.jpg" class="avatar" alt="" />
@@ -57,7 +57,7 @@
             </div>
             <% %>
             <%}
-               else 
+               else
                {
                    Response.Redirect("AdminLogin.aspx");
                } %>

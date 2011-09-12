@@ -71,7 +71,6 @@ namespace WebPortal.Repository
 
         //Ham viet them tai day
         #region
-
         public static void WriteLog(HttpRequest request)
         {
             if (Libs.LibSession.Get(Libs.Constants.ACCOUNT_LOGIN) != null)
@@ -106,6 +105,55 @@ namespace WebPortal.Repository
                     List<Model.Log> LogList = new List<Model.Log>();
                     LogList.Add(log);
                     Libs.LibSession.Set(Libs.Constants.LOG, LogList);
+                }
+            }
+        }
+
+        public static bool InsertLogs()
+        {
+            DbTransaction dbTransaction = null;
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                try
+                {
+                    if (dataEntities.Connection.State == System.Data.ConnectionState.Closed)
+                    {
+                        dataEntities.Connection.Open();
+                    }
+                    dbTransaction = dataEntities.Connection.BeginTransaction();
+
+                    if (Libs.LibSession.Get(Libs.Constants.LOG) != null)
+                    {
+                        List<Model.Log> logList = (List<Model.Log>)Libs.LibSession.Get(Libs.Constants.LOG);
+                        foreach (var log in logList)
+                        {
+                            log.Time_Logout = DateTime.Now;
+                            dataEntities.Logs.AddObject(log);
+                        }
+                    }
+
+                    if (dataEntities.SaveChanges() != 0)
+                    {
+                        dbTransaction.Commit();
+                        return true;
+                    }
+                    else
+                    {
+                        dbTransaction.Rollback();
+                        return false;
+                    }
+                }
+                catch
+                {
+                    dbTransaction.Rollback();
+                    return false;
+                }
+                finally
+                {
+                    if (dataEntities.Connection.State == System.Data.ConnectionState.Open)
+                    {
+                        dataEntities.Connection.Close();
+                    }
                 }
             }
         }

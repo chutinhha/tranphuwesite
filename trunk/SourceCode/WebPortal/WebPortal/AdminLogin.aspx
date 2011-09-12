@@ -23,21 +23,32 @@
 <![endif]-->
     <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.validate.js"></script>
-     <script type="text/javascript">
-         $(document).ready(function () {
-             $("#form1").validate({
-                 rules: {
-                     username: {
-                         required: true
-                     },
-                     password: {
-                         required: true
-                     }
-                 }
-             });
-         });
-</script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#form1").validate({
+                rules: {
+                    username: {
+                        required: true
+                    },
+                    password: {
+                        required: true
+                    }
+                }
+            });
+        });
+    </script>
 </head>
+<% 
+    if (Request.QueryString["action"] == "logout")
+    {
+        Libs.LibSession.Remove(Libs.Constants.ACCOUNT_LOGIN);
+        Libs.LibCookie.Remove(Libs.Constants.COOKIE_USERNAME);
+        Libs.LibCookie.Remove(Libs.Constants.COOKIE_USERPASS);
+        if (WebPortal.Repository.Log.InsertLogs())
+        {
+            Libs.LibSession.Remove(Libs.Constants.LOG);
+        }
+    } %>
 <body class="login">
     <div class="login-box">
         <div class="login-border">
@@ -77,7 +88,7 @@
                             <input name="password" type="password" value="<%=Libs.LibCookie.Get(Libs.Constants.COOKIE_USERPASS)%>"
                                 size="25" class="text" id="password" />
                             <%}
-                               else 
+                               else
                                { %>
                             <input name="password" type="password" size="25" class="text" id="password1" />
                             <%} %>
@@ -111,14 +122,9 @@
                 <strong>Tên đăng nhập hoặc mật khẩu không đúng, xin vui lòng thử lại</strong></p>
         </div>
         <%}
-                       }
+               }
         %>
         <%} %>
-
-        <%if (Request.QueryString["logout"] == "1")
-          {
-              LogOut();
-        } %>
     </div>
     <div class="login-links">
         <p>

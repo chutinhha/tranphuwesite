@@ -17,4 +17,7 @@
             </div>
             </div>
     </div>
+            <% 
+            WebPortal.Repository.Log.WriteLog(Request);
+            %>
 </asp:Content>

@@ -28,4 +28,7 @@
             </div>
 </div>
         <!-- end of box-wrap -->
+                <% 
+            WebPortal.Repository.Log.WriteLog(Request);
+            %>
 </asp:Content>
