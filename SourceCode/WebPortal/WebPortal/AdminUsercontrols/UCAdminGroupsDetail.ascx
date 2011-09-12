@@ -42,7 +42,7 @@
                 GroupID
             </th>
             <td>
-                <input readonly="readonly" name="groupID" type="text" value="<%=group.GroupID%>" />
+                <input style="width:50%;" readonly="readonly" name="groupID" type="text" value="<%=group.GroupID%>" />
             </td>
         </tr>
         <tr>
@@ -50,7 +50,7 @@
                 GroupName
             </th>
             <td>
-                <input name="groupName" type="text" value="<%=group.Group_Name%>" />
+                <input style="width:50%;" name="groupName" type="text" value="<%=group.Group_Name%>" />
             </td>
         </tr>
         <tr>
@@ -58,7 +58,7 @@
                 GroupDescription
             </th>
             <td>
-                <input name="groupDescription" type="text" value="<%=group.Group_Description%>" />
+                <input style="width:50%;" name="groupDescription" type="text" value="<%=group.Group_Description%>" />
             </td>
         </tr>
         <tr>
@@ -66,7 +66,7 @@
                 GroupToString
             </th>
             <td>
-                <input name="groupToString" type="text" value="<%=group.Group_ToString%>" />
+                <input style="width:50%;" name="groupToString" type="text" value="<%=group.Group_ToString%>" />
             </td>
         </tr>
         <tr>
@@ -74,7 +74,7 @@
                 Group DateCreate
             </th>
             <td>
-                <input readonly="readonly" name="groupDateCreate" type="text" value="<%=group.Group_DateCreate%>" />
+                <input style="width:50%;" disabled="disabled" name="groupDateCreate" type="text" value="<%=group.Group_DateCreate%>" />
             </td>
         </tr>
         <tr>
@@ -82,7 +82,7 @@
                 User Create
             </th>
             <td>
-                <input readonly="readonly" name="userCreate" type="text" value="<%=group.User_Create%>" />
+                <input style="width:50%;" readonly="readonly" name="userCreate" type="text" value="<%=group.User_Create%>" />
             </td>
         </tr>
         <tr>
@@ -119,7 +119,7 @@
                 GroupName
             </th>
             <td>
-                <input disabled="disabled" name="groupName" type="text" value="<%=group.Group_Name%>" />
+                <input style="width:50%;" disabled="disabled" name="groupName" type="text" value="<%=group.Group_Name%>" />
             </td>
         </tr>
         <tr>
@@ -127,7 +127,7 @@
                 GroupDescription
             </th>
             <td>
-                <input disabled="disabled" name="groupDescription" type="text" value="<%=group.Group_Description%>" />
+                <input style="width:50%;" disabled="disabled" name="groupDescription" type="text" value="<%=group.Group_Description%>" />
             </td>
         </tr>
         <tr>
@@ -135,7 +135,7 @@
                 GroupToString
             </th>
             <td>
-                <input disabled="disabled" name="groupToString" type="text" value="<%=group.Group_ToString%>" />
+                <input style="width:50%;" disabled="disabled" name="groupToString" type="text" value="<%=group.Group_ToString%>" />
             </td>
         </tr>
         <tr>
@@ -143,7 +143,7 @@
                 Group DateCreate
             </th>
             <td>
-                <input disabled="disabled" name="groupDateCreate" type="text" value="<%=group.Group_DateCreate%>" />
+                <input style="width:50%;" disabled="disabled" name="groupDateCreate" type="text" value="<%=group.Group_DateCreate%>" />
             </td>
         </tr>
         <tr>
@@ -151,7 +151,7 @@
                 User Create
             </th>
             <td>
-                <input disabled="disabled" name="userCreate" type="text" value="<%=group.User_Create%>" />
+                <input style="width:50%;" disabled="disabled" name="userCreate" type="text" value="<%=group.User_Create%>" />
             </td>
         </tr>
         <tr>
@@ -181,7 +181,7 @@
                 GroupName
             </th>
             <td>
-                <input name="groupName" type="text" />
+                <input style="width:50%;" name="groupName" type="text" />
             </td>
         </tr>
         <tr>
@@ -189,7 +189,7 @@
                 GroupDescription
             </th>
             <td>
-                <input name="groupDescription" type="text" style="width:50%" />
+                <input style="width:50%;" name="groupDescription" type="text" style="width:50%" />
             </td>
         </tr>
         <tr>
@@ -197,7 +197,7 @@
                 GroupToString
             </th>
             <td>
-                <input name="groupToString" type="text" style="width:50%" />
+                <input style="width:50%;" name="groupToString" type="text" style="width:50%" />
             </td>
         </tr>
         <tr>

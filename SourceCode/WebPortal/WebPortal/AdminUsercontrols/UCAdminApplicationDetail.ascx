@@ -49,7 +49,7 @@
                 Name
             </th>
             <td>
-                <input name="name" type="text" value="<%=application.Application_Name%>" />
+                <input style="width:50%;" name="name" type="text" value="<%=application.Application_Name%>" />
             </td>
         </tr>
         <tr>
@@ -57,7 +57,7 @@
                 Description
             </th>
             <td>
-                <input name="description" type="text" value="<%=application.Application_Description%>" />
+                <input style="width:50%;" name="description" type="text" value="<%=application.Application_Description%>" />
             </td>
         </tr>
         <tr>
@@ -65,7 +65,7 @@
                FilePath
             </th>
             <td>
-                <input name="filePath" type="text" value="<%=application.Application_FilePath%>" />
+                <input style="width:50%;" name="filePath" type="text" value="<%=application.Application_FilePath%>" />
             </td>
         </tr>
         <tr>
@@ -74,7 +74,7 @@
             </th>
             <td>
            <img src="<%=application.Application_Image%>" alt="" class="thumb size64 fl-space" />
-            <input type="file" name="inputFile" runat="server"/>
+            <input style="width:50%;" type="file" name="inputFile" runat="server"/>
             </td>
         </tr>
         <tr>
@@ -82,7 +82,7 @@
                ToString
             </th>
             <td>
-                <input name="applicationToString" type="text" value="<%=application.Application_ToString%>" />
+                <input style="width:50%;" name="applicationToString" type="text" value="<%=application.Application_ToString%>" />
             </td>
         </tr>
         <tr>
@@ -90,7 +90,7 @@
                DataCreate
             </th>
             <td>
-                <input name="dateCreate" type="text" value="<%=application.Application_DateCreate%>" />
+                <input style="width:50%;" disabled="disabled" name="dateCreate" type="text" value="<%=application.Application_DateCreate%>" />
             </td>
         </tr>
         <tr>
@@ -161,7 +161,7 @@ for (int i = 0; i < lstName.Count; i++)
                 Name
             </th>
             <td>
-                <input disabled="disabled" name="name" type="text" value="<%=application.Application_Name%>" />
+                <input style="width:50%;" disabled="disabled" name="name" type="text" value="<%=application.Application_Name%>" />
             </td>
         </tr>
         <tr>
@@ -169,7 +169,7 @@ for (int i = 0; i < lstName.Count; i++)
                 Description
             </th>
             <td>
-                <input disabled="disabled" name="description" type="text" value="<%=application.Application_Description%>" />
+                <input style="width:50%;" disabled="disabled" name="description" type="text" value="<%=application.Application_Description%>" />
             </td>
         </tr>
         <tr>
@@ -177,7 +177,7 @@ for (int i = 0; i < lstName.Count; i++)
                FilePath
             </th>
             <td>
-                <input disabled="disabled" name="filePath" type="text" value="<%=application.Application_FilePath%>" />
+                <input style="width:50%;" disabled="disabled" name="filePath" type="text" value="<%=application.Application_FilePath%>" />
             </td>
         </tr>
         <tr>
@@ -193,7 +193,7 @@ for (int i = 0; i < lstName.Count; i++)
                DataCreate
             </th>
             <td>
-                <input disabled="disabled" name="dateCreate" type="text" value="<%=application.Application_DateCreate%>" />
+                <input style="width:50%;" disabled="disabled" name="dateCreate" type="text" value="<%=application.Application_DateCreate%>" />
             </td>
         </tr>
         <tr>
@@ -201,7 +201,7 @@ for (int i = 0; i < lstName.Count; i++)
                ToString
             </th>
             <td>
-                <input disabled="disabled" name="applicationToString" type="text" value="<%=application.Application_ToString%>" />
+                <input style="width:50%;" disabled="disabled" name="applicationToString" type="text" value="<%=application.Application_ToString%>" />
             </td>
         </tr>
          <tr>
@@ -235,7 +235,7 @@ for (int i = 0; i < lstName.Count; i++)
                Order
             </th>
             <td>
-                <input disabled="disabled" name="order" type="text" value="<%=application.Order%>" />
+                <input style="width:50%;" disabled="disabled" name="order" type="text" value="<%=application.Order%>" />
             </td>
         </tr>
         <tr>
@@ -265,7 +265,7 @@ for (int i = 0; i < lstName.Count; i++)
                 Name
             </th>
             <td>
-                <input name="name" type="text" value="" />
+                <input style="width:50%;" name="name" type="text" value="" />
             </td>
         </tr>
         <tr>
@@ -273,7 +273,7 @@ for (int i = 0; i < lstName.Count; i++)
                 Description
             </th>
             <td>
-                <input name="description" type="text" value="" />
+                <input style="width:50%;" name="description" type="text" value="" />
             </td>
         </tr>
         <tr>
@@ -281,7 +281,7 @@ for (int i = 0; i < lstName.Count; i++)
                FilePath
             </th>
             <td>
-                <input name="filePath" type="text" value="" />
+                <input style="width:50%;" name="filePath" type="text" value="" />
             </td>
         </tr>
         <tr>
@@ -289,7 +289,7 @@ for (int i = 0; i < lstName.Count; i++)
                 Image
             </th>
             <td>
-            <input id="File1" type="file" name="inputFile" runat="server"/>
+            <input style="width:50%;" id="File1" type="file" name="inputFile" runat="server"/>
             </td>
         </tr>
         <tr>
@@ -297,7 +297,7 @@ for (int i = 0; i < lstName.Count; i++)
                ToString
             </th>
             <td>
-                <input name="applicationToString" type="text" value="" />
+                <input style="width:50%;" name="applicationToString" type="text" value="" />
             </td>
         </tr>
         <tr>
@@ -324,7 +324,7 @@ for (int i = 0; i < lstName.Count; i++)
                Order
             </th>
             <td>
-                <input name="order" type="text" value="" />
+                <input style="width:50%;" name="order" type="text" value="" />
             </td>
         </tr>
         <tr>
