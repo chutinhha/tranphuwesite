@@ -40,13 +40,12 @@
                 <div style="margin-bottom: 40px;">
                     <div class="timePost">
                         Người gửi :<%= tt.NguoiDang+tt.NgayDang %></div>
-                    <div class="printer">
-                        <a href="#">In bài</a></div>
+                    
                 </div>
                 <div class="clear">
                 </div>
                 <div class="hinhAnh">
-                    <img alt="" height="64" src="images/<%=tt.HinhAnh%>" width="102" /></div>
+                    <img alt="" height="64" src="ImageNews/<%=tt.HinhAnh%>" width="102" /></div>
                 <div class="noiDungTin">
                     <%=tt.NoiDung %>
                 </div>

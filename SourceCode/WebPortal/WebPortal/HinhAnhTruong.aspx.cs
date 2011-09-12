@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WebPortal
 {
-    public partial class HinhAnhTruong : System.Web.UI.Page
+    public partial class HinhAnhTruong1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -56,7 +56,7 @@
             <div class="timePost">
                 người đăng:<%Response.Write(tt.NguoiDang + "  " + tt.NgayDang); %></div>
             <div class="hinhAnh">
-                <img alt="" height="64" src="images/<%=tt.HinhAnh%>" width="102" /></div>
+                <img alt="" height="64" src="ImageNews/<%=tt.HinhAnh%>" width="102" /></div>
             <div class="noiDungTin">
                 <%Response.Write(tt.MoTaTinTuc);%>
             </div>
