@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCAdminGiaoVienDetail.ascx.cs"
     Inherits="WebPortal.AdminUsercontrols.UCAdminGiaoVienDetail" %>
-<form method="post" action="../AdminGiaoVienManager.aspx">
+<form id="form1" method="post" action="../AdminGiaoVienManager.aspx">
 <p>
     <%if (Request.QueryString["type"].ToString() == "edit")
       { %>
@@ -35,6 +35,7 @@
         {
             if (Request.QueryString["type"].ToString() == "edit")
             {
+                
     %>
     <tbody>
         <tr>
@@ -90,7 +91,7 @@
                 Ngày Sinh
             </th>
             <td>
-                <input style="width:50%;" name="ngaySinh" type="text" value="<%=giaoVien.NgaySinh%>" />
+                <input style="width:50%;" name="ngaySinh" type="text" value="<%=giaoVien.NgaySinh.Value.ToShortDateString()%>" />
             </td>
         </tr>
         <tr>
@@ -184,7 +185,7 @@
                 Ngày Sinh
             </th>
             <td>
-                <input style="width:50%;" disabled="disabled" name="ngaySinh" type="text" value="<%=giaoVien.NgaySinh%>" />
+                <input style="width:50%;" disabled="disabled" name="ngaySinh" type="text" value="<%=giaoVien.NgaySinh.Value.ToShortDateString()%>" />
             </td>
         </tr>
         <tr>

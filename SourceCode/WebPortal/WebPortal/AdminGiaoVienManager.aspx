@@ -2,6 +2,16 @@
 <%@ Register TagPrefix="UC" TagName="GVList" Src="~/AdminUsercontrols/UCAdminGiaoVienList.ascx" %>
 <%@ Register TagPrefix="UC" TagName="GVDetail" Src="~/AdminUsercontrols/UCAdminGiaoVienDetail.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+ <link href="css/admin-usermanager.css" rel="Stylesheet" />
+    <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.js"></script>
+ <script type="text/javascript">
+     $(document).ready(function () {
+         $('input[name="ngaySinh"]').datepicker({
+             dateFormat: 'dd/mm/yy'
+         });
+     });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div class="content-box">
