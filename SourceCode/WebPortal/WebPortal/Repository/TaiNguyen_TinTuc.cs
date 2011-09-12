@@ -63,6 +63,11 @@ namespace WebPortal
         }
         #endregion
 
+
+      
+
+
+        //Ai can ham gi thi viet them  
         #region Thuy
 
         public List<WebPortal.Model.TaiNguyen_TinTuc> GetFollowIDTinTuc(int id)
@@ -77,8 +82,16 @@ namespace WebPortal
             return listTNTT;
         }
 
+        public int Delete(int idTaiNguyen_TinTuc)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                var taiNguyen_TinTuc = dataEntities.TaiNguyen_TinTuc.Single(tn => tn.ID == idTaiNguyen_TinTuc);
+                dataEntities.DeleteObject(taiNguyen_TinTuc);
+                return dataEntities.SaveChanges();
+            }
+        }
         #endregion
 
-        //Ai can ham gi thi viet them
     }
 }

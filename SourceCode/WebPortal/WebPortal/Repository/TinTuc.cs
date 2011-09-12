@@ -13,7 +13,7 @@ namespace WebPortal
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.TinTucs.Single(app => app.IDTinTuc == idTinTuc);
+                return dataEntities.TinTucs.Single(tt => tt.IDTinTuc == idTinTuc);
             }
         }
 
@@ -71,6 +71,36 @@ namespace WebPortal
         #endregion
 
         //Ai can ham gi thi viet them, 
+
+
+        #region Thuy
+        public int Delete(int id)
+        {  
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                var news = dataEntities.TinTucs.Single(tt => tt.IDTinTuc == id);
+                dataEntities.DeleteObject(news);
+                return dataEntities.SaveChanges();
+
+            }
+        }
+
+        public List<WebPortal.Model.TinTuc> GetListFollowIdLoaiTin(int idLoaiTin)
+        {
+            List<WebPortal.Model.TinTuc> list = new List<Model.TinTuc>();
+            foreach (WebPortal.Model.TinTuc tt in All())
+            {
+                if (tt.IDLoaiTin == idLoaiTin)
+                    list.Add(tt);
+            }
+            return list;
+        }
+
+
+
+        #endregion
+
+
         #region hue
 
         public List<WebPortal.Model.TinTuc> ListNews(int idLoaiTin)
@@ -82,6 +112,6 @@ namespace WebPortal
             }
         }
         #endregion
-       
+
     }
 }
