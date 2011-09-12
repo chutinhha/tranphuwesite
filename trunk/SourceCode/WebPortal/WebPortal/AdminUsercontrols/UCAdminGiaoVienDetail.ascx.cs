@@ -47,7 +47,7 @@ namespace WebPortal.AdminUsercontrols
                 {
                     g.AnhDaiDien = null;
                 }
-                g.NgaySinh = Libs.LibConvert.ConvertToDateTime(DateTime.Now);
+                g.NgaySinh = Libs.LibConvert.ConvertToDateTime(Request.Form["ngaySinh"]).Date;
                 g.DiaChi = Request.Form["diaChi"];
                 if (Request.Form["active"] != null)
                 {
