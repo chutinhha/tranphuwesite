@@ -1,4 +1,26 @@
+
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCAdminNewsList.ascx.cs" Inherits="WebPortal.AdminUsercontrols.UCAdminNewsList" %>
+<%--<script type="text/javascript">
+    function DeleteClick(str) {
+        var xmlhttp1;
+        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp1 = new XMLHttpRequest();
+        }
+        else {// code for IE6, IE5
+            xmlhttp1 = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp1.onreadystatechange = function () {
+            if (xmlhttp1.readyState == 4 && xmlhttp1.status == 200) {
+                kq = xmlhttp1.responseText;
+                alert(kq);
+                window.location.href = "AdminNewsManager.aspx";
+            }
+        }
+        xmlhttp1.open("GET", str, true);
+        xmlhttp1.send();
+    }
+</script>--%>
+
 <div id="data-table">
     <p>
         <span style="font-family: Arial; font-weight: bold; font-size: 18px;">Quản lý tin tức</span>
@@ -66,10 +88,7 @@
                     <img src='<%=news.HinhAnh%>' />
                 </td>
                 <td style="width:20%;">
-                    <a href="AdminNewsManager.aspx?id=<%=news.IDTinTuc%>&type=new">
-                        <img src="images/ico_edit_16.png" class="icon16 fl-space2 usermanager-command"
-                            alt="" title="Tạo mới" /></a> 
-                    <a href="AdminNewsManager.aspx?id=<%=news.IDTinTuc %>&type=delete">
+                    <a href="AdminNewsManager.aspx?id=<%=news.IDTinTuc %>&type=delete" >
                         <img src="images/ico_delete_16.png" class="icon16 fl-space2 usermanager-command"
                             alt="" title="Xóa" /></a>
                     <a href="AdminNewsManager.aspx?id=<%=news.IDTinTuc %>&type=edit">
@@ -82,4 +101,8 @@
         </tbody>
     </table>
     </form>
+    <a href="AdminNewsManager.aspx?id=-1&type=new">
+    <input type="button" value="Tạo Mới" 
+        style="background-image: url('../images/bg_button.png'); background-repeat: repeat-x;color:White"/></a>  
 </div>
+﻿
