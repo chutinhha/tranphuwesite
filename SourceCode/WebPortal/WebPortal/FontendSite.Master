@@ -13,16 +13,18 @@
     <script type="text/javascript" src="js/js.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+ 
+  
 </head>
 <body>
     <form id="form1" runat="server">
     <div id="wrapper" class="container_24">
-        <div class="banner">
+        <div class="banner" style="margin:10px 0; height:143px;">
             <div class="grid_24">
-               <object id="flash1" data="images/banner.swf" height="138" type="application/x-shockwave-flash" width="950">
-				<param name="movie" value="images/banner.swf" />
-			</object>
-
+                <object id="flash1" data="images/banner.swf" height="138" type="application/x-shockwave-flash"
+                    width="950">
+                    <param name="movie" value="images/banner.swf" />
+                </object>
             </div>
         </div>
         <!--end banner-->
@@ -39,16 +41,19 @@
         <div class="content grid_24">
             <div class="leftColumn grid_5 alpha">
                 <div class="menu">
-				<div class="menuTitle">					
-					<div class="menuTitleGrad">Giới thiệu trường</div>					
-				</div>
-				
-				<div class="noiDungGioiThieuTruong">	
-					<a href="#"><img alt="" height="105" src="images/images.gif" width="170" style="margin-bottom:6px;"/></a>
-					Trường Trần Phú có lịch sử là một tu viện cổ, sau này được sửa sang và nâng cấp thành trường học. Bên hông trường hiện nay vẫn còn một nhà nguyện cổ, nếu tinh ý một chút bạn sẽ nhận ra...</div>
-				<div class="readmore"><a href=GioiThieuTruong.aspx>Xem tiếp</a></div>
-			</div>
-
+                    <div class="menuTitle">
+                        <div class="menuTitleGrad">
+                            Giới thiệu trường</div>
+                    </div>
+                    <div class="noiDungGioiThieuTruong" style="font-size:13px;">
+                        <a href="#">
+                            <img alt="" height="105" src="images/images.gif" width="170" style="margin-bottom: 6px;" /></a> 
+                        Trường Trần Phú có lịch sử là một tu viện cổ, sau này được sửa sang và nâng cấp 
+                        thành trường học. Bên hông trường hiện nay vẫn còn một nhà nguyện cổ, nếu tinh ý 
+                        một chút bạn sẽ nhận ra....</div>
+                    <div class="readmore" style="text-align:right;	margin:0 6px 6px 0;	font-size:11px;">
+                        <a href="GioiThieuTruong.aspx" style="text-decoration:none;">Xem tiếp</a></div>
+                </div>
                 <!--end giới thiệu trường-->
                 <div class="menu">
                     <div class="menuTitle">
@@ -74,8 +79,6 @@
                                 <%=lt.TenLoai%></a></li>
                             <%}
                                   } %>
-                           
-                            
                             <li class="menuItem_ToChuc">Tổ chức
                                 <ul class="subMenuitem toChuc-subitem">
                                     <%WebPortal.ToChuc apptochu = new WebPortal.ToChuc();
@@ -131,24 +134,23 @@
                             Hình ảnh</div>
                     </div>
                     <div class="thongKeInfo">
+                    
                         <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="3"
                             style="width: 165px;">
 			                <table bgcolor="white">
 				                <tr>
-					                <td><a href=HinhAnh.aspx>
+					                <td><a href=HinhAnhTruong.aspx>
 					                <img style="margin:4px;" height="100" src="images/images656900_6.jpg" width="120" /><br />
 					                </a></td>
-                                   <td><a href=HinhAnh.aspx>
+                                   <td><a href="HinhAnhTruong.aspx">
 					                <img style="margin:4px;" height="100" src="images/images.jpg" width="120" /><br />
 					                </a></td>
-                                    <td><a href=HinhAnh.aspx>
+                                    <td><a href="HinhAnhTruong.aspx">
 					                <img style="margin:4px;" height="100" src="images/images (1).jpg" width="120" /><br />
 					                </a></td>
-                                     <td><a href=HinhAnh.aspx>
+                                     <td><a href=HinhAnhTruong.aspx>
                                     <img style="margin:4px;" height="100" src="images/1.jpg" width="120" /><br />
 					                </a></td>
-					
-
 				                </tr>
 			                </table>
                           </marquee>
@@ -156,11 +158,11 @@
                 </div>
             </div>
             <!--end left column-->
-            <div class="rightColumn grid_19 omega">
+            <div class="rightColumn grid_19 omega">            
                 <div>
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
-                </div>
+                </div>                
                 <!--end tin tức sự kiện-->
                 <!--end thông báo-->
             </div>
@@ -171,11 +173,7 @@
     <div class="footer">
         Copyright 2011
     </div>
-    <%--<div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
-    </div>--%>
+
     </form>
 </body>
 </html>
