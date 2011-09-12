@@ -157,6 +157,14 @@ namespace WebPortal.Repository
                 }
             }
         }
+
+        public List<Model.Log> GetAllByUserID(int id)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                return dataEntities.Logs.Where(log=>log.UserID==id).ToList();
+            }
+        }
         #endregion
     }
 }
