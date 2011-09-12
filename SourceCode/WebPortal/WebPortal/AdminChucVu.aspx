@@ -4,4 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <uc1:UCAdminChucVu ID="UCAdminChucVu1" runat="server" />
+            <% 
+            WebPortal.Repository.Log.WriteLog(Request);
+            %>
 </asp:Content>

@@ -3,4 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <p> Chào mừng các bạn đến với trang admin của website trường THPT Trần Phú</p>
+            <% 
+            WebPortal.Repository.Log.WriteLog(Request);
+            %>
 </asp:Content>

@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div class="content-box">
         <div class="box-body">
-        <form method="post">
+            <form method="post">
             <div class="box-header clear">
                 <h2>
                     Admin Site</h2>
@@ -156,4 +156,7 @@
             </form>
         </div>
     </div>
+    <% 
+        WebPortal.Repository.Log.WriteLog(Request);
+    %>
 </asp:Content>
