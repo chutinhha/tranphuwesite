@@ -50,7 +50,7 @@
                 Name
             </th>
             <td>
-                <input name="name" type="text" value="<%=permission.Name%>" />
+                <input style="width:50%;" name="name" type="text" value="<%=permission.Name%>" />
             </td>
         </tr>
         <tr>
@@ -58,7 +58,7 @@
                 Description
             </th>
             <td>
-                <input name="description" type="text" value="<%=permission.Descritption%>" />
+                <input style="width:50%;" name="description" type="text" value="<%=permission.Descritption%>" />
             </td>
         </tr>
         <tr>
@@ -66,7 +66,7 @@
                Permission ToString
             </th>
             <td>
-                <input name="permissionToString" type="text" value="<%=permission.Permission_ToString%>" />
+                <input style="width:50%;" name="permissionToString" type="text" value="<%=permission.Permission_ToString%>" />
             </td>
         </tr>
         <tr>
@@ -103,7 +103,7 @@
                 Name
             </th>
             <td>
-                <input disabled="disabled" name="name" type="text" value="<%=permission.Name%>" />
+                <input style="width:50%;" disabled="disabled" name="name" type="text" value="<%=permission.Name%>" />
             </td>
         </tr>
         <tr>
@@ -111,7 +111,7 @@
                 Description
             </th>
             <td>
-                <input disabled="disabled" name="description" type="text" value="<%=permission.Descritption%>" />
+                <input style="width:50%;" disabled="disabled" name="description" type="text" value="<%=permission.Descritption%>" />
             </td>
         </tr>
         <tr>
@@ -119,7 +119,7 @@
                 Permission ToString
             </th>
             <td>
-                <input disabled="disabled" name="permissionToString" type="text" value="<%=permission.Permission_ToString%>" />
+                <input style="width:50%;" disabled="disabled" name="permissionToString" type="text" value="<%=permission.Permission_ToString%>" />
             </td>
         </tr>
         <tr>
@@ -149,7 +149,7 @@
                 Name
             </th>
             <td>
-                <input name="name" type="text" />
+                <input style="width:50%;" name="name" type="text" />
             </td>
         </tr>
         <tr>
@@ -157,7 +157,7 @@
                 Description
             </th>
             <td>
-                <input name="description" type="text" style="width: 50%" />
+                <input style="width:50%;" name="description" type="text" style="width: 50%" />
             </td>
         </tr>
         <tr>
@@ -165,7 +165,7 @@
                 Permission ToString
             </th>
             <td>
-                <input name="permissionToString" type="text" style="width: 50%" />
+                <input style="width:50%;" name="permissionToString" type="text" style="width: 50%" />
             </td>
         </tr>
         <tr>
