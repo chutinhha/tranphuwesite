@@ -17,7 +17,9 @@ body {
 	font-size: 13px;
 	color: #434343;
 }
-.banner {
+.banner 
+{
+	margin:10px 0;
 }
 .banner img {
 	border: 0;
@@ -73,6 +75,25 @@ ul#nav span {
 	float:left;
 	width:100%;
 }
+.menu .readmore{
+	text-align:right;
+	margin:0 6px 6px 0;
+	font-size:11px;
+}
+.menu .readmore a{
+	color:#127fc3; text-decoration:none;
+}
+.menu .readmore a:hover{
+	color:#127fc3; text-decoration:underline;
+}
+.menu .webLinks{
+	width:170px;
+	margin:6px auto;
+}
+.menu img
+{
+	text-align:center;
+}
 .leftColumn .menu .menuTitle{
 	color:white;
 	font-size:16px;
@@ -106,13 +127,13 @@ ul#nav span {
 	font-size:13px;
 	margin-left:16px;
 	line-height:20px;
-	color:#434343;
+	color:#225799;
 	cursor:pointer;
 	list-style-image:url('../images/bullet.gif');
 }
 
 .leftColumn .menu .menuItem ul li a{
-	color:#434343;
+	color:#225799;
 	text-decoration:none;
 }
 .leftColumn .menu .menuItem ul li a:hover{
@@ -126,7 +147,7 @@ ul#nav span {
 	margin-left:18px;	
 }
 .leftColumn .menu .menuItem ul.subMenuitem li a{
-	color:#666;
+	color:#336699;
 	font-size:12px;
 }
 .leftColumn .menu .menuItem ul.subMenuitem li a:hover{
@@ -245,7 +266,7 @@ ul#nav span {
 	margin-bottom:3px;
 }
 .rightColumn .titleBox .trangTin .tinTuc .noiDungTin img{
-	margin:10px 0;
+	margin:10px;
 }
 .rightColumn .titleBox .trangTin .printer{
 	float:right;
@@ -351,7 +372,7 @@ hr
 
 .noiDungGioiThieuTruong{
 	margin:8px;
-	font-size:11px;
+	font-size:12px;
 	text-align:justify;
 	color:#434343;
 }
