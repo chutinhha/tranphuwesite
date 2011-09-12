@@ -1,37 +1,62 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HinhAnhTruong.aspx.cs" Inherits="WebPortal.HinhAnhTruong" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HinhAnhTruong.aspx.cs" Inherits="WebPortal.HinhAnhTruong1" %>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>Trường THPT Trần Phú</title>
     <link href="css/960_24_col.css" rel="stylesheet" type="text/css" />
     <link href="css/reset.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link href="css/lightbox.css" rel="stylesheet" type="text/css" />
-    <%--//trytytr--%>
+   <%-- <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript" src="js/js.js"></script>--%>
+   <%--//trytytr--%>
     <script src="js/prototype.js" type="text/javascript"></script>
     <script src="js/scriptaculous.js" type="text/javascript"></script>
     <script src="js/effects.js" type="text/javascript"></script>
     <script src="js/lightbox.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function time() {
+            days = new Array("Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy");
+            months = new Array("tháng 01 năm", "tháng 02 năm", "tháng 03 năm", "tháng 04 năm", "tháng 05 năm", "tháng 06 năm", "tháng 07 năm", "tháng 08 năm", "tháng 09 năm", "tháng 10 năm", "tháng 11 năm", "tháng 12 năm");
+            today = new Date();
+
+            thisDay = today.getDay();
+            thisDate = today.getDate();
+            thisMonth = today.getMonth();
+            thisYear = today.getFullYear();
+            todayDay = days[thisDay];
+            todayMonth = months[thisMonth];
+            document.getElementById('txt').innerHTML = '<b>' + todayDay + "," + " " + thisDate + " " + todayMonth + " " + thisYear + '</b>';
+        }
+	
+		
+    </script>
 </head>
-<body>
+<body onload="time()">
     <form id="form1" runat="server">
     <div id="wrapper" class="container_24">
         <div class="banner" style="margin: 10px 0; height: 143px;">
-            <a href=TrangChu.aspx><div class="grid_24">
-                <object id="flash1" data="images/banner.swf" height="138" type="application/x-shockwave-flash"
-                    width="950">
-                    <param name="movie" value="images/banner.swf" />
-                </object>
-            </div></a>
+            <div class="grid_24">
+                <a href="TrangChu.aspx">
+                    <object id="flash1" data="images/banner.swf" height="138" type="application/x-shockwave-flash"
+                        width="950">
+                        <param name="movie" value="images/banner.swf" />
+                    </object>
+                </a>
+            </div>
         </div>
         <!--end banner-->
-        <div class="menuBar grid_24" style="display: none;">
+        <div class="menuBar grid_24" style="">
             <ul id="nav">
-                <li class="active"><a href="#">Trang chủ</a></li>
-                <li><a href="#">Forum</a></li>
-                <li><a href="#">Tin tức</a></li>
+                <li class="active"><a href=TrangChu.aspx>Trang chủ</a></li>
+                <li><a href="#">Liên hệ</a></li>
+                <li><a href=GioiThieuTruong.aspx>Giới thiệu trường</a></li>
             </ul>
+            <div class="time">
+                <span id="txt" class="white" style="display: inline-block;"></span>
+            </div>
         </div>
         <!--end menubar-->
         <div class="clear">
@@ -53,9 +78,57 @@
                         <a href="GioiThieuTruong.aspx" style="text-decoration: none;">Xem tiếp</a></div>
                 </div>
                 <!--end giới thiệu trường-->
-                
-              
-                
+                <div class="menu">
+                    <div class="menuTitle">
+                        <div class="menuTitleGrad">
+                            Tổ chức</div>
+                    </div>
+                    <div class="menuItem">
+                        <ul>
+                           
+                            <%WebPortal.ToChuc apptochu = new WebPortal.ToChuc();
+                              List<WebPortal.Model.ToChuc> listtochuc = apptochu.All();
+                              foreach (WebPortal.Model.ToChuc tc in listtochuc)
+                              {
+                            %>
+                            <li><a href="ToChuc.aspx?idToChuc=<%=tc.IDToChuc %>">
+                                <%=tc.TenTC%></a></li>
+                            <%} %>
+                        </ul>
+                    </div>
+                </div>
+                <%-------------------%>
+                <%WebPortal.Repository.LoaiTinLV1 appltLV1 = new WebPortal.Repository.LoaiTinLV1();
+                  List<WebPortal.Model.LoaiTin_Lv1> listLTLV1 = new List<WebPortal.Model.LoaiTin_Lv1>();
+                  listLTLV1 = appltLV1.All();
+
+                  int idlt;
+                  foreach (WebPortal.Model.LoaiTin_Lv1 lt in listLTLV1)
+                  {
+                      idlt = lt.IDLoaiTin_Lv1;
+                      if (idlt != null)
+                      {
+                %>
+                <div class="menu">
+                    <div class="menuTitle">
+                        <div class="menuTitleGrad">
+                            <%=lt.TenLoai%></div>
+                    </div>
+                    <div class="menuItem">
+                        <ul>
+                            <%
+WebPortal.LoaiTin appLoaiTin = new WebPortal.LoaiTin();
+List<WebPortal.Model.LoaiTin> listLoaiTin = appLoaiTin.ListNews(idlt);
+foreach (WebPortal.Model.LoaiTin lt2 in listLoaiTin)
+{%>
+                            <li><a href="News2.aspx?idLoaiTin=<%=lt2.IDLoaiTin %>">
+                                <%=lt2.TenLoai %></a></li>
+                            <%} %>
+                        </ul>
+                    </div>
+                </div>
+                <%}
+                  } %>
                 <!--end menu-->
                 <div class="clear">
                 </div>
@@ -66,9 +139,9 @@
                     </div>
                     <div class="webLinks">
                         <div>
-                            <a href="">
+                            <a href="#">
                                 <img alt="" src="images/CLB_KhoaHocXaHoi.jpg" width="137" height="140" style="margin-bottom: 6px;" /></a>
-                            <a href="">
+                            <a href="#">
                                 <img alt="" src="images/CLB_KhoaHocTuNhien.jpg" width="137" height="140" style="margin-bottom: 6px;" /></a>
                         </div>
                     </div>
@@ -98,16 +171,16 @@
                             style="width: 165px;">
 			                <table bgcolor="white">
 				                <tr>
-					                <td><a href=HinhAnh.aspx>
+					                <td><a href="HinhAnhTruong.aspx">
 					                <img style="margin:4px;" height="100" src="images/images656900_6.jpg" width="120" /><br />
 					                </a></td>
-                                   <td><a href="HinhAnh.aspx">
+                                   <td><a href="HinhAnhTruong.aspx">
 					                <img style="margin:4px;" height="100" src="images/images.jpg" width="120" /><br />
 					                </a></td>
-                                    <td><a href="HinhAnh.aspx">
+                                    <td><a href="HinhAnhTruong.aspx">
 					                <img style="margin:4px;" height="100" src="images/images (1).jpg" width="120" /><br />
 					                </a></td>
-                                     <td><a href=HinhAnh.aspx>
+                                     <td><a href="HinhAnhTruong.aspx">
                                     <img style="margin:4px;" height="100" src="images/1.jpg" width="120" /><br />
 					                </a></td>
 				                </tr>
@@ -118,6 +191,7 @@
             </div>
             <!--end left column-->
             <div class="rightColumn grid_19 omega">
+                <div class="rightColumn grid_19 omega">
                 <div class="titleBox">
                     <div class="title">
                         <div class="titleGrad">
@@ -239,12 +313,17 @@
                 <!--end tin tức sự kiện-->
                 <!--end thông báo-->
             </div>
+                <!--end tin tức sự kiện-->
+                <!--end thông báo-->
+            </div>
             <!--end right column-->
         </div>
         <!--end content-->
     </div>
     <div class="footer">
-        Copyright 2011
+        Copyright 2011<br />
+        Trường THPT Trần Phú<br />
+        Số 1 Hùng Vương ,Phường 10 -Đà Lạt ,Lâm Đồng.
     </div>
     </form>
 </body>
