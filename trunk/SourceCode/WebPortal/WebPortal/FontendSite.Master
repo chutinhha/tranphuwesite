@@ -21,10 +21,11 @@
     <div id="wrapper" class="container_24">
         <div class="banner" style="margin:10px 0; height:143px;">
             <div class="grid_24">
-                <object id="flash1" data="images/banner.swf" height="138" type="application/x-shockwave-flash"
+                <a href="TrangChu.aspx"><object id="flash1" data="images/banner.swf" height="138" type="application/x-shockwave-flash"
                     width="950">
                     <param name="movie" value="images/banner.swf" />
                 </object>
+                </a>
             </div>
         </div>
         <!--end banner-->
@@ -139,7 +140,7 @@
                             style="width: 165px;">
 			                <table bgcolor="white">
 				                <tr>
-					                <td><a href=HinhAnhTruong.aspx>
+					                <td><a href="HinhAnhTruong.aspx">
 					                <img style="margin:4px;" height="100" src="images/images656900_6.jpg" width="120" /><br />
 					                </a></td>
                                    <td><a href="HinhAnhTruong.aspx">
@@ -148,7 +149,7 @@
                                     <td><a href="HinhAnhTruong.aspx">
 					                <img style="margin:4px;" height="100" src="images/images (1).jpg" width="120" /><br />
 					                </a></td>
-                                     <td><a href=HinhAnhTruong.aspx>
+                                     <td><a href="HinhAnhTruong.aspx">
                                     <img style="margin:4px;" height="100" src="images/1.jpg" width="120" /><br />
 					                </a></td>
 				                </tr>
