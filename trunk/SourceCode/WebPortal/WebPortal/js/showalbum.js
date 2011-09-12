@@ -1,0 +1,2 @@
+var cont="<b><font size=4><a href='" +urls[random]+ "'>"+titles[random]+"</b></a></font>"+ "<br><br><a href='" +urls[random]+ "'><img src='" + images[random] + "'border=0 width=400 height=286></a>"
+document.write(cont)
