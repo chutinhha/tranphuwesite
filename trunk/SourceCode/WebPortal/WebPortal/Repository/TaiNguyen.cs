@@ -66,6 +66,16 @@ namespace WebPortal
         #endregion
 
         //Ai can ham gi thi viet them
-
+        #region Thuy
+        public int Delete(int idTaiNguyen)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                var taiNguyen = dataEntities.TaiNguyens.Single(tn => tn.IDTaiNguyen == idTaiNguyen);
+                dataEntities.DeleteObject(taiNguyen);
+                return dataEntities.SaveChanges();
+            }
+        }
+        #endregion
     }
 }
