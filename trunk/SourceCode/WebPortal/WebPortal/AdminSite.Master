@@ -57,7 +57,7 @@
             </div>
             <% %>
             <%}
-               else
+               else 
                {
                    Response.Redirect("AdminLogin.aspx");
                } %>
@@ -81,13 +81,15 @@
                     <li><a href="">Quản lý tin tức</a>
                         <ul>
                             <li><a href="AdminNewsManager.aspx">Quản lý tin tức</a></li>
-                            <li><a href="#">ABC</a>
+                            <li><a href="#">Thiết lập chức vụ, tổ chức</a>
                                 <ul>
-                                    <li><a href="#">Lựa chọn 1</a></li>
-                                    <li><a href="#">Lựa chọn 2</a></li>
+                                    <li><a href="AdminGiaoVien_ToChucManager.aspx">Phân giáo viên theo tổ chức</a></li>
+                                    <li><a href="AdminGiaoVien_ChucVuManager.aspx">Phân giáo viên theo chức vụ</a></li>
                                 </ul>
                             </li>
                             <li><a href="AdminGiaoVienManager.aspx">Quản lý giáo viên</a></li>
+                            <li><a href="AdminChucVu.aspx">Quản lý chức vụ</a></li>
+                            <li><a href="AdminToChuc.aspx">Quản lý tổ chức</a></li>
                         </ul>
                     </li>
                 </ul>

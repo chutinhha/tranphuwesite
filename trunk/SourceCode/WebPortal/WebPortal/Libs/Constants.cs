@@ -20,5 +20,6 @@ namespace Libs
 		public static string CAPTCHA = "CAPTCHA";
 
         public static string CartSessionKey = "CartID";
+        public static string LOG = "LOG_INFO";
     }
 }

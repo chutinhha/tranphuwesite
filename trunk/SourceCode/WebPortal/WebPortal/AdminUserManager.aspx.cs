@@ -12,7 +12,9 @@ namespace WebPortal
     public partial class AdminIndex : System.Web.UI.Page
     {
         public WebPortal.Repository.User userRepository = new Repository.User();
+        public WebPortal.Repository.Application applicationRepository = new Repository.Application();
         public WebPortal.Repository.Profile profileRepository = new Repository.Profile();
+        public WebPortal.Repository.Log logRepository = new Repository.Log();
         protected void Page_Load(object sender, EventArgs e)
         {
 
