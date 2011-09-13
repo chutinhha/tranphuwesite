@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminSite.Master" AutoEventWireup="true"
     CodeBehind="AdminLoaiTinManager.aspx.cs" Inherits="WebPortal.AdminLoaiTinManager" %>
-
 <%@ Register Src="AdminUsercontrols/UCAdminLoaiTinList.ascx" TagName="UCAdminLoaiTinList"
     TagPrefix="uc1" %>
 <%@ Register Src="AdminUsercontrols/UCAdminLoaiTinCreate.ascx" TagName="UCAdminLoaiTinCreate"
