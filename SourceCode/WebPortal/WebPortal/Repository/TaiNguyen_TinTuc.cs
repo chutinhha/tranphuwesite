@@ -92,6 +92,15 @@ namespace WebPortal
             }
         }
         #endregion
+        #region Trang
+        public List<WebPortal.Model.TaiNguyen_TinTuc> LayTaiNguyenTheoTin(int idTinTuc)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                return dataEntities.TaiNguyen_TinTuc.Where(app => app.IDTinTuc == idTinTuc).ToList();
+            }
+        }
+        #endregion
 
     }
 }
