@@ -23,7 +23,7 @@
         <%WebPortal.TinTuc apptintuc = new WebPortal.TinTuc();
           List<WebPortal.Model.TinTuc> listtintuc = apptintuc.ListNews(lt.IDLoaiTin);
           StringBuilder sb = new StringBuilder();
-          int rowperPage = 2;
+          int rowperPage = 3;
           int totalrow = listtintuc.Count();
           int page = 1;
           if (Request.QueryString["page"] != null)
@@ -41,9 +41,7 @@
           double numOfPage = Math.Ceiling((double)totalrow / rowperPage);
           for (int i = 1; i <= numOfPage; i++)
           {
-
-              sb.AppendFormat("<a href='News2.aspx?idLoaiTin="+idlt+"&&page={0}'>{1}---</a>", i, i);
-              //
+                  sb.AppendFormat("<a href='News2.aspx?idLoaiTin=" + idlt + "&&page={0}'>{1}-</a>", i, i);
           }
           foreach (WebPortal.Model.TinTuc tt in listTT)
           {
@@ -67,8 +65,9 @@
             <div style="clear: both">
             </div>
         </div>
-        <%}
-            Response.Write(sb.ToString()); %>
+        <%} %>
+        <div style="text-align:center; font-weight:bold"><%  Response.Write(sb.ToString());%></div>
+           
       
     </div>
     <!--end nội dung-->
