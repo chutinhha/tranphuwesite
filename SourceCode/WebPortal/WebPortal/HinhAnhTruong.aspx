@@ -36,6 +36,8 @@
 </head>
 <body onload="time()">
     <form id="form1" runat="server">
+    <div class="shadow">
+    <div class="bigWhite">
     <div id="wrapper" class="container_24">
         <div class="banner" style="margin: 10px 0; height: 143px;">
             <div class="grid_24">
@@ -324,6 +326,8 @@ foreach (WebPortal.Model.LoaiTin lt2 in listLoaiTin)
         Copyright 2011<br />
         Trường THPT Trần Phú<br />
         Số 1 Hùng Vương ,Phường 10 -Đà Lạt ,Lâm Đồng.
+    </div>
+    </div>
     </div>
     </form>
 </body>
