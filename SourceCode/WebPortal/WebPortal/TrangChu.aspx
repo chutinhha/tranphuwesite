@@ -24,8 +24,8 @@
               List<WebPortal.Model.TinTuc> listtintuc = apptintuc.ListNews(lt.IDLoaiTin);
               int rowperPage2 = 2;
               int page2 = 1;
-              listtintuc = apptintuc.Paging(page2 * rowperPage2 - rowperPage2, rowperPage2);  
-              foreach (WebPortal.Model.TinTuc tt in listtintuc)
+              List<WebPortal.Model.TinTuc> listTT = apptintuc.Paging(page2 * rowperPage2 - rowperPage2, rowperPage2, listtintuc);
+              foreach (WebPortal.Model.TinTuc tt in listTT)
               {
                   
             %>
