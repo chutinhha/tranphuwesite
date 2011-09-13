@@ -115,7 +115,7 @@ namespace WebPortal.AdminUsercontrols
             try
             {
                 tintuc.Update(news);
-                SaveNews.Text = "Lưu thây đổi thành công";
+                SaveNews.Text = "Lưu thay đổi thành công";
                 IDTinTuc.Text = Request.QueryString["id"];
             }
             catch (Exception ex)
