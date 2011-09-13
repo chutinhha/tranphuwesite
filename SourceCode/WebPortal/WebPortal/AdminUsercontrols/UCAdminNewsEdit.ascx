@@ -77,7 +77,7 @@
                     </td>
                 <td class="style2"> 
                     <asp:TextBox ID="titleNews" Width="100%" runat="server" 
-                        Text="Tiêu Để Của Tin Tức "></asp:TextBox>
+                        Text=""></asp:TextBox>
                 </td>
             </tr>
             <tr>

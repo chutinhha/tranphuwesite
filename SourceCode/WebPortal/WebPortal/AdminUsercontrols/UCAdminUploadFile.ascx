@@ -96,10 +96,10 @@
                                 Mô Tả
                             </th>
                             <th style="width: 45%">
-                                Path
+                            Path
                             </th>
                             <th style="width: 5%">
-                                Edit
+                                Xóa
                             </th>
                         </tr>
                     </thead>
