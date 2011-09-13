@@ -1,4 +1,3 @@
-
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCAdminNewsList.ascx.cs" Inherits="WebPortal.AdminUsercontrols.UCAdminNewsList" %>
 <%--<script type="text/javascript">
     function DeleteClick(str) {
@@ -34,22 +33,22 @@
                     <input type="checkbox" class="checkbox select-all" />
                 </th>
                 <th style="width:5%;">
-                    ID Tin Tuc
+                    ID
                 </th>
                 <th style="width:25%;">
-                    Tên Tin Tức
+                    Tên tin tức
                 </th>
                 <th style="width:15%;">
-                    Ngày Dăng
+                    Ngày đăng
                 </th>
                 <th style="width:15%;">
-                    Người Dăng
+                    Người đăng
                 </th>
                 <th style="width:20%;">
                     Hình ảnh
                 </th>
                 <th style="width:20%;">
-                    Edit
+                    Chỉnh sửa
                 </th>
             </tr>
         </thead>

@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCAdminNewsCreate.ascx.cs" Inherits="WebPortal.AdminUsercontrols.UCAdminNewsCreate" %>
-<%@ Register src="UCAdminNewsCreatEditor.ascx" tagname="UCAdminNewsCreatEditor" tagprefix="uc1" %>
+<%--<%@ Register src="UCAdminNewsCreatEditor.ascx" tagname="UCAdminNewsCreatEditor" tagprefix="uc1" %>--%>
 <%@ Register src="UCAdminUploadFile.ascx" tagname="UCAdminUploadFile" tagprefix="uc2" %>
 <style type="text/css">
     .style1
