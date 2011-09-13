@@ -55,12 +55,17 @@ namespace WebPortal.AdminUsercontrols
                 }
                 else
                     g.Active = false;
-                giaovienDA.Add(g);
-                return true;
+                if (giaovienDA.Add(g) != 1)
+                {
+                    notificatedMessage = "Có lỗi xảy ra khi thêm giáo viên này!";
+                    return false;
+                }
+                else
+                    return true;
             }
             catch
             {
-                notificatedMessage = "Có lỗi xảy ra! Không thể thêm được Application";
+                notificatedMessage = "Có lỗi xảy ra! Không thể thêm được giáo viên này!";
                 return false;
             }
 
@@ -70,46 +75,55 @@ namespace WebPortal.AdminUsercontrols
         {
             try
             {
-                int id = Libs.LibConvert.ConvertToInt(Request.Form["giaoVienID"],0);
+                int id = Libs.LibConvert.ConvertToInt(Request.Form["giaoVienID"], 0);
                 WebPortal.Model.GiaoVien g = giaovienDA.Single(id);
-                if (!string.IsNullOrEmpty(Request.Form["hoGV"].ToString()))
-                    g.HoGV = Request.Form["hoGV"];
-                else
-                { return false; }
-                g.TenGV = Request.Form["tenGV"];
-                g.Email = Request.Form["email"];
-                g.DienThoai = Request.Form["dienThoai"];
-                g.BoMon = Request.Form["boMon"];
-                if (Request.Files[0] != null)
+                if (g != null)
                 {
-                    HttpPostedFile file = Request.Files[0];
-                    if (file.FileName != "")
+                    if (!string.IsNullOrEmpty(Request.Form["hoGV"].ToString()))
+                        g.HoGV = Request.Form["hoGV"];
+                    else
+                    { return false; }
+                    g.TenGV = Request.Form["tenGV"];
+                    g.Email = Request.Form["email"];
+                    g.DienThoai = Request.Form["dienThoai"];
+                    g.BoMon = Request.Form["boMon"];
+                    if (Request.Files[0] != null)
                     {
-                        string fileName = string.Empty;
-                        string path = "~/Resources/Images/";
-                        if (!Libs.LibUpload.UploadFile(file, path, ref notificatedMessage, ref fileName, "jpg,jpeg,png,gif", 50000))
+                        HttpPostedFile file = Request.Files[0];
+                        if (file.FileName != "")
                         {
-                            return false;
+                            string fileName = string.Empty;
+                            string path = "~/Resources/Images/";
+                            if (!Libs.LibUpload.UploadFile(file, path, ref notificatedMessage, ref fileName, "jpg,jpeg,png,gif", 50000))
+                            {
+                                return false;
+                            }
+                            g.AnhDaiDien = "/Resources/Images/" + fileName;
                         }
-                        g.AnhDaiDien = "/Resources/Images/" + fileName;
+                        else
+                            g.AnhDaiDien = giaovienDA.Single(g.IDGiaoVien).AnhDaiDien;
                     }
                     else
-                        g.AnhDaiDien = giaovienDA.Single(g.IDGiaoVien).AnhDaiDien;
+                    {
+                        g.AnhDaiDien = null;
+                    }
+                    g.NgaySinh = Libs.LibConvert.ConvertToDateTime(DateTime.Now);
+                    g.DiaChi = Request.Form["diaChi"];
+                    if (Request.Form["active"] != null)
+                    {
+                        g.Active = true;
+                    }
+                    else
+                        g.Active = false;
+                    if (giaovienDA.Update(g) != 1)
+                    {
+                        notificatedMessage = "Có lỗi xảy ra! Không thể thêm được Application";
+                        return false;
+                    }
+                    return true;
                 }
                 else
-                {
-                    g.AnhDaiDien = null;
-                }
-                g.NgaySinh = Libs.LibConvert.ConvertToDateTime(DateTime.Now);
-                g.DiaChi = Request.Form["diaChi"];
-                if (Request.Form["active"] != null)
-                {
-                    g.Active = true;
-                }
-                else
-                    g.Active = false;
-                giaovienDA.Update(g);
-                return true;
+                    return false;
             }
             catch
             {

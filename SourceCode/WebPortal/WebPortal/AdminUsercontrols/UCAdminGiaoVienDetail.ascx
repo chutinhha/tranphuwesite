@@ -321,9 +321,20 @@
 </div>
 <% if (Request.Form["save"] != null)
    {
-       string mess = "";
-       UpdateGiaoVien(ref mess);
-       Response.Redirect("AdminGiaoVienManager.aspx");
+        string mess = "";
+       if (UpdateGiaoVien(ref mess))
+       {
+            Response.Redirect("AdminGiaoVienManager.aspx");
+       }
+       else
+       { %>
+        <div class="notification note-error">
+         <a href="#" class="close" title="Close notification">close</a>
+         <p>
+        <strong>
+            <%=mess%></strong></p>
+        </div>
+       <%}
 %>
 <%}
    else if (Request.Form["back"] != null)
@@ -332,14 +343,40 @@
    }
    else if (Request.Form["delete"] != null)
    {
-       string note = "";
-       DeleteGiaoVien(ref note);
-       Response.Redirect("AdminGiaoVienManager.aspx");
+       string mess = "";
+       if (DeleteGiaoVien(ref mess))
+       {
+            Response.Redirect("AdminGiaoVienManager.aspx");
+       }
+       else
+       { %>
+        <div class="notification note-error">
+         <a href="#" class="close" title="Close notification">close</a>
+         <p>
+        <strong>
+            <%=mess%></strong></p>
+        </div>
+       <%}
+%>
+<%
    } if (Request.Form["new"] != null)
    {
-       string note = "";
-       AddGiaoVien(ref note);
-       Response.Redirect("AdminGiaoVienManager.aspx");
+        string mess = "";
+       if (AddGiaoVien(ref mess))
+       {
+            Response.Redirect("AdminGiaoVienManager.aspx");
+       }
+       else
+       { %>
+        <div class="notification note-error">
+         <a href="#" class="close" title="Close notification">close</a>
+         <p>
+        <strong>
+            <%=mess%></strong></p>
+        </div>
+       <%}
+%>
+<%
    }
 %>
 </form>

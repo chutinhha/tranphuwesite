@@ -192,7 +192,7 @@
                 GroupDescription
             </th>
             <td>
-                <input style="width: 50%;" name="groupDescription" type="text" style="width: 50%" />
+                <input style="width: 50%;" name="groupDescription" type="text" />
             </td>
         </tr>
         <tr>
@@ -200,7 +200,7 @@
                 GroupToString
             </th>
             <td>
-                <input style="width: 50%;" name="groupToString" type="text" style="width: 50%" />
+                <input style="width: 50%;" name="groupToString" type="text" />
             </td>
         </tr>
         <tr>
@@ -253,35 +253,35 @@
    }
    else if (Request.Form["delete"] != null)
    {
-       
-       Response.Redirect("AdminGroupsManager.aspx");
+       string notice = "";
+       if (!DeleteGroups(ref notice))
+       { %>
+       <div class="notification note-error">
+         <a href="#" class="close" title="Close notification">close</a>
+         <p>
+        <strong>
+            <%=notice%></strong></p>
+        </div>
+       <%
+       }
+       else
+           Response.Redirect("AdminGroupsManager.aspx");
    } if (Request.Form["new"] != null)
    {
-       WebPortal.Model.Group newG = new WebPortal.Model.Group();
-
-       try
-       {
-           newG.Group_Name = Request.Form["groupName"];
-           newG.Group_Description = Request.Form["groupDescription"];
-           newG.Group_ToString = Request.Form["groupToString"];
-           if (Request.Form["active"] != null)
-           {
-               newG.Active = true;
-           }
-           else
-               newG.Active = false;
-           newG.Group_DateCreate = DateTime.Today;
-           string userName = Libs.LibSession.Get(Libs.Constants.ACCOUNT_LOGIN).ToString();
-           WebPortal.Repository.User userDA = new WebPortal.Repository.User();
-           newG.User_Create = userDA.GetUserIDByUsername(userName);
-           groupDA.Add(newG);
+       string notice = "";
+       if (!AddGroups(ref notice))
+       { %>
+       <div class="notification note-error">
+         <a href="#" class="close" title="Close notification">close</a>
+         <p>
+        <strong>
+            <%=notice%></strong></p>
+        </div>
+       <%
        }
-       catch
-       {
-
+       else
            Response.Redirect("AdminGroupsManager.aspx");
-       }
-       Response.Redirect("AdminGroupsManager.aspx");
+               
    }
 %>
 </form>
