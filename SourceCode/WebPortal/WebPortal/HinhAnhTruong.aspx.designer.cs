@@ -10,7 +10,7 @@
 namespace WebPortal {
     
     
-    public partial class HinhAnhTruong1 {
+    public partial class HinhAnhTruong {
         
         /// <summary>
         /// Head1 control.
