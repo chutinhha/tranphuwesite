@@ -2,20 +2,20 @@
     Inherits="WebPortal.HinhAnhTruong" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<meta content="text/html; charset=<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <meta name="robots" content="ALL,FOLLOW" />
 <meta name="Author" content="AIT" />
-<meta http-equiv="imagetoolbar" content="no" />utf-8" http-equiv="Content-Type" />
+<meta http-equiv="imagetoolbar" content="no" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
 <link href="css/960_24_col.css" rel="stylesheet" type="text/css" />
     <%--<link href="css/reset.css" rel="stylesheet" type="text/css" />--%>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link href="css/lightbox.css" rel=Stylesheet type="text/css" />
     <link rel="stylesheet" href="css/reset.css" type="text/css" />
-    <link rel="stylesheet" href="css/screen.css" type="text/css" />
+   <%-- <link rel="stylesheet" href="css/screen.css" type="text/css" />--%>
     <link rel="stylesheet" href="css/fancybox.css" type="text/css" />
     <link rel="stylesheet" href="css/jquery.wysiwyg.css" type="text/css" />
     <link rel="stylesheet" href="css/jquery.ui.css" type="text/css" />
@@ -27,7 +27,7 @@
     <script type="text/javascript" src="js/tiny_mce/jquery.tinymce.js"></script>
     <script type="text/javascript" src="js/jquery.fancybox.js"></script>
     <script type="text/javascript" src="js/jquery.idtabs.js"></script>
-    <script type="text/javascript" src="js/jquery.datatables.js"></script>
+    <script type="text/javascript" src="js/jquery.datatables.js"></script><script type="text/javascript" src="js/js.js"></script>
     <script type="text/javascript" src="js/jquery.jeditable.js"></script>
     <script type="text/javascript" src="js/jquery.ui.js"></script>
     <script type="text/javascript" src="js/jquery.jcarousel.js"></script>

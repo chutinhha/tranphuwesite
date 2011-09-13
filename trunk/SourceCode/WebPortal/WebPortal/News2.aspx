@@ -56,7 +56,7 @@
                  <%if (tt.HinhAnh != null)
                    { %>
             <div class="hinhAnh">
-                <img alt="" height="64" src="Resources/Images/<%=tt.HinhAnh%>" width="102" /></div><%} %>
+                <img alt="" height="64" src="<%=tt.HinhAnh%>" width="102" /></div><%} %>
             <div class="noiDungTin">
                 <%Response.Write(tt.MoTaTinTuc);%>
             </div>
