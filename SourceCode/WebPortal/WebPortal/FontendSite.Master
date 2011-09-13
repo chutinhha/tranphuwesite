@@ -48,8 +48,8 @@
         <div class="menuBar grid_24" style="">
             <ul id="nav">
                 <li class="active"><a href="TrangChu.aspx">Trang chủ</a></li>
-                <li><a href="#">Liên hệ</a></li>
-                <li><a href=GioiThieuTruong.aspx>Giới thiệu trường</a></li>
+                <li><a href="LienHe_GopY.aspx">Liên hệ</a></li>
+                <li><a href="GioiThieuTruong.aspx">Giới thiệu trường</a></li>
             </ul>
             <div class="time">
                 <span id="txt" class="white" style="display: inline-block;"></span>
