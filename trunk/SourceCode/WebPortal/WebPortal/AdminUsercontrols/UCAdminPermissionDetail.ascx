@@ -50,7 +50,7 @@
                 Name
             </th>
             <td>
-                <input style="width:50%;" name="name" type="text" value="<%=permission.Name%>" />
+                <input style="width: 50%;" name="name" type="text" value="<%=permission.Name%>" />
             </td>
         </tr>
         <tr>
@@ -58,15 +58,15 @@
                 Description
             </th>
             <td>
-                <input style="width:50%;" name="description" type="text" value="<%=permission.Descritption%>" />
+                <input style="width: 50%;" name="description" type="text" value="<%=permission.Descritption%>" />
             </td>
         </tr>
         <tr>
             <th>
-               Permission ToString
+                Permission ToString
             </th>
             <td>
-                <input style="width:50%;" name="permissionToString" type="text" value="<%=permission.Permission_ToString%>" />
+                <input style="width: 50%;" name="permissionToString" type="text" value="<%=permission.Permission_ToString%>" />
             </td>
         </tr>
         <tr>
@@ -103,7 +103,7 @@
                 Name
             </th>
             <td>
-                <input style="width:50%;" disabled="disabled" name="name" type="text" value="<%=permission.Name%>" />
+                <input style="width: 50%;" disabled="disabled" name="name" type="text" value="<%=permission.Name%>" />
             </td>
         </tr>
         <tr>
@@ -111,7 +111,7 @@
                 Description
             </th>
             <td>
-                <input style="width:50%;" disabled="disabled" name="description" type="text" value="<%=permission.Descritption%>" />
+                <input style="width: 50%;" disabled="disabled" name="description" type="text" value="<%=permission.Descritption%>" />
             </td>
         </tr>
         <tr>
@@ -119,7 +119,8 @@
                 Permission ToString
             </th>
             <td>
-                <input style="width:50%;" disabled="disabled" name="permissionToString" type="text" value="<%=permission.Permission_ToString%>" />
+                <input style="width: 50%;" disabled="disabled" name="permissionToString" type="text"
+                    value="<%=permission.Permission_ToString%>" />
             </td>
         </tr>
         <tr>
@@ -149,7 +150,7 @@
                 Name
             </th>
             <td>
-                <input style="width:50%;" name="name" type="text" />
+                <input style="width: 50%;" name="name" type="text" />
             </td>
         </tr>
         <tr>
@@ -157,7 +158,7 @@
                 Description
             </th>
             <td>
-                <input style="width:50%;" name="description" type="text" style="width: 50%" />
+                <input style="width: 50%;" name="description" type="text" style="width: 50%" />
             </td>
         </tr>
         <tr>
@@ -165,7 +166,7 @@
                 Permission ToString
             </th>
             <td>
-                <input style="width:50%;" name="permissionToString" type="text" style="width: 50%" />
+                <input style="width: 50%;" name="permissionToString" type="text" style="width: 50%" />
             </td>
         </tr>
         <tr>
@@ -198,28 +199,20 @@
 </div>
 <% if (Request.Form["save"] != null)
    {
-       WebPortal.Model.Permission p = new WebPortal.Model.Permission();
-       int isSuccess = 1;
-       try
+       string mess = "";
+       if (UpdatePermission(ref mess))
        {
-           p.PermissionID = int.Parse(Request.Form["permissionID"]);
-           p.Name = Request.Form["name"];
-           p.Descritption = Request.Form["description"];
-           p.Permission_ToString = Request.Form["permissionToString"];
-           if (Request.Form["active"] != null)
-           {
-               p.Active = true;
-           }
-           else
-               p.Active = false;
+           Response.Redirect("AdminPermissionManager.aspx");
        }
-       catch
-       {
-           isSuccess = 0;
-       }
-       if (isSuccess > 0)
-           permissionDA.Update(p);
-       Response.Redirect("AdminPermissionManager.aspx");
+       else
+       { %>
+<div class="notification note-error">
+    <a href="#" class="close" title="Close notification">close</a>
+    <p>
+        <strong>
+            <%=mess%></strong></p>
+</div>
+<%}
 %>
 <%}
    else if (Request.Form["back"] != null)
@@ -228,32 +221,37 @@
    }
    else if (Request.Form["delete"] != null)
    {
-       int permissionID = int.Parse(Request.Form["permissionID"]);
-       permissionDA.Delete(permissionID);
-       Response.Redirect("AdminPermissionManager.aspx");
-   } if (Request.Form["new"] != null)
-   {
-       WebPortal.Model.Permission newP = new WebPortal.Model.Permission();
-
-       try
+       string mess = "";
+       if (DeletePermission(ref mess))
        {
-           newP.Name = Request.Form["name"];
-           newP.Descritption = Request.Form["description"];
-           newP.Permission_ToString = Request.Form["permissionToString"];
-           if (Request.Form["active"] != null)
-           {
-               newP.Active = true;
-           }
-           else
-               newP.Active = false;
-           permissionDA.Add(newP);
-       }
-       catch
-       {
-
            Response.Redirect("AdminPermissionManager.aspx");
        }
-       Response.Redirect("AdminPermissionManager.aspx");
+       else
+       { %>
+<div class="notification note-error">
+    <a href="#" class="close" title="Close notification">close</a>
+    <p>
+        <strong>
+            <%=mess%></strong></p>
+</div>
+<%}
+
+   } if (Request.Form["new"] != null)
+   {
+       string mess = "";
+       if (AddPermission(ref mess))
+       {
+           Response.Redirect("AdminPermissionManager.aspx");
+       }
+       else
+       { %>
+<div class="notification note-error">
+    <a href="#" class="close" title="Close notification">close</a>
+    <p>
+        <strong>
+            <%=mess%></strong></p>
+</div>
+<%}
    }
 %>
 </form>

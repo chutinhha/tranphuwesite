@@ -66,7 +66,42 @@ namespace WebPortal.AdminUsercontrols
                     return true;
             }
             else
+            {
+                notice = "Có lỗi xảy ra trong quá trình xóa nhóm này!";
                 return false;
+            }
+        }
+        public bool AddGroups(ref string notice)
+        {
+            WebPortal.Model.Group newG = new WebPortal.Model.Group();
+            try
+            {
+                newG.Group_Name = Request.Form["groupName"];
+                newG.Group_Description = Request.Form["groupDescription"];
+                newG.Group_ToString = Request.Form["groupToString"];
+                if (Request.Form["active"] != null)
+                {
+                    newG.Active = true;
+                }
+                else
+                    newG.Active = false;
+                newG.Group_DateCreate = Libs.LibConvert.ConvertToDateTime(DateTime.Now);
+                string userName = Libs.LibSession.Get(Libs.Constants.ACCOUNT_LOGIN).ToString();
+                WebPortal.Repository.User userDA = new WebPortal.Repository.User();
+                newG.User_Create = userDA.GetUserIDByUsername(userName);
+                if (groupDA.Add(newG) != 1)
+                {
+                    notice = "Có lỗi xảy ra trong quá trình thêm nhóm này!";
+                    return false;
+                }
+                else
+                    return true;
+            }
+            catch
+            {
+                notice = "Có lỗi xảy ra trong quá trình thêm nhóm này!";
+                return false;
+            }
         }
     }
     
