@@ -129,6 +129,15 @@ namespace WebPortal
             }
         }
         #endregion
+        #region trang
+        public List<WebPortal.Model.LoaiTin> Paging(int start, int numberRecords, List<WebPortal.Model.LoaiTin> listTin)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                return listTin.OrderByDescending(tt => tt.IDLoaiTin).Skip(start).Take(numberRecords).ToList();
+            }
+        }
+        #endregion
     }
 
 }
