@@ -9,6 +9,8 @@
     TagPrefix="uc3" %>
 <%@ Register Src="AdminUsercontrols/UCAdminUploadFile.ascx" TagName="UCAdminUploadFile"
     TagPrefix="uc4" %>
+<%@ Register Src="AdminUsercontrols/UCAdminNewsEdit.ascx" TagName="UCAdminNewsEdit"
+    TagPrefix="uc5" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
@@ -19,34 +21,27 @@
                     Admin Site</h2>
             </div>
             <div class="box-wrap clear">
-                <%if (Request.QueryString["idNews"] != null)
-                  { %>
-                <uc4:UCAdminUploadFile ID="UCAdminUploadFile1" runat="server" />
-                <%}
-                  else
-                  {%>
-                <% if (Request.QueryString["id"] == null)
-                   {%>
-                <!-- TABLE -->
-                <uc1:UCAdminNewsList ID="UCAdminNewsList" runat="server" />
-                <!-- /#table -->
-                <%}
-                   else
-                   {
-                       if (Request.QueryString["type"] == "edit")
-                       { %>
-                <uc2:UCAdminNewsDetail ID="UCAdminNewsDetail1" runat="server" />
-                <%}
-                       else
-                       {
-                           if (Request.QueryString["type"] == "new")
-                           { %>
-                <uc3:UCAdminNewsCreate ID="UCAdminNewsCreate" runat="server" />
-                <%}
-                       }
-
-                   }%>
-                <%} %>
+                <%
+                    if (Request.QueryString["type"] == null)
+                    { %>
+                    <uc1:UCAdminNewsList ID="UCAdminNewsList" runat="server" />
+                    <%}
+                    else
+                    {
+                        if (Request.QueryString["type"] == "edit")
+                        {%>
+                        <uc5:UCAdminNewsEdit ID="UCAdminNewsEdit1" runat="server" />
+                        <%}
+                        if (Request.QueryString["type"] == "new")
+                        {%>
+                        <uc3:UCAdminNewsCreate ID="UCAdminNewsCreate" runat="server" />
+                        <%}
+                        if (Request.QueryString["type"] == "attach")
+                        { %>
+                        <uc4:UCAdminUploadFile ID="UCAdminUploadFile1" runat="server" />
+                        <%}
+                        
+                    }%>
                 <!-- end of box-wrap -->
             </div>
         </div>

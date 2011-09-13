@@ -13,15 +13,6 @@ namespace WebPortal {
     public partial class AdminNewsManager {
         
         /// <summary>
-        /// UCAdminUploadFile1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::WebPortal.AdminUsercontrols.UCAdminUploadFile UCAdminUploadFile1;
-        
-        /// <summary>
         /// UCAdminNewsList control.
         /// </summary>
         /// <remarks>
@@ -31,13 +22,13 @@ namespace WebPortal {
         protected global::WebPortal.AdminUsercontrols.UCAdminNewsList UCAdminNewsList;
         
         /// <summary>
-        /// UCAdminNewsDetail1 control.
+        /// UCAdminNewsEdit1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebPortal.AdminUsercontrols.UCAdminNewsDetail UCAdminNewsDetail1;
+        protected global::WebPortal.AdminUsercontrols.UCAdminNewsEdit UCAdminNewsEdit1;
         
         /// <summary>
         /// UCAdminNewsCreate control.
@@ -47,5 +38,14 @@ namespace WebPortal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::WebPortal.AdminUsercontrols.UCAdminNewsCreate UCAdminNewsCreate;
+        
+        /// <summary>
+        /// UCAdminUploadFile1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WebPortal.AdminUsercontrols.UCAdminUploadFile UCAdminUploadFile1;
     }
 }
