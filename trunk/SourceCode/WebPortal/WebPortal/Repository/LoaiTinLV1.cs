@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using WebPortal.Model;
+using System.Data.Common;
 
 namespace WebPortal.Repository
 {
@@ -65,5 +66,48 @@ namespace WebPortal.Repository
 
       
         #endregion
+
+        #region Thuy    
+        public int Delete(int idLoaiTin_Lv1)
+        {
+            DbTransaction dbTransaction = null;
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                try
+                {
+                    if (dataEntities.Connection.State == System.Data.ConnectionState.Closed)
+                    {
+                        dataEntities.Connection.Open();
+                    }
+                    dbTransaction = dataEntities.Connection.BeginTransaction();
+                    var loaiTin = dataEntities.LoaiTin_Lv1.Single(lt => lt.IDLoaiTin_Lv1 == idLoaiTin_Lv1);
+                    dataEntities.LoaiTin_Lv1.DeleteObject(loaiTin);
+                    if (dataEntities.SaveChanges() != 0)
+                    {
+                        dbTransaction.Commit();
+                        return 1;
+                    }
+                    else
+                    {
+                        dbTransaction.Rollback();
+                        return 0;
+                    }
+                }
+                catch
+                {
+                    dbTransaction.Rollback();
+                    return 0;
+                }
+                finally
+                {
+                    if (dataEntities.Connection.State == System.Data.ConnectionState.Open)
+                    {
+                        dataEntities.Connection.Close();
+                    }
+                }
+            }
+        }
+        #endregion
+
     }
 }
