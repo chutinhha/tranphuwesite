@@ -112,6 +112,15 @@ namespace WebPortal
             }
         }
         #endregion
+        #region trang
+        public List<WebPortal.Model.TinTuc> Paging(int start, int numberRecords,List<WebPortal.Model.TinTuc> listTin)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                return listTin.OrderByDescending(tt => tt.IDTinTuc).Skip(start).Take(numberRecords).ToList();
+            }
+        }
+        #endregion
 
     }
 }
