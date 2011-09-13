@@ -1,23 +1,26 @@
+
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCAdminUploadFile.ascx.cs"
     Inherits="WebPortal.AdminUsercontrols.UCAdminUploadFile" %>
+
 <style type="text/css">
-    .style1
+    .style4
     {
         width: 15%;
+        height:30px;
     }
-    .style2
-    {
-        border:1px solid black;
-    }
- 
-
+  
 </style>
+<script type="text/javascript">
+    function DeleteTaiNguyen(idTaiNguyen, idTinTuc) {
+        window.location.href = "AdminNewsManager.aspx?idNews=" + idTinTuc + "&idTaiNguyen=" + idTaiNguyen;
+    }
+</script>
 <div style="color: #000000">
     <h3>
         Upload File đính kèm:</h3>
     <table width="100%">
         <tr>
-            <td>
+            <td class="style4">
                 ID Tin Tức:
             </td>
             <td>
@@ -25,7 +28,7 @@
             </td>
         </tr>
         <tr>
-            <td class="style1">
+            <td class="style4">
                 Tên File:
             </td>
             <td>
@@ -33,15 +36,15 @@
             </td>
         </tr>
         <tr>
-            <td class="style1">
+            <td class="style4">
                 Mô tả:
             </td>
-            <td>
+            <td style="height:60px">
                 <asp:TextBox runat="server" ID="summaryFile" Width="70%" TextMode="MultiLine"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td class="style1">
+            <td class="style4">
                 Upload File:
             </td>
             <td>
@@ -74,26 +77,28 @@
                 Danh sách các file đã Upload:
             </td>
             <td>
+                <asp:Label ID="DeleteStatus" runat="server" Text="Delete Status:" Visible="true" ForeColor="Red" ></asp:Label>
+                <br />
                 <br />
                 <% List<WebPortal.Model.TaiNguyen> list = GetListTaiNguyenAttached(); %>
                 <%if (list != null)
                   { %>
-                <table width="100%" style="border:1px solid black;background-color:" id="Attack">
+                <table width="100%" id="Attack" class="style1">
                     <thead>
-                        <tr style="background-color:silver">
-                            <th class="style2">
+                        <tr style="background-image: url('../images/bg_button.png'); background-repeat: repeat-x;color:White">
+                            <th style="width: 5%">
                                 ID
                             </th>
-                            <th class="style2">
+                            <th style="width: 20%">
                                 Tên Tài Nguyên
                             </th>
-                            <th class="style2">
+                            <th style="width: 25%">
                                 Mô Tả
                             </th>
-                            <th class="style2">
+                            <th style="width: 45%">
                                 Path
                             </th>
-                            <th class="style2">
+                            <th style="width: 5%">
                                 Edit
                             </th>
                         </tr>
@@ -102,23 +107,23 @@
                         <%foreach (WebPortal.Model.TaiNguyen tn in list)
                           { %>
                         <tr>
-                            <td class="style2">
+                            <td style="text-align: center">
                                 <%=tn.IDTaiNguyen %>
                             </td>
-                            <td class="style2">
+                            <td>
                                 <%=tn.TenTaiNguyen %>
                             </td>
-                            <td class="style2">
+                            <td>
                                 <%=tn.MoTa %>
                             </td>
-                            <td class="style2">
+                            <td>
                                 <%=tn.Path %>
                             </td>
-                            <td class="style2">
-                                <center>
-                                    <a>
-                                        <img src="images/ico_delete_16.png" class="icon16 fl-space2 usermanager-command"
-                                            alt="" title="Delete" /></a></center>
+                            <td style="text-align:center">
+                                 <% int idTaiNguyen = tn.IDTaiNguyen;
+                                    string idTinTuc = Request.QueryString["idNews"];
+                                 %>
+                                 <img src="../images/ico_delete_16.png" onclick='DeleteTaiNguyen(<%=idTaiNguyen%>,<%=idTinTuc%>)' />
                             </td>
                         </tr>
                         <%} %>
