@@ -84,7 +84,7 @@
                     <%=news.NguoiDang %>
                 </td>
                 <td style="width:20%;">
-                    <img src='<%=news.HinhAnh%>' />
+                    <img src='<%=news.HinhAnh%>' alt="" class="thumb size64 fl-space"/>
                 </td>
                 <td style="width:20%;">
                     <a href="AdminNewsManager.aspx?id=<%=news.IDTinTuc %>&type=delete" >
