@@ -21,7 +21,7 @@ namespace WebPortal.AdminUsercontrols
         protected void Save_Click(object sender, EventArgs e)
         {
             int idLoaiTin_Lv1 = Convert.ToInt32(Request.QueryString["id"]);
-            WebPortal.LoaiTin_Lv1 lt = new LoaiTin_Lv1();
+            WebPortal.Repository.LoaiTinLV1 lt = new Repository.LoaiTinLV1();
             WebPortal.Model.LoaiTin_Lv1 loaiTin_Lv1 = lt.Single(idLoaiTin_Lv1);
             if (Name.Text == "")
             {
@@ -35,7 +35,7 @@ namespace WebPortal.AdminUsercontrols
                 {
 
                     lt.Update(loaiTin_Lv1);
-                    SaveChange.Text = "Save change successful!";
+                    SaveChange.Text = "Lưu thành công!";
                 }
                 catch (Exception ex)
                 {
@@ -46,7 +46,7 @@ namespace WebPortal.AdminUsercontrols
 
         public void LoadThongTinLoaiTin_Lv1(int idLoaiTin_Lv1)
         {
-            WebPortal.LoaiTin_Lv1 lt = new LoaiTin_Lv1();
+            WebPortal.Repository.LoaiTinLV1 lt = new Repository.LoaiTinLV1();
             WebPortal.Model.LoaiTin_Lv1 loaiTin_Lv1 = lt.Single(idLoaiTin_Lv1);
             Name.Text = loaiTin_Lv1.TenLoai;
             Summary.Text = loaiTin_Lv1.MoTa;

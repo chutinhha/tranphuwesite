@@ -36,20 +36,21 @@
             <tr>
                 <td class="style1">
                 </td>
-                <td class="style2" style="text-align:center">
-                    <asp:Button ID="Save" Text="Save" runat="server" OnClick="Save_Click"/>
-                    &nbsp;
-                    <asp:Button ID="Back" Text="List Loai Tin Muc 1" runat="server" 
-                        onclick="Back_Click" />
+                <td class="style2" style="text-align: center">
+                    <asp:Button ID="Save" Text="Lưu" runat="server" OnClick="Save_Click" CssClass="button" />
                 </td>
             </tr>
             <tr>
                 <td>
                 </td>
-                <td style="text-align:center">
-                    <asp:Button ID="CreatChild" Text="Tạo Loại Tin Muc 2" runat="server" OnClick="CreatChild_Click" /> &nbsp;
-                    <asp:Button ID="Back1" Text="List Loai Tin Muc 2" runat="server" 
-                        onclick="Back1_Click" />
+                <td style="text-align: center">
+                    <asp:Button ID="Back" Text="Danh sách loại tin mức 1" runat="server" CssClass="button"
+                        OnClick="Back_Click" />&nbsp;
+                    <asp:Button ID="CreatChild" Text="Tạo loại tin mức 2" runat="server" CssClass="button"
+                        OnClick="CreatChild_Click" />
+                    &nbsp;
+                    <asp:Button ID="Back1" Text="Danh sách loại tin mức 2" runat="server" CssClass="button"
+                        OnClick="Back1_Click" />
                 </td>
             </tr>
             <tr>

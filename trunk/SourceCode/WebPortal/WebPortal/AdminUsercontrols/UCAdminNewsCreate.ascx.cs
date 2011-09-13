@@ -34,17 +34,17 @@ namespace WebPortal.AdminUsercontrols
             if (FileUploadControl.HasFile)
             {
                 HttpPostedFile objectFile = FileUploadControl.PostedFile;
-                string pathDirectory = "~/ImageNews/";
+                string pathDirectory = "~/Resources/Images/";
                 string errorMess = "";
                 string filename = Path.GetFileName(FileUploadControl.FileName);
                 string formatFileName = "jpeg,jpg,gif";
                 int maxsize = 102400;
                 Libs.LibUpload.UploadFile(objectFile, pathDirectory, ref errorMess, ref filename, formatFileName, maxsize);
-                StatusLabel.Text = "Upload status: "+ errorMess;
+                StatusLabel.Text = "Upload status: " + errorMess;
                 if (errorMess == "Upload thành công!")
                 {
-                    ImageUpLoad.ImageUrl = "~/ImageNews/" + filename;
-                    PathLabel.Text = "ImageNews/" + filename;
+                    ImageUpLoad.ImageUrl = "~/Resources/Images/" + filename;
+                    PathLabel.Text = "Resources/Images/" + filename;
                 }
             }
         }
@@ -70,43 +70,51 @@ namespace WebPortal.AdminUsercontrols
         {
             string tenLoai = dropDownListLoaiTin.SelectedValue.ToString();
             int idLoai = GetIDLoaiTinFollowTenLoai(tenLoai);
-            string nguoiDang = "admin";
-            DateTime date = DateTime.Now;
             WebPortal.Model.TinTuc news = new Model.TinTuc();
-            news.IDLoaiTin = idLoai;
-            news.MoTaTinTuc = summary.Text;
-            news.NgayDang = date;
-            news.NguoiDang = nguoiDang;
-            news.NoiDung = Request.Form["elm1"].ToString();
-            news.TenTinTuc = titleNews.Text;
-            news.HinhAnh = PathLabel.Text;
-            WebPortal.TinTuc tintuc = new TinTuc();
-            try
+            if (Libs.LibSession.Get(Libs.Constants.ACCOUNT_LOGIN) != null)
             {
-                int idNews = tintuc.Add(news);
-                SaveNews.Text = "Save News Success!";
-                IDTinTuc.Text = idNews.ToString();
+                string nguoiDang = Libs.LibSession.Get(Libs.Constants.ACCOUNT_LOGIN).ToString();
+                DateTime date = DateTime.Now;
+
+                news.IDLoaiTin = idLoai;
+                news.MoTaTinTuc = summary.Text;
+                news.NgayDang = date;
+                news.NguoiDang = nguoiDang;
+                news.NoiDung = Request.Form["elm1"].ToString();
+                news.TenTinTuc = titleNews.Text;
+                news.HinhAnh = PathLabel.Text;
+                WebPortal.TinTuc tintuc = new TinTuc();
+                try
+                {
+                    int idNews = tintuc.Add(news);
+                    SaveNews.Text = "Lưu tin tức mới thành công!";
+                    IDTinTuc.Text = idNews.ToString();
+                }
+                catch (Exception ex)
+                {
+                    SaveNews.Text = "Quá trình lưu xảy ra lỗi: " + ex.Message;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                SaveNews.Text = "Save News Falled! The following error occured: " + ex.Message;
+                Response.Redirect("AdminLogin.aspx");
             }
-
-
+            
         }
 
         protected void AttachFiles_Click(object sender, EventArgs e)
         {
-            if (SaveNews.Text == "Save News Success!")
+            if (SaveNews.Text == "Lưu tin tức mới thành công!")
             {
                 string urlCurrent = Request.Url.ToString();
-                urlCurrent += "&idNews=";
-                urlCurrent += IDTinTuc.Text;
-                Response.Redirect(urlCurrent);
+                string str = urlCurrent.Substring(0, urlCurrent.IndexOf("&"));
+                str += "&type=attach&idNews=";
+                str += IDTinTuc.Text;
+                Response.Redirect(str);
             }
             else
             {
-                SaveNews.Text = "You can't attach files. You need create and save a news!"; 
+                SaveNews.Text = "Bạn không thể đính kèm files, trước khi bạn lưu tin tức này!";
             }
         }
 

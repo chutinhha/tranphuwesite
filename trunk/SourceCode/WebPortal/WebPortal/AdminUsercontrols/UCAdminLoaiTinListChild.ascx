@@ -67,6 +67,5 @@
     </table>
     </form>
     <a href="AdminLoaiTinManager.aspx?id=-1&type=createChild">
-    <input type="button" value="Tạo Mới" 
-        style="background-image: url('../images/bg_button.png'); background-repeat: repeat-x;color:White"/></a>  
+    <input type="button" value="Tạo Mới" class="button"></a>  
 </div>

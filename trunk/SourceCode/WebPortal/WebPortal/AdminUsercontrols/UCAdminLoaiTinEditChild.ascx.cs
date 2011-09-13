@@ -23,7 +23,7 @@ namespace WebPortal.AdminUsercontrols
         public void LoadListLoaiTin()
         {
             List<string> list = new List<string>();
-            WebPortal.LoaiTin_Lv1 loaiTin = new LoaiTin_Lv1();
+            WebPortal.Repository.LoaiTinLV1 loaiTin = new Repository.LoaiTinLV1();
             foreach (WebPortal.Model.LoaiTin_Lv1 lt in loaiTin.All())
             {
                 list.Add(lt.TenLoai);
@@ -35,7 +35,7 @@ namespace WebPortal.AdminUsercontrols
 
         public int GetIDLoaiTin1FollowName(string tenLoaiTin1)
         {
-            WebPortal.LoaiTin_Lv1 loaiTin1 = new LoaiTin_Lv1();
+            WebPortal.Repository.LoaiTinLV1 loaiTin1 = new Repository.LoaiTinLV1();
             foreach (WebPortal.Model.LoaiTin_Lv1 lt in loaiTin1.All())
             {
                 if (lt.TenLoai == tenLoaiTin1)

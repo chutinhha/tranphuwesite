@@ -21,7 +21,7 @@ namespace WebPortal.AdminUsercontrols
         public List<string> GetListLoaiTin1()
         {
             List<string> list = new List<string>();
-            WebPortal.LoaiTin_Lv1 loaiTin = new LoaiTin_Lv1();
+            WebPortal.Repository.LoaiTinLV1 loaiTin = new Repository.LoaiTinLV1();
             foreach (WebPortal.Model.LoaiTin_Lv1 lt in loaiTin.All())
             {
                 list.Add(lt.TenLoai);
@@ -33,7 +33,7 @@ namespace WebPortal.AdminUsercontrols
         public void LoadListLoaiTin()
         {
             List<string> list = new List<string>();
-            WebPortal.LoaiTin_Lv1 loaiTin = new LoaiTin_Lv1();
+            WebPortal.Repository.LoaiTinLV1 loaiTin = new Repository.LoaiTinLV1();
             foreach (WebPortal.Model.LoaiTin_Lv1 lt in loaiTin.All())
             {
                 list.Add(lt.TenLoai);
@@ -45,7 +45,7 @@ namespace WebPortal.AdminUsercontrols
 
         public int GetIDLoaiTin1FollowName(string tenLoaiTin1)
         {
-            WebPortal.LoaiTin_Lv1 loaiTin1 = new LoaiTin_Lv1();
+            WebPortal.Repository.LoaiTinLV1 loaiTin1 = new Repository.LoaiTinLV1();
             foreach (WebPortal.Model.LoaiTin_Lv1 lt in loaiTin1.All())
             {
                 if (lt.TenLoai == tenLoaiTin1)
@@ -61,7 +61,7 @@ namespace WebPortal.AdminUsercontrols
             string moTa = Summary.Text;
             if (tenLoaiTin == "")
             {
-                SaveChange.Text = "Error while save!'Tên Loại Tin Mức 2' not null";
+                SaveChange.Text = "Tên Loại Tin Mức 2 không được để trống! Bạn vui lòng nhập đầy đủ.";
             }
             else
             {
@@ -73,7 +73,7 @@ namespace WebPortal.AdminUsercontrols
                 try
                 {
                     lt.Add(loaiTin);
-                    SaveChange.Text = "Save change successful!";
+                    SaveChange.Text = "Lưu thành công!";
                 }
                 catch (Exception ex)
                 {
