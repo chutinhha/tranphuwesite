@@ -1,4 +1,3 @@
-
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCAdminUploadFile.ascx.cs"
     Inherits="WebPortal.AdminUsercontrols.UCAdminUploadFile" %>
 
@@ -123,7 +122,7 @@
                                  <% int idTaiNguyen = tn.IDTaiNguyen;
                                     string idTinTuc = Request.QueryString["idNews"];
                                  %>
-                                 <img src="../images/ico_delete_16.png" onclick='DeleteTaiNguyen(<%=idTaiNguyen%>,<%=idTinTuc%>)' />
+                                 <img alt="" src="../images/ico_delete_16.png" onclick='DeleteTaiNguyen(<%=idTaiNguyen%>,<%=idTinTuc%>)' />
                             </td>
                         </tr>
                         <%} %>

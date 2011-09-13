@@ -42,7 +42,7 @@ Response.Write(loaitin.TenLoai);
                 <%if (tt.HinhAnh != null)
                   { %>
                 <div class="hinhAnh">
-                    <img alt="" height="64" src="Resources/Images/<%=tt.HinhAnh%>" width="102" /></div>
+                    <img alt="" height="64px" src="<%=tt.HinhAnh%>" width="102px" /></div>
                 <% } %>
                 <div class="noiDungTin">
                     <%=tt.NoiDung %>
