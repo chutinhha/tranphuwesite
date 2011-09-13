@@ -42,7 +42,7 @@
                 GroupID
             </th>
             <td>
-                <input style="width:50%;" readonly="readonly" name="groupID" type="text" value="<%=group.GroupID%>" />
+                <input style="width: 50%;" readonly="readonly" name="groupID" type="text" value="<%=group.GroupID%>" />
             </td>
         </tr>
         <tr>
@@ -50,7 +50,7 @@
                 GroupName
             </th>
             <td>
-                <input style="width:50%;" name="groupName" type="text" value="<%=group.Group_Name%>" />
+                <input style="width: 50%;" name="groupName" type="text" value="<%=group.Group_Name%>" />
             </td>
         </tr>
         <tr>
@@ -58,7 +58,7 @@
                 GroupDescription
             </th>
             <td>
-                <input style="width:50%;" name="groupDescription" type="text" value="<%=group.Group_Description%>" />
+                <input style="width: 50%;" name="groupDescription" type="text" value="<%=group.Group_Description%>" />
             </td>
         </tr>
         <tr>
@@ -66,7 +66,7 @@
                 GroupToString
             </th>
             <td>
-                <input style="width:50%;" name="groupToString" type="text" value="<%=group.Group_ToString%>" />
+                <input style="width: 50%;" name="groupToString" type="text" value="<%=group.Group_ToString%>" />
             </td>
         </tr>
         <tr>
@@ -74,7 +74,8 @@
                 Group DateCreate
             </th>
             <td>
-                <input style="width:50%;" disabled="disabled" name="groupDateCreate" type="text" value="<%=group.Group_DateCreate%>" />
+                <input style="width: 50%;" disabled="disabled" name="groupDateCreate" type="text"
+                    value="<%=group.Group_DateCreate%>" />
             </td>
         </tr>
         <tr>
@@ -82,7 +83,7 @@
                 User Create
             </th>
             <td>
-                <input style="width:50%;" readonly="readonly" name="userCreate" type="text" value="<%=group.User_Create%>" />
+                <input style="width: 50%;" readonly="readonly" name="userCreate" type="text" value="<%=group.User_Create%>" />
             </td>
         </tr>
         <tr>
@@ -119,7 +120,7 @@
                 GroupName
             </th>
             <td>
-                <input style="width:50%;" disabled="disabled" name="groupName" type="text" value="<%=group.Group_Name%>" />
+                <input style="width: 50%;" disabled="disabled" name="groupName" type="text" value="<%=group.Group_Name%>" />
             </td>
         </tr>
         <tr>
@@ -127,7 +128,8 @@
                 GroupDescription
             </th>
             <td>
-                <input style="width:50%;" disabled="disabled" name="groupDescription" type="text" value="<%=group.Group_Description%>" />
+                <input style="width: 50%;" disabled="disabled" name="groupDescription" type="text"
+                    value="<%=group.Group_Description%>" />
             </td>
         </tr>
         <tr>
@@ -135,7 +137,7 @@
                 GroupToString
             </th>
             <td>
-                <input style="width:50%;" disabled="disabled" name="groupToString" type="text" value="<%=group.Group_ToString%>" />
+                <input style="width: 50%;" disabled="disabled" name="groupToString" type="text" value="<%=group.Group_ToString%>" />
             </td>
         </tr>
         <tr>
@@ -143,7 +145,8 @@
                 Group DateCreate
             </th>
             <td>
-                <input style="width:50%;" disabled="disabled" name="groupDateCreate" type="text" value="<%=group.Group_DateCreate%>" />
+                <input style="width: 50%;" disabled="disabled" name="groupDateCreate" type="text"
+                    value="<%=group.Group_DateCreate%>" />
             </td>
         </tr>
         <tr>
@@ -151,7 +154,7 @@
                 User Create
             </th>
             <td>
-                <input style="width:50%;" disabled="disabled" name="userCreate" type="text" value="<%=group.User_Create%>" />
+                <input style="width: 50%;" disabled="disabled" name="userCreate" type="text" value="<%=group.User_Create%>" />
             </td>
         </tr>
         <tr>
@@ -172,8 +175,8 @@
     </tbody>
     <%}
         }
-         else if (Request.QueryString["type"].ToString() == "new")
-            {
+        else if (Request.QueryString["type"].ToString() == "new")
+        {
     %>
     <tbody>
         <tr>
@@ -181,7 +184,7 @@
                 GroupName
             </th>
             <td>
-                <input style="width:50%;" name="groupName" type="text" />
+                <input style="width: 50%;" name="groupName" type="text" />
             </td>
         </tr>
         <tr>
@@ -189,7 +192,7 @@
                 GroupDescription
             </th>
             <td>
-                <input style="width:50%;" name="groupDescription" type="text" style="width:50%" />
+                <input style="width: 50%;" name="groupDescription" type="text" style="width: 50%" />
             </td>
         </tr>
         <tr>
@@ -197,7 +200,7 @@
                 GroupToString
             </th>
             <td>
-                <input style="width:50%;" name="groupToString" type="text" style="width:50%" />
+                <input style="width: 50%;" name="groupToString" type="text" style="width: 50%" />
             </td>
         </tr>
         <tr>
@@ -210,88 +213,75 @@
         </tr>
     </tbody>
     <%}%>
-
 </table>
 <div class="tab-footer clear">
     <div class="fr">
         <% if (Request.QueryString["type"].ToString() == "edit")
            {%>
-    <input type="submit" value="Lưu thay đổi" id="save" name="save" class="button" />
-    <%} %>
-    <% else if (Request.QueryString["type"].ToString() == "new")
+        <input type="submit" value="Lưu thay đổi" id="save" name="save" class="button" />
+        <%} %>
+        <% else if (Request.QueryString["type"].ToString() == "new")
             {%>
-    <input type="submit" value="Tạo mới" id="create" name="new" class="button" />
-    <%}
+        <input type="submit" value="Tạo mới" id="create" name="new" class="button" />
+        <%}
             else
             { %>
-    <input type="submit" value="Xóa" id="delete" name="delete" class="button" />
-    <%} %>
-    <input type="submit" value="Quay về trang chính" id="back" name="back" class="button" />
-    </div> </div>
-    <% if (Request.Form["save"] != null)
+        <input type="submit" value="Xóa" id="delete" name="delete" class="button" />
+        <%} %>
+        <input type="submit" value="Quay về trang chính" id="back" name="back" class="button" />
+    </div>
+</div>
+<% if (Request.Form["save"] != null)
    {
-       WebPortal.Model.Group g = new WebPortal.Model.Group();
-       int isSuccess = 1;
-       try
-       {
-           g.GroupID = int.Parse(Request.Form["groupID"]);
-           g.Group_Name = Request.Form["groupName"];
-           g.Group_Description = Request.Form["groupDescription"];
-           g.Group_ToString = Request.Form["groupToString"];
-           g.Group_DateCreate = DateTime.Parse(Request.Form["groupDateCreate"]);
-           g.User_Create = int.Parse(Request.Form["userCreate"]);
-           if (Request.Form["active"] != null)
-           {
-               g.Active = true;
-           }
-           else
-               g.Active = false;
-       }
-       catch
-       {
-           isSuccess = 0;
-       }
-       if (isSuccess > 0)
-           groupDA.Update(g);
-       Response.Redirect("AdminGroupsManager.aspx");
-    %>
-    <%}
+       string notice = "";
+       if (UpdateGroups(ref notice))
+           Response.Redirect("AdminGroupsManager.aspx");
+       else
+       { %>
+        <div class="notification note-error">
+         <a href="#" class="close" title="Close notification">close</a>
+         <p>
+        <strong>
+            <%=notice%></strong></p>
+        </div>
+       <%}
+%>
+<%}
    else if (Request.Form["back"] != null)
    {
        Response.Redirect("AdminGroupsManager.aspx");
    }
    else if (Request.Form["delete"] != null)
    {
-       int groupID = int.Parse(Request.Form["groupID"]);
-       groupDA.Delete(groupID);
+       
        Response.Redirect("AdminGroupsManager.aspx");
    } if (Request.Form["new"] != null)
-       {
-           WebPortal.Model.Group newG = new WebPortal.Model.Group();
+   {
+       WebPortal.Model.Group newG = new WebPortal.Model.Group();
 
-           try
+       try
+       {
+           newG.Group_Name = Request.Form["groupName"];
+           newG.Group_Description = Request.Form["groupDescription"];
+           newG.Group_ToString = Request.Form["groupToString"];
+           if (Request.Form["active"] != null)
            {
-               newG.Group_Name = Request.Form["groupName"];
-               newG.Group_Description = Request.Form["groupDescription"];
-               newG.Group_ToString = Request.Form["groupToString"];
-               if (Request.Form["active"] != null)
-               {
-                   newG.Active = true;
-               }
-               else
-                   newG.Active = false;
-               newG.Group_DateCreate = DateTime.Today;
-               string userName = Libs.LibSession.Get(Libs.Constants.ACCOUNT_LOGIN).ToString();
-               WebPortal.Repository.User userDA = new WebPortal.Repository.User();
-               newG.User_Create = userDA.GetUserIDByUsername(userName);
-               groupDA.Add(newG);
+               newG.Active = true;
            }
-           catch
-           {
-               
-                Response.Redirect("AdminGroupsManager.aspx");
-           }
-           Response.Redirect("AdminGroupsManager.aspx");   
+           else
+               newG.Active = false;
+           newG.Group_DateCreate = DateTime.Today;
+           string userName = Libs.LibSession.Get(Libs.Constants.ACCOUNT_LOGIN).ToString();
+           WebPortal.Repository.User userDA = new WebPortal.Repository.User();
+           newG.User_Create = userDA.GetUserIDByUsername(userName);
+           groupDA.Add(newG);
        }
-        %>
+       catch
+       {
+
+           Response.Redirect("AdminGroupsManager.aspx");
+       }
+       Response.Redirect("AdminGroupsManager.aspx");
+   }
+%>
 </form>
