@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,14 @@ namespace WebPortal.AdminUsercontrols
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Convert.ToInt32(Request.QueryString["idTaiNguyen"])>0)
+            {
+                int idTaiNguyen = Convert.ToInt32(Request.QueryString["idTaiNguyen"]);
+                int idTinTuc = Convert.ToInt32(Request.QueryString["idNews"]);
+                DeleteTaiNguyenAttached(idTaiNguyen, idTinTuc);
+                string url = "AdminNewsManager.aspx?type=attach&idNews=" + idTinTuc;
+                Response.Redirect(url);
+            }
         }
 
         protected void UploadFile_Click(object sender, EventArgs e)
@@ -76,6 +85,26 @@ namespace WebPortal.AdminUsercontrols
                 }
             }
             return listTaiNguyen;
+        }
+
+        public void DeleteTaiNguyenAttached(int idTaiNguyen, int idTinTuc)
+        {
+            try
+            {
+                WebPortal.TaiNguyen_TinTuc tnTinTuc = new TaiNguyen_TinTuc();
+                WebPortal.TaiNguyen taiNguyen = new TaiNguyen();
+                foreach (WebPortal.Model.TaiNguyen_TinTuc tnTT in tnTinTuc.GetFollowIDTinTuc(idTinTuc))
+                {
+                    if (tnTT.IDTaiNguyen == idTaiNguyen)
+                        tnTinTuc.Delete(tnTT.ID);
+                }
+                taiNguyen.Delete(idTaiNguyen);
+                DeleteStatus.Text = "Delete Status: cuccessful!";
+            }
+            catch (Exception ex)
+            {
+                DeleteStatus.Text = "Delete Status : " + ex.Message;
+            }
         }
     }
 }
