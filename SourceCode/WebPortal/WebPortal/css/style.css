@@ -7,8 +7,7 @@ img {
 }
 body {
 	margin: 0 auto;
-	width: 1000px;
-	background:#fff url('../images/bigBg.jpg') repeat-y center center;
+	background:#fff url('../images/gradbg.jpg') repeat-x top center;
 }
 #wrapper {
 	margin: 0 auto;
@@ -16,7 +15,9 @@ body {
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	font-size: 13px;
 	color: #434343;
+	background-color:white;
 }
+
 .banner 
 {
 	margin:10px 0;
@@ -24,6 +25,16 @@ body {
 .banner img {
 	border: 0;
 	margin: 10px 0;
+}
+.shadow{
+	
+	margin:0 auto;
+	background:url('../images/shadow.png') repeat-y center center;
+}
+.bigWhite{
+	width:1000px; 
+	margin:0 auto;
+	background-color:white;
 }
 
 .menuBar{
