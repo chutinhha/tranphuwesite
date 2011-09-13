@@ -18,5 +18,15 @@ namespace WebPortal
                 
             //}
         }
+        public List<Model.TaiNguyen_TinTuc> LayTaiNguyen_TinTuc(int idTinTuc)
+        {
+            WebPortal.TaiNguyen_TinTuc tt = new TaiNguyen_TinTuc();
+            return tt.LayTaiNguyenTheoTin(idTinTuc);
+        }
+        public Model.TaiNguyen LayTaiNguyenTheoID(int id)
+        {
+            WebPortal.TaiNguyen taiNguyen = new TaiNguyen();
+            return taiNguyen.Single(id);
+        }
     }
 }

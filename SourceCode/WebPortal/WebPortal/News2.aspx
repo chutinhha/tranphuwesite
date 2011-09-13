@@ -36,7 +36,7 @@
           }
 
 
-          listtintuc = apptintuc.Paging(page * rowperPage - rowperPage, rowperPage);
+          List<WebPortal.Model.TinTuc> listTT = apptintuc.Paging(page * rowperPage - rowperPage, rowperPage, listtintuc);
 
           double numOfPage = Math.Ceiling((double)totalrow / rowperPage);
           for (int i = 1; i <= numOfPage; i++)
@@ -45,7 +45,7 @@
               sb.AppendFormat("<a href='News2.aspx?idLoaiTin="+idlt+"&&page={0}'>{1}---</a>", i, i);
               //
           }
-          foreach (WebPortal.Model.TinTuc tt in listtintuc)
+          foreach (WebPortal.Model.TinTuc tt in listTT)
           {
         %>
         <div class="tinTuc">
@@ -55,8 +55,10 @@
             </div>
             <div class="timePost">
                 người đăng:<%Response.Write(tt.NguoiDang + "  " + tt.NgayDang); %></div>
+                 <%if (tt.HinhAnh != null)
+                   { %>
             <div class="hinhAnh">
-                <img alt="" height="64" src="ImageNews/<%=tt.HinhAnh%>" width="102" /></div>
+                <img alt="" height="64" src="Resources/Images/<%=tt.HinhAnh%>" width="102" /></div><%} %>
             <div class="noiDungTin">
                 <%Response.Write(tt.MoTaTinTuc);%>
             </div>
@@ -67,21 +69,7 @@
         </div>
         <%}
             Response.Write(sb.ToString()); %>
-        <%--<div class="tinTuc noneBorder">
-						<div class="tieuDe">Nullam tellus pede, eleifend posuere</div>
-						<div class="timePost">Post by Admin 7:02 AM</div>
-						<div class="hinhAnh">
-						</div>
-						<div class="noiDungTin">
-							Nullam tellus pede, eleifend posuere, dignissim id, euismod vitae, tortor. Pellentesque vel mauris. 
-							Phasellus dictum rutrum lectus. Vestibulum a risus at orci egestas condimentum. Morbi in turpis vel
-							ante feugiat placerat. Vestibulum justo lacus.
-							Phasellus dictum rutrum lectus. Vestibulum a risus at 
-							ante feugiat placerat. Vestibulum justo lacus.
-
-						</div>
-						<div class="readmore"><a href="#">Xem tiếp</a></div>
-					</div>		--%>
+      
     </div>
     <!--end nội dung-->
     </div>
