@@ -27,7 +27,7 @@
 </style>
 <div id="data-table" style="visibility: visible">
     <p>
-        <span style="font-family: Arial; font-weight: bold; font-size: 18px;">Edit loại tin
+        <span style="font-family: Arial; font-weight: bold; font-size: 18px;">Chỉnh sửa loại tin
             mức 1</span>
     </p>
     <div>
@@ -54,10 +54,10 @@
                 <td class="style1">
                 </td>
                 <td class="style2">
-                    <asp:Button ID="Save" Text="Save" runat="server" OnClick="Save_Click" />
+                    <asp:Button ID="Save" Text="Lưu" runat="server" OnClick="Save_Click" CssClass="button" />
                     &nbsp;
-                    <asp:Button ID="Back" Text="List Loai Tin Lv1" runat="server" 
-                        onclick="Back_Click" />
+                    <asp:Button ID="Back" Text="Danh sách loại tin mức 1" runat="server" 
+                        onclick="Back_Click" CssClass="button" />
                 </td>
             </tr>
             <tr>

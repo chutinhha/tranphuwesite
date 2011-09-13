@@ -79,7 +79,7 @@
                     </td>
                 <td class="style2"> 
                     <asp:TextBox ID="titleNews" Width="100%" runat="server" 
-                        Text="Tiêu Để Của Tin Tức "></asp:TextBox>
+                        Text=""></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -128,9 +128,9 @@
   </form>
 </div>
 <div>
-    <asp:Button ID="Save" Text="Save" runat="server" onclick="Save_Click" />
+    <asp:Button ID="Save" Text="Lưu" runat="server" onclick="Save_Click" CssClass="button" />
     &nbsp;&nbsp;
-    <asp:Button ID="AttachFiles" Text="Attach Files" runat="server" 
+    <asp:Button ID="AttachFiles" Text="Đính kèm Files" runat="server" CssClass="button"
         onclick="AttachFiles_Click"/>
     <br /><br />
     <asp:Label runat="server" ID="IDTinTuc" Text="" Visible="false"/>

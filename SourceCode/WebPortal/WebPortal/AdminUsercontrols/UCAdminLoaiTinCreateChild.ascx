@@ -50,9 +50,9 @@
                 <td class="style1">
                 </td>
                 <td class="style2" style="text-align:center">
-                    <asp:Button ID="Save" Text="Save" runat="server" OnClick="Save_Click" />
+                    <asp:Button ID="Save" Text="Lưu" runat="server" OnClick="Save_Click" CssClass="button" />
                     &nbsp;
-                    <asp:Button ID="Back" Text="List Loai Tin Muc 2" runat="server" 
+                    <asp:Button ID="Back" Text="Danh sách loại tin mức 2" runat="server" CssClass="button"
                         onclick="Back_Click"/>
                 </td>
             </tr>
@@ -61,7 +61,7 @@
                 </td>
                 <td class="style2" style="text-align:center">
                     &nbsp;
-                    <asp:Button ID="Back1" Text="List Loai Tin Lv1" runat="server" 
+                    <asp:Button ID="Back1" Text="Danh sách loại tin mức 1" runat="server" CssClass="button"
                         onclick="Back1_Click" style="height: 26px"  />
                 </td>
             </tr>

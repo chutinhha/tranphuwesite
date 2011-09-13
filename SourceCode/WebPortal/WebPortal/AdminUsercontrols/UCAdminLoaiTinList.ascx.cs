@@ -30,7 +30,7 @@ namespace WebPortal.AdminUsercontrols
 
         public void DeleteLoaiTin_Lv1(int idLoaiTin_Lv1)
         {
-            WebPortal.LoaiTin_Lv1 loaiTin = new LoaiTin_Lv1();
+            WebPortal.Repository.LoaiTinLV1 loaiTin = new Repository.LoaiTinLV1();
             loaiTin.Delete(idLoaiTin_Lv1);
         }
 
@@ -91,7 +91,7 @@ namespace WebPortal.AdminUsercontrols
         //}
         public List<WebPortal.Model.LoaiTin_Lv1> GetAllLoaiTin()
         {
-            WebPortal.LoaiTin_Lv1 loaiTin = new LoaiTin_Lv1();
+            WebPortal.Repository.LoaiTinLV1 loaiTin = new Repository.LoaiTinLV1();
             return loaiTin.All();
         }
 

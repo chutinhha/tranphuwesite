@@ -20,14 +20,14 @@ namespace WebPortal.AdminUsercontrols
             string moTa = Summary.Text;
             if (tenLoaiTin == "")
             {
-                SaveChange.Text = "Error while save!'Tên Loại Tin Mức 1' not null";
+                SaveChange.Text = "Tên Loại Tin Mức 1 không được để trống!Bạn vui lòng nhập đầy đủ.";
             }
             else
             {
                 WebPortal.Model.LoaiTin_Lv1 loaiTin = new Model.LoaiTin_Lv1();
                 loaiTin.TenLoai = tenLoaiTin;
                 loaiTin.MoTa = moTa;
-                WebPortal.LoaiTin_Lv1 lt = new LoaiTin_Lv1();
+                WebPortal.Repository.LoaiTinLV1 lt = new Repository.LoaiTinLV1();
                 try
                 {
                     lt.Add(loaiTin);
