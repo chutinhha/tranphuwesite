@@ -175,7 +175,7 @@ ul#nav span {
 }
 /*------------------------------------------------------------------------------*/
 
-.rightColumn{ }
+.rightColumn{ position:relative; margin-bottom: 140px; }
 .rightColumn .titleBox{
 	border:2px #4199cf solid;
 	-webkit-border-radius:5px;
@@ -314,9 +314,16 @@ ul#nav span {
 	color:#127fc3; text-decoration:underline;
 }
 
+.content{ position:relative; }
+.content .bannerAds{
+	position:absolute; 
+	bottom:0; right:0;
+	z-index:100;
+}
+.content .bannerAds img{ margin-left:6px; } 
 
 
-
+/*-----------------------------------------------------------------------------*/
 .footer{
 	width:1000px; margin:0 auto; margin-top:30px;
 	height:50px; background:url('../images/footer.jpg') repeat-x top center;
