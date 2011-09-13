@@ -28,11 +28,11 @@ namespace WebPortal.AdminUsercontrols
             if (FileUploadControl.HasFile)
             {
                 HttpPostedFile objectFile = FileUploadControl.PostedFile;
-                string pathDirectory = "~/UpLoadFiles/";
+                string pathDirectory = "~/Resources/Files";
                 string errorMess = "";
                 string filename = Path.GetFileName(FileUploadControl.FileName);
-                string formatFileName = "rar,doc,docx,xls,xlsx,ppt,pptx,zip";
-                int maxsize = 102400;
+                string formatFileName = "rar,doc,docx,xls,xlsx,ppt,pptx,zip,txt,pdf";
+                int maxsize = 1024000;
                 Libs.LibUpload.UploadFile(objectFile, pathDirectory, ref errorMess, ref filename, formatFileName, maxsize);
                 StatusLabel.Text = errorMess;
                 FileNameAttach.Text = filename;
@@ -40,7 +40,7 @@ namespace WebPortal.AdminUsercontrols
         }
         private void AddTaiNguyen(string filename, string name, string summary)
         {
-            string path = Server.MapPath("~/UpLoadFiles/") + filename;
+            string path = Server.MapPath("~/Resources/Files") + filename;
             WebPortal.Model.TaiNguyen tn = new Model.TaiNguyen();
             tn.Path = path;
             tn.MoTa = summary;
@@ -55,11 +55,11 @@ namespace WebPortal.AdminUsercontrols
                 taiNguyenTinTuc.IDTaiNguyen = idTaiNguyen;
                 taiNguyenTinTuc.IDTinTuc = idTinTuc;
                 tnTinTuc.Add(taiNguyenTinTuc);
-                StatusSaveChange.Text = "Attach File status: Attach cuccess!";
+                StatusSaveChange.Text = "Đính kèm file thành công!";
             }
             catch(Exception ex)
             {
-                StatusSaveChange.Text = "Add New TaiNguyen Falled. The following error occured: " + ex.Message;
+                StatusSaveChange.Text = "Lỗi xảy ra trong khi đính kèm: " + ex.Message;
             }
         }
     
@@ -99,11 +99,11 @@ namespace WebPortal.AdminUsercontrols
                         tnTinTuc.Delete(tnTT.ID);
                 }
                 taiNguyen.Delete(idTaiNguyen);
-                DeleteStatus.Text = "Delete Status: cuccessful!";
+                DeleteStatus.Text = "Xóa thành công";
             }
             catch (Exception ex)
             {
-                DeleteStatus.Text = "Delete Status : " + ex.Message;
+                DeleteStatus.Text = "Lỗi xảy ra khi xóa: " + ex.Message;
             }
         }
     }
