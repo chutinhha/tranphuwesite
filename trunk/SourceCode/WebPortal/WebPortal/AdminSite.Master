@@ -91,6 +91,7 @@
                             <li><a href="AdminGiaoVienManager.aspx">Quản lý giáo viên</a></li>
                             <li><a href="AdminChucVu.aspx">Quản lý chức vụ</a></li>
                             <li><a href="AdminToChuc.aspx">Quản lý tổ chức</a></li>
+                            <li><a href="AdminTaiNguyen.aspx">Quản lý tài nguyên</a></li>
                         </ul>
                     </li>
                 </ul>
