@@ -77,5 +77,15 @@ namespace WebPortal
             }
         }
         #endregion
+
+        #region trang
+        public List<WebPortal.Model.TaiNguyen> Paging(int start, int numberRecords, List<WebPortal.Model.TaiNguyen> listTin)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                return listTin.OrderByDescending(tt => tt.IDTaiNguyen).Skip(start).Take(numberRecords).ToList();
+            }
+        }
+        #endregion
     }
 }

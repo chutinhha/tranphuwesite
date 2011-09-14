@@ -100,6 +100,18 @@ namespace WebPortal
                 return dataEntities.TaiNguyen_TinTuc.Where(app => app.IDTinTuc == idTinTuc).ToList();
             }
         }
+
+        public List<WebPortal.Model.TaiNguyen_TinTuc> GetFollowIDTaiNguyen(int id)
+        {
+            List<WebPortal.Model.TaiNguyen_TinTuc> listTNTT = new List<Model.TaiNguyen_TinTuc>();
+            List<WebPortal.Model.TaiNguyen_TinTuc> list = All();
+            foreach (WebPortal.Model.TaiNguyen_TinTuc tnTinTuc in list)
+            {
+                if (tnTinTuc.IDTaiNguyen == id)
+                    listTNTT.Add(tnTinTuc);
+            }
+            return listTNTT;
+        }
         #endregion
 
     }
