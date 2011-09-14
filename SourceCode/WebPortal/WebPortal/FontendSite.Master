@@ -51,8 +51,8 @@
         <div class="menuBar grid_24" style="">
             <ul id="nav">
                 <li class="active"><a href="TrangChu.aspx">Trang chủ</a></li>
+                <li><a href="HinhAnhTruong.aspx">Hình ảnh trường</a></li>
                 <li><a href="LienHe_GopY.aspx">Liên hệ</a></li>
-                <li><a href="GioiThieuTruong.aspx">Giới thiệu trường</a></li>
             </ul>
             <div class="time">
                 <span id="txt" class="white" style="display: inline-block;"></span>
@@ -171,18 +171,13 @@ foreach (WebPortal.Model.LoaiTin lt2 in listLoaiTin)
                             style="width: 165px;">
 			                <table bgcolor="white">
 				                <tr>
+                                <%List<string> listPath = LayHinhAnh();
+                                  foreach (string path in listPath)
+                                  {%>
 					                <td><a href="HinhAnhTruong.aspx">
-					                <img style="margin:4px;" height="100" src="images/images656900_6.jpg" width="120" /><br />
+					                <img style="margin:4px;" height="100" src="<%=path %>" width="120" /><br />
 					                </a></td>
-                                   <td><a href="HinhAnhTruong.aspx">
-					                <img style="margin:4px;" height="100" src="images/images.jpg" width="120" /><br />
-					                </a></td>
-                                    <td><a href="HinhAnhTruong.aspx">
-					                <img style="margin:4px;" height="100" src="images/images (1).jpg" width="120" /><br />
-					                </a></td>
-                                     <td><a href="HinhAnhTruong.aspx">
-                                    <img style="margin:4px;" height="100" src="images/1.jpg" width="120" /><br />
-					                </a></td>
+                                    <%} %>
 				                </tr>
 			                </table>
                           </marquee>
