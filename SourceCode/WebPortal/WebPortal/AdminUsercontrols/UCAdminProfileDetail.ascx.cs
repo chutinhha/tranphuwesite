@@ -118,13 +118,16 @@ namespace WebPortal.AdminUsercontrols
             if (Request.Files[0] != null)
             {
                 HttpPostedFile file = Request.Files[0];
-                string fileName = string.Empty;
-                string path = "~/Resources/Images/";
-                if (!Libs.LibUpload.UploadFile(file, path, ref notificatedMessage, ref fileName, "jpg,jpeg,png,gif", 50000))
+                if (file.ContentLength != 0)
                 {
-                    return false;
+                    string fileName = string.Empty;
+                    string path = "~/Resources/Images/";
+                    if (!Libs.LibUpload.UploadFile(file, path, ref notificatedMessage, ref fileName, "jpg,jpeg,png,gif", 50000))
+                    {
+                        return false;
+                    }
+                    profile.Image = "/Resources/Images/" + fileName;
                 }
-                profile.Image = "/Resources/Images/" + fileName;
             }
 
             profile.Address = Request.Form["address"].ToString();
@@ -149,9 +152,16 @@ namespace WebPortal.AdminUsercontrols
             profile.Ethnic = Request.Form["ethnic"].ToString();
             profile.Religion = Request.Form["religion"].ToString();
 
-            if (Request.Form["active"].ToString() == "on")
+            if (Request.Form["active"] != null)
             {
-                profile.Active = true;
+                if (Request.Form["active"].ToString() == "on")
+                {
+                    profile.Active = true;
+                }
+                else
+                {
+                    profile.Active = false;
+                }
             }
             else
             {

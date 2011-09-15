@@ -6,13 +6,14 @@
         <span style="font-family: Arial; font-weight: bold; font-size: 18px;">Quản lý tài khoản</span>
     </p>
     <form method="post" action="#">
-    <% List<WebPortal.Model.User> list = GetAllUsers();
-        %>
+    <% List<WebPortal.Model.User> list = userRepository.All();
+    %>
     <table class="style1 datatable">
         <thead>
             <tr>
                 <th class="bSortable">
-                   <%-- <input type="checkbox" class="checkbox select-all" />--%> ID
+                    <%-- <input type="checkbox" class="checkbox select-all" />--%>
+                    ID
                 </th>
                 <th>
                     Username
@@ -36,7 +37,7 @@
         </thead>
         <tbody>
             <% 
-                if (list != null)
+                if (list.Count > 0)
                 {
                     foreach (var user in list)
                     {%>
