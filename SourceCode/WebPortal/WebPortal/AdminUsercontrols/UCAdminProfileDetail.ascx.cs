@@ -39,25 +39,28 @@ namespace WebPortal.AdminUsercontrols
 
             if (Request.Files[0] != null)
             {
-                //Xóa file hình cũ
-                if (profile.Image != null)
-                {
-                    string oldFileName = Server.MapPath(profile.Image);
-                    if (File.Exists(oldFileName))
-                    {
-                        Libs.LibFile.DeleteFile(oldFileName);
-                    }
-                }
-
-                //Upload hình mới
                 HttpPostedFile file = Request.Files[0];
-                string fileName = string.Empty;
-                string path = "~/Resources/Images/";
-                if (!Libs.LibUpload.UploadFile(file, path, ref notificatedMessage, ref fileName, "jpg,jpeg,png,gif", 30000))
+                if (file.ContentLength != 0)
                 {
-                    return false;
+                    //Xóa file hình cũ
+                    if (profile.Image != null)
+                    {
+                        string oldFileName = Server.MapPath(profile.Image);
+                        if (File.Exists(oldFileName))
+                        {
+                            Libs.LibFile.DeleteFile(oldFileName);
+                        }
+                    }
+
+                    //Upload hình mới
+                    string fileName = string.Empty;
+                    string path = "~/Resources/Images/";
+                    if (!Libs.LibUpload.UploadFile(file, path, ref notificatedMessage, ref fileName, "jpg,jpeg,png,gif", 30000))
+                    {
+                        return false;
+                    }
+                    profile.Image = "/Resources/Images/" + fileName;
                 }
-                profile.Image = "/Resources/Images/" + fileName;
             }
 
             profile.Address = Request.Form["address"].ToString();
@@ -76,13 +79,16 @@ namespace WebPortal.AdminUsercontrols
             profile.Religion = Request.Form["religion"].ToString();
             profile.Birdthday = Libs.LibConvert.ConvertToDateTime(Request.Form["birthday"].ToString(), DateTime.Now);
 
-            if (Request.Form["active"].ToString() == "on")
+            if (Request.Form["active"] != null)
             {
-                profile.Active = true;
-            }
-            else
-            {
-                profile.Active = false;
+                if (Request.Form["active"].ToString() == "on")
+                {
+                    profile.Active = true;
+                }
+                else
+                {
+                    profile.Active = false;
+                }
             }
 
             profile.LastUpdateProfile = DateTime.Now;
