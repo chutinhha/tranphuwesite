@@ -15,7 +15,6 @@ namespace WebPortal
 
         }
 
-
         public bool ResetPassword(string email, ref string notificatedMess)
         {
             try
