@@ -201,6 +201,43 @@ namespace WebPortal.Repository
             }
         }
 
+        public bool CheckEmailExist(string email)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                try
+                {
+                    var users = dataEntities.Users.Where(user => user.Email.ToLower() == email.ToLower());
+                    if (users.Count() > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+
+        public Model.User GetUserByEmail(string email)
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                try
+                {
+                    return dataEntities.Users.Where(user => user.Email.ToLower()==email.ToLower()).First();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
         #endregion
         #region Nhat
         public int GetUserIDByUsername(string userName)

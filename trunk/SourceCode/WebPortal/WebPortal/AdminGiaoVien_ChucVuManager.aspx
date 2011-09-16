@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminSite.Master" AutoEventWireup="true"
-    CodeBehind="AdminInGroupManager.aspx.cs" Inherits="WebPortal.AdminInGroupManager" %>
+    CodeBehind="AdminGiaoVien_ChucVuManager.aspx.cs" Inherits="WebPortal.AdminGiaoVien_ChucVu" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -13,33 +13,25 @@
             </div>
             <div class="box-wrap clear">
                 <p>
-                    <b>Chọn tên đăng nhập</b>
-                    <asp:DropDownList runat="server" ID="ddlUserList" AutoPostBack="true">
+                    <b>Chọn tổ chức</b>
+                    <asp:DropDownList runat="server" ID="ddlCVList" AutoPostBack="true">
                     </asp:DropDownList>
                 </p>
-                <% List<WebPortal.Model.Group> currentGroupList = null;
-                   if (ddlUserList.SelectedItem != null)
+                <% List<WebPortal.Model.GiaoVien> currentGVList = null;
+                   if (ddlCVList.SelectedItem != null)
                    {
-                       int userID = Libs.LibConvert.ConvertToInt(ddlUserList.SelectedValue, 0);
-                       var user = userRepository.Single(userID);
-                       currentGroupList = groupRepository.GetAllGroupByUserID(userID);
+                       int cvID = Libs.LibConvert.ConvertToInt(ddlCVList.SelectedValue, 0);
+                       var chucvu = chucvuRepository.Single(cvID);
+                       currentGVList = this.giaovienRepository.GetAllGiaoVienBychucvuID(cvID);
                 %>
                 <table class="style1">
                     <tbody>
                         <tr>
                             <th>
-                                Tên đăng nhập
+                                Tên chức vụ
                             </th>
                             <td>
-                                <%=user.UserName %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                Email
-                            </th>
-                            <td>
-                                <%=user.Email %>
+                                <%= chucvu.TenCV%>
                             </td>
                         </tr>
                         <tr>
@@ -47,25 +39,17 @@
                                 Mô tả thông tin
                             </th>
                             <td>
-                                <%=user.Type %>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                Ngày tạo tài khoản
-                            </th>
-                            <td>
-                                <%=user.DateCreate %>
+                                <%= chucvu.MoTa%>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <%}%>
                 <div>
-                    <%  List<WebPortal.Model.Group> groupList = groupRepository.All();%>
+                    <%  List<WebPortal.Model.GiaoVien> gvList = giaovienRepository.All();%>
                     <div id="table">
                         <p>
-                            <b>Danh sách các nhóm người dùng</b></p>
+                            <b>Danh sách giáo viên truy cập</b></p>
                         <table class="style1">
                             <thead>
                                 <tr>
@@ -73,41 +57,59 @@
                                         <input type="checkbox" class="checkbox select-all" />
                                     </th>
                                     <th>
-                                        Tên nhóm
+                                        Họ và tên
                                     </th>
                                     <th>
-                                        Mô tả nhóm
+                                        Ảnh đại diện
                                     </th>
                                     <th>
-                                        Ngày tạo
+                                        Email
+                                    </th>
+                                    <th>
+                                        Điện thoại
+                                    </th>
+                                    <th>
+                                        Bộ môn
+                                    </th>
+                                    <th>
+                                        Địa chỉ
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <%
-                                    foreach (var group in groupList)
+                                    foreach (var gv in gvList)
                                     {
                                 %>
                                 <tr>
                                     <td>
-                                        <% if (IsInsideGroupList(group.GroupID, currentGroupList))
+                                        <% if (IsInsideGiaoVienList(gv.IDGiaoVien, currentGVList))
                                            { %>
-                                        <input name="groups" type="checkbox" class="checkbox" value="<%=group.GroupID %>"
-                                            checked="checked" />
+                                        <input name="gvs" type="checkbox" class="checkbox" value="<%=gv.IDGiaoVien %>" checked="checked" />
                                         <%}
                                            else
                                            { %>
-                                        <input name="groups" type="checkbox" class="checkbox" value="<%=group.GroupID %>" />
+                                        <input name="gvs" type="checkbox" class="checkbox" value="<%=gv.IDGiaoVien %>" />
                                         <%} %>
                                     </td>
                                     <td>
-                                        <%=group.Group_Name %>
+                                        <%=gv.HoGV+ " "+gv.TenGV %>
                                     </td>
                                     <td>
-                                        <%=group.Group_Description %>
+                                        <image src="<%=gv.AnhDaiDien %>" alt="" title="Hình ảnh" style="max-height: 100px;
+                                            max-width: 100px; border: 1px solid #ccc" />
                                     </td>
                                     <td>
-                                        <%=group.Group_DateCreate %>
+                                        <%=gv.Email %>
+                                    </td>
+                                    <td>
+                                        <%=gv.DienThoai %>
+                                    </td>
+                                    <td>
+                                        <%=gv.BoMon %>
+                                    </td>
+                                    <td>
+                                        <%=gv.DiaChi %>
                                     </td>
                                 </tr>
                                 <%} %>
@@ -124,16 +126,16 @@
             </div>
             <% if (Request.Form["save"] != null)
                {
-                   List<int> groupIDList = new List<int>();
-                   if (Request.Form["groups"] != null)
+                   List<int> gvIDList = new List<int>();
+                   if (Request.Form["gvs"] != null)
                    {
-                       string[] ids = Request.Form["groups"].Split(',');
+                       string[] ids = Request.Form["gvs"].Split(',');
                        foreach (string s in ids)
                        {
-                           groupIDList.Add(Libs.LibConvert.ConvertToInt(s, 0));
+                           gvIDList.Add(Libs.LibConvert.ConvertToInt(s, 0));
                        }
-                       int userID = Libs.LibConvert.ConvertToInt(this.ddlUserList.SelectedValue, 0);
-                       if (ingroupRepository.DecentralizeUserWithGroups(userID, groupIDList))
+                       int cvID = Libs.LibConvert.ConvertToInt(this.ddlCVList.SelectedValue, 0);
+                       if (cvgvRepository.DecentralizeChucVuWithGiaoVien(cvID, gvIDList))
                        {%>
             <div class="notification note-success">
                 <a href="#" class="close" title="Close notification">close</a>
@@ -153,8 +155,8 @@
                    }
                    else
                    {
-                       int userID = Libs.LibConvert.ConvertToInt(this.ddlUserList.SelectedValue, 0);
-                       if (ingroupRepository.DecentralizeUserWithGroups(userID, groupIDList))
+                       int cvID = Libs.LibConvert.ConvertToInt(this.ddlCVList.SelectedValue, 0);
+                       if (cvgvRepository.DecentralizeChucVuWithGiaoVien(cvID, gvIDList))
                        {%>
             <div class="notification note-success">
                 <a href="#" class="close" title="Close notification">close</a>

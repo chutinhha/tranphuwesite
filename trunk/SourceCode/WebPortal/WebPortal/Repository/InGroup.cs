@@ -84,7 +84,7 @@ namespace WebPortal.Repository
                     var oldInGroupList = dataEntities.InGroups;
                     foreach (var ingroup in oldInGroupList)
                     {
-                        if (ingroup.UserID == userID && groupIDList.Contains(ingroup.GroupID))
+                        if (ingroup.UserID == userID)
                         {
                             dataEntities.InGroups.DeleteObject(ingroup);
                         }

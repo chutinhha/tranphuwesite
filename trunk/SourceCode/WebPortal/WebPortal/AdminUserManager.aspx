@@ -16,9 +16,12 @@
                         required: true,
                         rangelength: [6, 10]
                     },
+                    newpassword: {
+                        rangelength: [6, 15]
+                    },
                     password: {
                         required: true,
-                        rangelength: [6, 10]
+                        rangelength: [6, 15]
                     },
                     email: {
                         required: true,
@@ -29,18 +32,21 @@
                     },
                     lastname: {
                         required: true
-                    }
+                    },
+                    phone: {
+                        number:true
                 }
-            });
-
-            $('input[name="birthday"]').datepicker({
-                dateFormat: 'dd/mm/yy'
-            });
-
-            $("#back").click(function () {
-                document.location.href = "AdminUserManager.aspx";
-            });
+            }
         });
+
+        $('input[name="birthday"]').datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+
+        $("#back").click(function () {
+            document.location.href = "AdminUserManager.aspx";
+        });
+    });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">

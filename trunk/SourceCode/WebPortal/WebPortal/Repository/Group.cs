@@ -26,7 +26,7 @@ namespace WebPortal.Repository
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.Groups.ToList();
+                return dataEntities.Groups.Where(gr => gr.Active == true).ToList();
             }
         }
 

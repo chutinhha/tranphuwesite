@@ -22,34 +22,28 @@ namespace WebPortal.AdminUsercontrols
             int id = Libs.LibConvert.ConvertToInt(Request.QueryString["id"], 0);
             Model.User user = userRepository.Single(id);
 
-            if (!string.IsNullOrWhiteSpace(Request.Form["username"].ToString()))
-            {
-                user.UserName = Request.Form["username"].ToString();
-            }
-
             if (!string.IsNullOrWhiteSpace(Request.Form["email"].ToString()))
             {
                 user.Email = Request.Form["email"].ToString();
             }
 
-            if (!string.IsNullOrWhiteSpace(Request.Form["password"].ToString()))
+            if (!string.IsNullOrWhiteSpace(Request.Form["newpassword"].ToString()))
             {
-                user.Password = Libs.HtmlHelpers.Truncate(Libs.LibSecurity.EncodePassword(Request.Form["password"].ToString()), 50);
+                user.Password = Libs.HtmlHelpers.Truncate(Libs.LibSecurity.EncodePassword(Request.Form["newpassword"]), 50);
                 user.LastPasswordChange = DateTime.Now;
             }
 
-            user.User_ToString = Request.Form["user-string"].ToString();
-            user.Type = Request.Form["description"].ToString();
-
-            if (Request.Form["active"].ToString() == "on")
+            if (!string.IsNullOrWhiteSpace(Request.Form["user-string"]))
             {
-                user.Active = true;
-            }
-            else
-            {
-                user.Active = false;
+                user.User_ToString = Request.Form["user-string"];
             }
 
+            if (!string.IsNullOrWhiteSpace(Request.Form["description"]))
+            {
+                user.Type = Request.Form["description"];
+            }
+
+            user.Active = true;
             if (userRepository.Update(user) != 0)
             {
                 notificatedMessage = "Cập nhật người dùng thành công";
@@ -74,32 +68,31 @@ namespace WebPortal.AdminUsercontrols
                     notificatedMessage = "Tên đăng nhập đã được sử dụng!";
                     return false;
                 }
-                user.UserName = Request.Form["username"].ToString();
+                user.UserName = Request.Form["username"];
             }
 
-            if (!string.IsNullOrWhiteSpace(Request.Form["email"].ToString()))
+            if (!string.IsNullOrWhiteSpace(Request.Form["email"]))
             {
                 user.Email = Request.Form["email"].ToString();
             }
 
-            if (!string.IsNullOrWhiteSpace(Request.Form["password"].ToString()))
+            if (!string.IsNullOrWhiteSpace(Request.Form["password"]))
             {
                 user.Password = Libs.HtmlHelpers.Truncate(Libs.LibSecurity.EncodePassword(Request.Form["password"].ToString()), 50);
                 user.LastPasswordChange = DateTime.Now;
             }
 
-            user.User_ToString = Request.Form["user-string"].ToString();
-            user.Type = Request.Form["description"].ToString();
-
-            if (Request.Form["active"].ToString() == "on")
+            if (!string.IsNullOrWhiteSpace(Request.Form["user-string"]))
             {
-                user.Active = true;
-            }
-            else
-            {
-                user.Active = false;
+                user.User_ToString = Request.Form["user-string"];
             }
 
+            if (!string.IsNullOrWhiteSpace(Request.Form["description"]))
+            {
+                user.Type = Request.Form["description"];
+            }
+
+            user.Active = true;
             user.DateCreate = DateTime.Now;
 
             if (userRepository.Add(user) != 0)

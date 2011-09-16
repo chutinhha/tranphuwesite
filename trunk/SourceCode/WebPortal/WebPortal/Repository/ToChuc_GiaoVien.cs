@@ -93,7 +93,7 @@ namespace WebPortal
                     var oldTC_GVList = dataEntities.ToChuc_GiaoVien;
                     foreach (var tcgv in oldTC_GVList)
                     {
-                        if (tcgv.IDToChuc == tcID && gvIDList.Contains(tcgv.IDGiaoVien.Value))
+                        if (tcgv.IDToChuc == tcID)
                         {
                             dataEntities.ToChuc_GiaoVien.DeleteObject(tcgv);
                         }
