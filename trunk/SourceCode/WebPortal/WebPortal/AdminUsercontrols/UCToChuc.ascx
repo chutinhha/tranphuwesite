@@ -44,11 +44,10 @@
 </table>
 <br /><b>Danh sách các tổ chức :</b><p>
     &nbsp;</p>
-
    <asp:Repeater ID="Repeater1" runat="server" 
         onitemcommand="Repeater1_ItemCommand">
                 <HeaderTemplate>
-                    <table  class="style1 datatable">
+                    <table  class="style1">
                         <tr>
                             <th>
                                 ID

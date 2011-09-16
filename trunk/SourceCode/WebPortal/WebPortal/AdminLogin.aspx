@@ -42,12 +42,14 @@
     if (Request.QueryString["action"] == "logout")
     {
         Libs.LibSession.Remove(Libs.Constants.ACCOUNT_LOGIN);
-        Libs.LibCookie.Remove(Libs.Constants.COOKIE_USERNAME);
-        Libs.LibCookie.Remove(Libs.Constants.COOKIE_USERPASS);
+        Libs.LibCookie.Add(Libs.Constants.COOKIE_USERNAME,"abc",null);
+        string s = Libs.LibCookie.Get(Libs.Constants.COOKIE_USERNAME).ToString();
+        Libs.LibCookie.Add(Libs.Constants.COOKIE_USERPASS,"abc",null);
         if (WebPortal.Repository.Log.InsertLogs())
         {
             Libs.LibSession.Remove(Libs.Constants.LOG);
         }
+        s = Libs.LibCookie.Get(Libs.Constants.COOKIE_USERNAME).ToString();
     } %>
 <body class="login">
     <div class="login-box">
@@ -68,7 +70,7 @@
                         <div class="row clear">
                             <label for="user">
                                 Tài khoản:</label>
-                            <% if (Libs.LibCookie.Get(Libs.Constants.COOKIE_USERNAME) != null)
+                            <% if (Libs.LibCookie.Get(Libs.Constants.COOKIE_USERNAME) != "")
                                {
                            
                             %>
@@ -83,7 +85,7 @@
                         <div class="row clear">
                             <label for="password">
                                 Mật khẩu:</label>
-                            <% if (Libs.LibCookie.Get(Libs.Constants.COOKIE_USERPASS) != null)
+                            <% if (Libs.LibCookie.Get(Libs.Constants.COOKIE_USERPASS) != "")
                                {%>
                             <input name="password" type="password" value="<%=Libs.LibCookie.Get(Libs.Constants.COOKIE_USERPASS)%>"
                                 size="25" class="text" id="password" />
@@ -108,14 +110,16 @@
         </div>
         <% if (Request.Form["username"] != null && Request.Form["password"] != null)
            {
-               if (Request.Form["remember"].ToString() == "on")
+               if (Request.Form["remember"] != null)
                {
-                   if (CheckLoginInfo(Request.Form["username"], Request.Form["password"], true))
+                   if (Request.Form["remember"].ToString() == "on")
                    {
-                       Response.Redirect("AdminHomepage.aspx");
-                   }
-                   else if (CheckLoginInfo(Request.Form["username"], Request.Form["password"], false))
-                   {%>
+                       if (CheckLoginInfo(Request.Form["username"], Request.Form["password"], true))
+                       {
+                           Response.Redirect("AdminHomepage.aspx");
+                       }
+                       else if (CheckLoginInfo(Request.Form["username"], Request.Form["password"], false))
+                       {%>
         <div class="notification note-error">
             <a href="#" class="close" title="Close notification">close</a>
             <p>
@@ -123,6 +127,7 @@
         </div>
         <%}
                }
+                }
         %>
         <%} %>
     </div>
