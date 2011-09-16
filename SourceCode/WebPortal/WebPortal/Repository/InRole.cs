@@ -84,7 +84,7 @@ namespace WebPortal.Repository
                     var oldInRoleList = dataEntities.InRoles;
                     foreach (var inrole in oldInRoleList)
                     {
-                        if (inrole.GroupID == groupID && appIDList.Contains(inrole.ApplicationID))
+                        if (inrole.GroupID == groupID)
                         {
                             dataEntities.InRoles.DeleteObject(inrole);
                         }

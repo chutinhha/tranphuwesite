@@ -92,7 +92,7 @@ namespace WebPortal
                     var oldCV_GVList = dataEntities.ChucVu_GiaoVien;
                     foreach (var cvgv in oldCV_GVList)
                     {
-                        if (cvgv.IDChucVu == cvID && gvIDList.Contains(cvgv.IDGiaoVien.Value))
+                        if (cvgv.IDChucVu == cvID)
                         {
                             dataEntities.ChucVu_GiaoVien.DeleteObject(cvgv);
                         }

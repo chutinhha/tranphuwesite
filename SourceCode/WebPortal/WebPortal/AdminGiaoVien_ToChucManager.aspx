@@ -126,10 +126,10 @@
             </div>
             <% if (Request.Form["save"] != null)
                {
+                   List<int> gvIDList = new List<int>();
                    if (Request.Form["gvs"] != null)
                    {
                        string[] ids = Request.Form["gvs"].Split(',');
-                       List<int> gvIDList = new List<int>();
                        foreach (string s in ids)
                        {
                            gvIDList.Add(Libs.LibConvert.ConvertToInt(s, 0));
@@ -153,11 +153,32 @@
             </div>
             <%}
                    }
+                   else
+                   {
+                       int tcID = Libs.LibConvert.ConvertToInt(this.ddlTCList.SelectedValue, 0);
+                       if (tcgvRepository.DecentralizeToChucWithGiaoVien(tcID, gvIDList))
+                       {%>
+            <div class="notification note-success">
+                <a href="#" class="close" title="Close notification">close</a>
+                <p>
+                    <strong>Success notification:</strong> Lưu thay đổi thành công
+                </p>
+            </div>
+            <%}
+                       else
+                       {%>
+            <div class="notification note-error">
+                <a href="#" class="close" title="Close notification">close</a>
+                <p>
+                    <strong>Error notification:</strong> Đã có lỗi xảy ra, vui lòng thử lại</p>
+            </div>
+            <%}
+                   }
                }  %>
             </form>
         </div>
     </div>
-            <% 
-            WebPortal.Repository.Log.WriteLog(Request);
-            %>
+    <% 
+        WebPortal.Repository.Log.WriteLog(Request);
+    %>
 </asp:Content>

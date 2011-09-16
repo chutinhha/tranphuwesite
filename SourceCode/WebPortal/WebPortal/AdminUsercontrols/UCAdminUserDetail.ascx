@@ -15,7 +15,7 @@
                 Tên đăng nhập
             </th>
             <td>
-                <input name="username" type="text" value="<% = user.UserName%>" />
+                <label><% = user.UserName%></label>
             </td>
             <td>
                 <a href="#" class="quick_edit">
@@ -27,7 +27,7 @@
                 Mật khẩu mới
             </th>
             <td>
-                <input name="password" type="password" />
+                <input name="newpassword" type="newpassword" />
             </td>
             <td>
                 <a href="#" class="quick_edit">
@@ -64,25 +64,6 @@
             </th>
             <td>
                 <input name="description" type="text" value="<% = user.Type%>" />
-            </td>
-            <td>
-                <a href="#" class="quick_edit">
-                    <img src="images/ico_edit_16.png" alt="" class="icon16 fl" title="Chỉnh sửa nhanh" /></a>
-            </td>
-        </tr>
-        <tr>
-            <th>
-                Trạng thái
-            </th>
-            <td>
-                <% if (user.Active.Value)
-                   { %>
-                <input name="active" type="checkbox" checked="checked" />
-                <% }
-                   else
-                   {%>
-                <input name="active" type="checkbox" />
-                <%} %>
             </td>
             <td>
                 <a href="#" class="quick_edit">
@@ -157,18 +138,6 @@
                     <img src="images/ico_edit_16.png" alt="" class="icon16 fl" title="Chỉnh sửa nhanh" /></a>
             </td>
         </tr>
-        <tr>
-            <th>
-                Trạng thái
-            </th>
-            <td>
-                <input name="active" type="checkbox" />
-            </td>
-            <td>
-                <a href="#" class="quick_edit">
-                    <img src="images/ico_edit_16.png" alt="" class="icon16 fl" title="Chỉnh sửa nhanh" /></a>
-            </td>
-        </tr>
     </tbody>
     <!-- // New User -->
     <%} %>
@@ -184,6 +153,7 @@
 <table class="style1 datatable">
     <thead>
         <tr>
+        <th></th>
             <th>
                 ID
             </th>
@@ -200,9 +170,6 @@
                 Địa chỉ
             </th>
             <th>
-                Trạng thái
-            </th>
-            <th>
                 Thao tác
             </th>
         </tr>
@@ -214,6 +181,7 @@
                 foreach (var profile in profileList)
                 { %>
         <tr>
+        <td></td>
             <td>
                 <%=profile.ProfileID %>
             </td>
@@ -228,20 +196,6 @@
             </td>
             <td>
                 <%=profile.Address%>
-            </td>
-            <td>
-                <%if (profile.Active != null)
-                  {
-                      if (profile.Active.Value)
-                      {
-                %>
-                Active
-                <%}
-                  }
-                  else
-                  { %>
-                No Active
-                <%} %>
             </td>
             <td>
                 <a href="AdminUserManager.aspx?id=<% = user.UserID%>&type=deleteprofile&profileID=<%=profile.ProfileID %>" onclick="return confirm('Bạn có chắc chắn muốn xóa profile của  <%=profile.LastName+" "+profile.FirstName %>')">

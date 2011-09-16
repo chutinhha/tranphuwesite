@@ -83,7 +83,7 @@ namespace WebPortal.Repository
                     var oldFilePermissionList = dataEntities.FilePermissions;
                     foreach (var filePermission in oldFilePermissionList)
                     {
-                        if (filePermission.GroupID == groupID && permissionIDList.Contains(filePermission.PermissionID))
+                        if (filePermission.GroupID == groupID)
                         {
                             dataEntities.FilePermissions.DeleteObject(filePermission);
                         }

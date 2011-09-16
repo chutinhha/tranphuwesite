@@ -55,7 +55,7 @@ namespace WebPortal.AdminUsercontrols
                     //Upload hình mới
                     string fileName = string.Empty;
                     string path = "~/Resources/Images/";
-                    if (!Libs.LibUpload.UploadFile(file, path, ref notificatedMessage, ref fileName, "jpg,jpeg,png,gif", 30000))
+                    if (!Libs.LibUpload.UploadFile(file, path, ref notificatedMessage, ref fileName, "jpg,jpeg,png,gif", 50000))
                     {
                         return false;
                     }
@@ -65,6 +65,7 @@ namespace WebPortal.AdminUsercontrols
 
             profile.Address = Request.Form["address"].ToString();
             profile.Phone = Request.Form["phone"].ToString();
+            profile.Active = true;
 
             if (Request.Form["genre"].ToString() == "male")
             {
@@ -78,19 +79,6 @@ namespace WebPortal.AdminUsercontrols
             profile.Ethnic = Request.Form["ethnic"].ToString();
             profile.Religion = Request.Form["religion"].ToString();
             profile.Birdthday = Libs.LibConvert.ConvertToDateTime(Request.Form["birthday"].ToString(), DateTime.Now);
-
-            if (Request.Form["active"] != null)
-            {
-                if (Request.Form["active"].ToString() == "on")
-                {
-                    profile.Active = true;
-                }
-                else
-                {
-                    profile.Active = false;
-                }
-            }
-
             profile.LastUpdateProfile = DateTime.Now;
 
             if (profileRepository.Update(profile) != 0)
@@ -157,23 +145,7 @@ namespace WebPortal.AdminUsercontrols
 
             profile.Ethnic = Request.Form["ethnic"].ToString();
             profile.Religion = Request.Form["religion"].ToString();
-
-            if (Request.Form["active"] != null)
-            {
-                if (Request.Form["active"].ToString() == "on")
-                {
-                    profile.Active = true;
-                }
-                else
-                {
-                    profile.Active = false;
-                }
-            }
-            else
-            {
-                profile.Active = false;
-            }
-
+            profile.Active = true;
             if (profileRepository.Add(profile) != 0)
             {
                 notificatedMessage = "Thêm profile thành công";

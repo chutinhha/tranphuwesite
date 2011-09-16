@@ -29,7 +29,7 @@ namespace WebPortal.Repository
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())
             {
-                return dataEntities.Permissions.ToList();
+                return dataEntities.Permissions.Where(per=>per.Active==true).ToList();
             }
         }
 

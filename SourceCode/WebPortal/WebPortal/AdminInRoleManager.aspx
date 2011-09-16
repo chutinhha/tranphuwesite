@@ -123,14 +123,35 @@
             </div>
             <% if (Request.Form["save"] != null)
                {
+                   List<int> appIDList = new List<int>();
                    if (Request.Form["apps"] != null)
                    {
                        string[] ids = Request.Form["apps"].Split(',');
-                       List<int> appIDList = new List<int>();
                        foreach (string s in ids)
                        {
                            appIDList.Add(Libs.LibConvert.ConvertToInt(s, 0));
                        }
+                       int groupID = Libs.LibConvert.ConvertToInt(this.ddlGroupList.SelectedValue, 0);
+                       if (inroleRepository.DecentralizeGroupWithApps(groupID, appIDList))
+                       {%>
+            <div class="notification note-success">
+                <a href="#" class="close" title="Close notification">close</a>
+                <p>
+                    <strong>Success notification:</strong> Lưu thay đổi thành công
+                </p>
+            </div>
+            <%}
+                       else
+                       {%>
+            <div class="notification note-error">
+                <a href="#" class="close" title="Close notification">close</a>
+                <p>
+                    <strong>Error notification:</strong> Đã có lỗi xảy ra, vui lòng thử lại</p>
+            </div>
+            <%}
+                   }
+                   else
+                   {
                        int groupID = Libs.LibConvert.ConvertToInt(this.ddlGroupList.SelectedValue, 0);
                        if (inroleRepository.DecentralizeGroupWithApps(groupID, appIDList))
                        {%>

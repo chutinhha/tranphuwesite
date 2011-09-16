@@ -11,6 +11,7 @@
     <table class="style1 datatable">
         <thead>
             <tr>
+            <th></th>
                 <th class="bSortable">
                     <%-- <input type="checkbox" class="checkbox select-all" />--%>
                     ID
@@ -42,6 +43,7 @@
                     foreach (var user in list)
                     {%>
             <tr>
+            <td></td>
                 <td>
                     <%=user.UserID %>
                 </td>

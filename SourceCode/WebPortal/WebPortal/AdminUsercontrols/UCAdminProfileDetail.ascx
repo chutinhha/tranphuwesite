@@ -148,25 +148,6 @@
                     <img src="images/ico_edit_16.png" alt="" class="icon16 fl" title="Chỉnh sửa nhanh" /></a>
             </td>
         </tr>
-        <tr>
-            <th>
-                Trạng thái
-            </th>
-            <td>
-                <% if (profile.Active != null ? profile.Active.Value : false)
-                   { %>
-                <input name="active" type="checkbox" checked="checked" />
-                <% }
-                   else
-                   {%>
-                <input name="active" type="checkbox" />
-                <%} %>
-            </td>
-            <td>
-                <a href="#" class="quick_edit">
-                    <img src="images/ico_edit_16.png" alt="" class="icon16 fl" title="Chỉnh sửa nhanh" /></a>
-            </td>
-        </tr>
     </tbody>
     <!-- // Edit Profile -->
     <%} %>
@@ -295,18 +276,6 @@
             </th>
             <td>
                 <input name="birthday" type="text" value="<%=DateTime.Now %>" />
-            </td>
-            <td>
-                <a href="#" class="quick_edit">
-                    <img src="images/ico_edit_16.png" alt="" class="icon16 fl" title="Chỉnh sửa nhanh" /></a>
-            </td>
-        </tr>
-        <tr>
-            <th>
-                Trạng thái
-            </th>
-            <td>
-                <input name="active" type="checkbox" />
             </td>
             <td>
                 <a href="#" class="quick_edit">
