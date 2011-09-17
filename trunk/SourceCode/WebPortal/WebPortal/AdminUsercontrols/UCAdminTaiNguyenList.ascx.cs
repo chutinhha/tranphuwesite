@@ -11,12 +11,13 @@ namespace WebPortal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string t = Request.QueryString["type"];
             if (Request.QueryString["type"] == "delete")
             {
                 try
                 {
                     int id = Convert.ToInt32(Request.QueryString["id"]);
-                    DeleteNews(id);
+                    DeleteTaiNguyen(id);
                     Response.Redirect("AdminTaiNguyen.aspx");
                     //Response.Write("Delete success!");                    
                 }
@@ -31,7 +32,7 @@ namespace WebPortal
             WebPortal.TaiNguyen taiNguyen = new TaiNguyen();
             return taiNguyen.All();
         }
-        public void DeleteNews(int id)
+        public void DeleteTaiNguyen(int id)
         {
             WebPortal.TaiNguyen_TinTuc taiNguyenTinTuc = new TaiNguyen_TinTuc();
             WebPortal.TaiNguyen taiNguyen = new TaiNguyen();
@@ -42,5 +43,7 @@ namespace WebPortal
             }
             taiNguyen.Delete(id);
         }
+
+       
     }
 }
