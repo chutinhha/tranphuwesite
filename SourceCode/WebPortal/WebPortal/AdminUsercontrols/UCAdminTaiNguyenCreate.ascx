@@ -27,7 +27,7 @@
             </tr>
                 <tr>
                 <td class="style1">
-                    Hình Ảnh:
+                    File upload:
                     </td>
                 <td class="style2"> 
                     <table>
@@ -36,11 +36,13 @@
                                 <asp:FileUpload id="FileUploadControl" runat="server" />
                                 <asp:Button runat="server" id="UploadButton" text="Upload" onclick="UploadButton_Click" />
                                 <br /><br />
-                                <asp:Label runat="server" id="StatusLabel" text="Upload status: " Font-Bold="true" ForeColor="Red"/>
-                                <asp:Label runat="server" ID="PathLabel" Text="Path Image: " Visible="false" />
+                                <asp:Label runat="server" ID="PathLabel" Text="" Visible="false" />
+                                <br />
+                                <asp:Label runat="server" ID="lblThongBao" Text="" ForeColor="Red" Font-Bold="true"/>
                             </td>
                             <td>
-                                <asp:Image runat="server" id="ImageUpLoad" ImageUrl="#" />
+                                <asp:Image Width=300px Height=150px runat="server" id="ImageUpLoad" 
+                                    ImageUrl="#" />
                             </td>
                         </tr>
                     </table>                       
