@@ -59,8 +59,6 @@ namespace WebPortal.AdminUsercontrols
                 }
                 else
                     lblThongBao.Text = "Bạn chưa có file upload!";
-                Response.Write(" <Script>alert('Không xóa được')</Script>");
-
             }
             else
             {
