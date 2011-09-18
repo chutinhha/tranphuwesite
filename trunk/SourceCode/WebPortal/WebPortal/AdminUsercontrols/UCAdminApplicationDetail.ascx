@@ -29,7 +29,7 @@
             </th>
         </tr>
     </thead>
-    <%  WebPortal.Model.Application application = applicationDA.Single(int.Parse(Request.QueryString["id"]));
+    <%  WebPortal.Model.Application application = applicationDA.Single(Libs.LibConvert.ConvertToInt(Request.QueryString["id"],0));
         if (application != null)
         {
             if (Request.QueryString["type"].ToString() == "edit")

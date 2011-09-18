@@ -5,6 +5,20 @@
  <link href="css/admin-usermanager.css" rel="Stylesheet" />
     <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.validate.js"></script>
+     <script type="text/javascript">
+         $(document).ready(function () {
+             $("#form1").validate({
+                 rules: {
+                     name: {
+                         required: true
+                     },
+                     filePath: {
+                         required: true
+                     }
+                 }
+             });
+         });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
      <div class="content-box">

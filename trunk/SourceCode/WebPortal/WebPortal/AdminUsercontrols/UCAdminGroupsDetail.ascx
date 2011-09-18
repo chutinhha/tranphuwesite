@@ -30,7 +30,7 @@
             </th>
         </tr>
     </thead>
-    <%  WebPortal.Model.Group group = groupDA.Single(int.Parse(Request.QueryString["id"]));
+    <%  WebPortal.Model.Group group = groupDA.Single(Libs.LibConvert.ConvertToInt(Request.QueryString["id"],0));
         if (group != null)
         {
             if (Request.QueryString["type"].ToString() == "edit")
@@ -83,7 +83,7 @@
                 User Create
             </th>
             <td>
-                <input style="width: 50%;" readonly="readonly" name="userCreate" type="text" value="<%=group.User_Create%>" />
+                <input style="width: 50%;" disabled="disabled" name="userCreate" type="text" value="<%=group.User_Create%>" />
             </td>
         </tr>
         <tr>

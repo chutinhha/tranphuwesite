@@ -17,7 +17,7 @@
         <thead>
             <tr>
                 <th class="bSortable">
-                    <input type="checkbox" class="checkbox select-all" />
+                    
                 </th>
                 <th>
                     ID
@@ -47,7 +47,6 @@
                     { %>
             <tr>
                 <td>
-                    <input type="checkbox" class="checkbox" />
                 </td>
                 <td>
                     <%=per.PermissionID%>

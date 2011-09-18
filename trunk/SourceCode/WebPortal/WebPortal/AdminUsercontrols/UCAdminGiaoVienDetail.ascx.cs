@@ -40,14 +40,12 @@ namespace WebPortal.AdminUsercontrols
                         }
                         g.AnhDaiDien = "/Resources/Images/" + fileName;
                     }
-                    else
-                        g.AnhDaiDien = giaovienDA.Single(g.IDGiaoVien).AnhDaiDien;
                 }
                 else
                 {
                     g.AnhDaiDien = null;
                 }
-                g.NgaySinh = Libs.LibConvert.ConvertToDateTime(Request.Form["ngaySinh"]).Date;
+                g.NgaySinh = Libs.LibConvert.ConvertToDateTime(Request.Form["ngaySinh"]);
                 g.DiaChi = Request.Form["diaChi"];
                 if (Request.Form["active"] != null)
                 {
@@ -107,7 +105,7 @@ namespace WebPortal.AdminUsercontrols
                     {
                         g.AnhDaiDien = null;
                     }
-                    g.NgaySinh = Libs.LibConvert.ConvertToDateTime(DateTime.Now);
+                    g.NgaySinh = Libs.LibConvert.ConvertToDateTime(Request.Form["ngaySinh"]);
                     g.DiaChi = Request.Form["diaChi"];
                     if (Request.Form["active"] != null)
                     {
@@ -117,7 +115,7 @@ namespace WebPortal.AdminUsercontrols
                         g.Active = false;
                     if (giaovienDA.Update(g) != 1)
                     {
-                        notificatedMessage = "Có lỗi xảy ra! Không thể thêm được Application";
+                        notificatedMessage = "Có lỗi xảy ra! Không cập nhật thông tin giáo viên này được!";
                         return false;
                     }
                     return true;
@@ -127,7 +125,7 @@ namespace WebPortal.AdminUsercontrols
             }
             catch
             {
-                notificatedMessage = "Có lỗi xảy ra! Không thể thêm được Application";
+                notificatedMessage = "Có lỗi xảy ra! Không cập nhật thông tin giáo viên này được!";
                 return false;
             }
         }

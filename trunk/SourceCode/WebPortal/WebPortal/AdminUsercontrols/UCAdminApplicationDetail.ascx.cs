@@ -39,8 +39,6 @@ namespace WebPortal.AdminUsercontrols
                         }
                         p.Application_Image = "/Resources/Images/" + fileName;
                     }
-                    else
-                        p.Application_Image = applicationDA.Single(p.ApplicationID).Application_Image;
                 }
                 else
                 {
