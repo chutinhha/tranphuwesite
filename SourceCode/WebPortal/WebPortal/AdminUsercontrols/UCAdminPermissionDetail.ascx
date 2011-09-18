@@ -30,7 +30,7 @@
             </th>
         </tr>
     </thead>
-    <%  WebPortal.Model.Permission permission = permissionDA.Single(int.Parse(Request.QueryString["id"]));
+    <%  WebPortal.Model.Permission permission = permissionDA.Single(Libs.LibConvert.ConvertToInt(Request.QueryString["id"],0));
         if (permission != null)
         {
             if (Request.QueryString["type"].ToString() == "edit")

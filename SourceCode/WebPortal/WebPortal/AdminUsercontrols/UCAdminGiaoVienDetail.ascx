@@ -30,7 +30,7 @@
             </th>
         </tr>
     </thead>
-    <%  WebPortal.Model.GiaoVien giaoVien = giaoVienDA.Single(int.Parse(Request.QueryString["id"]));
+    <%  WebPortal.Model.GiaoVien giaoVien = giaoVienDA.Single(Libs.LibConvert.ConvertToInt(Request.QueryString["id"],0));
         if (giaoVien != null)
         {
             if (Request.QueryString["type"].ToString() == "edit")
@@ -91,7 +91,7 @@
                 Ngày Sinh
             </th>
             <td>
-                <input style="width:50%;" name="ngaySinh" type="text" value="<%=giaoVien.NgaySinh.Value.ToShortDateString()%>" />
+                <input style="width:50%;" name="ngaySinh" type="text" value="<%=Libs.LibConvert.ConvertToShortDateTime(giaoVien.NgaySinh)%>" />
             </td>
         </tr>
         <tr>
@@ -185,7 +185,7 @@
                 Ngày Sinh
             </th>
             <td>
-                <input style="width:50%;" disabled="disabled" name="ngaySinh" type="text" value="<%=giaoVien.NgaySinh.Value.ToShortDateString()%>" />
+                <input style="width:50%;" disabled="disabled" name="ngaySinh" type="text" value="<%=Libs.LibConvert.ConvertToShortDateTime(giaoVien.NgaySinh)%>" />
             </td>
         </tr>
         <tr>

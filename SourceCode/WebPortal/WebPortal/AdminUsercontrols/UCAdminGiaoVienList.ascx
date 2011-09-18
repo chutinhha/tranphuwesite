@@ -70,9 +70,19 @@
                     <%=gv.DienThoai%>
                 </td>
                 <td>
-                    <a href="<%= gv.AnhDaiDien%>" title="preview" rel="group1">
-                        <img src="<%= gv.AnhDaiDien%>" alt="" class="thumb size64 fl-space" />
-                    </a>
+                <%if (gv.AnhDaiDien != null)
+                  {%>
+                     <a href="<%= gv.AnhDaiDien %>"" title="preview" rel="group1">
+                        <img src="<%= gv.AnhDaiDien %>" alt="" class="thumb size64 fl-space" />
+                        </a>
+                    <%}
+                  else
+                  {
+                       %>
+                        <a href="images/default_image.png" title="preview" rel="group1">
+                        <img src="images/default_image.png" alt="" class="thumb size64 fl-space" />
+                        </a>
+                       <%} %>
                 </td>
                 <td>
                     <%=gv.Active.ToString()%>

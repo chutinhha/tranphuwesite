@@ -17,7 +17,6 @@
         <thead>
             <tr>
                 <th class="bSortable">
-                    <input type="checkbox" class="checkbox select-all" />
                 </th>
                 <th>
                     Group ID
@@ -53,7 +52,6 @@
                     { %>
             <tr>
                 <td>
-                    <input type="checkbox" class="checkbox" />
                 </td>
                 <td>
                     <%=group.GroupID%>

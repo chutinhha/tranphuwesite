@@ -4,6 +4,19 @@
 <%@ Register TagPrefix="UC" TagName="PerList" Src="~/AdminUsercontrols/UCAdminPermissionList.ascx" %>
 <%@ Register TagPrefix="UC" TagName="PerDetail" Src="~/AdminUsercontrols/UCAdminPermissionDetail.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+ <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.js"></script>
+     <script type="text/javascript">
+         $(document).ready(function () {
+             $("#form1").validate({
+                 rules: {
+                     name: {
+                         required: true
+                     }
+                 }
+             });
+         });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div class="content-box">
@@ -21,12 +34,16 @@
                 <%}
                    else if (Request.QueryString["type"] != null)
                    { %>
+                </div>
                 <UC:PerDetail runat="server" ID="UCPerDetail" />
+                <xxxxelmt>
+    <xxxxelmt>
+    <xxxxelmt>
                 <%} %>
             </div>
             <!-- end of box-wrap -->
         </div>
-    </div>
+</div>
     <!-- end of box-wrap -->
     <% 
         WebPortal.Repository.Log.WriteLog(Request);

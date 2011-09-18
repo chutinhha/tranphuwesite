@@ -68,6 +68,20 @@ namespace Libs
                 return new DateTime(1753, 1, 1);//Min value for SQL Server
             }
         }
+        public static string ConvertToShortDateTime(object obj)
+        {
+            try
+            {
+                if (obj != null)
+                    return ConvertVNDateFormat(Convert.ToDateTime(obj));
+                else
+                    return "";
+            }
+            catch
+            {
+                return "";//Min value for SQL Server
+            }
+        }
         public static DateTime ConvertToDateTime(object obj, DateTime defaulfValue)
         {
             try
