@@ -13,30 +13,30 @@ namespace WebPortal {
     public partial class WebForm3 {
         
         /// <summary>
+        /// UCAdminTaiNguyenList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WebPortal.AdminUsercontrols.WebUserControl1 UCAdminTaiNguyenList;
+        
+        /// <summary>
         /// UCAdminTaiNguyenList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebPortal.UCAdminTaiNguyenList UCAdminTaiNguyenList1;
+        protected global::WebPortal.AdminUsercontrols.WebUserControl1 UCAdminTaiNguyenList1;
         
         /// <summary>
-        /// UCAdminTaiNguyenList2 control.
+        /// UCAdminTaiNguyenCreate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebPortal.UCAdminTaiNguyenList UCAdminTaiNguyenList2;
-        
-        /// <summary>
-        /// UCAdminTaiNguyenCreate1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::WebPortal.AdminUsercontrols.UCAdminTaiNguyenCreate UCAdminTaiNguyenCreate1;
+        protected global::WebPortal.AdminUsercontrols.UCAdminTaiNguyenCreate UCAdminTaiNguyenCreate;
     }
 }
