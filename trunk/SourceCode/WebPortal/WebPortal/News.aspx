@@ -34,8 +34,7 @@ Response.Write(loaitin.TenLoai);
                 <div style="margin-bottom: 40px;">
                     <div class="timePost">
                         Người gửi :<%= tt.NguoiDang+tt.NgayDang %></div>
-                    <div class="printer">
-                        <a href="#">In bài</a></div>
+                    
                 </div>
                 <div class="clear">
                 </div>
@@ -45,6 +44,8 @@ Response.Write(loaitin.TenLoai);
                     <img alt="" height="64px" src="<%=tt.HinhAnh%>" width="102px" /></div>
                 <% } %>
                 <div class="noiDungTin">
+                <i><b><%=tt.MoTaTinTuc %></b></i>
+                <br />
                     <%=tt.NoiDung %>
                 </div>
                
