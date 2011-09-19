@@ -12,14 +12,40 @@
     {
         height: 40px;
     }
+    .button
+    {}
 </style>
+ <form method="post" action="../AdminLoaiTinManager.aspx">
+<%if (Request.Form["SaveLoaiTinLv2"] != null)
+  {
+      if (SaveLoaiTinLv2())
+      {
+%>
+<!-- NOTIFICATIONS (Thong bao)-->
+<div class="notification note-success">
+    <a href="#" class="close" title="Close notification">close</a>
+    <p>
+        <strong>Lưu loại tin mới thành công!</strong></p>
+</div>
+<%}
+      else
+      {%>
+<!-- NOTIFICATIONS (Thong bao)-->
+<div class="notification note-error">
+    <a href="#" class="close" title="Close notification">close</a>
+    <p>
+        <strong>Quá trình lưu xảy ra lỗi! Vui lòng thử lại</strong></p>
+</div>
+<%}
+  }
+%>
 <div id="data-table">
     <p>
         <span style="font-family: Arial; font-weight: bold; font-size: 18px;">Tạo mới loại tin
             mức 2</span>
     </p>
     <div>
-        <form method="post" action="#">
+       
         <table width="97%">
             <tr>
                 <td class="style1">
@@ -50,29 +76,19 @@
                 <td class="style1">
                 </td>
                 <td class="style2" style="text-align:center">
-                    <asp:Button ID="Save" Text="Lưu" runat="server" OnClick="Save_Click" CssClass="button" />
-                    &nbsp;
-                    <asp:Button ID="Back" Text="Danh sách loại tin mức 2" runat="server" CssClass="button"
-                        onclick="Back_Click"/>
+                    <input type="submit" name="SaveLoaiTinLv2" value="Lưu" style="width: 152px" class="button" />
                 </td>
             </tr>
              <tr>
                 <td class="style1">
                 </td>
                 <td class="style2" style="text-align:center">
-                    &nbsp;
-                    <asp:Button ID="Back1" Text="Danh sách loại tin mức 1" runat="server" CssClass="button"
-                        onclick="Back1_Click" style="height: 26px"  />
-                </td>
-            </tr>
-            <tr>
-                <td class="style1">
-                </td>
-                <td class="style2">
-                    <asp:Label Text="" ID="SaveChange" runat="server" ForeColor="Red"></asp:Label>
-                </td>
+                    <input type="button" name="DSLoaiTinLv2" value="Danh sách loại tin mức 2" onclick="window.location.href('AdminLoaiTinManager.aspx?id=-1&type=listChild')" class="button"/>
+                    <input type="button" name="DSLoaiTinLv1" value="Danh sách loại tin mức 1" onclick="window.location.href('AdminLoaiTinManager.aspx')" class="button"/></td>
             </tr>
         </table>
-        </form>
+      
     </div>
 </div>
+  </form>
+

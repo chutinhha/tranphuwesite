@@ -54,44 +54,59 @@ namespace WebPortal.AdminUsercontrols
 
             return -1;
         }
-        protected void Save_Click(object sender, EventArgs e)
+        //protected void Save_Click(object sender, EventArgs e)
+        //{
+        //    string strLoaiTin1 = ListLoaiTin.SelectedValue;
+        //    string tenLoaiTin = Name.Text;
+        //    string moTa = Summary.Text;
+
+        //    WebPortal.Model.LoaiTin loaiTin = new Model.LoaiTin();
+        //    loaiTin.TenLoai = tenLoaiTin;
+        //    loaiTin.MoTa = moTa;
+        //    WebPortal.LoaiTin lt = new LoaiTin();
+        //    loaiTin.LoaiTin_Lv1ID = GetIDLoaiTin1FollowName(strLoaiTin1);
+        //    try
+        //    {
+        //        lt.Add(loaiTin);
+        //        SaveChange.Text = "Lưu thành công!";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        SaveChange.Text = "Quá trình lưu xảy ra lỗi! Vui lòng thử lại.";
+        //    }
+        //}
+
+        public bool SaveLoaiTinLv2()
         {
             string strLoaiTin1 = ListLoaiTin.SelectedValue;
             string tenLoaiTin = Name.Text;
             string moTa = Summary.Text;
-            if (tenLoaiTin == "")
+
+            WebPortal.Model.LoaiTin loaiTin = new Model.LoaiTin();
+            loaiTin.TenLoai = tenLoaiTin;
+            loaiTin.MoTa = moTa;
+            WebPortal.LoaiTin lt = new LoaiTin();
+            loaiTin.LoaiTin_Lv1ID = GetIDLoaiTin1FollowName(strLoaiTin1);
+            try
             {
-                SaveChange.Text = "Tên Loại Tin Mức 2 không được để trống! Bạn vui lòng nhập đầy đủ.";
+                lt.Add(loaiTin);
+                return true;
             }
-            else
+            catch (Exception ex)
             {
-                WebPortal.Model.LoaiTin loaiTin = new Model.LoaiTin();
-                loaiTin.TenLoai = tenLoaiTin;
-                loaiTin.MoTa = moTa;
-                WebPortal.LoaiTin lt = new LoaiTin();
-                loaiTin.LoaiTin_Lv1ID = GetIDLoaiTin1FollowName(strLoaiTin1);
-                try
-                {
-                    lt.Add(loaiTin);
-                    SaveChange.Text = "Lưu thành công!";
-                }
-                catch (Exception ex)
-                {
-                    SaveChange.Text = ex.Message;
-                }
+                return false;
             }
         }
+        //protected void Back_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("AdminLoaiTinManager.aspx?id=-1&type=listChild");
+        //}
 
-        protected void Back_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("AdminLoaiTinManager.aspx?id=-1&type=listChild");
-        }
+        //protected void Back1_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("AdminLoaiTinManager.aspx");
+        //}
 
-        protected void Back1_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("AdminLoaiTinManager.aspx");
-        }
 
-      
     }
 }

@@ -45,34 +45,47 @@ namespace WebPortal.AdminUsercontrols
             return -1;
         }
 
-        protected void Save_Click(object sender, EventArgs e)
+        //protected void Save_Click(object sender, EventArgs e)
+        //{
+        //    int idLoaiTin = Convert.ToInt32(Request.QueryString["id"]);
+        //    WebPortal.LoaiTin lt = new LoaiTin();
+        //    int idLoaiTin_Lv1 = GetIDLoaiTin1FollowName(ListLoaiTin.SelectedValue);
+        //    WebPortal.Model.LoaiTin loaiTin = lt.Single(idLoaiTin);
+        //    loaiTin.LoaiTin_Lv1ID = idLoaiTin_Lv1;
+        //    loaiTin.MoTa = Summary.Text;
+        //    loaiTin.TenLoai = Name.Text;
+        //    try
+        //    {
+
+        //        lt.Update(loaiTin);
+        //        SaveChange.Text = "Cập nhật thành công";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        SaveChange.Text = "Quá trình lưu xảy ra lỗi! Vui lòng thử lại";
+        //    }
+        //}
+
+        public bool UpdateLoaiTinLv2()
         {
             int idLoaiTin = Convert.ToInt32(Request.QueryString["id"]);
             WebPortal.LoaiTin lt = new LoaiTin();
             int idLoaiTin_Lv1 = GetIDLoaiTin1FollowName(ListLoaiTin.SelectedValue);
             WebPortal.Model.LoaiTin loaiTin = lt.Single(idLoaiTin);
-            if (Name.Text == "")
+            loaiTin.LoaiTin_Lv1ID = idLoaiTin_Lv1;
+            loaiTin.MoTa = Summary.Text;
+            loaiTin.TenLoai = Name.Text;
+            try
             {
-                SaveChange.Text = "Tên Loại Tin Mức 2 không được để trống!";
-            }
-            else
-            {
-                loaiTin.LoaiTin_Lv1ID = idLoaiTin_Lv1;
-                loaiTin.MoTa = Summary.Text;
-                loaiTin.TenLoai = Name.Text;
-                try
-                {
 
-                    lt.Update(loaiTin);
-                    SaveChange.Text = "Cập nhật thành công";
-                }
-                catch (Exception ex)
-                {
-                    SaveChange.Text = ex.Message;
-                }
+                lt.Update(loaiTin);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
-
         public void LoadThongTinLoaiTin(int idLoaiTin)
         {
             WebPortal.LoaiTin lt = new LoaiTin();
@@ -81,16 +94,16 @@ namespace WebPortal.AdminUsercontrols
             Summary.Text = loaiTin.MoTa;
         }
 
-       
-        protected void Back_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("AdminLoaiTinManager.aspx?id=-1&type=listChild");
-        }
+
+        //protected void Back_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("AdminLoaiTinManager.aspx?id=-1&type=listChild");
+        //}
 
 
-        protected void Back1_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("AdminLoaiTinManager.aspx");
-        }
+        //protected void Back1_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("AdminLoaiTinManager.aspx");
+        //}
     }
 }
