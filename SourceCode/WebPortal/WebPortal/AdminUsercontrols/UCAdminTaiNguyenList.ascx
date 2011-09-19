@@ -5,7 +5,7 @@
     </p>
     <form method="post" action="#">
     <% List<WebPortal.Model.TaiNguyen> list = GetAll(); %>
-    <table class="style1 datatable">
+    <table class="style1">
         <thead>
             <tr>
                 <th style="width: 5%;">
