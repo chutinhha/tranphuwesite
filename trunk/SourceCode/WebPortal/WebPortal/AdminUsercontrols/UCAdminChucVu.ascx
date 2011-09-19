@@ -1,8 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCAdminChucVu.ascx.cs" Inherits="WebPortal.AdminUsercontrols.UCAdminChucVu" %>
 
 <body style="text-align: left">
-<div class="style2">
-    Quản lý chức vụ</div>
+
+    <p>
+        <span style="font-family: Arial; font-weight: bold; font-size: 18px;">Quản lý chức vụ</span>
+    </p>
 <table 
     class="style1">
     <tr>
@@ -13,6 +15,10 @@
         <td>
             <asp:TextBox ID="txttenchucvu" runat="server" Width="601px" 
                  Height="27px"></asp:TextBox>
+            
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                ControlToValidate="txttenchucvu" ErrorMessage="Bạn hãy điền tên chức vụ " 
+                ForeColor="#CC0000"></asp:RequiredFieldValidator>
             
         </td>
         

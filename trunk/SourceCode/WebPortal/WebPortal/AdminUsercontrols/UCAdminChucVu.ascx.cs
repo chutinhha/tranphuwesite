@@ -28,7 +28,7 @@ namespace WebPortal.AdminUsercontrols
             lbthongbao.Visible = true;
             try
             {
-                cv.IDCV = Convert.ToInt32(idAn.Value);
+                cv.IDCV = Libs.LibConvert.ConvertToInt(idAn.Value,1);
                 cv.TenCV = txttenchucvu.Text;
                 cv.MoTa = txtmota.Text;
                 appcv.Update(cv);
@@ -62,12 +62,12 @@ namespace WebPortal.AdminUsercontrols
             lbthongbao.Visible = false;
           
             idchucvu = e.CommandArgument.ToString();
-            cv = appcv.Single(Convert.ToInt32(idchucvu));
+            cv = appcv.Single(Libs.LibConvert.ConvertToInt(idchucvu,1));
 
             idAn.Value = idchucvu;
             if (e.CommandName.CompareTo("Xoa") == 0)
             {
-                int i = appcv.Delete(Convert.ToInt32(idchucvu));
+                int i = appcv.Delete(Libs.LibConvert.ConvertToInt(idchucvu,1));
                 if (i == 1)
                     Label1.Text = "Xóa thành công chức vụ";
                 else
