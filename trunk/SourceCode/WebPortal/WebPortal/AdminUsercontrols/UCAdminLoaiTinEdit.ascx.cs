@@ -23,27 +23,39 @@ namespace WebPortal.AdminUsercontrols
             int idLoaiTin_Lv1 = Convert.ToInt32(Request.QueryString["id"]);
             WebPortal.Repository.LoaiTinLV1 lt = new Repository.LoaiTinLV1();
             WebPortal.Model.LoaiTin_Lv1 loaiTin_Lv1 = lt.Single(idLoaiTin_Lv1);
-            if (Name.Text == "")
-            {
-                SaveChange.Text = "Tên Loại Tin Mức 1 không được để trống!";
-            }
-            else
-            {
-                loaiTin_Lv1.MoTa = Summary.Text;
-                loaiTin_Lv1.TenLoai = Name.Text;
-                try
-                {
 
-                    lt.Update(loaiTin_Lv1);
-                    SaveChange.Text = "Lưu thành công!";
-                }
-                catch (Exception ex)
-                {
-                    SaveChange.Text = ex.Message;
-                }
+            loaiTin_Lv1.MoTa = Summary.Text;
+            loaiTin_Lv1.TenLoai = Name.Text;
+            try
+            {
+
+                lt.Update(loaiTin_Lv1);
+                SaveChange.Text = "Lưu thành công!";
+            }
+            catch (Exception ex)
+            {
+                SaveChange.Text = "Quá trình lưu xảy ra lỗi! Vui lòng thử lại.";
             }
         }
 
+        public bool UpdateLoaiTin()
+        {
+            int idLoaiTin_Lv1 = Convert.ToInt32(Request.QueryString["id"]);
+            WebPortal.Repository.LoaiTinLV1 lt = new Repository.LoaiTinLV1();
+            WebPortal.Model.LoaiTin_Lv1 loaiTin_Lv1 = lt.Single(idLoaiTin_Lv1);
+
+            loaiTin_Lv1.MoTa = Summary.Text;
+            loaiTin_Lv1.TenLoai = Name.Text;
+            try
+            {
+                lt.Update(loaiTin_Lv1);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         public void LoadThongTinLoaiTin_Lv1(int idLoaiTin_Lv1)
         {
             WebPortal.Repository.LoaiTinLV1 lt = new Repository.LoaiTinLV1();

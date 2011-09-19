@@ -14,42 +14,60 @@ namespace WebPortal.AdminUsercontrols
 
         }
 
-        protected void Save_Click(object sender, EventArgs e)
+        //protected void Save_Click(object sender, EventArgs e)
+        //{
+        //    string tenLoaiTin = Name.Text;
+        //    string moTa = Summary.Text;
+        //    if (tenLoaiTin == "")
+        //    {
+        //        SaveChange.Text = "Tên Loại Tin Mức 1 không được để trống!Bạn vui lòng nhập đầy đủ.";
+        //    }
+        //    else
+        //    {
+        //        WebPortal.Model.LoaiTin_Lv1 loaiTin = new Model.LoaiTin_Lv1();
+        //        loaiTin.TenLoai = tenLoaiTin;
+        //        loaiTin.MoTa = moTa;
+        //        WebPortal.Repository.LoaiTinLV1 lt = new Repository.LoaiTinLV1();
+        //        try
+        //        {
+        //            lt.Add(loaiTin);
+        //            SaveChange.Text = "Lưu loại tin mới thành công!";
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            SaveChange.Text = "Quá trình lưu xảy ra lỗi! Vui lòng thử lại.";
+        //        }
+        //    }
+        //}
+
+        public bool SaveLoaiTin()
         {
             string tenLoaiTin = Name.Text;
             string moTa = Summary.Text;
-            if (tenLoaiTin == "")
+            WebPortal.Model.LoaiTin_Lv1 loaiTin = new Model.LoaiTin_Lv1();
+            loaiTin.TenLoai = tenLoaiTin;
+            loaiTin.MoTa = moTa;
+            WebPortal.Repository.LoaiTinLV1 lt = new Repository.LoaiTinLV1();
+            try
             {
-                SaveChange.Text = "Tên Loại Tin Mức 1 không được để trống!Bạn vui lòng nhập đầy đủ.";
+                lt.Add(loaiTin);
+                return true;
             }
-            else
+            catch (Exception ex)
             {
-                WebPortal.Model.LoaiTin_Lv1 loaiTin = new Model.LoaiTin_Lv1();
-                loaiTin.TenLoai = tenLoaiTin;
-                loaiTin.MoTa = moTa;
-                WebPortal.Repository.LoaiTinLV1 lt = new Repository.LoaiTinLV1();
-                try
-                {
-                    lt.Add(loaiTin);
-                    SaveChange.Text = "Save change successful!";
-                }
-                catch (Exception ex)
-                {
-                    SaveChange.Text = ex.Message;
-                }
+                return false;
             }
         }
-
         protected void CreatChild_Click(object sender, EventArgs e)
         {
             Response.Redirect("AdminLoaiTinManager.aspx?id=-1&type=createChild");
         }
 
-        protected void Back_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("AdminLoaiTinManager.aspx");
+        //protected void Back_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("AdminLoaiTinManager.aspx");
 
-        }
+        //}
 
         protected void Back1_Click(object sender, EventArgs e)
         {
