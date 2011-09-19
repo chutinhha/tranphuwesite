@@ -65,6 +65,6 @@
             <%} %>
         </tbody>
     </table>
-    <input type="button" value="Tạo Mới" class="button" onclick="window.location.href('AdminLoaiTinManager.aspx?id=-1&type=new')" />
+    <input type="button" value="Tạo Mới" class="button" onclick="window.location.href = 'AdminLoaiTinManager.aspx?id=-1&type=new'" />
 </div>
 </form>

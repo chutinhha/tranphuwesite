@@ -94,10 +94,10 @@
                 </td>
                 <td class="style2" style="text-align: center">
                     <input class="button" name="DSLoaiTinLv2" 
-                        onclick="window.location.href('AdminLoaiTinManager.aspx?id=-1&type=listChild')" type="button" 
+                        onclick="window.location.href='AdminLoaiTinManager.aspx?id=-1&type=listChild'" type="button" 
                         value="Danh sách loại tin mức 2" />&nbsp;
                     <input class="button" name="DSLoaiTinLv1" 
-                        onclick="window.location.href('AdminLoaiTinManager.aspx')" type="button" 
+                        onclick="window.location.href='AdminLoaiTinManager.aspx'" type="button" 
                         value="Danh sách loại tin mức 1" /></td>
             </tr>
             
