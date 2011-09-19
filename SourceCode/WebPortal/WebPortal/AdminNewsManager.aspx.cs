@@ -14,6 +14,19 @@ namespace WebPortal
 
         }
 
-       
+        public bool DeleteNews(int id, ref string mess)
+        {
+            WebPortal.TinTuc tinTuc = new TinTuc();
+            if (tinTuc.Delete(id) != 0)
+            {
+                mess = "Đã xóa tin tức có mã: " + id;
+                return true;
+            }
+            else
+            {
+                mess = "Xóa không thành công! Vui lòng thử lại.";
+                return false;
+            }
+        }
     }
 }

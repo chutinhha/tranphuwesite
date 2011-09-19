@@ -24,30 +24,57 @@
                 <%
                     if (Request.QueryString["type"] == null)
                     { %>
-                    <uc1:UCAdminNewsList ID="UCAdminNewsList" runat="server" />
-                    <%}
+                <uc1:UCAdminNewsList ID="UCAdminNewsList" runat="server" />
+                <%}
                     else
                     {
                         if (Request.QueryString["type"] == "edit")
                         {%>
-                        <uc5:UCAdminNewsEdit ID="UCAdminNewsEdit1" runat="server" />
-                        <%}
+                <uc5:UCAdminNewsEdit ID="UCAdminNewsEdit1" runat="server" />
+                <%}
                         if (Request.QueryString["type"] == "new")
                         {%>
-                        <uc3:UCAdminNewsCreate ID="UCAdminNewsCreate" runat="server" />
-                        <%}
+                <uc3:UCAdminNewsCreate ID="UCAdminNewsCreate" runat="server" />
+                <%}
                         if (Request.QueryString["type"] == "attach")
                         { %>
-                        <uc4:UCAdminUploadFile ID="UCAdminUploadFile1" runat="server" />
-                        <%}
-                        
+                <uc4:UCAdminUploadFile ID="UCAdminUploadFile1" runat="server" />
+                <%}
+                        if (Request.QueryString["type"] == "delete")
+                        {
+
+                            string messLoaiTin = string.Empty;
+                            int id = Libs.LibConvert.ConvertToInt(Request.QueryString["id"], 0);
+                            if (DeleteNews(id, ref messLoaiTin))
+                            {%>
+                <!-- NOTIFICATIONS (Thong bao)-->
+                <div class="notification note-success">
+                    <a href="#" class="close" title="Close notification">close</a>
+                    <p>
+                        <strong>
+                            <%=messLoaiTin%></strong></p>
+                </div>
+                <%}
+                            else
+                            {%>
+                <!-- NOTIFICATIONS (Thong bao)-->
+                <div class="notification note-error">
+                    <a href="#" class="close" title="Close notification">close</a>
+                    <p>
+                        <strong>
+                            <%=messLoaiTin%></strong></p>
+                </div>
+                <%}
+                %>
+                <uc1:UCAdminNewsList ID="UCAdminNewsList1" runat="server" />
+                <%}
                     }%>
                 <!-- end of box-wrap -->
             </div>
         </div>
         <!-- end of box-wrap -->
     </div>
-            <% 
-            WebPortal.Repository.Log.WriteLog(Request);
-            %>
+    <% 
+        WebPortal.Repository.Log.WriteLog(Request);
+    %>
 </asp:Content>
