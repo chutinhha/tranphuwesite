@@ -15,32 +15,40 @@ namespace WebPortal.AdminUsercontrols
         {
             if (Convert.ToInt32(Request.QueryString["idTaiNguyen"])>0)
             {
+                string url1 = Request.Url.ToString();
                 int idTaiNguyen = Convert.ToInt32(Request.QueryString["idTaiNguyen"]);
-                int idTinTuc = Convert.ToInt32(Request.QueryString["idNews"]);
+                int idTinTuc = Convert.ToInt32(Request.QueryString["idNews"]);                
+                //string url = "AdminNewsManager.aspx?type=attach&idNews="+ idTinTuc;
                 DeleteTaiNguyenAttached(idTaiNguyen, idTinTuc);
-                string url = "AdminNewsManager.aspx?type=attach&idNews=" + idTinTuc;
-                Response.Redirect(url);
+                //Response.Redirect(url);
             }
         }
 
         protected void UploadFile_Click(object sender, EventArgs e)
         {
+            if (StatusLabel.Text == "Upload thành công!")
+            {
+                string fileName = Server.MapPath("~/Resources/Files/") + FileNameAttach.Text;
+                Libs.LibFile.DeleteFile(Server.MapPath(fileName));
+            }
             if (FileUploadControl.HasFile)
             {
                 HttpPostedFile objectFile = FileUploadControl.PostedFile;
-                string pathDirectory = "~/Resources/Files";
+                string pathDirectory = "~/Resources/Files/";
                 string errorMess = "";
-                string filename = Path.GetFileName(FileUploadControl.FileName);
+                string filename = string.Empty;
                 string formatFileName = "rar,doc,docx,xls,xlsx,ppt,pptx,zip,txt,pdf";
-                int maxsize = 1024000;
+                int maxsize = 10240000;
                 Libs.LibUpload.UploadFile(objectFile, pathDirectory, ref errorMess, ref filename, formatFileName, maxsize);
                 StatusLabel.Text = errorMess;
                 FileNameAttach.Text = filename;
+                StatusSaveChange.Text = "";
+                DeleteStatus.Text = "";
             }
         }
         private void AddTaiNguyen(string filename, string name, string summary)
         {
-            string path = Server.MapPath("~/Resources/Files") + filename;
+            string path = Server.MapPath("~/Resources/Files/") + filename;
             WebPortal.Model.TaiNguyen tn = new Model.TaiNguyen();
             tn.Path = path;
             tn.MoTa = summary;
@@ -56,17 +64,32 @@ namespace WebPortal.AdminUsercontrols
                 taiNguyenTinTuc.IDTinTuc = idTinTuc;
                 tnTinTuc.Add(taiNguyenTinTuc);
                 StatusSaveChange.Text = "Đính kèm file thành công!";
+                StatusLabel.Text = "";
+                FileName.Text = "";
+                summaryFile.Text = "";
+                DeleteStatus.Text = "";
             }
             catch(Exception ex)
             {
                 StatusSaveChange.Text = "Lỗi xảy ra trong khi đính kèm: " + ex.Message;
+                StatusLabel.Text = "";
+                FileName.Text = "";
+                summaryFile.Text = "";
+                DeleteStatus.Text="";
             }
         }
     
         protected void AddTaiNguyen_Click(object sender, EventArgs e)
         {
-            AddTaiNguyen(FileNameAttach.Text, FileName.Text, summaryFile.Text);
-
+            if (StatusLabel.Text == "Upload thành công!")
+            {
+                AddTaiNguyen(FileNameAttach.Text, FileName.Text, summaryFile.Text);
+            }
+            else
+            {
+                StatusSaveChange.Text = "Bạn chưa đính kèm file hoặc file đính kèm không hợp lệ!";
+                DeleteStatus.Text = "";
+            }
         }
 
         public List<WebPortal.Model.TaiNguyen> GetListTaiNguyenAttached()
@@ -91,19 +114,15 @@ namespace WebPortal.AdminUsercontrols
         {
             try
             {
-                WebPortal.TaiNguyen_TinTuc tnTinTuc = new TaiNguyen_TinTuc();
                 WebPortal.TaiNguyen taiNguyen = new TaiNguyen();
-                foreach (WebPortal.Model.TaiNguyen_TinTuc tnTT in tnTinTuc.GetFollowIDTinTuc(idTinTuc))
-                {
-                    if (tnTT.IDTaiNguyen == idTaiNguyen)
-                        tnTinTuc.Delete(tnTT.ID);
-                }
+                WebPortal.Model.TaiNguyen tn = taiNguyen.Single(idTaiNguyen);
+                Libs.LibFile.DeleteFile(tn.Path);
                 taiNguyen.Delete(idTaiNguyen);
                 DeleteStatus.Text = "Xóa thành công";
             }
             catch (Exception ex)
             {
-                DeleteStatus.Text = "Lỗi xảy ra khi xóa: " + ex.Message;
+                DeleteStatus.Text = "Lỗi xảy ra khi xóa! Vui lòng thử lại.";
             }
         }
     }
