@@ -60,6 +60,61 @@
                     <uc7:UCAdminLoaiTinEditChild ID="UCAdminLoaiTinEditChild1" runat="server" />
                 </div>
                 <%}
+                        if (Request.QueryString["type"] == "deleteLv1")
+                        {
+                            string mess = string.Empty;
+                            int id = Libs.LibConvert.ConvertToInt(Request.QueryString["id"], 0);
+                            if (DeleteLoaiTinLv1(id, ref mess))
+                            {%>
+                                <!-- NOTIFICATIONS (Thong bao)-->
+                                <div class="notification note-success">
+                                    <a href="#" class="close" title="Close notification">close</a>
+                                    <p>
+                                        <strong>
+                                            <%=mess%></strong></p>
+                                </div>
+                                <%}
+                            else
+                            {%>
+                                <!-- NOTIFICATIONS (Thong bao)-->
+                                <div class="notification note-error">
+                                    <a href="#" class="close" title="Close notification">close</a>
+                                    <p>
+                                        <strong>
+                                            <%=mess%></strong></p>
+                                </div>
+                                <%}
+                                    %>
+                                 <uc1:UCAdminLoaiTinList ID="UCAdminLoaiTinList3" runat="server" />
+                    <%}
+                        if (Request.QueryString["type"] == "deleteChild")
+                        {
+                            string messLoaiTin = string.Empty;
+                            int id = Libs.LibConvert.ConvertToInt(Request.QueryString["id"], 0);
+                            if (DeleteLoaiTin(id, ref messLoaiTin))
+                            {%>
+                                <!-- NOTIFICATIONS (Thong bao)-->
+                                <div class="notification note-success">
+                                    <a href="#" class="close" title="Close notification">close</a>
+                                    <p>
+                                        <strong>
+                                            <%=messLoaiTin%></strong></p>
+                                </div>
+                                <%}
+                            else
+                            {%>
+                                <!-- NOTIFICATIONS (Thong bao)-->
+                                <div class="notification note-error">
+                                    <a href="#" class="close" title="Close notification">close</a>
+                                    <p>
+                                        <strong>
+                                            <%=messLoaiTin%></strong></p>
+                                </div>
+                                <%}
+                                    %>
+                                 <uc6:UCAdminLoaiTinListChild ID="UCAdminLoaiTinListChild2" runat="server" />
+                    <%}
+
 
                     }%>
                 <!-- end of box-wrap -->

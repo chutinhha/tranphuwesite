@@ -47,5 +47,14 @@ namespace WebPortal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::WebPortal.AdminUsercontrols.UCAdminUploadFile UCAdminUploadFile1;
+        
+        /// <summary>
+        /// UCAdminNewsList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WebPortal.AdminUsercontrols.UCAdminNewsList UCAdminNewsList1;
     }
 }

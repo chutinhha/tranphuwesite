@@ -74,5 +74,23 @@ namespace WebPortal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::WebPortal.AdminUsercontrols.UCAdminLoaiTinEditChild UCAdminLoaiTinEditChild1;
+        
+        /// <summary>
+        /// UCAdminLoaiTinList3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WebPortal.AdminUsercontrols.UCAdminLoaiTinList UCAdminLoaiTinList3;
+        
+        /// <summary>
+        /// UCAdminLoaiTinListChild2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WebPortal.AdminUsercontrols.UCAdminLoaiTinLv2List UCAdminLoaiTinListChild2;
     }
 }
