@@ -17,17 +17,17 @@
                 <%
                     if (Request.QueryString["type"] == null)
                     { %>
-                    <uc1:UCAdminTaiNguyenList ID="UCAdminTaiNguyenList1" runat="server" />
+                    <uc1:UCAdminTaiNguyenList ID="UCAdminTaiNguyenList" runat="server" />
                     <%}
                     else
                     {
                         if (Request.QueryString["type"] == "delete")
                         {%>
-                        <uc1:UCAdminTaiNguyenList ID="UCAdminTaiNguyenList2" runat="server" />
+                        <uc1:UCAdminTaiNguyenList ID="UCAdminTaiNguyenList1" runat="server" />
                         <%}
                         if (Request.QueryString["type"] == "new")
                         {%>
-                        <uc2:UCAdminTaiNguyenCreate ID="UCAdminTaiNguyenCreate1" runat="server" />
+                        <uc2:UCAdminTaiNguyenCreate ID="UCAdminTaiNguyenCreate" runat="server" />
                         <%}
                         
                     }%>
