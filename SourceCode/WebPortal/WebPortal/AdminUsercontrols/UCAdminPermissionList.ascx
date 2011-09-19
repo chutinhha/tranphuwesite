@@ -11,7 +11,7 @@
     <form method="post" action="#">
     <% 
         WebPortal.Repository.Permission permissionDA = new WebPortal.Repository.Permission();
-        List<WebPortal.Model.Permission> list = permissionDA.All();
+        List<WebPortal.Model.Permission> list = permissionDA.Get_All();
     %>
     <table class="datatable style1">
         <thead>

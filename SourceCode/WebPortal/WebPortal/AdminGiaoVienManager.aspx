@@ -26,6 +26,9 @@
              $('input[name="ngaySinh"]').datepicker({
                  dateFormat: 'dd/mm/yy'
              });
+             $("#back").click(function () {
+                 document.location.href = "AdminGiaoVienManager.aspx";
+             });
          });
     </script>
 </asp:Content>

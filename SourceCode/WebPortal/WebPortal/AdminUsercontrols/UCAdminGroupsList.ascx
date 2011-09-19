@@ -11,7 +11,7 @@
     <form method="post" action="#">
     <% 
         WebPortal.Repository.Group groupDA = new WebPortal.Repository.Group();
-        List<WebPortal.Model.Group> list = groupDA.All();
+        List<WebPortal.Model.Group> list = groupDA.Get_All();
     %>
     <table class="datatable style1">
         <thead>

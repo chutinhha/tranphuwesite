@@ -15,6 +15,9 @@
                      }
                  }
              });
+             $("#back").click(function () {
+                 document.location.href = "AdminPermissionManager.aspx";
+             });
          });
     </script>
 </asp:Content>
@@ -34,14 +37,9 @@
                 <%}
                    else if (Request.QueryString["type"] != null)
                    { %>
-                </div>
-                <UC:PerDetail runat="server" ID="UCPerDetail" />
-                <xxxxelmt>
-    <xxxxelmt>
-    <xxxxelmt>
+                 <UC:PerDetail runat="server" ID="UCPerDetail" />
                 <%} %>
             </div>
-            <!-- end of box-wrap -->
         </div>
 </div>
     <!-- end of box-wrap -->
