@@ -132,20 +132,7 @@ foreach (WebPortal.Model.LoaiTin lt2 in listLoaiTin)
                 <!--end menu-->
                 <div class="clear">
                 </div>
-                <div class="menu">
-                    <div class="menuTitle">
-                        <div class="menuTitleGrad">
-                            Liên kết web</div>
-                    </div>
-                    <div class="webLinks">
-                        <div>
-                            <a href="#">
-                                <img alt="" src="images/CLB_KhoaHocXaHoi.jpg" width="137" height="140" style="margin-bottom: 6px;" /></a>
-                            <a href="#">
-                                <img alt="" src="images/CLB_KhoaHocTuNhien.jpg" width="137" height="140" style="margin-bottom: 6px;" /></a>
-                        </div>
-                    </div>
-                </div>
+                
                 <!--end liên kết web-->
                 <div class="menu">
                     <div class="menuTitle">
