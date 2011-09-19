@@ -61,15 +61,15 @@ namespace WebPortal
             }
         }
 
-        public int Delete(WebPortal.Model.GiaoVien giaoVien)
-        {
-            using (WebPortalEntities dataEntities = new WebPortalEntities())
-            {
-                dataEntities.Attach(giaoVien);
-                dataEntities.DeleteObject(giaoVien);
-                return dataEntities.SaveChanges();
-            }
-        }
+        //public int Delete(WebPortal.Model.GiaoVien giaoVien)
+        //{
+        //    using (WebPortalEntities dataEntities = new WebPortalEntities())
+        //    {
+        //        //dataEntities.Attach(giaoVien);
+        //        dataEntities.DeleteObject(giaoVien);
+        //        return dataEntities.SaveChanges();
+        //    }
+        //}
         public int Delete(int id)
         {
             using (WebPortalEntities dataEntities = new WebPortalEntities())

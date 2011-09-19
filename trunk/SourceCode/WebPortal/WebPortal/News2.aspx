@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="titleBox">
-        <% int idlt = int.Parse(Request.QueryString["idLoaiTin"]);
+        <% int idlt = Libs.LibConvert.ConvertToInt(Request.QueryString["idLoaiTin"],1);
             
            if (idlt != null)
            {
@@ -52,7 +52,7 @@
                     <% Response.Write(tt.TenTinTuc); %></a>
             </div>
             <div class="timePost">
-                người đăng:<%Response.Write(tt.NguoiDang + "  " + tt.NgayDang); %></div>
+                người đăng:<%Response.Write(tt.NguoiDang + "   " + tt.NgayDang); %></div>
                  <%if (tt.HinhAnh != null)
                    { %>
             <div class="hinhAnh">

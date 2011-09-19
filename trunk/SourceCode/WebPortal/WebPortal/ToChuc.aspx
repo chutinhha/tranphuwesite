@@ -21,14 +21,14 @@
                   WebPortal.Model.GiaoVien gv;
                  List<WebPortal.Model.ChucVu_GiaoVien> cvGV=new List<WebPortal.Model.ChucVu_GiaoVien>();
                   WebPortal.Model.ChucVu cv;
-                  gv = appgv.Single(Convert.ToInt32(tcgv.IDGiaoVien));
+                  gv = appgv.Single(Libs.LibConvert.ConvertToInt(tcgv.IDGiaoVien,1));
 
 
-                  cvGV = appChucVuGV.chucvu(Convert.ToInt32(tcgv.IDGiaoVien));
+                  cvGV = appChucVuGV.chucvu(Libs.LibConvert.ConvertToInt(tcgv.IDGiaoVien,1));
                   foreach (WebPortal.Model.ChucVu_GiaoVien gv1 in cvGV)
                   {
                       count++;
-                      WebPortal.Model.ChucVu cVu = appChucVu.Single(Convert.ToInt32(gv1.IDChucVu));
+                      WebPortal.Model.ChucVu cVu = appChucVu.Single(Libs.LibConvert.ConvertToInt(gv1.IDChucVu,1));
                       if(count==cvGV.Count)
                      chucvu+= cVu.TenCV.ToString();
                       else

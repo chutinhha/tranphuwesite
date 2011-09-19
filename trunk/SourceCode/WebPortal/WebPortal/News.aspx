@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%  int idtin = int.Parse(Request.QueryString["idTinTuc"]);
+    <%  int idtin = Libs.LibConvert.ConvertToInt(Request.QueryString["idTinTuc"],1);
 
         WebPortal.TinTuc app = new WebPortal.TinTuc();
         List<WebPortal.Model.TinTuc> listtintuc = new List<WebPortal.Model.TinTuc>();
