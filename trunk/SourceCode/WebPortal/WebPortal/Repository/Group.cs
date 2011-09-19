@@ -98,6 +98,13 @@ namespace WebPortal.Repository
                 return dataEntities.SaveChanges();
             }
         }
+        public List<Model.Group> Get_All()
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                return dataEntities.Groups.ToList();
+            }
+        }
         #endregion
 
     }

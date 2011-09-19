@@ -91,6 +91,14 @@ namespace WebPortal.Repository
                     return -1;
                 }
             }
+
+        }
+        public List<Model.Permission> Get_All()
+        {
+            using (WebPortalEntities dataEntities = new WebPortalEntities())
+            {
+                return dataEntities.Permissions.ToList();
+            }
         }
         #endregion
 

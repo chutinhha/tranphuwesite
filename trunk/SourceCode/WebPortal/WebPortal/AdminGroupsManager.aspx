@@ -9,6 +9,9 @@
     <script type="text/javascript" src="js/jquery.validate.js"></script>
      <script type="text/javascript">
          $(document).ready(function () {
+             $("#back").click(function () {
+               document.location.href = "AdminGroupsManager.aspx";
+             });
              $("#form1").validate({
                  rules: {
                      groupName: {

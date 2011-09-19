@@ -352,7 +352,7 @@ for (int i = 0; i < lstName.Count; i++)
             { %>
         <input type="submit" value="Xóa" id="delete" name="delete" class="button" />
         <%} %>
-        <input type="submit" value="Quay về trang chính" id="back" name="back" class="button" />
+        <input type="button" value="Quay về trang chính" id="back" name="back" class="button" />
     </div>
 </div>
 <% if (Request.Form["save"] != null)
@@ -374,10 +374,10 @@ for (int i = 0; i < lstName.Count; i++)
        
 %>
 <%}
-   else if (Request.Form["back"] != null)
-   {
-       Response.Redirect("AdminapplicationManager.aspx");
-   }
+   //else if (Request.Form["back"] != null)
+   //{
+   //    Response.Redirect("AdminapplicationManager.aspx");
+   //}
    else if (Request.Form["delete"] != null)
    {
         string mess = "";

@@ -228,7 +228,7 @@
             { %>
         <input type="submit" value="Xóa" id="delete" name="delete" class="button" />
         <%} %>
-        <input type="submit" value="Quay về trang chính" id="back" name="back" class="button" />
+        <input type="button" value="Quay về trang chính" id="back" name="back" class="button" />
     </div>
 </div>
 <% if (Request.Form["save"] != null)
@@ -247,10 +247,10 @@
        <%}
 %>
 <%}
-   else if (Request.Form["back"] != null)
-   {
-       Response.Redirect("AdminGroupsManager.aspx");
-   }
+   //else if (Request.Form["back"] != null)
+   //{
+   //    Response.Redirect("AdminGroupsManager.aspx");
+   //}
    else if (Request.Form["delete"] != null)
    {
        string notice = "";
