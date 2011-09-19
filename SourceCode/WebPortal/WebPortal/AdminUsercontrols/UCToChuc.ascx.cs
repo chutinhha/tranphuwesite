@@ -83,7 +83,7 @@ namespace WebPortal.AdminUsercontrols
             lbthongbao.Visible = true;
             try
             {
-                tc.IDToChuc = Convert.ToInt32(idAn.Value);
+                tc.IDToChuc =Libs.LibConvert.ConvertToInt(idAn.Value,1);
                 tc.TenTC = txttentochuc.Text;
                 tc.MoTa = txtmota.Text;
                 apptc.Update(tc);

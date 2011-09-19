@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCToChuc.ascx.cs" Inherits="WebPortal.AdminUsercontrols.UCToChuc" %>
 
 <body style="text-align: left">
-<div class="style2">
-    Quản Lý Tổ Chức</div>
+
+     <span style="font-family: Arial; font-weight: bold; font-size: 18px;">Quản Lý Tổ Chức</span>
 <table 
     class="style1">
     <tr>
@@ -12,6 +12,10 @@
         <td>
             <asp:TextBox ID="txttentochuc" runat="server" Width="601px" 
                 ontextchanged="txttentochuc_TextChanged" Height="27px"></asp:TextBox>
+            
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                BorderColor="#CC0000" ControlToValidate="txttentochuc" 
+                ErrorMessage="Bạn hãy điền tên tổ chức" ForeColor="#CC0000"></asp:RequiredFieldValidator>
             
         </td>
         
@@ -42,8 +46,11 @@
         
     </tr>
 </table>
-<br /><b>Danh sách các tổ chức :</b><p>
-    &nbsp;</p>
+<br />
+    
+        <b>Danh sách các tổ chức :</b>
+    <p>
+        &nbsp;</p>
    <asp:Repeater ID="Repeater1" runat="server" 
         onitemcommand="Repeater1_ItemCommand">
                 <HeaderTemplate>
