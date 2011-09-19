@@ -1,5 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCAdminTaiNguyenList.ascx.cs"
-    Inherits="WebPortal.UCAdminTaiNguyenList" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UCAdminTaiNguyenList.ascx.cs" Inherits="WebPortal.AdminUsercontrols.WebUserControl1" %>
 <div id="data-table">
     <p>
         <span style="font-family: Arial; font-weight: bold; font-size: 18px;">Quản lý tài nguyên</span>
@@ -40,8 +39,8 @@
                     <%=taiNguyen.Path%>
                 </td>
                 <td style="width: 20%;">
-                 <a href="../AdminTaiNguyen.aspx?id=<%=taiNguyen.IDTaiNguyen%>&type=delete" onclick='return confirm("Bạn có muốn xóa không?")' >
-                    <img src="images/ico_delete_16.png" class="icon16 fl-space2 usermanager-command"
+                    <a href="../AdminTaiNguyen.aspx?id=<%=taiNguyen.IDTaiNguyen%>&type=delete" onclick='return confirm("Bạn có muốn xóa không?")'>
+                        <img src="../images/ico_delete_16.png" class="icon16 fl-space2 usermanager-command"
                             alt="" title="Xóa" /></a>
                 </td>
             </tr>

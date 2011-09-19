@@ -65,5 +65,14 @@ namespace WebPortal.AdminUsercontrols
                 Response.Redirect("AdminLogin.aspx");
             }
         }
+
+        protected void btnHuy_Click(object sender, EventArgs e)
+        {
+            txtMoTa.Text = "";
+            txtTenTN.Text = "";
+            ImageUpLoad.ImageUrl = "";
+            PathLabel.Text = "";
+            lblThongBao.Text = "";
+        }
     }
 }
