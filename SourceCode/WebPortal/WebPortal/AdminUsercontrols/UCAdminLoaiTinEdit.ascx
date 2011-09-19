@@ -77,7 +77,7 @@
                 <td class="style2">
                     <input type="submit" name="UpdateLoaiTin" value="Lưu" style="width: 152px" class="button" />
                     &nbsp;
-                    <input class="button" name="DSLoaiTinLv1" onclick="window.location.href('AdminLoaiTinManager.aspx')"
+                    <input class="button" name="DSLoaiTinLv1" onclick="window.location.href = 'AdminLoaiTinManager.aspx'"
                         type="button" value="Danh sách loại tin mức 1" />
                 </td>
             </tr>

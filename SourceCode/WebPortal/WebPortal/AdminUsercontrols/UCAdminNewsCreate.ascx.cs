@@ -131,7 +131,6 @@ namespace WebPortal.AdminUsercontrols
                 try
                 {
                     id = tintuc.Add(news);
-                    IDNews.Text = id.ToString();
                     return true;
                 }
                 catch (Exception ex)
@@ -162,13 +161,13 @@ namespace WebPortal.AdminUsercontrols
         //    }
         //}
 
-        public void RedirectAttachFile()
-        {
-            string urlCurrent = Request.Url.ToString();
-            string str = urlCurrent.Substring(0, urlCurrent.IndexOf("&"));
-            str += "&type=attach&idNews=";
-            str += IDNews.Text;
-            Response.Redirect(str);
-        }
+        //public void RedirectAttachFile()
+        //{
+        //    string urlCurrent = Request.Url.ToString();
+        //    string str = urlCurrent.Substring(0, urlCurrent.IndexOf("&"));
+        //    str += "&type=attach&idNews=";
+        //    str += IDNews.Text;
+        //    Response.Redirect(str);
+        //}
     }
 }

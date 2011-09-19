@@ -67,9 +67,9 @@
                 <td>
                 </td>
                 <td style="text-align: center">
-                    <input type="button" name="DSLoaiTinLv1" value="Danh sách loại tin mức 1" onclick="window.location.href('AdminLoaiTinManager.aspx')" class="button"/>
-                    <input type="button" name="CreateLaoiTinLv2" value="Tạo loại tin mức 2" onclick="window.location.href('AdminLoaiTinManager.aspx?id=-1&type=createChild')" class="button"/>
-                    <input type="button" name="DSLoaiTinLv2" value="Danh sách loại tin mức 2" onclick="window.location.href('AdminLoaiTinManager.aspx?id=-1&type=listChild')" class="button"/>
+                    <input type="button" name="DSLoaiTinLv1" value="Danh sách loại tin mức 1" onclick="window.location.href='AdminLoaiTinManager.aspx'" class="button"/>
+                    <input type="button" name="CreateLaoiTinLv2" value="Tạo loại tin mức 2" onclick="window.location.href='AdminLoaiTinManager.aspx?id=-1&type=createChild'" class="button"/>
+                    <input type="button" name="DSLoaiTinLv2" value="Danh sách loại tin mức 2" onclick="window.location.href='AdminLoaiTinManager.aspx?id=-1&type=listChild'" class="button"/>
                 </td>
             </tr>
             <tr>
